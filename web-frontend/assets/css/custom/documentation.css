@@ -1,0 +1,186 @@
+@font-face {
+  font-family: "Roboto-Regular";
+  src: url("../../fonts/Roboto-Regular.ttf");
+}
+@font-face {
+  font-family: "Roboto-Medium";
+  src: url("../../fonts/Roboto-Medium.ttf");
+}
+@font-face {
+  font-family: "Roboto-Bold";
+  src: url("../../fonts/Roboto-Bold.ttf");
+}
+@font-face {
+  font-family: "Roboto-Black";
+  src: url("../../fonts/Roboto-Black.ttf");
+}
+/* FONTS */
+/* COLORS */
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+#dashboard_wrapper {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin: 0 auto 0;
+  padding: 24px 0 0;
+  width: 1024px;
+}
+#dashboard_wrapper form {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin: 0 0 24px;
+  width: 100%;
+}
+#dashboard_wrapper form label {
+  background-color: #FFFFFF;
+  border-bottom: 2px solid #009EBE;
+  border-radius: 8px 8px 0px 0px;
+  height: 58px;
+  padding: 7px 16px;
+  position: relative;
+  width: 502px;
+}
+#dashboard_wrapper form label::before {
+  background: url("../../images/admin/admin-sprite-icons.svg") no-repeat;
+  background-position: -33px -59px;
+  content: "";
+  height: 19px;
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  width: 19px;
+}
+#dashboard_wrapper form label span {
+  color: #1D333B;
+  display: block;
+  font: 12px/16px "Roboto-Medium";
+}
+#dashboard_wrapper form label input[type=text] {
+  border: none;
+  font: 16px/24px "Roboto-Regular";
+  outline: none;
+  padding: 0 0 0 0;
+  width: 100%;
+}
+#dashboard_wrapper ul {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin: 0 0 0;
+  padding: 0;
+}
+#dashboard_wrapper ul li {
+  background-color: #FFFFFF;
+  border-radius: 8px;
+  -webkit-box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+          box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 148px;
+  list-style: none;
+  margin-bottom: 24px;
+  margin-right: 24px;
+  overflow: hidden;
+  width: 325px;
+}
+#dashboard_wrapper ul li:last-child {
+  margin-right: 0;
+}
+#dashboard_wrapper ul li.is_private div:first-child {
+  background-color: #B3CAD4;
+}
+#dashboard_wrapper ul li.is_private div:last-child {
+  background-color: #F2FBFF;
+}
+#dashboard_wrapper ul li div:first-child {
+  background-color: #DBF5FF;
+  cursor: -webkit-grab;
+  cursor: grab;
+  height: 100%;
+  max-width: 44px;
+  min-width: 44px;
+  position: relative;
+  width: 44px;
+}
+#dashboard_wrapper ul li div:first-child::before {
+  content: "";
+  background: url("../../images/admin/admin-sprite-icons.svg") no-repeat;
+  background-position: -127px -91px;
+  height: 22px;
+  left: 0;
+  margin: 0 auto;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  width: 14px;
+}
+#dashboard_wrapper ul li div:last-child {
+  padding: 22px 22px 0;
+}
+#dashboard_wrapper ul li div h2 {
+  font: 16px/24px "Roboto-Bold";
+  color: #009EBE;
+  margin: 0 0 0;
+}
+#dashboard_wrapper ul li div h2 button {
+  background: url("../../images/admin/admin-sprite-icons.svg") no-repeat;
+  background-position: -97px -96px;
+  border: none;
+  height: 14px;
+  margin-left: 5px;
+  outline: none;
+  width: 14px;
+}
+#dashboard_wrapper ul li div span {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: #009EBE;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font: 12px/16px "Roboto-Medium";
+  margin: 2px 0 21px;
+}
+#dashboard_wrapper ul li div span::before {
+  content: "";
+  background: url("../../images/admin/admin-sprite-icons.svg") no-repeat;
+  background-position: 0px -98px;
+  height: 10px;
+  margin-right: 6px;
+  width: 20px;
+}
+#dashboard_wrapper ul li div p {
+  font: 12px/16px "Roboto-Regular";
+  color: #4B626A;
+}
