@@ -206,3 +206,46 @@ nav{
         }
     }
 }
+
+.breadcrumbs_block{
+    align-items: center;
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    a{
+        color: @primary_60;
+        font: 14px/20px @font_medium;
+        text-decoration: none;
+    }
+
+    p{
+        margin: 0;
+    }
+
+    li{
+        margin-left: 45px;
+        position: relative;
+
+        &:first-child{
+            margin-left: 0;
+        }
+
+        &::after{
+            background: url("../../images/svg_icons_stripe.svg") no-repeat -423px -9px;
+            content: "";
+            height: 18px;
+            right: -33px;
+            position: absolute;
+            top: 0;
+            width: 18px;
+        }
+
+        &:last-child{
+            &::after{
+                display: none;
+            }
+        }
+    }
+}

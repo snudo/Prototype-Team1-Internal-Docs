@@ -367,3 +367,41 @@ nav > div #user_profile_wrapper button .caret_arrow {
   margin-left: 8px;
   width: 24px;
 }
+.breadcrumbs_block {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.breadcrumbs_block a {
+  color: #009EBE;
+  font: 14px/20px "Roboto-Medium";
+  text-decoration: none;
+}
+.breadcrumbs_block p {
+  margin: 0;
+}
+.breadcrumbs_block li {
+  margin-left: 45px;
+  position: relative;
+}
+.breadcrumbs_block li:first-child {
+  margin-left: 0;
+}
+.breadcrumbs_block li::after {
+  background: url("../../images/svg_icons_stripe.svg") no-repeat -423px -9px;
+  content: "";
+  height: 18px;
+  right: -33px;
+  position: absolute;
+  top: 0;
+  width: 18px;
+}
+.breadcrumbs_block li:last-child::after {
+  display: none;
+}
