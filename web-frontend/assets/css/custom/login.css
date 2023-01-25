@@ -1,3 +1,105 @@
-.hidden {
-  display: none;
+@import url("/web-frontend/assets/css/custom/fonts.css");
+/* FONTS */
+/* COLORS */
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+section {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: #FFFFFF;
+  border-radius: 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 622px;
+  -webkit-box-pack: stretch;
+      -ms-flex-pack: stretch;
+          justify-content: stretch;
+  margin: 150px auto 150px;
+  width: 882px;
+}
+section form,
+section #login_block {
+  width: 50%;
+}
+section form h1,
+section #login_block h1,
+section form button,
+section #login_block button,
+section form img,
+section #login_block img {
+  margin: 0 0 38px 103px;
+}
+section form h1,
+section #login_block h1 {
+  color: #4B626A;
+  font: 16px/24px "Roboto-Regular";
+  margin-bottom: 14px;
+}
+section form button,
+section #login_block button {
+  background: #FFFFFF;
+  border-radius: 8px;
+  border: 1px solid #33B9DC;
+  color: #33B9DC;
+  font: 14px/20px "Roboto-Medium";
+  height: 40px;
+  position: relative;
+  width: 227px;
+  padding-left: 19px;
+}
+section form button::before,
+section #login_block button::before {
+  background: url("../../images/google.svg") no-repeat;
+  content: "";
+  height: 19px;
+  left: 36px;
+  position: absolute;
+  width: 19px;
+}
+section form#login_block,
+section #login_block#login_block {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: #33B9DC;
+  border-radius: 0 5px 5px 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 100%;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+section form#login_block img,
+section #login_block#login_block img {
+  margin-left: 0;
+}
+@media screen and (max-width: 930px) {
+  section {
+    width: calc(100% - 40px);
+    margin: 150px 20px;
+  }
+}
+@media screen and (max-width: 860px) {
+  section form {
+    padding: 0 50px;
+  }
+  section form h1,
+  section form button,
+  section form img {
+    margin-left: 0px;
+  }
+}
+@media screen and (max-width: 800px) {
+  section #login_block img {
+    width: calc(100% - 40px);
+    margin: 0 20px;
+  }
 }

@@ -1,0 +1,9 @@
+@import url("/web-frontend/assets/css/custom/fonts.css");
+/* FONTS */
+/* COLORS */
+* {
+  font: 14px/18px "Roboto-Regular";
+}
+body {
+  background: #E7EFF6;
+}
