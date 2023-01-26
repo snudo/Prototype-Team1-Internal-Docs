@@ -9,6 +9,15 @@ const removeTab = (event) => {
     event.target.closest("li").remove();
 }
 
+const fetchSelectedTabDetails = (event) => {
+    let selected_tab_item    = event.target.closest("li");
+    let component_block_item = selected_tab_item.closest(".component_block");
+
+    selected_tab_item.closest(".tab_list").querySelector(".tab_item.active").classList.remove("active");
+    selected_tab_item.classList.add("active");
+    component_block_item.querySelector(".update_tab_form .title_tab_input").value = selected_tab_item.querySelector(".tab_name").textContent;
+}
+
 const addTab = (component_item, component_id) => {
     let tab_clone     = document.querySelector("#clone_block ul .tab_item").cloneNode(true);
     let random_tab_id = (Math.random() + 1).toString(36).substring(5);
@@ -24,15 +33,18 @@ const addTab = (component_item, component_id) => {
 
     /* EVENTS */
     tab_clone.querySelector(".remove_tab").addEventListener("click", (event) => removeTab(event));
+    tab_clone.querySelector(".tab_name").addEventListener("click", fetchSelectedTabDetails);
 }
 
-const submitUpdateTabDetails = (tab_details_data, component_id, tab_id) => {
-    let { is_title } = tab_details_data;
-    let tab_title = (is_title) && tab_details_data.tab_title_data;
+const submitUpdateTabDetails = (tab_details_data, component_id) => {
+    let { is_title }  = tab_details_data;
+    let tab_title     = (is_title) && tab_details_data.tab_title_data;
+    let active_tab    = document.querySelector(`.component_block[data-component-id="${ component_id }"] .tab_item.active`);
+    let active_tab_id = active_tab.getAttribute("data-tab-id");
 
-    document.querySelector(`.tab_item[data-tab-id="${ tab_id }"]`).querySelector(".tab_name").textContent = tab_title;
+    active_tab.querySelector(".tab_name").textContent = tab_title;
 
-    component_data[component_id].tabs[tab_id] = {
+    component_data[component_id].tabs[active_tab_id] = {
         name: tab_title,
         description: ""
     };
@@ -61,7 +73,7 @@ const addComponentItem = () => {
     document.getElementById("component_list").append(component_item_clone);
 
     /* EVENTS */
-    component_item_clone.querySelector(".add_tab_btn").addEventListener("click", () => addTab(component_item_clone, random_component_id, random_tab_id));
+    component_item_clone.querySelector(".add_tab_btn").addEventListener("click", () => addTab(component_item_clone, random_component_id));
     component_item_clone.querySelector(".remove_tab").addEventListener("click", (event) => removeTab(event));
     component_item_clone.querySelector(".update_tab_form").addEventListener("submit", (event) => submitUpdateTabDetails(event, random_component_id, random_tab_id));
     component_item_clone.querySelector(".update_tab_form .title_tab_input").addEventListener("blur", (event) => {
@@ -74,6 +86,7 @@ const addComponentItem = () => {
 
         submitUpdateTabDetails({is_title: false, tab_desc_data}, random_component_id, random_tab_id);
     });
+    component_item_clone.querySelector(".tab_name").addEventListener("click", fetchSelectedTabDetails)
 };
 
 /* EVENTS */
