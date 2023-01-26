@@ -1,3 +1,154 @@
-.hidden {
-  display: none;
+@import url("/web-frontend/assets/css/custom/fonts.css");
+/* FONTS */
+/* COLORS */
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+section {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: #FFFFFF;
+  border-radius: 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 622px;
+  -webkit-box-pack: stretch;
+      -ms-flex-pack: stretch;
+          justify-content: stretch;
+  margin: 150px auto 150px;
+  width: 882px;
+}
+section form,
+section #login_block {
+  width: 50%;
+}
+section form h1,
+section #login_block h1,
+section form button,
+section #login_block button,
+section form img,
+section #login_block img {
+  margin: 0 0 38px 103px;
+}
+section form h1,
+section #login_block h1 {
+  color: #4B626A;
+  font: 16px/24px "Roboto-Regular";
+  margin-bottom: 14px;
+}
+section form button,
+section #login_block button {
+  background: #FFFFFF;
+  border-radius: 8px;
+  border: 1px solid #009EBE;
+  color: #009EBE;
+  font: 14px/20px "Roboto-Medium";
+  height: 40px;
+  position: relative;
+  width: 227px;
+  padding-left: 19px;
+}
+section form button::before,
+section #login_block button::before {
+  background: url("../../images/google.svg") no-repeat;
+  content: "";
+  height: 19px;
+  left: 36px;
+  position: absolute;
+  width: 19px;
+}
+section form#login_block,
+section #login_block#login_block {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: #009EBE;
+  border-radius: 0 5px 5px 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 100%;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+section form#login_block img,
+section #login_block#login_block img {
+  margin-left: 0;
+}
+@media screen and (max-width: 930px) {
+  section {
+    width: calc(100% - 40px);
+    margin: 150px 20px;
+  }
+}
+@media screen and (max-width: 860px) {
+  section form {
+    padding: 0 50px;
+  }
+  section form h1,
+  section form button,
+  section form img {
+    margin-left: 0px;
+  }
+}
+@media screen and (max-width: 800px) {
+  section #login_block img {
+    width: calc(100% - 40px);
+    margin: 0 20px;
+  }
+}
+@media screen and (max-width: 719px) {
+  body {
+    background: #009EBE !important;
+    padding-top: 290px;
+  }
+  section {
+    background: transparent;
+    display: block;
+    height: 100%;
+    margin: 0;
+    position: relative;
+    width: 100%;
+  }
+  section #login_block {
+    background: transparent !important;
+    height: unset !important;
+    position: absolute;
+    top: -240px;
+    width: 100%;
+  }
+  section #login_block img {
+    max-width: 300px;
+  }
+  section form {
+    background: #FFFFFF;
+    border-radius: 30px 30px 0 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    height: calc(100vh - 290px);
+    padding-top: 143px;
+    text-align: center;
+    width: 100%;
+  }
+  section form h1 {
+    font: 16px/24px "Roboto-Medium";
+  }
+  section form img {
+    margin: 0 auto 39px;
+    width: 110px;
+  }
+  section form button {
+    margin: 0 auto;
+  }
 }
