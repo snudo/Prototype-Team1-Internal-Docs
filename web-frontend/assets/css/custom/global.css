@@ -4,6 +4,9 @@
 * {
   font: 14px/18px "Roboto-Regular";
 }
+.hidden {
+  display: none;
+}
 body {
   background: #E7EFF6;
 }
