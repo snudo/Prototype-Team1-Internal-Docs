@@ -8,44 +8,94 @@
     
     <title>Documentation</title>
 
+    <link rel="stylesheet" href="../..//assets/css/vendor/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="../../assets/css/global.css">
     <link rel="stylesheet" href="../../assets/css/custom/documentation.css">
 </head>
 <body>
     <div id="dashboard_wrapper">
-        <form action="#" data-processing="0">
-            <label>
-                <span>Add Documentation</span>
-                <input id="add_documentation_input" type="text">
-            </label>
-        </form>
+        <div id="form_container">
+            <form id="create_document_form" action="#" data-processing="0">
+                <label>
+                    <span>Add Documentation</span>
+                    <input id="add_documentation_input" type="text">
+                </label>
+            </form>
 
-        <ul>
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="documents_category_selection" data-bs-toggle="dropdown" aria-expanded="false">
+                  Show All
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="documents_category_selection">
+                    <li><a class="dropdown-item" href="#">All</a></li>
+                    <li><a class="dropdown-item" href="#">Starred</a></li>
+                    <li><a class="dropdown-item" href="#">Private</a></li>
+                    <li><a class="dropdown-item" href="#">Public</a></li>
+                    <li><a class="dropdown-item" href="#">Archived</a></li>
+                </ul>
+            </div>
+        </div>
+        <ul id="document_list_container">
+            <li id="clone">
+                <a href="#">
+                    <div></div>
+                    <div>
+                        <button type="button" class="documents_menu" role="button" data-bs-trigger="focus" data-bs-toggle="popover"></button>
+                        <h2><button class="star_toggle_button"></button></h2>
+                        <span>0 viewers and 1 editor</span>
+                    </div>
+                </a>
+            </li>
             <li class="is_private">
-                <div></div>
-                <div>
-                    <h2>Engineering Guide <button></button></h2>
-                    <span>46 viewers and 3 editors</span>
-                    <p>Rey Plumb had always loved Cups San Fernando City with it. Reyna...</p>
-                </div>
+                <a href="#">
+                    <div></div>
+                    <div>
+                        <button type="button" class="documents_menu" role="button" data-bs-trigger="focus" data-bs-toggle="popover"></button>
+                        <h2><span>Engineering Guide</span><button class="star_toggle_button"></button></h2>
+                        <span>46 viewers and 3 editors</span>
+                        <p>Rey Plumb had always loved Cups San Fernando City with it. Reyna...</p>
+                    </div>
+                </a>
             </li><!--
             --><li>
-                <div></div>
-                <div>
-                    <h2>Engineering Guide <button></button></h2>
-                    <span>46 viewers and 3 editors</span>
-                    <p>Rey Plumb had always loved Cups San Fernando City with it. Reyna...</p>
-                </div>
+                <a href="#">
+                    <div></div>
+                    <div>
+                        <button type="button" class="documents_menu" role="button" data-bs-trigger="focus" data-bs-toggle="popover"></button>
+                        <h2><span>Engineering Guide</span><button class="star_toggle_button"></button></h2>
+                        <span>46 viewers and 3 editors</span>
+                        <p>Rey Plumb had always loved Cups San Fernando City with it. Reyna...</p>
+                    </div>
+                </a>
             </li><!--
             --><li>
-                <div></div>
-                <div>
-                    <h2>Engineering Guide <button></button></h2>
-                    <span>46 viewers and 3 editors</span>
-                    <p>Rey Plumb had always loved Cups San Fernando City with it. Reyna...</p>
-                </div>
+                <a href="#">
+                    <div></div>
+                    <div>
+                        <button type="button" class="documents_menu" role="button" data-bs-trigger="focus" data-bs-toggle="popover"></button>
+                        <h2><span>Engineering Guide</span><button class="star_toggle_button"></button></h2>
+                        <span>46 viewers and 3 editors</span>
+                        <p>Rey Plumb had always loved Cups San Fernando City with it. Reyna...</p>
+                    </div>
+                </a>
             </li>
         </ul>
     </div>
+
+    <div id="popover_container" hidden>
+        <div id="document_options">
+            <ul>
+                <li><button>Edit</button></li>
+                <li><button>Duplicate</button></li>
+                <li><button>Remove</button></li>
+                <li><button>Archive</button></li>
+                <li><button>Set as Public</button></li>
+            </ul>
+        </div>
+    </div>
+
+
+    <script src="../../assets/js/vendor/bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="../../assets/js/custom/admin/documentation.js"></script>
 </body>
 </html>
