@@ -5,6 +5,7 @@ let assets_data = [
 
     /* JS Global */
     {url: "/web-frontend/assets/js/vendor/bootstrap/bootstrap.bundle.min.js", type: "script"},
+    {url: "/web-frontend/assets/js/vendor/csi.min.js", type: "script"},
     {url: "/web-frontend/assets/js/custom/global.js", type: "script"},
 
     /* CUSTOM JS */
