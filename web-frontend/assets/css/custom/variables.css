@@ -1,0 +1,18 @@
+@font-face {
+  font-family: "Roboto-Regular";
+  src: url("https://village88.s3.us-east-1.amazonaws.com/vendor/fonts/Roboto-Regular.ttf");
+}
+@font-face {
+  font-family: "Roboto-Medium";
+  src: url("https://village88.s3.us-east-1.amazonaws.com/vendor/fonts/Roboto-Medium.ttf");
+}
+@font-face {
+  font-family: "Roboto-Bold";
+  src: url("https://village88.s3.us-east-1.amazonaws.com/vendor/fonts/Roboto-Bold.ttf");
+}
+@font-face {
+  font-family: "Roboto-Black";
+  src: url("https://village88.s3.us-east-1.amazonaws.com/vendor/fonts/Roboto-Black.ttf");
+}
+/* FONTS */
+/* COLORS */

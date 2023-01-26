@@ -5,15 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <!-- REQUIRED ON LOAD -->
-    <link rel="stylesheet" href="../../assets/css/custom/onload.css">
+    <link rel="stylesheet" href="../../assets/css/custom/login.css">
 
     <!-- CONSTANTS -->
     <script src="../../assets/js/constans.js"></script>
 
-    <!-- CUSTOM JS AND CSS -->
+    <!-- CUSTOM JS -->
     <script>
-        let current_css = "../../assets/css/custom/login.css";
         let current_js  = "../../assets/js/custom/login.js";
     </script>
 
@@ -21,29 +19,17 @@
     <script src="../../assets/js/vendor/assets_loader.min.js"></script>
     <script src="../../assets/js/custom/render_assets.js"></script>
 </head>
-<body class="hidden">
-    <!-- Button trigger modal -->
-    <button type="button" id="sample_btn">
-        Launch demo modal
-    </button>
+<body>
+    <section>
+        <form action="#" method="POST">
+            <img src="../../assets/images/logo_big.svg" alt="Internal Doc Logo">
+            <h1>Internal Documentation Tool</h1>
+            <button type="submit">Login with Google</button>
+        </form>
 
-    <!-- Modal -->
-    <div class="modal fade hidden" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                ...
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-            </div>
+        <div id="login_block">
+            <img src="../../assets/images/vector_character.svg" alt="Vector Character">
         </div>
-    </div> 
+    </section>
 </body>
 </html>
