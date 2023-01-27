@@ -124,6 +124,18 @@ const updateSectionTitle = (event) => {
     event.target.style.width = event.target.value.length * 12 + "px";
 }
 
+const selectSectionItem = (event) => {
+    event.preventDefault();
+    let section_item = event.target;
+
+    section_item.closest("ul").querySelector(".active").classList.remove("active");
+    section_item.classList.add("active");
+}
+
 /* EVENTS */
 document.getElementById("add_component").addEventListener("click", addComponentItem);
 document.getElementById("section_title").addEventListener("keyup", updateSectionTitle);
+
+document.querySelectorAll("#section_list li").forEach((section_item) => {
+    section_item.addEventListener("click", selectSectionItem);
+});

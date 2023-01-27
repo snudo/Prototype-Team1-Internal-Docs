@@ -48,11 +48,11 @@
             <h3>In This Documentation <span class="info_icon"></span></h3>
 
             <ul id="section_list">
-                <li><a href="#">Learn the HTML structu...</a></li>
-                <li><a href="#">Learn the HTML structu...</a></li>
-                <li><a href="#">Learn the HTML structu...</a></li>
-                <li><a href="#">Learn the HTML structu...</a></li>
-                <li><a href="#">Learn the HTML structu...</a></li>
+                <li><a href="#">The power ranger of source.</a></li>
+                <li class="active"><a href="#">Data Usage, Collection, and Processing</a></li>
+                <li><a href="#">Collection of Nikola Tesla</a></li>
+                <li><a href="#">Destructing of JavaScript</a></li>
+                <li><a href="#">Learn the HTML structure</a></li>
             </ul>
         </div>
     </section>
@@ -65,12 +65,14 @@
         <div class="component_block">
             <ul class="tab_list">
                 <li class="tab_item active"><span class="tab_name">Untitled</span> <button class="remove_tab"></button></li>
-                <li class="add_tab"><button class="add_tab_btn">add</button></li>
+                <li class="add_tab"><button class="add_tab_btn"></button></li>
             </ul>
 
             <form action="#" class="update_tab_form" method="post">
-                <input type="text" name="title" class="title_tab_input required_input" value="Untitled">
-
+                <label>
+                    <span>Title</span>
+                    <input type="text" name="title" class="title_tab_input required_input" value="Untitled">
+                </label>
                 <textarea name="tab_description" class="tab_description_input hidden"></textarea>
             </form>
         </div>
