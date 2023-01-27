@@ -26,6 +26,9 @@
 .input_error span {
   color: red !important;
 }
+#clone {
+  display: none;
+}
 #popover_container {
   display: none;
 }
@@ -51,13 +54,15 @@
 .popover .popover-body ul li {
   width: 100%;
 }
-.popover .popover-body ul li button {
+.popover .popover-body ul li button,
+.popover .popover-body ul li div {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
   background-color: transparent;
   border: none;
   color: #7D949D;
+  cursor: pointer;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -65,7 +70,8 @@
   padding: 15px;
   width: 100%;
 }
-.popover .popover-body ul li button::before {
+.popover .popover-body ul li button::before,
+.popover .popover-body ul li div::before {
   content: "";
   height: 22px;
   margin-right: 14px;
@@ -91,15 +97,26 @@
   background: url("../../images/admin/admin-sprite-icons.svg") no-repeat;
   background-position: -92px -31px;
 }
-.popover .popover-body ul li:last-child button::before {
+.popover .popover-body ul li:last-child div input[type=checkbox] {
+  display: none;
+}
+.popover .popover-body ul li:last-child div::before {
   content: "";
   background: url("../../images/admin/admin-sprite-icons.svg") no-repeat;
   background-position: -125px -30px;
 }
+.popover .popover-body ul li:last-child div span::before {
+  font: 14px/20px "Roboto-Medium";
+  content: "Set as Public";
+}
+.popover .popover-body ul li:last-child div input[type=checkbox]:checked ~ span::before {
+  content: "Set as Private";
+}
 .popover .popover-body ul li:hover {
   background-color: #DBF5FF;
 }
-.popover .popover-body ul li:hover button {
+.popover .popover-body ul li:hover button,
+.popover .popover-body ul li:hover label {
   color: #009EBE;
 }
 .popover .popover-body ul li:hover:first-child button::before {
@@ -114,8 +131,11 @@
 .popover .popover-body ul li:hover:nth-child(4) button::before {
   background-position: -92px -1px;
 }
-.popover .popover-body ul li:hover:last-child button::before {
+.popover .popover-body ul li:hover:last-child div::before {
   background-position: -125px -2px;
+}
+body {
+  overflow: hidden;
 }
 #dashboard_wrapper {
   -webkit-box-align: center;
@@ -218,6 +238,7 @@
       flex-wrap: wrap;
   margin: 0 0 0;
   padding: 0;
+  width: 100%;
 }
 #dashboard_wrapper #document_list_container li {
   border-radius: 8px;
@@ -226,6 +247,7 @@
   list-style: none;
   margin-bottom: 24px;
   margin-right: 24px;
+  overflow: hidden;
   width: 325px;
 }
 #dashboard_wrapper #document_list_container li:nth-child(3n) {
@@ -255,6 +277,9 @@
 }
 #dashboard_wrapper #document_list_container li.is_private div:last-child {
   background-color: #F2FBFF;
+}
+#dashboard_wrapper #document_list_container li.starred a div h2 button {
+  background-position: -71px -96px;
 }
 #dashboard_wrapper #document_list_container li a {
   background-color: #FFFFFF;
@@ -312,22 +337,38 @@
   width: 10px;
 }
 #dashboard_wrapper #document_list_container li a div h2 {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   color: #009EBE;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   margin: 0 0 0;
 }
-#dashboard_wrapper #document_list_container li a div h2 span {
+#dashboard_wrapper #document_list_container li a div h2 > span {
   font: 16px/24px "Roboto-Bold";
 }
-#dashboard_wrapper #document_list_container li a div h2 > button {
+#dashboard_wrapper #document_list_container li a div h2 label {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-left: 5px;
+}
+#dashboard_wrapper #document_list_container li a div h2 label span {
   background: url("../../images/admin/admin-sprite-icons.svg") no-repeat;
   background-position: -97px -96px;
   border: none;
+  content: "";
+  cursor: pointer;
   height: 14px;
-  margin-left: 5px;
   outline: none;
   width: 14px;
 }
-#dashboard_wrapper #document_list_container li a div h2 > button.starred {
+#dashboard_wrapper #document_list_container li a div h2 label input[type=checkbox] {
+  display: none;
+}
+#dashboard_wrapper #document_list_container li a div h2 label input[type=checkbox]:checked ~ span {
   background-position: -71px -96px;
 }
 #dashboard_wrapper #document_list_container li a div > span {
@@ -339,17 +380,78 @@
   display: -ms-flexbox;
   display: flex;
   font: 12px/16px "Roboto-Medium";
-  margin: 2px 0 21px;
+}
+#dashboard_wrapper #document_list_container li a div > span span {
+  font: 12px/16px "Roboto-Medium";
+  margin-right: 3px;
+  margin-left: 4px;
 }
 #dashboard_wrapper #document_list_container li a div > span::before {
   content: "";
   background: url("../../images/admin/admin-sprite-icons.svg") no-repeat;
   background-position: 0px -98px;
   height: 10px;
-  margin-right: 6px;
   width: 20px;
 }
 #dashboard_wrapper #document_list_container li a div p {
-  font: 12px/16px "Roboto-Regular";
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
   color: #4B626A;
+  display: -webkit-box;
+  font: 12px/16px "Roboto-Regular";
+  margin: 23px 0 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+#confirm_private_modal .modal-dialog {
+  background-color: #FFFFFF;
+  border-radius: 8px;
+  -webkit-box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+          box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+  margin: 160px auto;
+  max-width: 328px;
+  padding: 20px 35px 24px;
+}
+#confirm_private_modal .modal-dialog .modal-content {
+  border: none;
+}
+#confirm_private_modal .modal-dialog .modal-content p {
+  color: #4B626A;
+  font: 16px/24px "Roboto-Regular";
+  margin: 0 0 17px;
+  text-align: center;
+}
+#confirm_private_modal .modal-dialog .modal-content p span {
+  font: 16px/24px "Roboto-Regular";
+}
+#confirm_private_modal .modal-dialog .modal-content div {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 100%;
+}
+#confirm_private_modal .modal-dialog .modal-content div button {
+  background-color: transparent;
+  border: none;
+  color: #7D949D;
+  font: 16px/24px "Roboto-Medium";
+  height: 40px;
+  width: 80px;
+}
+#confirm_private_modal .modal-dialog .modal-content div button:last-child {
+  background-color: #009EBE;
+  border-radius: 8px;
+  color: #FFFFFF;
+  margin-left: 24px;
+  -webkit-transition: 0.21s;
+  transition: 0.21s;
+}
+#confirm_private_modal .modal-dialog .modal-content div button:last-child:hover {
+  opacity: 0.8;
 }

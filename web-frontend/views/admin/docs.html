@@ -9,6 +9,7 @@
     <title>Documentation</title>
 
     <link rel="stylesheet" href="../..//assets/css/vendor/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="../../assets/css/global.css">
     <link rel="stylesheet" href="../../assets/css/custom/documentation.css">
 </head>
@@ -35,67 +36,53 @@
                 </ul>
             </div>
         </div>
-        <ul id="document_list_container">
-            <li id="clone">
-                <a href="#">
-                    <div></div>
-                    <div>
-                        <button type="button" class="documents_menu" role="button" data-bs-trigger="focus" data-bs-toggle="popover"></button>
-                        <h2><button class="star_toggle_button"></button></h2>
-                        <span>0 viewers and 1 editor</span>
-                    </div>
-                </a>
-            </li>
-            <li class="is_private">
-                <a href="#">
-                    <div></div>
-                    <div>
-                        <button type="button" class="documents_menu" role="button" data-bs-trigger="focus" data-bs-toggle="popover"></button>
-                        <h2><span>Engineering Guide</span><button class="star_toggle_button"></button></h2>
-                        <span>46 viewers and 3 editors</span>
-                        <p>Rey Plumb had always loved Cups San Fernando City with it. Reyna...</p>
-                    </div>
-                </a>
-            </li><!--
-            --><li>
-                <a href="#">
-                    <div></div>
-                    <div>
-                        <button type="button" class="documents_menu" role="button" data-bs-trigger="focus" data-bs-toggle="popover"></button>
-                        <h2><span>Engineering Guide</span><button class="star_toggle_button"></button></h2>
-                        <span>46 viewers and 3 editors</span>
-                        <p>Rey Plumb had always loved Cups San Fernando City with it. Reyna...</p>
-                    </div>
-                </a>
-            </li><!--
-            --><li>
-                <a href="#">
-                    <div></div>
-                    <div>
-                        <button type="button" class="documents_menu" role="button" data-bs-trigger="focus" data-bs-toggle="popover"></button>
-                        <h2><span>Engineering Guide</span><button class="star_toggle_button"></button></h2>
-                        <span>46 viewers and 3 editors</span>
-                        <p>Rey Plumb had always loved Cups San Fernando City with it. Reyna...</p>
-                    </div>
-                </a>
-            </li>
-        </ul>
+        <ul id="document_list_container"></ul>
     </div>
 
     <div id="popover_container" hidden>
         <div id="document_options">
             <ul>
-                <li><button>Edit</button></li>
-                <li><button>Duplicate</button></li>
-                <li><button>Remove</button></li>
-                <li><button>Archive</button></li>
-                <li><button>Set as Public</button></li>
+                <li><button type="button" class="edit_document">Edit</button></li>
+                <li><button type="button" class="duplicate_document">Duplicate</button></li>
+                <li><button type="button" class="remove_document">Remove</button></li>
+                <li><button type="button" class="archive_document">Archive</button></li>
+                <li>
+                    <div class="public_document">
+                        <input class="public_checkbox_setting" type="checkbox" name="public_setting">
+                        <span class="public_document"></span>
+                    </div>
+                </li>
             </ul>
         </div>
     </div>
 
+    <li id="clone">
+        <a href="#">
+            <div></div>
+            <div class="document_information">
+                <button type="button" class="documents_menu" role="button" data-bs-toggle="popover"></button>
+                <h2><span class="document_title"></span><label><input type="checkbox" name="checkbox"><span class="star_toggle_button"></span></label></h2>
+                <span><span class="viewers_count"></span> viewers and <span class="editors_count"></span> editor</span>
+                <p></p>
+            </div>
+        </a>
+    </li>
+
+    <div class="modal fade" id="confirm_private_modal" tabindex="-1" aria-labelledby="confirm_private_modal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <p>Are you sure you want to update it to <span class="public_private_content"></span>?</p>
+                <div>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                    <button id="confirm_button_yes" type="button" class="btn btn-primary">Yes</button>
+                </div>
+            </div>                
+        </div>
+    </div>
 
     <script src="../../assets/js/vendor/bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     <script src="../../assets/js/custom/admin/documentation.js"></script>
 </body>
 </html>
