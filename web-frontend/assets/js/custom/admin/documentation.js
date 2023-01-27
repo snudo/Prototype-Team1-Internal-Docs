@@ -1,4 +1,6 @@
 var popover_content = document.getElementById("document_options");
+var confirm_modal = document.getElementById("confirm_private_modal");
+var confirm_private_modal = new bootstrap.Modal(confirm_modal, {});
 var document_id = "";
 
 let documents_array = [
@@ -99,10 +101,7 @@ const DuplicateDocument = (event)=> {
 }
 
 const applySettings = (event)=> {
-    let confirm_modal = document.getElementById("confirm_private_modal");
-    let confirm_private_modal = new bootstrap.Modal(confirm_modal, {});
-
-    if(event.target.classList == "duplicate_document"){
+    if(event.target.classList.contains(event.target.getAttribute("data-class"))){
         let new_duplicated_document = selected_document;
         new_duplicated_document.id = new Date().getUTCMilliseconds();
 
