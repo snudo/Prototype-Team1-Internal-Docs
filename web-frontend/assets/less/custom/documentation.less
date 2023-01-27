@@ -256,7 +256,7 @@ body{
                 position: relative;
                 &::after{
                     content: "";
-                    background: url("/assets/images/admin/admin-sprite-icons.svg");
+                    background: url("../../images/admin/admin-sprite-icons.svg");
                     background-position: -185px -20px;
                     bottom: 0;
                     height: 110px;
@@ -264,12 +264,17 @@ body{
                     right: -18px;
                     width: 126px;
                 }
-                div{
-                    &:first-child{
-                        background-color: @secondary_80;
-                    }
-                    &:last-child{
-                        background-color: @primary_98;
+                a{
+                    div{
+                        &:first-child{
+                            background-color: @secondary_80;
+                            &::before{
+                                background-position: -127px -91px;
+                            }
+                        }
+                        &:last-child{
+                            background-color: @primary_98;
+                        }
                     }
                 }
             }
@@ -304,7 +309,7 @@ body{
                         &::before{
                             content: "";
                             background: url("../../images/admin/admin-sprite-icons.svg") no-repeat;
-                            background-position: -127px -91px;
+                            background-position: -156px -91px;
                             height: 22px;
                             left: 0;
                             margin: 0 auto;
@@ -321,7 +326,7 @@ body{
                         width: 100%;
                     }
                     .documents_menu{
-                        background: url("/assets/images/admin/admin-sprite-icons.svg");
+                        background: url("../../images/admin/admin-sprite-icons.svg");
                         background-position: -4px -58px;
                         border: none;
                         box-shadow: none;

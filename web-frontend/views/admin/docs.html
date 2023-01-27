@@ -4,16 +4,26 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" href="/assets/images/favicon.svg">
-    
+    <link rel="icon" type="image/x-icon" href="/web-frontend/assets/images/favicon.svg">
     <title>Documentation</title>
-
-    <link rel="stylesheet" href="../..//assets/css/vendor/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
-    <link rel="stylesheet" href="../../assets/css/global.css">
     <link rel="stylesheet" href="../../assets/css/custom/documentation.css">
+    <script src="/web-frontend/assets/js/vendor/bootstrap/bootstrap.bundle.min.js"></script>
+
+    <!-- CONSTANTS -->
+    <script src="../../assets/js/constans.js"></script>
+
+    <!-- CUSTOM JS -->
+    <script>
+        let current_js  = "../../assets/js/custom/admin/documentation.js";
+    </script>
+
+    <!-- ASSETS LOADER -->
+    <script src="../../assets/js/vendor/assets_loader.min.js"></script>
+    <script src="../../assets/js/custom/render_assets.js"></script>
 </head>
 <body>
+    <div data-include="./templates/navigation.html"></div>
     <div id="dashboard_wrapper">
         <div id="form_container">
             <form id="create_document_form" action="#" data-processing="0">
@@ -80,9 +90,7 @@
         </div>
     </div>
 
-    <script src="../../assets/js/vendor/bootstrap/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
-    <script src="../../assets/js/custom/admin/documentation.js"></script>
 </body>
 </html>
