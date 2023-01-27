@@ -7,6 +7,9 @@
 .hidden {
   display: none;
 }
+.input_error {
+  border: 1px solid #EF4444;
+}
 body {
   background: #E7EFF6;
 }

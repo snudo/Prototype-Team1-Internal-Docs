@@ -9,13 +9,16 @@ const removeTab = (event) => {
     event.target.closest("li").remove();
 }
 
-const fetchSelectedTabDetails = (event) => {
+const fetchSelectedTabDetails = (event, component_id) => {
     let selected_tab_item    = event.target.closest("li");
+    let active_tab_item      = selected_tab_item.closest(".tab_list").querySelector(".tab_item.active");
+    let active_tab_item_id   = document.querySelector(`.component_block[data-component-id="${ component_id }"] .tab_item.active`).getAttribute("data-tab-id");
     let component_block_item = selected_tab_item.closest(".component_block");
 
-    selected_tab_item.closest(".tab_list").querySelector(".tab_item.active").classList.remove("active");
+    active_tab_item.classList.remove("active");
     selected_tab_item.classList.add("active");
     component_block_item.querySelector(".update_tab_form .title_tab_input").value = selected_tab_item.querySelector(".tab_name").textContent;
+    renderRedactorX({ textarea: component_block_item.querySelector(".tab_description_input"), random_component_id: component_id, random_tab_id: active_tab_item_id });
 }
 
 const addTab = (component_item, component_id) => {
@@ -33,27 +36,31 @@ const addTab = (component_item, component_id) => {
 
     /* EVENTS */
     tab_clone.querySelector(".remove_tab").addEventListener("click", (event) => removeTab(event));
-    tab_clone.querySelector(".tab_name").addEventListener("click", fetchSelectedTabDetails);
+    tab_clone.querySelector(".tab_name").addEventListener("click", (event) => fetchSelectedTabDetails(event, component_id, random_tab_id));
 }
 
-const submitUpdateTabDetails = (tab_details_data, component_id) => {
-    let { is_title }  = tab_details_data;
-    let tab_title     = (is_title) && tab_details_data.tab_title_data;
-    let active_tab    = document.querySelector(`.component_block[data-component-id="${ component_id }"] .tab_item.active`);
-    let active_tab_id = active_tab.getAttribute("data-tab-id");
+const submitUpdateTabDetails = (tab_details_data, component_id, event) => {
+    let selected_title = event.target || undefined;
+    let { is_title }   = tab_details_data;
+    let tab_title      = (is_title) && tab_details_data.tab_title_data;
+    let component_tab  = `.component_block[data-component-id="${ component_id }"]`
+    let active_tab     = document.querySelector(`${ component_tab } .tab_item.active`);
+    let active_tab_id  = active_tab.getAttribute("data-tab-id");
 
-    active_tab.querySelector(".tab_name").textContent = tab_title;
+    (selected_title.value) ? selected_title.classList.remove("input_error") : selected_title.classList.add("input_error");
 
-    component_data[component_id].tabs[active_tab_id] = {
-        name: tab_title,
-        description: ""
-    };
+    if(!document.querySelectorAll(`${ component_tab } .input_error`).length){
+        active_tab.querySelector(".tab_name").textContent = tab_title;
+    
+        component_data[component_id].tabs[active_tab_id].name = tab_title;
+    }
 }
 
 const addComponentItem = () => {
     let component_item_clone = document.querySelector("#clone_block .component_block").cloneNode(true);
     let random_component_id  = (Math.random() + 1).toString(36).substring(7);
     let random_tab_id        = (Math.random() + 1).toString(36).substring(5);
+    let tab_name             = component_item_clone.querySelector(".tab_name");
 
     component_item_clone.setAttribute("data-component-id", random_component_id);
     component_item_clone.querySelector(".tab_item").setAttribute("data-tab-id", random_tab_id);
@@ -69,25 +76,36 @@ const addComponentItem = () => {
         description: ""
     }
 
-    RedactorX(component_item_clone.querySelector(".tab_description_input"));
     document.getElementById("component_list").append(component_item_clone);
-
+    
     /* EVENTS */
     component_item_clone.querySelector(".add_tab_btn").addEventListener("click", () => addTab(component_item_clone, random_component_id));
     component_item_clone.querySelector(".remove_tab").addEventListener("click", (event) => removeTab(event));
-    component_item_clone.querySelector(".update_tab_form").addEventListener("submit", (event) => submitUpdateTabDetails(event, random_component_id, random_tab_id));
+    component_item_clone.querySelector(".update_tab_form").addEventListener("submit", (event) => submitUpdateTabDetails({is_title: true, tab_title_data}, random_component_id, event));
     component_item_clone.querySelector(".update_tab_form .title_tab_input").addEventListener("blur", (event) => {
         let tab_title_data = event.target.value;
-
-        submitUpdateTabDetails({is_title: true, tab_title_data}, random_component_id, random_tab_id);
+        
+        submitUpdateTabDetails({is_title: true, tab_title_data}, random_component_id, event);
     });
-    component_item_clone.querySelector(".update_tab_form .tab_description_input").addEventListener("blur", (event) => {
-        let tab_desc_data = event.target.value;
 
-        submitUpdateTabDetails({is_title: false, tab_desc_data}, random_component_id, random_tab_id);
-    });
-    component_item_clone.querySelector(".tab_name").addEventListener("click", fetchSelectedTabDetails)
+    /* Calling the function `renderRedactorX` with the parameters `textarea` and `random_component_id`. */
+    tab_name.addEventListener("click", (event) => fetchSelectedTabDetails(event, random_component_id, random_tab_id));
+
+    tab_name.click();
 };
+
+const renderRedactorX = (params) => {
+    RedactorX(params.textarea, {
+        subscribe: {
+            "editor.blur": () => {
+                const { textarea, random_component_id } = params;
+                let tab_id = document.querySelector(`.component_block[data-component-id="${random_component_id}"] .tab_item.active`).getAttribute("data-tab-id");
+
+                component_data[random_component_id].tabs[tab_id].description = component_data[random_component_id].tabs[tab_id].description || textarea.value;
+            }
+        }
+    });
+}
 
 /* EVENTS */
 document.getElementById("add_component").addEventListener("click", addComponentItem);
