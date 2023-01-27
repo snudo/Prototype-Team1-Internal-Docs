@@ -70,8 +70,9 @@ renderDocuments();
 /* CALLBACK FUNCTIONS */
 
 const getDocumentValue = (event) => {
+    event.preventDefault();
     if(event.keyCode === 13) {
-          if(event.target.value.length){
+        if(event.target.value.length){
             let timestamp = new Date().getUTCMilliseconds();
 
             documents_array.push({
