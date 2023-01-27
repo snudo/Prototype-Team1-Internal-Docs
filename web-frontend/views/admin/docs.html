@@ -28,11 +28,11 @@
                   Show All
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="documents_category_selection">
-                    <li><a class="dropdown-item" href="#">All</a></li>
-                    <li><a class="dropdown-item" href="#">Starred</a></li>
-                    <li><a class="dropdown-item" href="#">Private</a></li>
-                    <li><a class="dropdown-item" href="#">Public</a></li>
-                    <li><a class="dropdown-item" href="#">Archived</a></li>
+                    <li><button data-selection="data-documents" class="document_filter dropdown-item">All</button></li>
+                    <li><button data-selection="data-starred" class="document_filter dropdown-item">Starred</button></li>
+                    <li><button data-selection="data-private" class="document_filter dropdown-item">Private</button></li>
+                    <li><button data-selection="data-public" class="document_filter dropdown-item">Public</button></li>
+                    <li><button data-selection="data-archive" class="document_filter dropdown-item">Archived</button></li>
                 </ul>
             </div>
         </div>
@@ -42,10 +42,10 @@
     <div id="popover_container" hidden>
         <div id="document_options">
             <ul>
-                <li><button type="button" data-class="edit_document" class="edit_document">Edit</button></li>
-                <li><button type="button" data-class="duplicate_document" class="duplicate_document">Duplicate</button></li>
-                <li><button type="button" data-class="remove_document" class="remove_document">Remove</button></li>
-                <li><button type="button" data-class="archive_document" class="archive_document">Archive</button></li>
+                <li><button type="button" class="edit_document">Edit</button></li>
+                <li><button type="button" class="duplicate_document">Duplicate</button></li>
+                <li><button type="button" class="remove_document">Remove</button></li>
+                <li><button type="button" class="archive_document">Archive</button></li>
                 <li>
                     <div class="public_document">
                         <input class="public_checkbox_setting" type="checkbox" name="public_setting">

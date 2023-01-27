@@ -48,6 +48,9 @@ const renderDocuments = () => {
 
         (document_item.is_private) ? cloned_document.classList.add("is_private") : cloned_document.classList.remove("is_private");
         (document_item.is_starred) ? cloned_document.querySelector("input[type=checkbox]").checked = true : cloned_document.querySelector("input[type=checkbox]").checked = false;
+
+        (document_item.is_starred) ? cloned_document.setAttribute("data-starred", "all_starred") : cloned_document.removeAttribute("data-star");
+        (document_item.is_private) ? cloned_document.setAttribute("data-private", "all_private") : cloned_document.removeAttribute("data-private");
         
         document.getElementById("document_list_container").appendChild(cloned_document);
 
@@ -101,13 +104,16 @@ const DuplicateDocument = (event)=> {
 }
 
 const applySettings = (event)=> {
-    if(event.target.classList.contains(event.target.getAttribute("data-class"))){
+    if(event.target.classList == "duplicate_document"){
         let new_duplicated_document = selected_document;
         new_duplicated_document.id = new Date().getUTCMilliseconds();
 
         documents_array.push(new_duplicated_document);
         renderDocuments();
-    }else if(event.target.classList == "remove_document" || event.target.classList == "archive_document"){
+    }else if(event.target.classList == "archive_document"){
+        documents_array.splice(documents_array.map((obj_index) => obj_index.id).indexOf(selected_document.id), 1);
+        renderDocuments();
+    }else if(event.target.classList == "remove_document"){
         documents_array.splice(documents_array.map((obj_index) => obj_index.id).indexOf(selected_document.id), 1);
         renderDocuments();
     }else if(event.target.classList == "public_document"){
@@ -128,7 +134,7 @@ const applySettings = (event)=> {
 }
 
 const starredDocument = (event)=> {
-    if(event.target.classList == "star_toggle_button"){
+    if(event.target.classList.contains("star_toggle_button")){
         let starred_id = parseInt(event.target.closest("li").getAttribute("id"));
         let selected_document_id = documents_array.find(obj_id => obj_id.id === starred_id);
         let selected_document_index = documents_array.map((obj_index) => obj_index.id).indexOf(starred_id);
@@ -141,13 +147,23 @@ const starredDocument = (event)=> {
     }
 }
 
+const FilterDocuments = (event)=> {
+    if(event.target.classList.contains("document_filter")){
+        let filtered_documents = document.querySelectorAll('#document_list_container ['+event.target.getAttribute("data-selection")+']');
+        // document.querySelectorAll("#document_list_container li").classList.add("hidden"); 
+        console.log(document.querySelectorAll("#document_list_container li"));
+
+        filtered_documents.forEach(function(document){
+            document.classList.remove("hidden");
+        })
+    }
+}
 
 /* EVENTS */
 document.addEventListener("click", applySettings);
 document.addEventListener("click", starredDocument);
 document.addEventListener("click", DuplicateDocument)
+document.addEventListener("click", FilterDocuments)
 document.getElementById("add_documentation_input").addEventListener("keyup", getDocumentValue);
-
-
 
 $(function() {$("#document_list_container").sortable();});
