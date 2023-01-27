@@ -12,18 +12,27 @@ const removeTab = (event) => {
 const fetchSelectedTabDetails = (event, component_id) => {
     let selected_tab_item    = event.target.closest("li");
     let active_tab_item      = selected_tab_item.closest(".tab_list").querySelector(".tab_item.active");
-    let active_tab_item_id   = document.querySelector(`.component_block[data-component-id="${ component_id }"] .tab_item.active`).getAttribute("data-tab-id");
     let component_block_item = selected_tab_item.closest(".component_block");
 
     active_tab_item.classList.remove("active");
     selected_tab_item.classList.add("active");
+
     component_block_item.querySelector(".update_tab_form .title_tab_input").value = selected_tab_item.querySelector(".tab_name").textContent;
-    renderRedactorX({ textarea: component_block_item.querySelector(".tab_description_input"), random_component_id: component_id, random_tab_id: active_tab_item_id });
+    document.querySelector(`.component_block[data-component-id="${ component_id }"] .tab_description_input`).value = component_data[component_id].tabs[selected_tab_item.getAttribute("data-tab-id")].description;
+
+    setTimeout(() => {
+        let active_tab_item_id = document.querySelector(`.component_block[data-component-id="${ component_id }"] .tab_item.active`).getAttribute("data-tab-id");
+        let tab_description    = component_data[component_id].tabs[active_tab_item_id].description;
+
+        document.querySelector(`.component_block[data-component-id="${ component_id }"] .tab_description_input`).value = tab_description;
+        renderRedactorX({ textarea: component_block_item.querySelector(".tab_description_input"), random_component_id: component_id, random_tab_id: active_tab_item_id, content_data: tab_description });
+    }, 380);
 }
 
 const addTab = (component_item, component_id) => {
     let tab_clone     = document.querySelector("#clone_block ul .tab_item").cloneNode(true);
     let random_tab_id = (Math.random() + 1).toString(36).substring(5);
+    let tab_name      = tab_clone.querySelector(".tab_name");
 
     tab_clone.setAttribute("data-tab-id", random_tab_id);
 
@@ -36,7 +45,8 @@ const addTab = (component_item, component_id) => {
 
     /* EVENTS */
     tab_clone.querySelector(".remove_tab").addEventListener("click", (event) => removeTab(event));
-    tab_clone.querySelector(".tab_name").addEventListener("click", (event) => fetchSelectedTabDetails(event, component_id, random_tab_id));
+    tab_name.addEventListener("click", (event) => fetchSelectedTabDetails(event, component_id));
+    tab_name.click();
 }
 
 const submitUpdateTabDetails = (tab_details_data, component_id, event) => {
@@ -88,24 +98,32 @@ const addComponentItem = () => {
         submitUpdateTabDetails({is_title: true, tab_title_data}, random_component_id, event);
     });
 
-    /* Calling the function `renderRedactorX` with the parameters `textarea` and `random_component_id`. */
     tab_name.addEventListener("click", (event) => fetchSelectedTabDetails(event, random_component_id, random_tab_id));
-
     tab_name.click();
 };
 
 const renderRedactorX = (params) => {
-    RedactorX(params.textarea, {
+    let app = RedactorX(params.textarea, {
+        content: params.content_data || "",
         subscribe: {
             "editor.blur": () => {
-                const { textarea, random_component_id } = params;
-                let tab_id = document.querySelector(`.component_block[data-component-id="${random_component_id}"] .tab_item.active`).getAttribute("data-tab-id");
-
-                component_data[random_component_id].tabs[tab_id].description = component_data[random_component_id].tabs[tab_id].description || textarea.value;
+                setTimeout(() => {
+                    const { textarea, random_component_id } = params;
+                    let tab_id = document.querySelector(`.component_block[data-component-id="${random_component_id}"] .tab_item.active`).getAttribute("data-tab-id");
+    
+                    component_data[random_component_id].tabs[tab_id].description = textarea.value;
+                }, 380);
             }
         }
     });
+
+    app.editor.setContent({ html: params.content_data });
+}
+
+const updateSectionTitle = (event) => {
+    event.target.style.width = event.target.value.length * 12 + "px";
 }
 
 /* EVENTS */
 document.getElementById("add_component").addEventListener("click", addComponentItem);
+document.getElementById("section_title").addEventListener("keyup", updateSectionTitle);
