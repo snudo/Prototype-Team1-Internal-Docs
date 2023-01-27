@@ -1,11 +1,13 @@
 let assets_data = [
     /* CSS Global */
     {url: "/web-frontend/assets/css/vendor/bootstrap/bootstrap.min.css", type: "style"},
+    {url: "/web-frontend/assets/css/vendor/redactorx.min.css", type: "style"},
     {url: "/web-frontend/assets/css/custom/global.css", type: "style"},
 
     /* JS Global */
     {url: "/web-frontend/assets/js/vendor/bootstrap/bootstrap.bundle.min.js", type: "script"},
     {url: "/web-frontend/assets/js/vendor/csi.min.js", type: "script"},
+    {url: "/web-frontend/assets/js/vendor/redactorx.min.js", type: "script"},
     {url: "/web-frontend/assets/js/custom/global.js", type: "script"},
 
     /* CUSTOM JS */
