@@ -52,6 +52,47 @@
             }
         }
 
+        #component_list{
+            margin-top: 24px;
+
+            .component_block{
+                .tab_list{
+                    align-items: center;
+                    display: flex;
+                    flex-wrap: wrap;
+                    margin: 0;
+                    padding: 0;
+
+                    li{
+                        align-items: center;
+                        display: flex;
+                        height: 44px;
+                        justify-content: center;
+
+                        &.tab_item{
+                            background: @teal_50;
+                            border: 1px solid @secondary_90;
+                            padding: 0 8px;
+
+                            .tab_name{
+                                color: @teal_500;
+                                font: 14px/20px @font_regular;
+                            }
+
+                            .remove_tab{
+                                background: url("../../../images/svg_icons_stripe.svg") no-repeat -497.5px -11px;
+                                border: none;
+                                height: 18px;
+                                margin-left: 10px;
+                                outline: none;
+                                width: 18px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
         #add_component{
             align-items: center;
             background: @teal_50;

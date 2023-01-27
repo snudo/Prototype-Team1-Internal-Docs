@@ -54,6 +54,50 @@
   resize: none;
   width: 100%;
 }
+#component_wrapper #left_panel #component_list {
+  margin-top: 24px;
+}
+#component_wrapper #left_panel #component_list .component_block .tab_list {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+}
+#component_wrapper #left_panel #component_list .component_block .tab_list li {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 44px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+#component_wrapper #left_panel #component_list .component_block .tab_list li.tab_item {
+  background: #F0FDFA;
+  border: 1px solid #CEE6F0;
+  padding: 0 8px;
+}
+#component_wrapper #left_panel #component_list .component_block .tab_list li.tab_item .tab_name {
+  color: #14B8A6;
+  font: 14px/20px "Roboto-Regular";
+}
+#component_wrapper #left_panel #component_list .component_block .tab_list li.tab_item .remove_tab {
+  background: url("../../../images/svg_icons_stripe.svg") no-repeat -497.5px -11px;
+  border: none;
+  height: 18px;
+  margin-left: 10px;
+  outline: none;
+  width: 18px;
+}
 #component_wrapper #left_panel #add_component {
   -webkit-box-align: center;
       -ms-flex-align: center;
