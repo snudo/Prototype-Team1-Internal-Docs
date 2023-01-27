@@ -4,6 +4,12 @@
 * {
   font: 14px/18px "Roboto-Regular";
 }
+.hidden {
+  display: none;
+}
+.input_error {
+  border: 1px solid #EF4444;
+}
 body {
   background: #E7EFF6;
 }
@@ -375,7 +381,7 @@ nav > div #user_profile_wrapper button .caret_arrow {
   display: -ms-flexbox;
   display: flex;
   list-style: none;
-  margin: 0;
+  margin: 24px 0 23px;
   padding: 0;
 }
 .breadcrumbs_block a {
@@ -384,6 +390,7 @@ nav > div #user_profile_wrapper button .caret_arrow {
   text-decoration: none;
 }
 .breadcrumbs_block p {
+  color: #7D949D;
   margin: 0;
 }
 .breadcrumbs_block li {
