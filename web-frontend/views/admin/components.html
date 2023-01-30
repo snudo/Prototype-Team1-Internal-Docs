@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Components</title>
     <link rel="stylesheet" href="../../assets/css/custom/admin/components.css">
+    <link rel="icon" type="image/x-icon" href="/web-frontend/assets/images/favicon.svg">
 
     <!-- CONSTANTS -->
     <script src="../../assets/js/constans.js"></script>
@@ -25,7 +26,7 @@
     <section id="component_wrapper">
         <div id="left_panel">
             <ul class="breadcrumbs_block">
-                <li><a href="#"><span class="breadcrumbs_icon"></span> Documentations</a></li>
+                <li><a href="/web-frontend/views/admin/docs.html"><span class="breadcrumbs_icon"></span> Documentations</a></li>
                 <li><a href="#"><span class="breadcrumbs_icon"></span> Engineering Guide</a></li>
                 <li><p><span class="breadcrumbs_icon"></span> Data Usage, Collection, and Processing</p></li>
             </ul>
@@ -48,11 +49,11 @@
             <h3>In This Documentation <span class="info_icon"></span></h3>
 
             <ul id="section_list">
-                <li><a href="#">Learn the HTML structu...</a></li>
-                <li><a href="#">Learn the HTML structu...</a></li>
-                <li><a href="#">Learn the HTML structu...</a></li>
-                <li><a href="#">Learn the HTML structu...</a></li>
-                <li><a href="#">Learn the HTML structu...</a></li>
+                <li><a href="#">The power ranger of source.</a></li>
+                <li class="active"><a href="#">Data Usage, Collection, and Processing</a></li>
+                <li><a href="#">Collection of Nikola Tesla</a></li>
+                <li><a href="#">Destructing of JavaScript</a></li>
+                <li><a href="#">Learn the HTML structure</a></li>
             </ul>
         </div>
     </section>
@@ -65,12 +66,14 @@
         <div class="component_block">
             <ul class="tab_list">
                 <li class="tab_item active"><span class="tab_name">Untitled</span> <button class="remove_tab"></button></li>
-                <li class="add_tab"><button class="add_tab_btn">add</button></li>
+                <li class="add_tab"><button class="add_tab_btn"></button></li>
             </ul>
 
             <form action="#" class="update_tab_form" method="post">
-                <input type="text" name="title" class="title_tab_input required_input" value="Untitled">
-
+                <label>
+                    <span>Title</span>
+                    <input type="text" name="title" class="title_tab_input required_input" value="Untitled">
+                </label>
                 <textarea name="tab_description" class="tab_description_input hidden"></textarea>
             </form>
         </div>

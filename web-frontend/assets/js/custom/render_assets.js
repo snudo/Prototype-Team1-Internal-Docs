@@ -9,9 +9,6 @@ let assets_data = [
     {url: "/web-frontend/assets/js/vendor/csi.min.js", type: "script"},
     {url: "/web-frontend/assets/js/vendor/redactorx.min.js", type: "script"},
     {url: "/web-frontend/assets/js/custom/global.js", type: "script"},
-
-    /* CUSTOM JS */
-    {url: current_js, type: "script"}
 ];
 
 /* Call back to check if the assets is loaded. */
@@ -23,3 +20,9 @@ let callback = () => {
 let loader = new asyncAssetsLoader();
 
 loader.load(assets_data, callback);
+
+let custom_assets_js = [
+    {url: current_js, type: "script"}
+]
+
+loader.load(custom_assets_js, callback);

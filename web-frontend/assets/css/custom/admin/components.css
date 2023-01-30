@@ -12,7 +12,7 @@
   width: 812px;
 }
 #component_wrapper #left_panel .section_details {
-  background: #FFFFFF;
+  background: url("../../../images/section_bg.png") no-repeat right 0px, #FFFFFF;
   border-radius: 8px;
   height: 244px;
   padding: 24px;
@@ -46,6 +46,7 @@
   width: 104px;
 }
 #component_wrapper #left_panel .section_details #section_details {
+  background: transparent;
   border: none;
   color: #4B626A;
   font: 16px/24px "Roboto-Regular";
@@ -56,6 +57,12 @@
 }
 #component_wrapper #left_panel #component_list {
   margin-top: 24px;
+}
+#component_wrapper #left_panel #component_list .component_block {
+  margin-bottom: 24px;
+}
+#component_wrapper #left_panel #component_list .component_block:last-child {
+  margin-bottom: 0;
 }
 #component_wrapper #left_panel #component_list .component_block .tab_list {
   -webkit-box-align: center;
@@ -81,13 +88,41 @@
       -ms-flex-pack: center;
           justify-content: center;
 }
+#component_wrapper #left_panel #component_list .component_block .tab_list li.add_tab {
+  background: #14B8A6;
+  border: 1px solid #14B8A6;
+  height: 44px;
+  width: 42.5px;
+}
+#component_wrapper #left_panel #component_list .component_block .tab_list li.add_tab button {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: url("../../../images/svg_icons_stripe.svg") no-repeat -547px 3px;
+  border: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 100%;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 100%;
+}
 #component_wrapper #left_panel #component_list .component_block .tab_list li.tab_item {
   background: #F0FDFA;
   border: 1px solid #CEE6F0;
   padding: 0 8px;
+  -webkit-transition: 0.25s ease-in-out;
+  transition: 0.25s ease-in-out;
+}
+#component_wrapper #left_panel #component_list .component_block .tab_list li.tab_item.active {
+  background: #FFFFFF;
+  border-top: 2px solid #14B8A6;
 }
 #component_wrapper #left_panel #component_list .component_block .tab_list li.tab_item .tab_name {
   color: #14B8A6;
+  cursor: pointer;
   font: 14px/20px "Roboto-Regular";
 }
 #component_wrapper #left_panel #component_list .component_block .tab_list li.tab_item .remove_tab {
@@ -97,6 +132,48 @@
   margin-left: 10px;
   outline: none;
   width: 18px;
+}
+#component_wrapper #left_panel #component_list .component_block form {
+  background: #FFFFFF;
+  padding: 24px;
+  border-radius: 0 0 8px 8px;
+}
+#component_wrapper #left_panel #component_list .component_block form label {
+  background-color: #F0FDFA;
+  border-bottom: 2px solid #14B8A6;
+  border-radius: 8px 8px 0px 0px;
+  height: 56px;
+  padding: 7px 16px;
+  position: relative;
+  width: 100%;
+}
+#component_wrapper #left_panel #component_list .component_block form label span {
+  color: #14B8A6;
+  display: block;
+  font: 12px/16px "Roboto-Regular";
+}
+#component_wrapper #left_panel #component_list .component_block form label input[type=text] {
+  background: #F0FDFA;
+  border: none;
+  color: #4B626A;
+  font: 14px/20px "Roboto-Medium";
+  outline: none;
+  padding: 0;
+  width: 100%;
+}
+#component_wrapper #left_panel #component_list .component_block form .rx-container {
+  border-radius: 8px;
+  border: 1px solid #CEE6F0;
+  margin-top: 24px;
+}
+#component_wrapper #left_panel #component_list .component_block form .rx-container .rx-toolbar-container {
+  background: #F2FBFF;
+  border-bottom: none;
+  border-radius: 8px 8px 0 0;
+}
+#component_wrapper #left_panel #component_list .component_block form .rx-container .rx-editor-container p {
+  color: #4B626A;
+  font: 14px/20px "Roboto-Regular";
 }
 #component_wrapper #left_panel #add_component {
   -webkit-box-align: center;
@@ -112,7 +189,7 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  margin-top: 24px;
+  margin: 24px 0;
   position: relative;
   width: 100%;
 }
@@ -124,8 +201,68 @@
   width: 36px;
 }
 #component_wrapper #right_panel {
-  margin-left: auto;
+  height: 100%;
+  margin: 0 0 0 auto;
+  padding-top: 67px;
+  position: sticky;
+  top: 0;
   width: 201px;
+}
+#component_wrapper #right_panel h3 {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: #1D333B;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font: 16px/24px "Roboto-Regular";
+  margin-bottom: 12px;
+}
+#component_wrapper #right_panel h3 .info_icon {
+  background: url("../../../images/svg_icons_stripe.svg") no-repeat -462px -10px;
+  display: inline-block;
+  height: 18px;
+  width: 18px;
+  margin-left: 8px;
+}
+#component_wrapper #right_panel #section_list {
+  padding: 12px 0 12px 0;
+  list-style: none;
+  border-left: 1px solid rgba(125, 148, 157, 0.5);
+}
+#component_wrapper #right_panel #section_list li {
+  cursor: pointer;
+  margin-bottom: 24px;
+  padding-left: 25px;
+  -webkit-transition: 0.25s ease-in-out;
+  transition: 0.25s ease-in-out;
+}
+#component_wrapper #right_panel #section_list li:last-child {
+  margin-bottom: 0;
+}
+#component_wrapper #right_panel #section_list li:hover a {
+  opacity: 1;
+}
+#component_wrapper #right_panel #section_list li a {
+  color: #14B8A6;
+  font: 14px/20px "Roboto-Regular";
+  text-decoration: none;
+  opacity: 0.5;
+  pointer-events: none;
+}
+#component_wrapper #right_panel #section_list li.active {
+  border-left: 2px solid #1D333B;
+  padding-left: 23px;
+  -webkit-transition: 0.25s ease-in-out;
+  transition: 0.25s ease-in-out;
+}
+#component_wrapper #right_panel #section_list li.active a {
+  color: #1D333B;
+  font: 14px/20px "Roboto-Medium";
+  opacity: 1;
+  -webkit-transition: 0.25s ease-in-out;
+  transition: 0.25s ease-in-out;
 }
 #clone_block {
   display: none;
