@@ -56,7 +56,7 @@ let searched_documents = [];
 const renderDocuments = (documentations_result) => {
     document.getElementById("document_list_container").innerHTML = "";
 
-    if(documentations_result.length != 0){
+    if(documentations_result.length){
         document.getElementById("no_data_logo").setAttribute("hidden", "hidden");
 
         for(let index in documentations_result){
