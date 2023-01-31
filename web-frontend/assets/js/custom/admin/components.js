@@ -2,11 +2,14 @@ var component_data = [];
 
 /* CALLBACK FUNCTIONS */
 const removeTab = (event) => {
-    let component_id = event.target.closest(".component_block").getAttribute("data-component-id");
-    let tab_id = event.target.closest(".tab_item").getAttribute("data-tab-id");
+    let remove_btn      = event.target;
+    let component_block = remove_btn.closest(".component_block");
+    let component_id    = component_block.getAttribute("data-component-id");
+    let tab_id          = remove_btn.closest(".tab_item").getAttribute("data-tab-id");
 
     delete component_data[component_id].tabs[tab_id];
-    event.target.closest("li").remove();
+    (remove_btn.closest(".tab_list").querySelectorAll("li").length === 2) && component_block.remove();
+    remove_btn.closest("li").remove();
 }
 
 const fetchSelectedTabDetails = (event, component_id) => {
@@ -106,7 +109,7 @@ const renderRedactorX = (params) => {
     let app = RedactorX(params.textarea, {
         content: params.content_data || "",
         subscribe: {
-            "editor.blur": () => {
+            "editor.keydown": () => {
                 setTimeout(() => {
                     const { textarea, random_component_id } = params;
                     let tab_id = document.querySelector(`.component_block[data-component-id="${random_component_id}"] .tab_item.active`).getAttribute("data-tab-id");
