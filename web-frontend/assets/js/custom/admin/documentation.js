@@ -11,7 +11,7 @@ let documents_array = [
         viewers: 10,
         editors: 2,
         is_private: false,
-        is_starred: false,
+        is_starred: true,
         description: "ASUS TUF Gaming F15 is a powerful Windows 10 gaming laptop that combines gaming performance with up to a narrow bezel IPS-type panel and an extended lifespan"
     },
     {
@@ -29,7 +29,7 @@ let documents_array = [
         viewers: 1,
         editors: 1,
         is_private: true,
-        is_starred: true,
+        is_starred: false,
         description: "ASUS TUF Gaming F15 is a powerful Windows 10 gaming laptop that combines gaming performance with up to a narrow bezel IPS-type panel and an extended lifespan"
     }
 ];
@@ -40,6 +40,8 @@ const renderDocuments = () => {
 
     if(documents_array.length){
         document.getElementById("no_data_logo").setAttribute("hidden", "hidden");
+
+        documents_array = [...new Map(documents_array.map(item => [item["id"], item])).values()];
 
         for(let index in documents_array){
             let document_item = documents_array[index];
@@ -164,7 +166,14 @@ const starredDocument = (event)=> {
 
         if(selected_document_index !== -1) {
             selected_document_id.is_starred = !event.target.closest("label").querySelector("input[type=checkbox]").checked;
-            documents_array[selected_document_index] = selected_document_id;
+
+            /* If Starred, put to starred group at the start of array */
+            documents_array.splice(selected_document_index, 1);
+                
+            /* Get last index of starred */
+            let last_starred_index = documents_array.findLastIndex((doc_obj) => doc_obj.is_starred);
+            documents_array.splice(last_starred_index+1, 0, selected_document_id);
+           
             renderDocuments();
         }
     }

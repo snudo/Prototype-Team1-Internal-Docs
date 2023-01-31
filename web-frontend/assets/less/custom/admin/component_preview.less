@@ -55,9 +55,8 @@ label.input_field{
                     border: none;
                     color: @secondary_20;
                     font: 22px/28px @font_regular;
-                    min-width: 130px;
+                    margin: 0;
                     outline: none;
-                    width: 130px;
                 }
 
                 button{
@@ -226,27 +225,6 @@ label.input_field{
                 }
             }
         }
-
-        #add_component{
-            align-items: center;
-            background: @teal_50;
-            border: 3px dashed @teal_500;
-            border-radius: 8px;
-            display: flex;
-            height: 120px;
-            justify-content: center;
-            margin: 24px 0;
-            position: relative;
-            width: 100%;
-
-            &::after{
-                background: url("../../../images/svg_icons_stripe.svg") no-repeat -595px 0px;
-                content: "";
-                height: 36px;
-                position: absolute;
-                width: 36px;
-            }
-        }
     }
 
     #right_panel{
@@ -317,8 +295,4 @@ label.input_field{
             }
         }
     }
-}
-
-#clone_block{
-    display: none;
 }
