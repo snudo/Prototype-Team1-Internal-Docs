@@ -36,8 +36,9 @@ let documents_array = [
 
 const renderDocuments = () => {
     document.getElementById("document_list_container").innerHTML = "";
+    documents_array = [...new Map(documents_array.map(item => [item["id"], item])).values()];
 
-    if(documents_array.length != 0){
+    if(documents_array.length){
         document.getElementById("no_data_logo").setAttribute("hidden", "hidden");
 
         documents_array = [...new Map(documents_array.map(item => [item["id"], item])).values()];
@@ -47,10 +48,10 @@ const renderDocuments = () => {
             let cloned_document = document.getElementById("clone").cloneNode(true);
 
             cloned_document.id = document_item.id;
-            cloned_document.querySelectorAll(".document_title")[0].textContent = document_item.title;
-            cloned_document.querySelectorAll(".viewers_count")[0].textContent = document_item.viewers;
-            cloned_document.querySelectorAll(".editors_count")[0].textContent = document_item.editors;
-            cloned_document.querySelectorAll(".document_information p")[0].textContent = document_item.description;
+            cloned_document.querySelectorAll(".document_title")[ITEMS.first].textContent = document_item.title;
+            cloned_document.querySelectorAll(".viewers_count")[ITEMS.first].textContent = document_item.viewers;
+            cloned_document.querySelectorAll(".editors_count")[ITEMS.first].textContent = document_item.editors;
+            cloned_document.querySelectorAll(".document_information p")[ITEMS.first].textContent = document_item.description;
 
             (document_item.is_private) ? cloned_document.classList.add("is_private") : cloned_document.classList.remove("is_private");
             (document_item.is_starred) ? cloned_document.querySelector("input[type=checkbox]").checked = true : cloned_document.querySelector("input[type=checkbox]").checked = false;
@@ -66,7 +67,7 @@ const renderDocuments = () => {
                 content: popover_content,
                 html: true,
                 trigger: "focus",
-                delay: {"hide": 200}
+                delay: {"hide": ANIMATION_TIME.hide}
             });
         }
     }
@@ -111,10 +112,6 @@ const DuplicateDocument = (event)=> {
         selected_document = documents_array.find(obj_id => obj_id.id === document_id);
         document.getElementById(event.target.getAttribute("aria-describedby")).querySelector(".public_document input[type=checkbox]").checked = !selected_document.is_private;
     }
-}
-
-const showConfirmModal = ()=> {
-    console.log(this)
 }
 
 const applySettings = (event)=> {
@@ -198,7 +195,6 @@ document.addEventListener("click", applySettings);
 document.addEventListener("click", starredDocument);
 document.addEventListener("click", DuplicateDocument);
 document.addEventListener("click", FilterDocuments);
-document.getElementById("confirm_button_yes").addEventListener("click", showConfirmModal);
 document.getElementById("add_documentation_input").addEventListener("keyup", getDocumentValue);
 
 $(function() {$("#document_list_container").sortable();});
