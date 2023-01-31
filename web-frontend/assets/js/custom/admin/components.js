@@ -2,11 +2,20 @@ var component_data = [];
 
 /* CALLBACK FUNCTIONS */
 const removeTab = (event) => {
-    let component_id = event.target.closest(".component_block").getAttribute("data-component-id");
-    let tab_id = event.target.closest(".tab_item").getAttribute("data-tab-id");
-
+    let remove_btn      = event.target;
+    let component_block = remove_btn.closest(".component_block");
+    let component_id    = component_block.getAttribute("data-component-id");
+    let tab_id          = remove_btn.closest(".tab_item").getAttribute("data-tab-id");
+    let stack_comp_id   = undefined;
+    
     delete component_data[component_id].tabs[tab_id];
-    event.target.closest("li").remove();
+    stack_comp_id = component_id;
+
+    let tab_list = document.querySelector(`.component_block[data-component-id="${stack_comp_id}"] .tab_list`);
+
+    remove_btn.closest("li").remove();
+    (tab_list.querySelectorAll("li").length === 1) && component_block.remove();
+    (!tab_list.querySelectorAll("li.active").length && tab_list.querySelectorAll("li").length !== 1) && tab_list.querySelector("li:not(.active) .tab_name").click();
 }
 
 const fetchSelectedTabDetails = (event, component_id) => {
@@ -14,7 +23,9 @@ const fetchSelectedTabDetails = (event, component_id) => {
     let active_tab_item      = selected_tab_item.closest(".tab_list").querySelector(".tab_item.active");
     let component_block_item = selected_tab_item.closest(".component_block");
 
-    active_tab_item.classList.remove("active");
+    if(selected_tab_item.closest(".tab_list").querySelectorAll(".tab_item.active").length){
+        active_tab_item.classList.remove("active");
+    }
     selected_tab_item.classList.add("active");
 
     component_block_item.querySelector(".update_tab_form .title_tab_input").value = selected_tab_item.querySelector(".tab_name").textContent;
@@ -104,9 +115,10 @@ const addComponentItem = () => {
 
 const renderRedactorX = (params) => {
     let app = RedactorX(params.textarea, {
+        placeholder: "Enter Description...",
         content: params.content_data || "",
         subscribe: {
-            "editor.blur": () => {
+            "editor.keydown": () => {
                 setTimeout(() => {
                     const { textarea, random_component_id } = params;
                     let tab_id = document.querySelector(`.component_block[data-component-id="${random_component_id}"] .tab_item.active`).getAttribute("data-tab-id");
@@ -120,22 +132,14 @@ const renderRedactorX = (params) => {
     app.editor.setContent({ html: params.content_data });
 }
 
-const updateSectionTitle = (event) => {
-    event.target.style.width = event.target.value.length * 12 + "px";
+const updateSectionTitle = () => {
+    let section_title = document.getElementById("section_title");
+    
+    section_title.style.width = section_title.value.length * 11.5 + "px";
 }
 
-const selectSectionItem = (event) => {
-    event.preventDefault();
-    let section_item = event.target;
-
-    section_item.closest("ul").querySelector(".active").classList.remove("active");
-    section_item.classList.add("active");
-}
+updateSectionTitle();
 
 /* EVENTS */
 document.getElementById("add_component").addEventListener("click", addComponentItem);
 document.getElementById("section_title").addEventListener("keyup", updateSectionTitle);
-
-document.querySelectorAll("#section_list li").forEach((section_item) => {
-    section_item.addEventListener("click", selectSectionItem);
-});

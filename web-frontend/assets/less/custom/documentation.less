@@ -9,6 +9,9 @@
         color: red !important;
     }
 }
+#create_document_button{
+    display: none;
+}
 #clone{
     display: none;
 }
@@ -17,12 +20,12 @@
 }
 .popover{
     border: none;
+    border-radius: 8px;
     border-radius: unset;
     width: 200px;
-    border-radius: 8px;
     .popover-body{
-        border-radius: 8px;
         border: none;
+        border-radius: 8px;
         box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3), 0px 2px 6px 2px rgba(0, 0, 0, 0.15);
         padding: 0;
         ul{
@@ -52,36 +55,36 @@
                 &:first-child{
                     button{
                         &::before{
-                            content: "";
                             background: url("../../images/admin/admin-sprite-icons.svg") no-repeat;
                             background-position: -7px -32px;
+                            content: "";
                         }
                     }
                 }
                 &:nth-child(2){
                     button{
                         &::before{
-                            content: "";
                             background: url("../../images/admin/admin-sprite-icons.svg") no-repeat;
                             background-position: -36px -30px;
+                            content: "";
                         }
                     }
                 }
                 &:nth-child(3){
                     button{
                         &::before{
-                            content: "";
                             background: url("../../images/admin/admin-sprite-icons.svg") no-repeat;
                             background-position: -64px -31px;
+                            content: "";
                         }
                     }
                 }
                 &:nth-child(4){
                     button{
                         &::before{
-                            content: "";
                             background: url("../../images/admin/admin-sprite-icons.svg") no-repeat;
                             background-position: -92px -31px;
+                            content: "";
                         }
                     }
                 }
@@ -91,14 +94,14 @@
                             display: none;
                         }
                         &::before{
-                            content: "";
                             background: url("../../images/admin/admin-sprite-icons.svg") no-repeat;
                             background-position: -125px -30px;
+                            content: "";
                         }
                         span{
                             &::before{
-                                font: 14px/20px @font_medium;
                                 content: "Set as Public";
+                                font: 14px/20px @font_medium;
                             }
                         }
                         input[type=checkbox]:checked ~ span{
@@ -203,15 +206,47 @@ body{
                     width: 100%;
                }
             }
+            #search_document{
+                background-color: @white;
+                border-bottom: 2px solid @primary_60;
+                border-radius: 8px 8px 0px 0px;
+                height: 58px;
+                padding: 7px 16px;
+                position: relative;
+                width: 502px;
+                &::before{
+                    background: url("../../images/admin/admin-sprite-icons.svg") no-repeat;
+                    background-position: -33px -92px;
+                    content: "";
+                    height: 20px;
+                    position: absolute;
+                    right: 16px;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    width: 20px;
+                }
+                span{
+                    color: #1D333B;
+                    display: block;
+                    font: 12px/16px @font_regular;
+                }
+                input[type=text]{
+                    border: none;
+                    font: 16px/24px @font_regular;
+                    outline: none;
+                    padding: 0 0 0 0;
+                    width: 100%;
+               }
+            }
         }
 
         .dropdown{
             button{
                 align-items: center;
                 background-color: @white;
-                border-radius: 8px 8px 0px 0px;
                 border: none;
                 border-bottom: 2px solid #DBF5FF;
+                border-radius: 8px 8px 0px 0px;
                 box-shadow: none;
                 color: #7D949D;
                 display: flex;
@@ -235,8 +270,8 @@ body{
         padding: 0;
         width: 100%;
         li{
-            border-radius: 8px;
             border: 1px solid transparent;
+            border-radius: 8px;
             height: 148px;
             list-style: none;
             margin-bottom: 24px;
@@ -255,10 +290,10 @@ body{
             &.is_private{
                 position: relative;
                 &::after{
-                    content: "";
                     background: url("../../images/admin/admin-sprite-icons.svg");
                     background-position: -185px -20px;
                     bottom: 0;
+                    content: "";
                     height: 110px;
                     position: absolute;
                     right: -18px;
@@ -307,9 +342,9 @@ body{
                         position: relative;
                         width: 44px;
                         &::before{
-                            content: "";
                             background: url("../../images/admin/admin-sprite-icons.svg") no-repeat;
                             background-position: -156px -91px;
+                            content: "";
                             height: 22px;
                             left: 0;
                             margin: 0 auto;
@@ -374,23 +409,23 @@ body{
                         font: 12px/16px @font_medium;
                         span{
                             font: 12px/16px @font_medium;
-                            margin-right: 3px;
                             margin-left: 4px;
+                            margin-right: 3px;
                         }
                         &::before{
-                            content: "";
                             background: url("../../images/admin/admin-sprite-icons.svg") no-repeat;
                             background-position: 0px -98px;
+                            content: "";
                             height: 10px;
                             width: 20px;
                         }
                     }
                     p{
                         -webkit-box-orient: vertical;
-                        -webkit-line-clamp: 2;
                         color: @secondary_40;
                         display: -webkit-box;
                         font: 12px/16px @font_regular;
+                        -webkit-line-clamp: 2;
                         margin: 23px 0 0;
                         overflow: hidden;
                         text-overflow: ellipsis;
@@ -398,6 +433,9 @@ body{
                 }
             }
         }
+    }
+    #no_data_logo{
+        margin-top: 108px;
     }
 }
 #confirm_private_modal{
