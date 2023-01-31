@@ -37,36 +37,48 @@ let documents_array = [
 const renderDocuments = () => {
     document.getElementById("document_list_container").innerHTML = "";
 
-    for(let index in documents_array){
-        let document_item = documents_array[index];
-        let cloned_document = document.getElementById("clone").cloneNode(true);
+    if(documents_array.length != 0){
+        document.getElementById("no_data_logo").setAttribute("hidden", "hidden");
 
-        cloned_document.id = document_item.id;
-        cloned_document.querySelectorAll(".document_title")[0].textContent = document_item.title;
-        cloned_document.querySelectorAll(".viewers_count")[0].textContent = document_item.viewers;
-        cloned_document.querySelectorAll(".editors_count")[0].textContent = document_item.editors;
-        cloned_document.querySelectorAll(".document_information p")[0].textContent = document_item.description;
+        for(let index in documents_array){
+            let document_item = documents_array[index];
+            let cloned_document = document.getElementById("clone").cloneNode(true);
 
-        (document_item.is_private) ? cloned_document.classList.add("is_private") : cloned_document.classList.remove("is_private");
-        (document_item.is_starred) ? cloned_document.querySelector("input[type=checkbox]").checked = true : cloned_document.querySelector("input[type=checkbox]").checked = false;
+            cloned_document.id = document_item.id;
+            cloned_document.querySelectorAll(".document_title")[0].textContent = document_item.title;
+            cloned_document.querySelectorAll(".viewers_count")[0].textContent = document_item.viewers;
+            cloned_document.querySelectorAll(".editors_count")[0].textContent = document_item.editors;
+            cloned_document.querySelectorAll(".document_information p")[0].textContent = document_item.description;
 
-        (document_item.is_starred) ? cloned_document.setAttribute("data-starred", "all_starred") : cloned_document.removeAttribute("data-star");
-        (document_item.is_private) ? cloned_document.setAttribute("data-private", "all_private") : cloned_document.removeAttribute("data-private");
-        
-        document.getElementById("document_list_container").appendChild(cloned_document);
+            (document_item.is_private) ? cloned_document.classList.add("is_private") : cloned_document.classList.remove("is_private");
+            (document_item.is_starred) ? cloned_document.querySelector("input[type=checkbox]").checked = true : cloned_document.querySelector("input[type=checkbox]").checked = false;
 
-        new bootstrap.Popover(cloned_document.querySelector(".documents_menu"), {
-            animation: true,
-            container: "body",
-            content: popover_content,
-            html: true,
-            trigger: "focus",
-            delay: {"hide": 200}
-        });
+            (document_item.is_starred) ? cloned_document.setAttribute("data-starred", "all_starred") : cloned_document.removeAttribute("data-star");
+            (document_item.is_private) ? cloned_document.setAttribute("data-private", "all_private") : cloned_document.removeAttribute("data-private");
+
+            document.getElementById("document_list_container").appendChild(cloned_document);
+
+            new bootstrap.Popover(cloned_document.querySelector(".documents_menu"), {
+                animation: true,
+                container: "body",
+                content: popover_content,
+                html: true,
+                trigger: "focus",
+                delay: {"hide": 200}
+            });
+        }
+    }
+    else{
+        document.getElementById("no_data_logo").removeAttribute("hidden");
     }
 }
 
-renderDocuments();
+if(window.location.pathname === "/web-frontend/views/admin/docs_no_data.html"){
+    documents_array = [];
+}
+else{
+    renderDocuments();
+}
 
 /* CALLBACK FUNCTIONS */
 
@@ -98,7 +110,7 @@ const getDocumentValue = (event) => {
 const DuplicateDocument = (event)=> {
     if(event.target.classList == "documents_menu"){
         let document_id = parseInt(event.target.closest("li").getAttribute("id"));
-        
+
         selected_document = documents_array.find(obj_id => obj_id.id === document_id);
         document.getElementById(event.target.getAttribute("aria-describedby")).querySelector(".public_document input[type=checkbox]").checked = !selected_document.is_private;
     }
@@ -143,7 +155,7 @@ const applySettings = (event)=> {
 
         confirm_modal.querySelector("#confirm_button_yes").addEventListener("click", function(){
             let selected_document_index = documents_array.map((obj_index) => obj_index.id).indexOf(selected_document.id);
-            
+
             (is_private) ? documents_array[selected_document_index].is_private = true : documents_array[selected_document_index].is_private = false;
 
             renderDocuments();
@@ -179,11 +191,10 @@ const FilterDocuments = (event)=> {
 
 /* EVENTS */
 document.addEventListener("click", applySettings);
-document.addEventListener("click", starredDocument);    
-document.addEventListener("click", DuplicateDocument)
-document.addEventListener("click", FilterDocuments)
-document.getElementById("confirm_button_yes").addEventListener("click", showConfirmModal)
+document.addEventListener("click", starredDocument);
+document.addEventListener("click", DuplicateDocument);
+document.addEventListener("click", FilterDocuments);
+document.getElementById("confirm_button_yes").addEventListener("click", showConfirmModal);
 document.getElementById("add_documentation_input").addEventListener("keyup", getDocumentValue);
-document.getElementById("create_document_form").addEventListener("submit", submitAddDocumentationForm);
 
 $(function() {$("#document_list_container").sortable();});

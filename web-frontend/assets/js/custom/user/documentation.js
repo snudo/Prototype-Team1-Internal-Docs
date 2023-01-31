@@ -56,27 +56,39 @@ let searched_documents = [];
 const renderDocuments = (documentations_result) => {
     document.getElementById("document_list_container").innerHTML = "";
 
-    for(let index in documentations_result){
-        let document_item = documentations_result[index];
-        let cloned_document = document.getElementById("clone").cloneNode(true);
+    if(documentations_result.length != 0){
+        document.getElementById("no_data_logo").setAttribute("hidden", "hidden");
 
-        cloned_document.id = document_item.id;
-        cloned_document.querySelectorAll(".document_title")[0].textContent = document_item.title;
-        cloned_document.querySelectorAll(".viewers_count")[0].textContent = document_item.viewers;
-        cloned_document.querySelectorAll(".editors_count")[0].textContent = document_item.editors;
-        cloned_document.querySelectorAll(".document_information p")[0].textContent = document_item.description;
+        for(let index in documentations_result){
+            let document_item = documentations_result[index];
+            let cloned_document = document.getElementById("clone").cloneNode(true);
 
-        (document_item.is_private) ? cloned_document.classList.add("is_private") : cloned_document.classList.remove("is_private");
-        (document_item.is_starred) ? cloned_document.querySelector("input[type=checkbox]").checked = true : cloned_document.querySelector("input[type=checkbox]").checked = false;
+            cloned_document.id = document_item.id;
+            cloned_document.querySelectorAll(".document_title")[0].textContent = document_item.title;
+            cloned_document.querySelectorAll(".viewers_count")[0].textContent = document_item.viewers;
+            cloned_document.querySelectorAll(".editors_count")[0].textContent = document_item.editors;
+            cloned_document.querySelectorAll(".document_information p")[0].textContent = document_item.description;
 
-        (document_item.is_starred) ? cloned_document.setAttribute("data-starred", "all_starred") : cloned_document.removeAttribute("data-star");
-        (document_item.is_private) ? cloned_document.setAttribute("data-private", "all_private") : cloned_document.removeAttribute("data-private");
+            (document_item.is_private) ? cloned_document.classList.add("is_private") : cloned_document.classList.remove("is_private");
+            (document_item.is_starred) ? cloned_document.querySelector("input[type=checkbox]").checked = true : cloned_document.querySelector("input[type=checkbox]").checked = false;
 
-        document.getElementById("document_list_container").appendChild(cloned_document);
+            (document_item.is_starred) ? cloned_document.setAttribute("data-starred", "all_starred") : cloned_document.removeAttribute("data-star");
+            (document_item.is_private) ? cloned_document.setAttribute("data-private", "all_private") : cloned_document.removeAttribute("data-private");
+
+            document.getElementById("document_list_container").appendChild(cloned_document);
+        }
+    }
+    else{
+        document.getElementById("no_data_logo").removeAttribute("hidden");
     }
 }
 
-renderDocuments(documents_array);
+if(window.location.pathname === "/web-frontend/views/user/docs_no_data.html"){
+    documents_array = [];
+}
+else{
+    renderDocuments(documents_array);
+}
 
 const starredDocument = (event)=> {
     if(event.target.classList.contains("star_toggle_button")){
@@ -97,6 +109,7 @@ const searchDocumentation = (event) => {
 
     // Render all if no search_input value
     if (search_input === "") {
+        document.getElementById("no_data_logo").setAttribute("hidden", "hidden");
         renderDocuments(documents_array);
     }
 
