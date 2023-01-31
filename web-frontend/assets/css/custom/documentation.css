@@ -20,12 +20,6 @@
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
 }
-.input_error {
-  border-bottom: 2px solid red !important;
-}
-.input_error span {
-  color: red !important;
-}
 #clone {
   display: none;
 }
