@@ -2,6 +2,7 @@ var popover_content = document.getElementById("document_options");
 var confirm_modal = document.getElementById("confirm_private_modal");
 var confirm_private_modal = new bootstrap.Modal(confirm_modal, {});
 var document_id = "";
+var selected_document = "";
 
 let documents_array = [
     {
@@ -94,7 +95,6 @@ const getDocumentValue = (event) => {
     }
 }
 
-var selected_document = "";
 const DuplicateDocument = (event)=> {
     if(event.target.classList == "documents_menu"){
         let document_id = parseInt(event.target.closest("li").getAttribute("id"));
@@ -104,13 +104,31 @@ const DuplicateDocument = (event)=> {
     }
 }
 
+const showConfirmModal = ()=> {
+    console.log(this)
+}
+
 const applySettings = (event)=> {
     if(event.target.classList == "duplicate_document"){
-        let new_duplicated_document = selected_document;
-        new_duplicated_document.id = new Date().getUTCMilliseconds();
+        let duplicated_object = {
+            id: new Date().getUTCMilliseconds(),
+            title: selected_document.title,
+            viewers: selected_document.viewers,
+            editors: selected_document.editors,
+            is_private: selected_document.is_private,
+            is_starred: selected_document.is_starred,
+            description: selected_document.description,
+        };
 
-        documents_array.push(new_duplicated_document);
-        renderDocuments();
+        confirm_modal.querySelector(".public_private_content").textContent = "duplicate "+selected_document.title;
+        confirm_private_modal.show();
+
+        confirm_modal.querySelector("#confirm_button_yes").addEventListener("click", function(){
+            documents_array.push(duplicated_object);
+
+            confirm_private_modal.hide();
+            renderDocuments();
+        });
     }else if(event.target.classList == "archive_document"){
         documents_array.splice(documents_array.map((obj_index) => obj_index.id).indexOf(selected_document.id), 1);
         renderDocuments();
@@ -151,7 +169,6 @@ const starredDocument = (event)=> {
 const FilterDocuments = (event)=> {
     if(event.target.classList.contains("document_filter")){
         let filtered_documents = document.querySelectorAll('#document_list_container ['+event.target.getAttribute("data-selection")+']');
-        // document.querySelectorAll("#document_list_container li").classList.add("hidden"); 
         console.log(document.querySelectorAll("#document_list_container li"));
 
         filtered_documents.forEach(function(document){
@@ -162,9 +179,11 @@ const FilterDocuments = (event)=> {
 
 /* EVENTS */
 document.addEventListener("click", applySettings);
-document.addEventListener("click", starredDocument);
+document.addEventListener("click", starredDocument);    
 document.addEventListener("click", DuplicateDocument)
 document.addEventListener("click", FilterDocuments)
+document.getElementById("confirm_button_yes").addEventListener("click", showConfirmModal)
 document.getElementById("add_documentation_input").addEventListener("keyup", getDocumentValue);
+document.getElementById("create_document_form").addEventListener("submit", submitAddDocumentationForm);
 
 $(function() {$("#document_list_container").sortable();});
