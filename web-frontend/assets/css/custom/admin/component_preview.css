@@ -59,9 +59,8 @@ label.input_field input[type=text] {
   border: none;
   color: #1D333B;
   font: 22px/28px "Roboto-Regular";
-  min-width: 130px;
+  margin: 0;
   outline: none;
-  width: 130px;
 }
 #component_wrapper #left_panel .section_details .title_block button {
   background: #F0FDFA;
@@ -223,31 +222,6 @@ label.input_field input[type=text] {
   margin: 0;
   padding: 0;
 }
-#component_wrapper #left_panel #add_component {
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  background: #F0FDFA;
-  border: 3px dashed #14B8A6;
-  border-radius: 8px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  height: 120px;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  margin: 24px 0;
-  position: relative;
-  width: 100%;
-}
-#component_wrapper #left_panel #add_component::after {
-  background: url("../../../images/svg_icons_stripe.svg") no-repeat -595px 0px;
-  content: "";
-  height: 36px;
-  position: absolute;
-  width: 36px;
-}
 #component_wrapper #right_panel {
   height: 100%;
   margin: 0 0 0 auto;
@@ -311,7 +285,4 @@ label.input_field input[type=text] {
   opacity: 1;
   -webkit-transition: 0.25s ease-in-out;
   transition: 0.25s ease-in-out;
-}
-#clone_block {
-  display: none;
 }

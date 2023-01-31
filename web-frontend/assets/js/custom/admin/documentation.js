@@ -11,7 +11,7 @@ let documents_array = [
         viewers: 10,
         editors: 2,
         is_private: false,
-        is_starred: false,
+        is_starred: true,
         description: "ASUS TUF Gaming F15 is a powerful Windows 10 gaming laptop that combines gaming performance with up to a narrow bezel IPS-type panel and an extended lifespan"
     },
     {
@@ -29,40 +29,50 @@ let documents_array = [
         viewers: 1,
         editors: 1,
         is_private: true,
-        is_starred: true,
+        is_starred: false,
         description: "ASUS TUF Gaming F15 is a powerful Windows 10 gaming laptop that combines gaming performance with up to a narrow bezel IPS-type panel and an extended lifespan"
     }
 ];
 
 const renderDocuments = () => {
     document.getElementById("document_list_container").innerHTML = "";
+    documents_array = [...new Map(documents_array.map(item => [item["id"], item])).values()];
 
-    for(let index in documents_array){
-        let document_item = documents_array[index];
-        let cloned_document = document.getElementById("clone").cloneNode(true);
+    if(documents_array.length){
+        document.getElementById("no_data_logo").setAttribute("hidden", "hidden");
 
-        cloned_document.id = document_item.id;
-        cloned_document.querySelectorAll(".document_title")[0].textContent = document_item.title;
-        cloned_document.querySelectorAll(".viewers_count")[0].textContent = document_item.viewers;
-        cloned_document.querySelectorAll(".editors_count")[0].textContent = document_item.editors;
-        cloned_document.querySelectorAll(".document_information p")[0].textContent = document_item.description;
+        documents_array = [...new Map(documents_array.map(item => [item["id"], item])).values()];
 
-        (document_item.is_private) ? cloned_document.classList.add("is_private") : cloned_document.classList.remove("is_private");
-        (document_item.is_starred) ? cloned_document.querySelector("input[type=checkbox]").checked = true : cloned_document.querySelector("input[type=checkbox]").checked = false;
+        for(let index in documents_array){
+            let document_item = documents_array[index];
+            let cloned_document = document.getElementById("clone").cloneNode(true);
 
-        (document_item.is_starred) ? cloned_document.setAttribute("data-starred", "all_starred") : cloned_document.removeAttribute("data-star");
-        (document_item.is_private) ? cloned_document.setAttribute("data-private", "all_private") : cloned_document.removeAttribute("data-private");
-        
-        document.getElementById("document_list_container").appendChild(cloned_document);
+            cloned_document.id = document_item.id;
+            cloned_document.querySelectorAll(".document_title")[ITEMS.first].textContent = document_item.title;
+            cloned_document.querySelectorAll(".viewers_count")[ITEMS.first].textContent = document_item.viewers;
+            cloned_document.querySelectorAll(".editors_count")[ITEMS.first].textContent = document_item.editors;
+            cloned_document.querySelectorAll(".document_information p")[ITEMS.first].textContent = document_item.description;
 
-        new bootstrap.Popover(cloned_document.querySelector(".documents_menu"), {
-            animation: true,
-            container: "body",
-            content: popover_content,
-            html: true,
-            trigger: "focus",
-            delay: {"hide": 200}
-        });
+            (document_item.is_private) ? cloned_document.classList.add("is_private") : cloned_document.classList.remove("is_private");
+            (document_item.is_starred) ? cloned_document.querySelector("input[type=checkbox]").checked = true : cloned_document.querySelector("input[type=checkbox]").checked = false;
+
+            (document_item.is_starred) ? cloned_document.setAttribute("data-starred", "all_starred") : cloned_document.removeAttribute("data-star");
+            (document_item.is_private) ? cloned_document.setAttribute("data-private", "all_private") : cloned_document.removeAttribute("data-private");
+
+            document.getElementById("document_list_container").appendChild(cloned_document);
+
+            new bootstrap.Popover(cloned_document.querySelector(".documents_menu"), {
+                animation: true,
+                container: "body",
+                content: popover_content,
+                html: true,
+                trigger: "focus",
+                delay: {"hide": ANIMATION_TIME.hide}
+            });
+        }
+    }
+    else{
+        document.getElementById("no_data_logo").removeAttribute("hidden");
     }
 }
 
@@ -98,14 +108,10 @@ const getDocumentValue = (event) => {
 const DuplicateDocument = (event)=> {
     if(event.target.classList == "documents_menu"){
         let document_id = parseInt(event.target.closest("li").getAttribute("id"));
-        
+
         selected_document = documents_array.find(obj_id => obj_id.id === document_id);
         document.getElementById(event.target.getAttribute("aria-describedby")).querySelector(".public_document input[type=checkbox]").checked = !selected_document.is_private;
     }
-}
-
-const showConfirmModal = ()=> {
-    console.log(this)
 }
 
 const applySettings = (event)=> {
@@ -143,7 +149,7 @@ const applySettings = (event)=> {
 
         confirm_modal.querySelector("#confirm_button_yes").addEventListener("click", function(){
             let selected_document_index = documents_array.map((obj_index) => obj_index.id).indexOf(selected_document.id);
-            
+
             (is_private) ? documents_array[selected_document_index].is_private = true : documents_array[selected_document_index].is_private = false;
 
             renderDocuments();
@@ -160,7 +166,14 @@ const starredDocument = (event)=> {
 
         if(selected_document_index !== -1) {
             selected_document_id.is_starred = !event.target.closest("label").querySelector("input[type=checkbox]").checked;
-            documents_array[selected_document_index] = selected_document_id;
+
+            /* If Starred, put to starred group at the start of array */
+            documents_array.splice(selected_document_index, 1);
+                
+            /* Get last index of starred */
+            let last_starred_index = documents_array.findLastIndex((doc_obj) => doc_obj.is_starred);
+            documents_array.splice(last_starred_index+1, 0, selected_document_id);
+           
             renderDocuments();
         }
     }
@@ -179,11 +192,9 @@ const FilterDocuments = (event)=> {
 
 /* EVENTS */
 document.addEventListener("click", applySettings);
-document.addEventListener("click", starredDocument);    
-document.addEventListener("click", DuplicateDocument)
+document.addEventListener("click", starredDocument);
+document.addEventListener("click", DuplicateDocument);
 document.addEventListener("click", FilterDocuments);
-document.getElementById("confirm_button_yes").addEventListener("click", showConfirmModal);
 document.getElementById("add_documentation_input").addEventListener("keyup", getDocumentValue);
-document.getElementById("create_document_form").addEventListener("submit", submitAddDocumentationForm);
 
 $(function() {$("#document_list_container").sortable();});
