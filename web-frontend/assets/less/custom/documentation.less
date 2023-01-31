@@ -4,9 +4,9 @@
     box-sizing: border-box;
 }
 .input_error{
-    border-bottom: 2px solid red !important;
+    border-bottom: 2px solid @red !important;
     span{
-        color: red !important;
+        color: @red !important;
     }
 }
 #clone{
@@ -179,17 +179,17 @@ body{
                 padding: 7px 16px;
                 position: relative;
                 width: 502px;
-                &::before{
-                    background: url("../../images/admin/admin-sprite-icons.svg") no-repeat;
-                    background-position: -33px -59px;
-                    content: "";
-                    height: 19px;
-                    position: absolute;
-                    right: 16px;
-                    top: 50%;
-                    transform: translateY(-50%);
-                    width: 19px;
-                }
+                // &::before{
+                //     background: url("../../images/admin/admin-sprite-icons.svg") no-repeat;
+                //     background-position: -33px -59px;
+                //     content: "";
+                //     height: 19px;
+                //     position: absolute;
+                //     right: 16px;
+                //     top: 50%;
+                //     transform: translateY(-50%);
+                //     width: 19px;
+                // }
                 span{
                     color: #1D333B;
                     display: block;
@@ -203,8 +203,18 @@ body{
                     width: 100%;
                }
             }
+            #create_document_button{
+                background: url("../../images/admin/admin-sprite-icons.svg") no-repeat;
+                background-position: -33px -59px;
+                content: "";
+                height: 19px;
+                position: absolute;
+                right: 16px;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 19px;
+            }
         }
-
         .dropdown{
             button{
                 align-items: center;

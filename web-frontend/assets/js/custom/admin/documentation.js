@@ -181,8 +181,8 @@ const FilterDocuments = (event)=> {
 document.addEventListener("click", applySettings);
 document.addEventListener("click", starredDocument);    
 document.addEventListener("click", DuplicateDocument)
-document.addEventListener("click", FilterDocuments)
-document.getElementById("confirm_button_yes").addEventListener("click", showConfirmModal)
+document.addEventListener("click", FilterDocuments);
+document.getElementById("confirm_button_yes").addEventListener("click", showConfirmModal);
 document.getElementById("add_documentation_input").addEventListener("keyup", getDocumentValue);
 document.getElementById("create_document_form").addEventListener("submit", submitAddDocumentationForm);
 
