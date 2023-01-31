@@ -107,6 +107,7 @@ const addComponentItem = () => {
 
 const renderRedactorX = (params) => {
     let app = RedactorX(params.textarea, {
+        placeholder: "Enter Description...",
         content: params.content_data || "",
         subscribe: {
             "editor.keydown": () => {
@@ -124,7 +125,9 @@ const renderRedactorX = (params) => {
 }
 
 const updateSectionTitle = (event) => {
-    event.target.style.width = event.target.value.length * 12 + "px";
+    let section_title = document.getElementById("section_title");
+    
+    section_title.style.width = section_title.value.length * 10.2 + "px";
 }
 
 const selectSectionItem = (event) => {
@@ -134,6 +137,8 @@ const selectSectionItem = (event) => {
     section_item.closest("ul").querySelector(".active").classList.remove("active");
     section_item.classList.add("active");
 }
+
+updateSectionTitle();
 
 /* EVENTS */
 document.getElementById("add_component").addEventListener("click", addComponentItem);

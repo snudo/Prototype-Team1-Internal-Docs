@@ -27,6 +27,7 @@
   margin-bottom: 19px;
 }
 #component_wrapper #left_panel .section_details .title_block #section_title {
+  background: transparent;
   border: none;
   color: #1D333B;
   font: 22px/28px "Roboto-Regular";
