@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="/web-frontend/assets/images/favicon.svg">
+    <title>Users Documentation</title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="../../assets/css/custom/documentation.css">
+    <script src="/web-frontend/assets/js/vendor/bootstrap/bootstrap.bundle.min.js"></script>
+
+    <!-- CONSTANTS -->
+    <script src="../../assets/js/constans.js"></script>
+
+    <!-- CUSTOM JS -->
+    <script>
+        let current_js  = "../../assets/js/custom/user/documentation.js";
+    </script>
+
+    <!-- ASSETS LOADER -->
+    <script src="../../assets/js/vendor/assets_loader.min.js"></script>
+    <script src="../../assets/js/custom/render_assets.js"></script>
+</head>
+<body>
+    <div data-include="../admin/templates/navigation.html"></div>
+    <div id="dashboard_wrapper">
+        <div id="form_container">
+            <form id="search_document_form" action="#" data-processing="0">
+                <label id="search_document">
+                    <span>Search Documentation</span>
+                    <input id="search_documentation_input" type="text">
+                </label>
+            </form>
+
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="documents_category_selection" data-bs-toggle="dropdown" aria-expanded="false">
+                  Show All
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="documents_category_selection">
+                    <li><button data-selection="data-documents" class="document_filter dropdown-item">All</button></li>
+                    <li><button data-selection="data-starred" class="document_filter dropdown-item">Starred</button></li>
+                    <li><button data-selection="data-private" class="document_filter dropdown-item">Private</button></li>
+                    <li><button data-selection="data-public" class="document_filter dropdown-item">Public</button></li>
+                    <li><button data-selection="data-archive" class="document_filter dropdown-item">Archived</button></li>
+                </ul>
+            </div>
+        </div>
+        <ul id="document_list_container"></ul>
+    </div>
+
+    <li id="clone">
+        <a href="#">
+            <div></div>
+            <div class="document_information">
+                <h2><span class="document_title"></span><label><input type="checkbox" name="checkbox"><span class="star_toggle_button"></span></label></h2>
+                <span><span class="viewers_count"></span> viewers and <span class="editors_count"></span> editor</span>
+                <p></p>
+            </div>
+        </a>
+    </li>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+</body>
+</html>
