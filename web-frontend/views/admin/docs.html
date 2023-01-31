@@ -6,21 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="/web-frontend/assets/images/favicon.svg">
     <title>Documentation</title>
+
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
-    <link rel="stylesheet" href="../../assets/css/custom/documentation.css">
+    <link rel="stylesheet" href="/web-frontend/assets/css/custom/documentation.css">
     <script src="/web-frontend/assets/js/vendor/bootstrap/bootstrap.bundle.min.js"></script>
 
     <!-- CONSTANTS -->
-    <script src="../../assets/js/constans.js"></script>
+    <script src="/web-frontend/assets/js/constans.js"></script>
 
     <!-- CUSTOM JS -->
     <script>
-        let current_js  = "../../assets/js/custom/admin/documentation.js";
+        let current_js  = "/web-frontend/assets/js/custom/admin/documentation.js";
     </script>
 
     <!-- ASSETS LOADER -->
-    <script src="../../assets/js/vendor/assets_loader.min.js"></script>
-    <script src="../../assets/js/custom/render_assets.js"></script>
+    <script src="/web-frontend/assets/js/vendor/assets_loader.min.js"></script>
+    <script src="/web-frontend/assets/js/custom/render_assets.js"></script>
 </head>
 <body>
     <div data-include="./templates/navigation.html"></div>
@@ -31,6 +32,7 @@
                     <span>Add Documentation</span>
                     <input id="add_documentation_input" type="text">
                 </label>
+                <input id="create_document_button" type="submit" value="">
             </form>
 
             <div class="dropdown">
@@ -81,7 +83,7 @@
     <div class="modal fade" id="confirm_private_modal" tabindex="-1" aria-labelledby="confirm_private_modal" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <p>Are you sure you want to update it to <span class="public_private_content"></span>?</p>
+                <p>Are you sure you want to <span class="public_private_content"></span>?</p>
                 <div>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
                     <button id="confirm_button_yes" type="button" class="btn btn-primary">Yes</button>
