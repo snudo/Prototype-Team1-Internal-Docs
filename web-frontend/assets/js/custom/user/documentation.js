@@ -83,12 +83,7 @@ const renderDocuments = (documentations_result) => {
     }
 }
 
-if(window.location.pathname === "/web-frontend/views/user/docs_no_data.html"){
-    documents_array = [];
-}
-else{
-    renderDocuments(documents_array);
-}
+renderDocuments(documents_array);
 
 const starredDocument = (event)=> {
     if(event.target.classList.contains("star_toggle_button")){

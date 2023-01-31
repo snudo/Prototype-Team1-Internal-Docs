@@ -73,12 +73,7 @@ const renderDocuments = () => {
     }
 }
 
-if(window.location.pathname === "/web-frontend/views/admin/docs_no_data.html"){
-    documents_array = [];
-}
-else{
-    renderDocuments();
-}
+renderDocuments();
 
 /* CALLBACK FUNCTIONS */
 
