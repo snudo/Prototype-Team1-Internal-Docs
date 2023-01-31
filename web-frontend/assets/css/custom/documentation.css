@@ -439,6 +439,9 @@ body {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+#dashboard_wrapper #no_data_logo {
+  margin-top: 108px;
+}
 #confirm_private_modal .modal-dialog {
   background-color: #FFFFFF;
   border-radius: 8px;
