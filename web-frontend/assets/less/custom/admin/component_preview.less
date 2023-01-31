@@ -1,0 +1,298 @@
+@import url("../variables.less");
+
+label.input_field{
+    background-color: @teal_50;
+    border-bottom: 2px solid @teal_500;
+    border-radius: 8px 8px 0px 0px;
+    height: 52px;
+    padding: 7px 16px 3px;
+    position: relative;
+    width: 100%;
+
+    span{
+        color: @teal_500;
+        display: block;
+        font: 12px/16px @font_regular;
+    }
+    input[type=text]{
+        background: @teal_50;
+        border: none;
+        color: @secondary_40;
+        font: 14px/20px @font_medium;
+        outline: none;
+        padding: 0;
+        width: 100%;
+   }
+}
+
+.text_allow_comments{
+    color: @secondary_20;
+    cursor: pointer;
+    font: 14px/17px @font_medium;
+}
+
+#component_wrapper{
+    display: flex;
+    margin: 0 auto;
+    width: 1045px;
+
+    #left_panel{
+        width: 812px;
+
+        .section_details{
+            background: url("../../../images/section_bg.png") no-repeat right 0px, @white;
+            border-radius: 8px;
+            height: 244px;
+            padding: 24px;
+
+            .title_block{
+                align-items: center;
+                display: flex;
+                margin-bottom: 19px;
+
+                #section_title{
+                    background: transparent;
+                    border: none;
+                    color: @secondary_20;
+                    font: 22px/28px @font_regular;
+                    margin: 0;
+                    outline: none;
+                }
+
+                button{
+                    background: @teal_50;
+                    border: none;
+                    border-radius: 5px;
+                    color: @teal_500;
+                    font: 12px/16px @font_medium;
+                    height: 34px;
+                    margin-left: 24px;
+                    outline: none;
+                    width: 104px;
+                }
+            }
+
+            #section_details{
+                background: transparent;
+                border: none;
+                color: @secondary_40;
+                font: 16px/24px @font_regular;
+                height: 143px;
+                outline: none;
+                resize: none;
+                width: 100%;
+            }
+        }
+
+        #component_list{
+            margin-top: 24px;
+
+            .component_block{
+                margin-bottom: 24px;
+
+                &:last-child{
+                    margin-bottom: 0;
+                }
+
+                .tab_list{
+                    align-items: center;
+                    display: flex;
+                    flex-wrap: wrap;
+                    margin: 0;
+                    padding: 0;
+
+                    li{
+                        align-items: center;
+                        display: flex;
+                        height: 44px;
+                        justify-content: center;
+
+                        &.add_tab{
+                            background: @teal_500;
+                            border: 1px solid @teal_500;
+                            height: 44px;
+                            width: 42.5px;
+
+                            button{
+                                align-items: center;
+                                background: url("../../../images/svg_icons_stripe.svg") no-repeat -547px 3px;
+                                border: none;
+                                display: flex;
+                                height: 100%;
+                                justify-content: center;
+                                width: 100%;
+                            }
+                        }
+
+                        &.tab_item{
+                            background: @teal_50;
+                            border: 1px solid @secondary_90;
+                            padding: 0 8px;
+                            transition: .25s ease-in-out;
+
+                            &.active{
+                                background: @white;
+                                border-top: 2px solid @teal_500;
+                            }
+
+                            .tab_name{
+                                color: @teal_500;
+                                cursor: pointer;
+                                font: 14px/20px @font_regular;
+                            }
+
+                            .remove_tab{
+                                background: url("../../../images/svg_icons_stripe.svg") no-repeat -497.5px -11px;
+                                border: none;
+                                height: 18px;
+                                margin-left: 10px;
+                                outline: none;
+                                width: 18px;
+                            }
+                        }
+                    }
+                }
+
+                form{
+                    background: @white;
+                    padding: 24px;
+
+                    .rx-container{
+                        border: 1px solid @secondary_90;
+                        border-radius: 8px;
+                        margin-top: 24px;
+
+                        .rx-toolbar-container{
+                            background: @primary98;
+                            border-bottom: none;
+                            border-radius: 8px 8px 0 0;
+                        }
+
+                        .rx-editor-container{
+                            p{
+                                color: @secondary_40;
+                                font: 14px/20px @font_regular;
+                            }
+                        }
+                    }
+                }
+
+                .post_block{
+                    background: @white;
+                    border-radius: 0 0 8px 8px;
+                    padding: 0 24px 24px 24px;
+
+                    .checkbox_style{
+                        background: @secondary_90;
+                        border-radius: 2px;
+                        cursor: pointer;
+                        height: 18px;
+                        margin-right: 8px;
+                        width: 18px;
+                    }
+
+                    .checkbox_label{
+                        align-items: center;
+                        display: flex;
+                        margin-bottom: 21px;
+                        
+                        .allow_comments{
+                            display: none;
+                        }
+                    }
+
+                    .allow_comments:checked ~ .checkbox_style{
+                        background: url("../../../images/svg_icons_stripe.svg") no-repeat -654px -9px;
+                    }
+
+                    .input_field{
+                        margin-bottom: 17px;
+                        opacity: .5;
+                        pointer-events: none;
+                        position: relative;
+
+                        .char_count{
+                            bottom: -22px;
+                            position: absolute;
+                            right: 16px;
+                        }
+                    }
+
+                    ul{
+                        margin: 0;
+                        padding: 0;
+                    }
+                }
+            }
+        }
+    }
+
+    #right_panel{
+        height: 100%;
+        margin: 0 0 0 auto;
+        padding-top: 67px;
+        position: sticky;
+        top: 0;
+        width: 201px;
+
+        h3{
+            align-items: center;
+            color: @secondary_20;
+            display: flex;
+            font: 16px/24px @font_regular;
+            margin-bottom: 12px;
+
+            .info_icon{
+                background: url("../../../images/svg_icons_stripe.svg") no-repeat -462px -10px;
+                display: inline-block;
+                height: 18px;
+                margin-left: 8px;
+                width: 18px;
+            }
+        }
+
+        #section_list{
+            border-left: 1px solid rgba(125, 148, 157, 0.5);
+            list-style: none;
+            padding: 12px 0 12px 0;
+
+            li{
+                cursor: pointer;
+                margin-bottom: 24px;
+                padding-left: 25px;
+                transition: .25s ease-in-out;
+
+                &:last-child{
+                    margin-bottom: 0;
+                }
+
+                &:hover{
+                    a{
+                        opacity: 1;
+                    }
+                }
+
+                a{
+                    color: @teal_500;
+                    font: 14px/20px @font_regular;
+                    opacity: .5;
+                    pointer-events: none;
+                    text-decoration: none;
+                }
+
+                &.active{
+                    border-left: 2px solid @secondary_20;
+                    padding-left: 23px;
+                    transition: .25s ease-in-out;
+
+                    a{
+                        color: @secondary_20;
+                        font: 14px/20px @font_medium;
+                        opacity: 1;
+                        transition: .25s ease-in-out;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -40,6 +40,8 @@ const renderDocuments = () => {
     if(documents_array.length != 0){
         document.getElementById("no_data_logo").setAttribute("hidden", "hidden");
 
+        documents_array = [...new Map(documents_array.map(item => [item["id"], item])).values()];
+
         for(let index in documents_array){
             let document_item = documents_array[index];
             let cloned_document = document.getElementById("clone").cloneNode(true);
