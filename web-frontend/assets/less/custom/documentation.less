@@ -203,6 +203,38 @@ body{
                     width: 100%;
                }
             }
+            #search_document{
+                background-color: @white;
+                border-bottom: 2px solid @primary_60;
+                border-radius: 8px 8px 0px 0px;
+                height: 58px;
+                padding: 7px 16px;
+                position: relative;
+                width: 502px;
+                &::before{
+                    background: url("../../images/admin/admin-sprite-icons.svg") no-repeat;
+                    background-position: -33px -92px;
+                    content: "";
+                    height: 20px;
+                    position: absolute;
+                    right: 16px;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    width: 20px;
+                }
+                span{
+                    color: #1D333B;
+                    display: block;
+                    font: 12px/16px @font_regular;
+                }
+                input[type=text]{
+                    border: none;
+                    font: 16px/24px @font_regular;
+                    outline: none;
+                    padding: 0 0 0 0;
+                    width: 100%;
+               }
+            }
         }
 
         .dropdown{
