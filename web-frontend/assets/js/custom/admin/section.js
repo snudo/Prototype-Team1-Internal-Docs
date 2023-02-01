@@ -50,7 +50,7 @@ const changePrivacySettings = () => {
 const deleteSection = (event) => {
     let delete_section_btn = event.target;
 
-    if(delete_section_btn.classList === "delete_section"){
+    if(delete_section_btn.classList.value === "delete_section"){
         /* Remove the Section */
         delete_section_btn.closest("li").remove();
     }
@@ -59,7 +59,7 @@ const deleteSection = (event) => {
 const duplicateSection = (event) => {
     let duplicate_section_btn = event.target;
 
-    if(duplicate_section_btn.classList === "duplicate_section"){
+    if(duplicate_section_btn.classList.value  === "duplicate_section"){
         /* Duplicate the Section */
         let duplicated_section = duplicate_section_btn.closest("li").cloneNode(true);
         duplicated_section.id = new Date().getUTCMilliseconds();
