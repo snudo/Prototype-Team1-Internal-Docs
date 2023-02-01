@@ -12,7 +12,9 @@ let documents_array = [
         editors: 2,
         is_private: false,
         is_starred: true,
-        description: "ASUS TUF Gaming F15 is a powerful Windows 10 gaming laptop that combines gaming performance with up to a narrow bezel IPS-type panel and an extended lifespan"
+        description: "ASUS TUF Gaming F15 is a powerful Windows 10 gaming laptop that combines gaming performance with up to a narrow bezel IPS-type panel and an extended lifespan",
+        is_archived: 0,
+        created_at: "2022-02-01 8:00:00"
     },
     {
         id: 106,
@@ -21,7 +23,9 @@ let documents_array = [
         editors: 3,
         is_private: true,
         is_starred: false,
-        description: "ASUS TUF Gaming F15 is a powerful Windows 10 gaming laptop that combines gaming performance with up to a narrow bezel IPS-type panel and an extended lifespan"
+        description: "ASUS TUF Gaming F15 is a powerful Windows 10 gaming laptop that combines gaming performance with up to a narrow bezel IPS-type panel and an extended lifespan",
+        is_archived: 0,
+        created_at: "2022-01-31 7:32:00"
     },
     {
         id: 107,
@@ -30,21 +34,48 @@ let documents_array = [
         editors: 1,
         is_private: true,
         is_starred: false,
-        description: "ASUS TUF Gaming F15 is a powerful Windows 10 gaming laptop that combines gaming performance with up to a narrow bezel IPS-type panel and an extended lifespan"
+        description: "ASUS TUF Gaming F15 is a powerful Windows 10 gaming laptop that combines gaming performance with up to a narrow bezel IPS-type panel and an extended lifespan",
+        is_archived: 0,
+        created_at: "2022-01-31 21:56:12"
     }
 ];
 
-const renderDocuments = () => {
-    document.getElementById("document_list_container").innerHTML = "";
-    documents_array = [...new Map(documents_array.map(item => [item["id"], item])).values()];
+let archived_document = [
+    {
+        id: 34,
+        title: "Archived Document",
+        viewers: 1,
+        editors: 1,
+        is_private: true,
+        is_starred: false,
+        description: "ASUS TUF Gaming F15 is a powerful Windows 10 gaming laptop that combines gaming performance with up to a narrow bezel IPS-type panel and an extended lifespan",
+        is_archived: 1,
+        created_at: "2022-01-31 21:56:12"
+    },
+    {
+        id: 35,
+        title: "Archived Document 2",
+        viewers: 1,
+        editors: 1,
+        is_private: true,
+        is_starred: false,
+        description: "ASUS TUF Gaming F15 is a powerful Windows 10 gaming laptop that combines gaming performance with up to a narrow bezel IPS-type panel and an extended lifespan",
+        is_archived: 1,
+        created_at: "2022-01-31 21:56:12"
+    }
+]
 
-    if(documents_array.length){
+const renderDocuments = (documents_list) => {
+    document.getElementById("document_list_container").innerHTML = "";
+    documents_list = [...new Map(documents_list.map(item => [item["id"], item])).values()];
+
+    if(documents_list.length){
         document.getElementById("no_data_logo").setAttribute("hidden", "hidden");
 
-        documents_array = [...new Map(documents_array.map(item => [item["id"], item])).values()];
+        documents_list = [...new Map(documents_list.map(item => [item["id"], item])).values()];
 
-        for(let index in documents_array){
-            let document_item = documents_array[index];
+        for(let index in documents_list){
+            let document_item = documents_list[index];
             let cloned_document = document.getElementById("clone").cloneNode(true);
 
             cloned_document.id = document_item.id;
@@ -76,7 +107,7 @@ const renderDocuments = () => {
     }
 }
 
-renderDocuments();
+renderDocuments(documents_array);
 
 /* CALLBACK FUNCTIONS */
 
@@ -97,7 +128,8 @@ const getDocumentValue = (event) => {
             });
 
             event.target.value = "";
-            renderDocuments();
+            document.getElementById("documents_category_selection").innerHTML = "Show All";
+            renderDocuments(documents_array);
         }
         else{
             event.target.closest("label").classList.add("input_error");
@@ -133,14 +165,14 @@ const applySettings = (event)=> {
             documents_array.push(duplicated_object);
 
             confirm_private_modal.hide();
-            renderDocuments();
+            renderDocuments(documents_array);
         });
     }else if(event.target.classList == "archive_document"){
         documents_array.splice(documents_array.map((obj_index) => obj_index.id).indexOf(selected_document.id), 1);
-        renderDocuments();
+        renderDocuments(documents_array);
     }else if(event.target.classList == "remove_document"){
         documents_array.splice(documents_array.map((obj_index) => obj_index.id).indexOf(selected_document.id), 1);
-        renderDocuments();
+        renderDocuments(documents_array);
     }else if(event.target.classList == "public_document"){
         let is_private = event.target.closest("li").querySelector(".public_checkbox_setting").checked;
 
@@ -152,7 +184,7 @@ const applySettings = (event)=> {
 
             (is_private) ? documents_array[selected_document_index].is_private = true : documents_array[selected_document_index].is_private = false;
 
-            renderDocuments();
+            renderDocuments(documents_array);
             confirm_private_modal.hide();
         });
     }
@@ -169,24 +201,37 @@ const starredDocument = (event)=> {
 
             /* If Starred, put to starred group at the start of array */
             documents_array.splice(selected_document_index, 1);
-                
+
             /* Get last index of starred */
             let last_starred_index = documents_array.findLastIndex((doc_obj) => doc_obj.is_starred);
             documents_array.splice(last_starred_index+1, 0, selected_document_id);
-           
-            renderDocuments();
+
+            renderDocuments(documents_array);
         }
     }
 }
 
 const FilterDocuments = (event)=> {
-    if(event.target.classList.contains("document_filter")){
-        let filtered_documents = document.querySelectorAll('#document_list_container ['+event.target.getAttribute("data-selection")+']');
-        console.log(document.querySelectorAll("#document_list_container li"));
+    let filtered_documents = [];
+    document.getElementById("documents_category_selection").innerHTML = "Show " + event.target.innerHTML;
 
-        filtered_documents.forEach(function(document){
-            document.classList.remove("hidden");
-        })
+    if(event.target.getAttribute("data-selection") === "data-documents"){
+        renderDocuments(documents_array);
+    }
+    else if(event.target.getAttribute("data-selection") === "data-starred"){
+        filtered_documents = documents_array.filter(document => document.is_starred);
+        renderDocuments(filtered_documents);
+    }
+    else if(event.target.getAttribute("data-selection") === "data-private"){
+        filtered_documents = documents_array.filter(document => document.is_private);
+        renderDocuments(filtered_documents);
+    }
+    else if(event.target.getAttribute("data-selection") === "data-public"){
+        filtered_documents = documents_array.filter(document => !document.is_private);
+        renderDocuments(filtered_documents);
+    }
+    else if(event.target.getAttribute("data-selection") === "data-archive"){
+        renderDocuments(archived_document);
     }
 }
 
@@ -194,7 +239,7 @@ const FilterDocuments = (event)=> {
 document.addEventListener("click", applySettings);
 document.addEventListener("click", starredDocument);
 document.addEventListener("click", DuplicateDocument);
-document.addEventListener("click", FilterDocuments);
+document.getElementById("filter_dropdown_menu").addEventListener("click", FilterDocuments);
 document.getElementById("add_documentation_input").addEventListener("keyup", getDocumentValue);
 
 $(function() {$("#document_list_container").sortable();});
