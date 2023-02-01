@@ -246,17 +246,15 @@ let archived_document = [
 
 const renderDocuments = (documents_list) => {
     document.getElementById("document_list_container").innerHTML = "";
-    documents_list = [...new Map(documents_list.map(item => [item["id"], item])).values()];
 
     if(documents_list.length){
         document.getElementById("no_data_logo").setAttribute("hidden", "hidden");
+        documents_index = [...new Map(documents_list.map(item => [item["id"], item])).values()];
 
-        documents_list = [...new Map(documents_list.map(item => [item["id"], item])).values()];
-
-        for(let index in documents_list){
+        for(let index in documents_index){
             /* Only display specified size from the URL */
             if(index < parseInt(doc_count)){
-                let document_item = documents_list[index];
+                let document_item = documents_index[index];
                 let cloned_document = document.getElementById("clone").cloneNode(true);
 
                 cloned_document.id = document_item.id;
