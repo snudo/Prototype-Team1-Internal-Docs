@@ -9,7 +9,8 @@ let documents_array = [
         editors: 2,
         is_private: false,
         is_starred: false,
-        description: "ASUS TUF Gaming F15 is a powerful Windows 10 gaming laptop that combines gaming performance with up to a narrow bezel IPS-type panel and an extended lifespan"
+        description: "ASUS TUF Gaming F15 is a powerful Windows 10 gaming laptop that combines gaming performance with up to a narrow bezel IPS-type panel and an extended lifespan",
+        is_archived: 0
     },
     {
         id: 106,
@@ -18,7 +19,8 @@ let documents_array = [
         editors: 3,
         is_private: true,
         is_starred: false,
-        description: "ASUS TUF Gaming F15 is a powerful Windows 10 gaming laptop that combines gaming performance with up to a narrow bezel IPS-type panel and an extended lifespan"
+        description: "ASUS TUF Gaming F15 is a powerful Windows 10 gaming laptop that combines gaming performance with up to a narrow bezel IPS-type panel and an extended lifespan",
+        is_archived: 0
     },
     {
         id: 107,
@@ -27,7 +29,8 @@ let documents_array = [
         editors: 1,
         is_private: true,
         is_starred: true,
-        description: "ASUS TUF Gaming F15 is a powerful Windows 10 gaming laptop that combines gaming performance with up to a narrow bezel IPS-type panel and an extended lifespan"
+        description: "ASUS TUF Gaming F15 is a powerful Windows 10 gaming laptop that combines gaming performance with up to a narrow bezel IPS-type panel and an extended lifespan",
+        is_archived: 0
     },
     {
         id: 108,
@@ -36,7 +39,8 @@ let documents_array = [
         editors: 1,
         is_private: false,
         is_starred: true,
-        description: "ASUS TUF Gaming F15 is a powerful Windows 10 gaming laptop that combines gaming performance with up to a narrow bezel IPS-type panel and an extended lifespan"
+        description: "ASUS TUF Gaming F15 is a powerful Windows 10 gaming laptop that combines gaming performance with up to a narrow bezel IPS-type panel and an extended lifespan",
+        is_archived: 0
     },
     {
         id: 109,
@@ -45,7 +49,8 @@ let documents_array = [
         editors: 2,
         is_private: false,
         is_starred: true,
-        description: "ASUS TUF Gaming F15 is a powerful Windows 10 gaming laptop that combines gaming performance with up to a narrow bezel IPS-type panel and an extended lifespan"
+        description: "ASUS TUF Gaming F15 is a powerful Windows 10 gaming laptop that combines gaming performance with up to a narrow bezel IPS-type panel and an extended lifespan",
+        is_archived: 0
     }
 ];
 
@@ -58,8 +63,7 @@ let archived_document = [
         is_private: true,
         is_starred: false,
         description: "ASUS TUF Gaming F15 is a powerful Windows 10 gaming laptop that combines gaming performance with up to a narrow bezel IPS-type panel and an extended lifespan",
-        is_archived: 1,
-        created_at: "2022-01-31 21:56:12"
+        is_archived: 1
     },
     {
         id: 35,
@@ -69,8 +73,7 @@ let archived_document = [
         is_private: true,
         is_starred: false,
         description: "ASUS TUF Gaming F15 is a powerful Windows 10 gaming laptop that combines gaming performance with up to a narrow bezel IPS-type panel and an extended lifespan",
-        is_archived: 1,
-        created_at: "2022-01-31 21:56:12"
+        is_archived: 1
     }
 ];
 
