@@ -390,6 +390,7 @@ nav > div #user_profile_wrapper button .caret_arrow {
 }
 .breadcrumbs_block a {
   color: #009EBE;
+  cursor: pointer;
   font: 14px/20px "Roboto-Medium";
   text-decoration: none;
 }

@@ -16,6 +16,7 @@ let documents_array = [
         editors: 2,
         is_private: false,
         is_starred: true,
+        is_archived: 0,
         description: "My Experience in Village88 they taught me how to design a web UI/UX in 3 months."
     },
     {
@@ -25,6 +26,7 @@ let documents_array = [
         editors: 3,
         is_private: true,
         is_starred: true,
+        is_archived: 0,
         description: "Village88 gave me an opportunity to start a new career as a Software Engineer."
     },
     {
@@ -34,6 +36,7 @@ let documents_array = [
         editors: 1,
         is_private: true,
         is_starred: true,
+        is_archived: 0,
         description: "The way to Village88 was not easy. Every task during my training was always under time pressure."
     },
     {
@@ -43,6 +46,7 @@ let documents_array = [
         editors: 1,
         is_private: false,
         is_starred: true,
+        is_archived: 0,
         description: "I had previous jobs before Village88, but then I felt like I wasn't learning anything from it anymore."
     },
     {
@@ -52,6 +56,7 @@ let documents_array = [
         editors: 12,
         is_private: true,
         is_starred: false,
+        is_archived: 0,
         description: "Bylaws are the laws that the company has established to keep the organisation in control and in regulation. A company’s bylaws are the direct guidance given by the authority of a company."
     },
     {
@@ -61,6 +66,7 @@ let documents_array = [
         editors: 1,
         is_private: false,
         is_starred: false,
+        is_archived: 0,
         description: "This information is very critical to the company and if leaked could cost a fortune. Companies, therefore, ask employees to handle confidential company information to sign a non-disclosure agreement."
     },
     {
@@ -70,6 +76,7 @@ let documents_array = [
         editors: 25,
         is_private: true,
         is_starred: false,
+        is_archived: 0,
         description: "An Operating Agreement LLC is a key legal document that is necessary for every LLC with more than 2 or 3 members. Though it is not a legal document, it helps define the process of decision making among key operating authorities."
     },
     {
@@ -79,6 +86,7 @@ let documents_array = [
         editors: 12,
         is_private: true,
         is_starred: false,
+        is_archived: 0,
         description: "Minutes of the meeting captures the happenings of a meeting in detail and used as a referring document for the consecutive meetings."
     },
     {
@@ -88,6 +96,7 @@ let documents_array = [
         editors: 2,
         is_private: false,
         is_starred: false,
+        is_archived: 0,
         description: "This agreement sets the ground rules of the relationship between the organisation and the employee. The culture and the vision of the company can be seen in action in the employee agreement."
     },
     {
@@ -97,6 +106,7 @@ let documents_array = [
         editors: 1,
         is_private: true,
         is_starred: false,
+        is_archived: 0,
         description: "A business plan, as the name suggests, is the plan for your business on paper. Before creating a business plan do thorough research, analyze the market, your competitors, understand how you will target the customers in your market. It offers clarity on what your business is, its opportunities and the roadmap that will lead you there."
     },
     {
@@ -106,6 +116,7 @@ let documents_array = [
         editors: 1,
         is_private: false,
         is_starred: false,
+        is_archived: 0,
         description: "Business reports are facts and figures about certain departments. It includes aspects of your business that exist as company data, which, after analysis can derive outcomes and projections."
     },
     {
@@ -115,6 +126,7 @@ let documents_array = [
         editors: 12,
         is_private: true,
         is_starred: false,
+        is_archived: 0,
         description: "As a business owner, you must have a strong grasp of your company’s finances. It is important to know whether you are within budget, making profits or spiralling losses."
     },
     {
@@ -124,6 +136,7 @@ let documents_array = [
         editors: 12,
         is_private: true,
         is_starred: false,
+        is_archived: 0,
         description: "One of the key factors in keeping your company’s financial statements organised is through the maintenance of transactional documents."
     },
     {
@@ -133,6 +146,7 @@ let documents_array = [
         editors: 3,
         is_private: false,
         is_starred: false,
+        is_archived: 0,
         description: "Businesses are prone to risks all the time and having business insurance gives you the safety net for the same."
     },
     {
@@ -142,6 +156,7 @@ let documents_array = [
         editors: 1,
         is_private: true,
         is_starred: false,
+        is_archived: 0,
         description: "The agreement essentially keeps all the partners in tandem to the agreed terms of working without any deviation and disagreements."
     },
     {
@@ -151,6 +166,7 @@ let documents_array = [
         editors: 2,
         is_private: false,
         is_starred: false,
+        is_archived: 0,
         description: "The Co-founder agreement is prepared across more than one founder and highlights the rules and obligations and share of each of the partners."
     },
     {
@@ -160,6 +176,7 @@ let documents_array = [
         editors: 2,
         is_private: false,
         is_starred: false,
+        is_archived: 0,
         description: "New companies should create a powerful and insightful pitch deck that will essentially capture the essence of the company."
     },
     {
@@ -169,6 +186,7 @@ let documents_array = [
         editors: 2,
         is_private: false,
         is_starred: false,
+        is_archived: 0,
         description: "Investments are critical to companies along with their different growth phases. An investor agreement is prepared for documenting subscription of shares against the investments done."
     },
     {
@@ -178,6 +196,7 @@ let documents_array = [
         editors: 7,
         is_private: false,
         is_starred: false,
+        is_archived: 0,
         description: "Board Resolutions are decisions taken in a board meeting and form a part of the documentation for further reference."
     },
     {
@@ -187,6 +206,7 @@ let documents_array = [
         editors: 2,
         is_private: false,
         is_starred: false,
+        is_archived: 0,
         description: "Employee stock option plans, also known as ESOPsare the stocks offered by a company to its employees at a discounted price."
     },
     {
@@ -196,20 +216,44 @@ let documents_array = [
         editors: 1,
         is_private: true,
         is_starred: false,
+        is_archived: 0,
         description: "Accounting agreement is a document of mutual understanding between the bookkeeper and the company, discussing services and arrangements."
     }
 ];
 
-const renderDocuments = () => {
-    document.getElementById("document_list_container").innerHTML = "";
-    documents_array = [...new Map(documents_array.map(item => [item["id"], item])).values()];
+let archived_document = [
+    {
+        id: 34,
+        title: "Archived Document",
+        viewers: 1,
+        editors: 1,
+        is_private: true,
+        is_starred: false,
+        is_archived: 1,
+        description: "ASUS TUF Gaming F15 is a powerful Windows 10 gaming laptop that combines gaming performance with up to a narrow bezel IPS-type panel and an extended lifespan"
+    },
+    {
+        id: 35,
+        title: "Archived Document 2",
+        viewers: 1,
+        editors: 1,
+        is_private: true,
+        is_starred: false,
+        is_archived: 1,
+        description: "ASUS TUF Gaming F15 is a powerful Windows 10 gaming laptop that combines gaming performance with up to a narrow bezel IPS-type panel and an extended lifespan"
+    }
+]
 
-    if(documents_array.length){
+const renderDocuments = (documents_list) => {
+    document.getElementById("document_list_container").innerHTML = "";
+    documents_list = [...new Map(documents_list.map(item => [item["id"], item])).values()];
+
+    if(documents_list.length){
         document.getElementById("no_data_logo").setAttribute("hidden", "hidden");
 
-        documents_array = [...new Map(documents_array.map(item => [item["id"], item])).values()];
+        documents_list = [...new Map(documents_list.map(item => [item["id"], item])).values()];
 
-        for(let index in documents_array){
+        for(let index in documents_list){
             /* Only display specified size from the URL */
             if(index < parseInt(doc_count)){
                 let document_item = documents_array[index];
@@ -245,7 +289,7 @@ const renderDocuments = () => {
     }
 }
 
-renderDocuments();
+renderDocuments(documents_array);
 
 /* CALLBACK FUNCTIONS */
 
@@ -270,7 +314,8 @@ const getDocumentValue = (event) => {
             });
 
             event.target.value = "";
-            renderDocuments();
+            document.getElementById("documents_category_selection").innerHTML = "Show All";
+            renderDocuments(documents_array);
         }
         else{
             event.target.closest("label").classList.add("input_error");
@@ -306,14 +351,14 @@ const applySettings = (event)=> {
             documents_array.push(duplicated_object);
 
             confirm_private_modal.hide();
-            renderDocuments();
+            renderDocuments(documents_array);
         });
     }else if(event.target.classList == "archive_document"){
         documents_array.splice(documents_array.map((obj_index) => obj_index.id).indexOf(selected_document.id), 1);
-        renderDocuments();
+        renderDocuments(documents_array);
     }else if(event.target.classList == "remove_document"){
         documents_array.splice(documents_array.map((obj_index) => obj_index.id).indexOf(selected_document.id), 1);
-        renderDocuments();
+        renderDocuments(documents_array);
     }else if(event.target.classList == "public_document"){
         let is_private = event.target.closest("li").querySelector(".public_checkbox_setting").checked;
 
@@ -325,7 +370,7 @@ const applySettings = (event)=> {
 
             (is_private) ? documents_array[selected_document_index].is_private = true : documents_array[selected_document_index].is_private = false;
 
-            renderDocuments();
+            renderDocuments(documents_array);
             confirm_private_modal.hide();
         });
     }
@@ -342,24 +387,37 @@ const starredDocument = (event)=> {
 
             /* If Starred, put to starred group at the start of array */
             documents_array.splice(selected_document_index, 1);
-                
+
             /* Get last index of starred */
             let last_starred_index = documents_array.findLastIndex((doc_obj) => doc_obj.is_starred);
             documents_array.splice(last_starred_index+1, 0, selected_document_id);
-           
-            renderDocuments();
+
+            renderDocuments(documents_array);
         }
     }
 }
 
 const FilterDocuments = (event)=> {
-    if(event.target.classList.contains("document_filter")){
-        let filtered_documents = document.querySelectorAll('#document_list_container ['+event.target.getAttribute("data-selection")+']');
-        console.log(document.querySelectorAll("#document_list_container li"));
+    let filtered_documents = [];
+    document.getElementById("documents_category_selection").innerHTML = "Show " + event.target.innerHTML;
 
-        filtered_documents.forEach(function(document){
-            document.classList.remove("hidden");
-        })
+    if(event.target.getAttribute("data-selection") === "data-documents"){
+        renderDocuments(documents_array);
+    }
+    else if(event.target.getAttribute("data-selection") === "data-starred"){
+        filtered_documents = documents_array.filter(document => document.is_starred);
+        renderDocuments(filtered_documents);
+    }
+    else if(event.target.getAttribute("data-selection") === "data-private"){
+        filtered_documents = documents_array.filter(document => document.is_private);
+        renderDocuments(filtered_documents);
+    }
+    else if(event.target.getAttribute("data-selection") === "data-public"){
+        filtered_documents = documents_array.filter(document => !document.is_private);
+        renderDocuments(filtered_documents);
+    }
+    else if(event.target.getAttribute("data-selection") === "data-archive"){
+        renderDocuments(archived_document);
     }
 }
 
@@ -367,7 +425,7 @@ const FilterDocuments = (event)=> {
 document.addEventListener("click", applySettings);
 document.addEventListener("click", starredDocument);
 document.addEventListener("click", DuplicateDocument);
-document.addEventListener("click", FilterDocuments);
+document.getElementById("filter_dropdown_menu").addEventListener("click", FilterDocuments);
 document.getElementById("add_documentation_input").addEventListener("keyup", getDocumentValue);
 
 $(function(){

@@ -9,7 +9,8 @@ let documents_array = [
         editors: 2,
         is_private: false,
         is_starred: false,
-        description: "ASUS TUF Gaming F15 is a powerful Windows 10 gaming laptop that combines gaming performance with up to a narrow bezel IPS-type panel and an extended lifespan"
+        description: "ASUS TUF Gaming F15 is a powerful Windows 10 gaming laptop that combines gaming performance with up to a narrow bezel IPS-type panel and an extended lifespan",
+        is_archived: 0
     },
     {
         id: 106,
@@ -18,7 +19,8 @@ let documents_array = [
         editors: 3,
         is_private: true,
         is_starred: false,
-        description: "ASUS TUF Gaming F15 is a powerful Windows 10 gaming laptop that combines gaming performance with up to a narrow bezel IPS-type panel and an extended lifespan"
+        description: "ASUS TUF Gaming F15 is a powerful Windows 10 gaming laptop that combines gaming performance with up to a narrow bezel IPS-type panel and an extended lifespan",
+        is_archived: 0
     },
     {
         id: 107,
@@ -27,7 +29,8 @@ let documents_array = [
         editors: 1,
         is_private: true,
         is_starred: true,
-        description: "ASUS TUF Gaming F15 is a powerful Windows 10 gaming laptop that combines gaming performance with up to a narrow bezel IPS-type panel and an extended lifespan"
+        description: "ASUS TUF Gaming F15 is a powerful Windows 10 gaming laptop that combines gaming performance with up to a narrow bezel IPS-type panel and an extended lifespan",
+        is_archived: 0
     },
     {
         id: 108,
@@ -36,7 +39,8 @@ let documents_array = [
         editors: 1,
         is_private: false,
         is_starred: true,
-        description: "ASUS TUF Gaming F15 is a powerful Windows 10 gaming laptop that combines gaming performance with up to a narrow bezel IPS-type panel and an extended lifespan"
+        description: "ASUS TUF Gaming F15 is a powerful Windows 10 gaming laptop that combines gaming performance with up to a narrow bezel IPS-type panel and an extended lifespan",
+        is_archived: 0
     },
     {
         id: 109,
@@ -45,10 +49,36 @@ let documents_array = [
         editors: 2,
         is_private: false,
         is_starred: true,
-        description: "ASUS TUF Gaming F15 is a powerful Windows 10 gaming laptop that combines gaming performance with up to a narrow bezel IPS-type panel and an extended lifespan"
+        description: "ASUS TUF Gaming F15 is a powerful Windows 10 gaming laptop that combines gaming performance with up to a narrow bezel IPS-type panel and an extended lifespan",
+        is_archived: 0
     }
 ];
 
+let archived_document = [
+    {
+        id: 34,
+        title: "Archived Document",
+        viewers: 1,
+        editors: 1,
+        is_private: true,
+        is_starred: false,
+        description: "ASUS TUF Gaming F15 is a powerful Windows 10 gaming laptop that combines gaming performance with up to a narrow bezel IPS-type panel and an extended lifespan",
+        is_archived: 1
+    },
+    {
+        id: 35,
+        title: "Archived Document 2",
+        viewers: 1,
+        editors: 1,
+        is_private: true,
+        is_starred: false,
+        description: "ASUS TUF Gaming F15 is a powerful Windows 10 gaming laptop that combines gaming performance with up to a narrow bezel IPS-type panel and an extended lifespan",
+        is_archived: 1
+    }
+];
+
+let current_filter_type = FILTER_TYPE.all;
+let filtered_documents = [];
 let searched_documents = [];
 
 /* CALLBACK FUNCTIONS */
@@ -105,19 +135,54 @@ const searchDocumentation = (event) => {
     // Render all if no search_input value
     if (search_input === "") {
         document.getElementById("no_data_logo").setAttribute("hidden", "hidden");
-        renderDocuments(documents_array);
+
+        let recent_documents = (!current_filter_type) ? documents_array : filtered_documents;
+        renderDocuments(recent_documents);
     }
 
     // Discontinue if there is no search yet
     if (search_input === null || search_input === "" || searched_documents === []) return;
 
     // Filter documents_array to get the title based on search input
-    searched_documents = documents_array.filter(documentation => documentation.title.toLowerCase().includes(search_input));
+    searched_documents = (!current_filter_type) ? documents_array.filter(documentation => documentation.title.toLowerCase().includes(search_input))
+        : filtered_documents.filter(documentation => documentation.title.toLowerCase().includes(search_input));
+
     renderDocuments(searched_documents);
+}
+
+const FilterDocuments = (event)=> {
+    document.getElementById("search_documentation_input").value = "";
+    document.getElementById("documents_category_selection").innerHTML = "Show " + event.target.innerHTML;
+
+    if(event.target.getAttribute("data-selection") === "data-documents"){
+        current_filter_type = FILTER_TYPE.all;
+        renderDocuments(documents_array);
+    }
+    else if(event.target.getAttribute("data-selection") === "data-starred"){
+        current_filter_type = FILTER_TYPE.starred;
+        filtered_documents = documents_array.filter(document => document.is_starred);
+        renderDocuments(filtered_documents);
+    }
+    else if(event.target.getAttribute("data-selection") === "data-private"){
+        current_filter_type = FILTER_TYPE.private;
+        filtered_documents = documents_array.filter(document => document.is_private);
+        renderDocuments(filtered_documents);
+    }
+    else if(event.target.getAttribute("data-selection") === "data-public"){
+        current_filter_type = FILTER_TYPE.public;
+        filtered_documents = documents_array.filter(document => !document.is_private);
+        renderDocuments(filtered_documents);
+    }
+    else if(event.target.getAttribute("data-selection") === "data-archive"){
+        current_filter_type = FILTER_TYPE.archived;
+        filtered_documents = archived_document;
+        renderDocuments(filtered_documents);
+    }
 }
 
 /* EVENTS */
 document.addEventListener("click", starredDocument);
+document.getElementById("filter_dropdown_menu").addEventListener("click", FilterDocuments);
 document.getElementById("search_documentation_input").addEventListener("keyup", searchDocumentation);
 
 $(function() {$("#document_list_container").sortable();});
