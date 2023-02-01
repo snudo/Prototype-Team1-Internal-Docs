@@ -61,15 +61,26 @@ label.input_field{
                 }
 
                 button{
+                    align-items: center;
                     background: @teal_50;
                     border: none;
                     border-radius: 5px;
                     color: @teal_500;
+                    display: flex;
                     font: 12px/16px @font_medium;
                     height: 34px;
+                    justify-content: center;
                     margin-left: 24px;
                     outline: none;
                     width: 104px;
+
+                    .preview_icon{
+                        background: url("/web-frontend/assets/images/preview_update_svg_icon.svg") no-repeat -32px 0px;
+                        display: block;
+                        height: 18px;
+                        margin-right: 8px;
+                        width: 18px;
+                    }
                 }
             }
 
