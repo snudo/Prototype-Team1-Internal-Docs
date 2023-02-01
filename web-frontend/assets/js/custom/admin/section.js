@@ -48,14 +48,20 @@ const changePrivacySettings = () => {
 }
 
 const deleteSection = (event) => {
-    if(event.target.classList == "delete_section"){
-        event.target.closest("li").remove();
+    let delete_section_btn = event.target;
+
+    if(delete_section_btn.classList === "delete_section"){
+        /* Remove the Section */
+        delete_section_btn.closest("li").remove();
     }
 }
 
 const duplicateSection = (event) => {
-    if(event.target.classList == "duplicate_section"){
-        let duplicated_section = event.target.closest("li").cloneNode(true);
+    let duplicate_section_btn = event.target;
+
+    if(duplicate_section_btn.classList === "duplicate_section"){
+        /* Duplicate the Section */
+        let duplicated_section = duplicate_section_btn.closest("li").cloneNode(true);
         duplicated_section.id = new Date().getUTCMilliseconds();
         document.getElementById("section_list_container").appendChild(duplicated_section);
     }
