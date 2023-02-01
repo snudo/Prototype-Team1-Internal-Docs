@@ -286,3 +286,55 @@
   background-position: -736px -9px;
   margin-left: 9px;
 }
+#confirm_private_modal .modal-dialog {
+  background-color: #FFFFFF;
+  border-radius: 8px;
+  -webkit-box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+          box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+  margin: 160px auto;
+  max-width: 328px;
+  padding: 20px 35px 24px;
+}
+#confirm_private_modal .modal-dialog .modal-content {
+  border: none;
+}
+#confirm_private_modal .modal-dialog .modal-content p {
+  color: #4B626A;
+  font: 16px/24px "Roboto-Regular";
+  margin: 0 0 17px;
+  text-align: center;
+}
+#confirm_private_modal .modal-dialog .modal-content p span {
+  font: 16px/24px "Roboto-Regular";
+}
+#confirm_private_modal .modal-dialog .modal-content div {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 100%;
+}
+#confirm_private_modal .modal-dialog .modal-content div button {
+  background-color: transparent;
+  border: none;
+  color: #7D949D;
+  font: 16px/24px "Roboto-Medium";
+  height: 40px;
+  width: 80px;
+}
+#confirm_private_modal .modal-dialog .modal-content div button:last-child {
+  background-color: #009EBE;
+  border-radius: 8px;
+  color: #FFFFFF;
+  margin-left: 24px;
+  -webkit-transition: 0.21s;
+  transition: 0.21s;
+}
+#confirm_private_modal .modal-dialog .modal-content div button:last-child:hover {
+  opacity: 0.8;
+}
