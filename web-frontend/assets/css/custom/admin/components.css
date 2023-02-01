@@ -178,6 +178,13 @@ label.input_field input[type=text] {
   outline: none;
   width: 18px;
 }
+#component_wrapper #left_panel #component_list .component_block .tab_list li.tab_item button {
+  background: transparent;
+  border: transparent;
+}
+#component_wrapper #left_panel #component_list .component_block .tab-content {
+  background: #FFFFFF;
+}
 #component_wrapper #left_panel #component_list .component_block form {
   background: #FFFFFF;
   padding: 24px;
