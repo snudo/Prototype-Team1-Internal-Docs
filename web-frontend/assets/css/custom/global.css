@@ -8,7 +8,11 @@
   display: none;
 }
 .input_error {
-  border: 1px solid #EF4444;
+  border: 1px solid #e97575;
+  border-bottom: 2px solid #e97575 !important;
+}
+.input_error span {
+  color: #e97575 !important;
 }
 body {
   background: #E7EFF6;
@@ -386,6 +390,7 @@ nav > div #user_profile_wrapper button .caret_arrow {
 }
 .breadcrumbs_block a {
   color: #009EBE;
+  cursor: pointer;
   font: 14px/20px "Roboto-Medium";
   text-decoration: none;
 }

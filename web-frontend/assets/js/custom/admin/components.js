@@ -143,3 +143,6 @@ updateSectionTitle();
 /* EVENTS */
 document.getElementById("add_component").addEventListener("click", addComponentItem);
 document.getElementById("section_title").addEventListener("keyup", updateSectionTitle);
+document.querySelector(".title_block button").addEventListener("click", () => {
+   window.location.href = "/web-frontend/views/admin/component_preview.html"
+});
