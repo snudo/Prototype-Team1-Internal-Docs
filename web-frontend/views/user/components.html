@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Components</title>
+    <link rel="stylesheet" href="../../assets/css/custom/user/components.css">
+    <link rel="stylesheet" href="../../assets/css/custom/admin/component_preview.css">
+    <link rel="icon" type="image/x-icon" href="/web-frontend/assets/images/favicon.svg">
+
+    <!-- CONSTANTS -->
+    <script src="../../assets/js/constans.js"></script>
+
+    <!-- CUSTOM JS -->
+    <script>
+        let current_js  = "../../assets/js/custom/admin/component_preview.js";
+    </script>
+
+    <!-- ASSETS LOADER -->
+    <script src="../../assets/js/vendor/assets_loader.min.js"></script>
+    <script src="../../assets/js/custom/render_assets.js"></script>
+</head>
+<body>
+    <div data-include="../admin/templates/navigation.html"></div>
+
+    <section id="component_wrapper">
+        <div id="left_panel">
+            <ul class="breadcrumbs_block">
+                <li><a href="/web-frontend/views/admin/docs.html"><span class="breadcrumbs_icon"></span> Documentations</a></li>
+                <li><a href="/web-frontend/views/admin/sections.html"><span class="breadcrumbs_icon section_icon"></span> Engineering Guide</a></li>
+                <li><p><span class="breadcrumbs_icon component_icon"></span> Data Usage, Collection, and Processing</p></li>
+            </ul>
+
+            <div class="section_details">
+                <div class="title_block">
+                    <h1 id="section_title">Data Usage, Collection, and Processing</h1>
+                    <button type="button"><span class="update_icon"></span> Update</button>
+                </div>
+                
+                <p id="section_details">Dick Plumb had always loved Cups San Fernando City with its rabblesnatching, regurgitated Rivers. It was a place where he felt Happy. He was a wild, understanding, tea drinker with charming lips and sloppy hands. His friends saw him as a late, lovely lawyer. Once, he had even made a cup of tea for an enthusiastic Baby bird. That's the sort of man he was.</p>
+            </div>
+
+            <div id="component_list">
+                <div class="component_block">
+                    <ul class="tab_list nav nav-tabs" role="tablist">
+                        <li class="tab_item active nav-item" role="presentation">
+                            <button class="nav-link active" id="nav-assignment-tab" data-bs-toggle="tab" data-bs-target="#assignment" type="button" role="tab" aria-selected="true">Assignment</button>
+                        </li>
+                        <li class="tab_item nav-item" role="presentation">
+                            <button class="nav-link" id="nav-collections-tab" data-bs-toggle="tab" data-bs-target="#collections" type="button" role="tab" aria-selected="false">Collections</button>
+                        </li>
+                        <li class="tab_item nav-item" role="presentation">
+                            <button class="nav-link" id="nav-hny-tab" data-bs-toggle="tab" data-bs-target="#hny" type="button" role="tab" aria-selected="false">Happy New Year</button>
+                        </li>
+                    </ul>
+
+                    <div class="tab-content tab_details">
+                        <div class="tab-pane fade show active" id="assignment" role="tabpanel">
+                            <h1>Heading 1 sample</h1>
+                            <p>Sample description data</p>
+                            <p>Dick Plumb had always loved Cups San Fernando City with its rabblesnatching, regurgitated Rivers. It was a place where he felt Happy. He was a wild, understanding, tea drinker with charming lips and sloppy hands. His friends saw him as a late, lovely lawyer. Once, he had even made a cup of tea for an enthusiastic Baby bird. That's the sort of man he was.</p>
+                        </div>
+                        <div class="tab-pane fade" id="collections" role="tabpanel">
+                            <h2>Heading 2 sample</h2>
+                            <p>Dick Plumb had always loved Cups San Fernando City with its rabblesnatching, regurgitated Rivers. It was a place where he felt Happy. He was a wild, understanding, tea drinker with charming lips and sloppy hands. His friends saw him as a late, lovely lawyer. Once, he had even made a cup of tea for an enthusiastic Baby bird. That's the sort of man he was.</p>
+                            <p>Sample description tab 2 data</p>
+                        </div>
+                        <div class="tab-pane fade" id="hny" role="tabpanel">
+                            <h3>Heading 3 sample</h3>
+                            <h4>Heading 4 sample</h4>
+                            <p>Dick Plumb had always loved Cups San Fernando City with its rabblesnatching, regurgitated Rivers. It was a place where he felt Happy. He was a wild, understanding, tea drinker with charming lips and sloppy hands. His friends saw him as a late, lovely lawyer. Once, he had even made a cup of tea for an enthusiastic Baby bird. That's the sort of man he was.</p>
+                            <h5>Heading 5 sample</h5>
+                        </div>
+                    </div>
+
+                    <div class="action_btn">
+                        <button class="next_tab"><span class="prev_tab_icon"></span> Previous Tab</button>
+                        <button class="prev_tab active">Next Tab <span class="next_tab_icon"></span></button>
+                    </div>
+        
+                    <div class="post_block">
+                        <form action="#" class="add_post_form" method="post">
+                            <label class="input_field">
+                                <span>Post</span>
+                                <input type="text" name="post_comment" class="post_comment" placeholder="Enter Post...">
+                                <span class="char_count">0/250</span>
+                            </label>
+                        </form>
+
+                        <ul class="post_list">
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="right_panel">
+            <h3>In This Documentation <span class="info_icon"></span></h3>
+
+            <ul id="section_list">
+                <li><a href="#">The power ranger of source.</a></li>
+                <li class="active"><a href="#">Data Usage, Collection, and Processing</a></li>
+                <li><a href="#">Collection of Nikola Tesla</a></li>
+                <li><a href="#">Destructing of JavaScript</a></li>
+                <li><a href="#">Learn the HTML structure</a></li>
+            </ul>
+        </div>
+    </section>
+
+    <div id="clone_block">
+        <ul>
+            <li class="post_item">
+                <div class="header">
+                    <img src="#" alt="User Profile">
+                    <span class="user_name">Ruel</span>
+                    ∙
+                    <span class="timestamp">1 min ago</span>
+
+                    <div class="action_option_btn">
+                        <button class="update_btn"><span class="update_icon"></span></button>
+                        <button class="delete_btn"><span class="delete_icon"></span></button>
+                    </div>
+                </div>
+                <p class="user_post_message"></p>
+                <form action="#" class="update_post_form" method="POST">
+                    <input type="text" class="user_post_input" class="required_input">
+                </form>
+
+                <button class="show_reply_btn"><span class="caret_arrow"></span> 1 Reply</button>
+
+                <div class="reply_details">
+                    <ul class="reply_list"></ul>
+    
+                    <form action="#" class="reply_form" method="post">
+                        <label class="input_field">
+                            <span>Reply</span>
+                            <input type="text" name="post_comment" class="post_comment" placeholder="Enter Post...">
+                            <span class="char_count">0/250</span>
+                        </label>
+                    </form>
+                </div>
+            </li>
+
+            <li class="reply_item">
+                <div class="header">
+                    <img src="#" alt="User Profile">
+                    <span class="user_name">Ruel</span>
+                    ∙
+                    <span class="timestamp">1 min ago</span>
+
+                    <div class="action_option_btn">
+                        <button class="update_btn"><span class="update_icon"></span></button>
+                        <button class="delete_btn"><span class="delete_icon"></span></button>
+                    </div>
+                </div>
+                <p class="user_reply_message"></p>
+                <form action="#" class="update_reply_form" method="POST">
+                    <input type="text" class="user_reply_input" class="required_input">
+                </form>
+            </li>
+        </ul>
+    </div>
+
+    <script src="../../assets/js/custom/user/components.js"></script>
+</body>
+</html>
