@@ -1,6 +1,6 @@
 @font-face {
   font-family: "Roboto-Regular";
-  src: url("../../fonts/Roboto-Regular.ttf");
+  src: url("../fonts/Roboto-Regular.ttf");
 }
 @font-face {
   font-family: "Roboto-Medium";
@@ -17,7 +17,8 @@
 /* FONTS */
 /* COLORS */
 * {
-  font: 14px/18px "Roboto-Regular";
+  font-family: "Roboto-Regular";
+  /* font: 14px/18px "Roboto-Regular"; */
 }
 body {
   background: #E7EFF6;
