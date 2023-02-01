@@ -10,7 +10,3 @@ const selectActiveTab = (event) => {
 document.querySelectorAll(".tab_item .nav-link").forEach((item_link) => {
     item_link.addEventListener("click", selectActiveTab);
 });
-
-document.querySelector(".title_block button").addEventListener("click", () => {
-    window.location.href = "/web-frontend/views/admin/components.html"
-});

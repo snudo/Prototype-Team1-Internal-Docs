@@ -293,6 +293,10 @@ label.input_field input[type=text] {
   pointer-events: none;
   position: relative;
 }
+#component_wrapper #left_panel #component_list .component_block .post_block .input_field.user_input_block {
+  opacity: 1;
+  pointer-events: unset;
+}
 #component_wrapper #left_panel #component_list .component_block .post_block .input_field .char_count {
   bottom: -22px;
   position: absolute;
