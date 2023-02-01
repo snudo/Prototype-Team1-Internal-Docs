@@ -161,21 +161,25 @@ label.input_field input[type=text] {
   outline: none;
   width: 18px;
 }
-#component_wrapper #left_panel #component_list .component_block form {
+#component_wrapper #left_panel #component_list .component_block .tab_details {
   background: #FFFFFF;
   padding: 24px;
 }
-#component_wrapper #left_panel #component_list .component_block form .rx-container {
-  border: 1px solid #CEE6F0;
-  border-radius: 8px;
-  margin-top: 24px;
+#component_wrapper #left_panel #component_list .component_block .tab_details h1 {
+  color: #1D333B;
+  font: 22px/28px "Roboto-Medium";
 }
-#component_wrapper #left_panel #component_list .component_block form .rx-container .rx-toolbar-container {
-  background: #F2FBFF;
-  border-bottom: none;
-  border-radius: 8px 8px 0 0;
+#component_wrapper #left_panel #component_list .component_block .tab_details h3,
+#component_wrapper #left_panel #component_list .component_block .tab_details h4,
+#component_wrapper #left_panel #component_list .component_block .tab_details h5 {
+  color: #7D949D;
+  font: 22px/28px "Roboto-Regular";
 }
-#component_wrapper #left_panel #component_list .component_block form .rx-container .rx-editor-container p {
+#component_wrapper #left_panel #component_list .component_block .tab_details h2 {
+  color: #1D333B;
+  font: 22px/28px "Roboto-Medium";
+}
+#component_wrapper #left_panel #component_list .component_block .tab_details p {
   color: #4B626A;
   font: 14px/20px "Roboto-Regular";
 }
