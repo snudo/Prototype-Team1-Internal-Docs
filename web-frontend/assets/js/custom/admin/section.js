@@ -47,11 +47,18 @@ const changePrivacySettings = () => {
     }
 }
 
+const deleteSection = (event) => {
+    if(event.target.classList == "delete_section"){
+        event.target.closest("li").remove();
+    }
+}
+
 autoGrowTextArea(document.getElementById("document_description_input"));
 
 document.getElementById("document_description_input").addEventListener("keyup", function(){ autoGrowTextArea(this);});
 document.getElementById("add_section_input").addEventListener("keyup", addNewSection);
 document.getElementById("add_section_form").addEventListener("submit", submitCreateSection);
 document.getElementById("private_setting_block").addEventListener("click", changePrivacySettings);
+document.addEventListener("click", deleteSection);
 
 $(function() {$("#section_list_container").sortable();});
