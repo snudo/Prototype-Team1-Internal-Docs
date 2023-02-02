@@ -135,10 +135,18 @@
                         outline: none;
                         padding: 0;
 
+                        &.rotate{
+                            .caret_arrow{
+                                transform: rotate(180deg);
+                                transition: .25s ease-in-out;
+                            }
+                        }
+
                         .caret_arrow{
                             background: url("../../../images/svg_icons_stripe.svg") no-repeat -126px -9px;
                             display: block;
                             height: 18px;
+                            transition: .25s ease-in-out;
                             width: 18px;
                         }
                     }

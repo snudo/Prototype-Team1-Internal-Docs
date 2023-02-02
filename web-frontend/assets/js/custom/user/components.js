@@ -13,7 +13,12 @@ const selectActiveTab = (event) => {
 }
 
 const removeItemData = (event) => {
-    event.target.closest("li").remove();
+    let selected_item = event.target;
+    let message_item  = selected_item.closest(".post_item");
+    let reply_count   = message_item.querySelectorAll(".reply_list li").length - 1;
+
+    message_item.querySelector(".show_reply_btn").innerHTML = `<span class="caret_arrow"></span> ${ reply_count } ${ (reply_count > 1) ? "Replies" : "Reply" }`;
+    selected_item.closest("li").remove();
 }
 
 const updateItemData = (event) => {
@@ -67,6 +72,11 @@ const submitReplyData = (event) => {
     reply_form.closest(".reply_details").querySelector(".reply_list").prepend(reply_item_clone);
     reply_form.reset();
 
+    let message_item = reply_form.closest(".message_item");
+    let reply_count  = message_item.querySelectorAll(".reply_list li").length;
+
+    message_item.querySelector(".show_reply_btn").innerHTML = `<span class="caret_arrow"></span> ${ reply_count } ${ (reply_count > 1) ? "Replies" : "Reply" }`;
+
     /* EVENTS */
     reply_item_clone.querySelector(".update_reply_form").addEventListener("submit", updateReplyData);
     reply_item_clone.querySelector(".delete_btn").addEventListener("click", removeItemData);
@@ -78,6 +88,15 @@ const updatePostData = (event) => {
     let update_post_value = event.target.querySelector(".update_post_input").value;
 
     updatePostReplyData(event, update_post_value, ".user_post_message");
+}
+
+const toggleShowReply = (event) => {
+    let message_item  = event.target.closest(".message_item");
+    let is_show_reply = message_item.querySelectorAll(".reply_details.hidden");
+    let reply_details = message_item.querySelector(".reply_details");
+
+    event.target.classList.toggle("rotate");
+    (is_show_reply.length) ? reply_details.classList.remove("hidden") : reply_details.classList.add("hidden");
 }
 
 const submitAddPost = (event) => {
@@ -105,6 +124,7 @@ const submitAddPost = (event) => {
     post_item_clone.querySelector(".reply_comment").addEventListener("keydown", (event) => {
         updateMessageCount(event, reply_form);
     });
+    post_item_clone.querySelector(".show_reply_btn").addEventListener("click", toggleShowReply);
 }
 
 /* EVENTS */
