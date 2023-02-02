@@ -1,8 +1,176 @@
+@import url("../variables.less");
+
+#clone_block{
+    display: none;
+}
+
 .input_field{
     opacity: 1 !important;
     pointer-events: unset !important;
 }
 
-#clone_block{
-    display: none;
+#component_wrapper{
+    #left_panel{
+        .post_block{
+            ul{
+                list-style: none;
+                margin: 0;
+                padding: 0;
+            }
+            .post_list{
+                .post_item{
+                    &:first-child{
+                        margin-top: 35px;
+                    }
+                }
+
+                .update_reply_form, .update_post_form{
+                    margin: 12px 0 24px;
+
+                    &.update_reply_form{
+                        margin-bottom: 0;
+                    }
+
+                    &.update_post_form{
+                        label{
+                            background: @white;
+
+                            input{
+                                background: transparent;
+                            }
+                        }
+                    }
+                }
+
+                .message_item{
+                    background: @teal_50;
+                    border-radius: 8px;
+                    margin-bottom: 24px;
+                    padding: 16px 24px 24px;
+
+                    &.reply_item{
+                        padding-bottom: 16px;
+                    }
+
+                    &:last-child{
+                        margin-bottom: 0;
+                    }
+
+                    &:hover{
+                        >.header{
+                            >.action_option_btn{
+                                display: flex;
+                            }
+                        }
+                    }
+
+                    .header{
+                        align-items: center;
+                        color: @secondary_60;
+                        display: flex;
+                        font: 16px/24px @font_medium;
+                        
+                        .user_name{
+                            color: @secondary_20;
+                            font: 16px/24px @font_medium;
+                            margin: 0 5px 0 8px;
+                        }
+
+                        .timestamp{
+                            color: @secondary_60;
+                            font: 16px/24px @font_regular;
+                            margin-left: 5px;
+                        }
+
+                        .action_option_btn{
+                            align-items: center;
+                            display: none;
+                            margin-left: 24px;
+
+                            button{
+                                background: @teal_500;
+                                border: none;
+                                border-radius: 5px;
+                                height: 28px;
+                                opacity: .5;
+                                width: 28px;
+
+                                span{
+                                    background: url("../../../images/remove_update_icon.svg") no-repeat -1px 0px;
+                                    display: block;
+                                    height: 18px;
+                                    width: 18px;
+
+                                    &.delete_icon{
+                                        background-position: -28px 0px;
+                                    }
+                                }
+
+                                &:first-child{
+                                    margin-right: 8px;
+                                }
+
+                                &:hover{
+                                    opacity: 1;
+                                }
+                            }
+                        }
+                    }
+
+                    p{
+                        color: @secondary_40;
+                        font: 14px/20px @font_regular;
+                        margin: 6px 0;
+                    }
+
+                    .show_reply_btn{
+                        align-items: center;
+                        background: transparent;
+                        border: none;
+                        color: @teal_500;
+                        display: flex;
+                        font: 12px/16px @font_medium;
+                        justify-content: center;
+                        margin: 0;
+                        outline: none;
+                        padding: 0;
+
+                        .caret_arrow{
+                            background: url("../../../images/svg_icons_stripe.svg") no-repeat -126px -9px;
+                            display: block;
+                            height: 18px;
+                            width: 18px;
+                        }
+                    }
+
+                    .reply_details{
+                        .reply_list{
+                            .reply_item{
+                                background: @white;
+                                margin-bottom: 12px;
+
+                                &:first-child{
+                                    margin-top: 12px;
+                                }
+
+                                &:last-child{
+                                    margin-bottom: 0;
+                                }
+                            }
+                        }
+                        .reply_form{
+                            label{
+                                background: @white;
+                                margin-top: 12px;
+
+                                input{
+                                    background: transparent;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
