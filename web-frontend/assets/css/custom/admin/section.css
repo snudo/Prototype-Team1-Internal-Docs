@@ -213,10 +213,10 @@
 #section_wrapper #section_main_contents #create_section_block ul li:last-child {
   margin-bottom: 0;
 }
-#section_wrapper #section_main_contents #create_section_block ul li:hover a div h3 button {
+#section_wrapper #section_main_contents #create_section_block ul li:hover > div div h3 button {
   opacity: 1;
 }
-#section_wrapper #section_main_contents #create_section_block ul li a {
+#section_wrapper #section_main_contents #create_section_block ul li > div {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -227,7 +227,7 @@
   outline: none;
   text-decoration: none;
 }
-#section_wrapper #section_main_contents #create_section_block ul li a div:first-child {
+#section_wrapper #section_main_contents #create_section_block ul li > div div:first-child {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -242,22 +242,22 @@
           justify-content: center;
   width: 44px;
 }
-#section_wrapper #section_main_contents #create_section_block ul li a div:first-child::before {
+#section_wrapper #section_main_contents #create_section_block ul li > div div:first-child::before {
   background: url("/web-frontend/assets/images/svg_icons_stripe.svg");
   background-position: -862px -7px;
   content: "";
   height: 24px;
   width: 13px;
 }
-#section_wrapper #section_main_contents #create_section_block ul li a div:last-child {
+#section_wrapper #section_main_contents #create_section_block ul li > div div:last-child {
   padding-left: 26px;
 }
-#section_wrapper #section_main_contents #create_section_block ul li a div p {
+#section_wrapper #section_main_contents #create_section_block ul li > div div p {
   color: #7D949D;
   font: 14px/20px "Roboto-Medium";
   margin: 0 0 0;
 }
-#section_wrapper #section_main_contents #create_section_block ul li a div h3 {
+#section_wrapper #section_main_contents #create_section_block ul li > div div h3 {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -266,12 +266,13 @@
   display: flex;
   margin-bottom: 8px;
 }
-#section_wrapper #section_main_contents #create_section_block ul li a div h3 span {
+#section_wrapper #section_main_contents #create_section_block ul li > div div h3 a {
   color: #14B8A6;
   font: 16px/20px "Roboto-Medium";
   margin-right: 30px;
+  text-decoration: none;
 }
-#section_wrapper #section_main_contents #create_section_block ul li a div h3 button {
+#section_wrapper #section_main_contents #create_section_block ul li > div div h3 button {
   background: url("/web-frontend/assets/images/svg_icons_stripe.svg");
   background-position: -697px -9px;
   border: none;
@@ -282,7 +283,7 @@
   transition: all 0.21s;
   width: 13px;
 }
-#section_wrapper #section_main_contents #create_section_block ul li a div h3 button.delete_section {
+#section_wrapper #section_main_contents #create_section_block ul li > div div h3 button.delete_section {
   background-position: -736px -9px;
   margin-left: 9px;
 }
