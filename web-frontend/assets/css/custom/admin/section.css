@@ -90,6 +90,7 @@
   margin: 0 0 0;
 }
 #section_wrapper #section_main_contents #documents_editable_form #viewers_editors_count {
+  cursor: pointer;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -97,9 +98,9 @@
 }
 #section_wrapper #section_main_contents #documents_editable_form #viewers_editors_count::before {
   background: url("/web-frontend/assets/images/svg_icons_stripe.svg");
-  background-position: -815px -12px;
+  background-position: -815px -11px;
   content: "";
-  height: 11px;
+  height: 12px;
   margin-right: 5px;
   width: 21px;
 }
@@ -130,7 +131,7 @@
   -webkit-box-pack: end;
       -ms-flex-pack: end;
           justify-content: flex-end;
-  margin: 82px 0 0;
+  margin: 25px 0 0;
   width: 100%;
 }
 #section_wrapper #section_main_contents #documents_editable_form #private_setting_block button {
