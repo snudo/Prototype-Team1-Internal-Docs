@@ -11,6 +11,8 @@
     <!-- CONSTANTS -->
     <script src="../../assets/js/constans.js"></script>
 
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+
     <!-- CUSTOM JS -->
     <script>
         let current_js  = "../../assets/js/custom/admin/components.js";
@@ -26,8 +28,8 @@
     <section id="component_wrapper">
         <div id="left_panel">
             <ul class="breadcrumbs_block">
-                <li><a href="/web-frontend/views/admin/docs.html"><span class="breadcrumbs_icon"></span> Documentations</a></li>
-                <li><a href="#"><span class="breadcrumbs_icon section_icon"></span> Engineering Guide</a></li>
+                <li><a href="/web-frontend/views/admin/docs.html?size=7"><span class="breadcrumbs_icon"></span> Documentations</a></li>
+                <li><a href="/web-frontend/views/admin/sections.html?size=7"><span class="breadcrumbs_icon section_icon"></span> Engineering Guide</a></li>
                 <li><p><span class="breadcrumbs_icon component_icon"></span> Data Usage, Collection, and Processing</p></li>
             </ul>
 
@@ -69,7 +71,7 @@
         <div class="tab-pane fade" id="hny" role="tabpanel">
             <form action="#" class="update_tab_form" method="post">
                 <label class="input_field">
-                    <span>Titless</span>
+                    <span>Titles</span>
                     <input type="text" name="title" class="title_tab_input required_input" value="Untitled">
                 </label>
                 <textarea name="tab_description" class="tab_description_input hidden" value=""></textarea>
@@ -104,7 +106,7 @@
                     <span class="text_allow_comments">Allow comments</span>
                 </label>
 
-                <label class="input_field">
+                <label class="input_field" hidden>
                     <span>Post</span>
                     <input type="text" name="post_comment" class="post_comment" placeholder="Enter Post...">
                     <span class="char_count">0/250</span>

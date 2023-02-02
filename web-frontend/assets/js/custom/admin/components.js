@@ -1,5 +1,9 @@
 var component_data = [];
 
+/* Get params from URL of current Page */
+let url_obj = new URL((window.location.href).toLowerCase());
+let components_count = url_obj.searchParams.get("size") || 1;
+
 /* CALLBACK FUNCTIONS */
 const removeTab = (event) => {
     let remove_btn      = event.target;
@@ -47,7 +51,9 @@ const addTab = (component_item, component_id) => {
         description: ""
     }
 
-    component_item.querySelector(".tab_list").prepend(tab_clone);
+    /* Insert new tab before the add tab button */
+    let add_tab_btn = document.querySelector('[data-component-id="'+component_id+'"]').querySelector('.add_tab')
+    component_item.querySelector(".tab_list").insertBefore(tab_clone, add_tab_btn);
 
     tab_pane_clone.querySelector(".update_tab_form .title_tab_input").addEventListener("blur", (event) => {
         let tab_title_data = event.target.value;
@@ -119,7 +125,11 @@ const addComponentItem = () => {
     });
 
     tab_name.addEventListener("click", (event) => fetchSelectedTabDetails(event, random_component_id, random_tab_id));
-    tab_name.click();
+
+
+    setTimeout(() => {
+        tab_name.click();
+    }, 400);
 };
 
 const renderRedactorX = (params) => {
@@ -144,11 +154,33 @@ const updateSectionTitle = () => {
     section_title.style.width = section_title.value.length * 11.5 + "px";
 }
 
+/* Hide/Unhide Comments section */
+const toggleComments = (event)=> {
+    if(event.target.classList.contains("allow_comments")){
+        if(event.target.checked){
+            event.target.closest("div").querySelector(".input_field").removeAttribute("hidden");
+        }
+        else{
+            event.target.closest("div").querySelector(".input_field").setAttribute("hidden", "hidden");
+        }
+    }
+}
+
 updateSectionTitle();
 
 /* EVENTS */
+document.addEventListener("click", toggleComments);
 document.getElementById("add_component").addEventListener("click", addComponentItem);
 document.getElementById("section_title").addEventListener("keyup", updateSectionTitle);
 document.querySelector(".title_block button").addEventListener("click", () => {
    window.location.href = "/web-frontend/views/admin/component_preview.html";
+});
+
+
+$(function(){
+    /* Onload focus Description textarea if 0 size */
+    if(components_count < 1){
+        document.getElementById("add_component").click();
+        document.getElementById("section_details").focus();
+    }
 });

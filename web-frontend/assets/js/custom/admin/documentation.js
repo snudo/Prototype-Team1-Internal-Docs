@@ -433,6 +433,7 @@ document.addEventListener("click", starredDocument);
 document.addEventListener("click", DuplicateDocument);
 document.getElementById("filter_dropdown_menu").addEventListener("click", FilterDocuments);
 document.getElementById("add_documentation_input").addEventListener("keyup", getDocumentValue);
+document.getElementById("create_document_form").addEventListener("submit", (event) => {event.preventDefault();});
 
 /* Prevent redirect to sections page when documentation menu clicked */
 let documents_menus = document.getElementsByClassName("documents_menu");
