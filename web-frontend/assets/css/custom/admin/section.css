@@ -286,6 +286,10 @@
   background-position: -736px -9px;
   margin-left: 9px;
 }
+#section_wrapper #section_main_contents #no_section_data_logo {
+  display: block;
+  margin: 200px auto;
+}
 #confirm_private_modal .modal-dialog {
   background-color: #FFFFFF;
   border-radius: 8px;
