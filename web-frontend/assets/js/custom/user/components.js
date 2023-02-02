@@ -95,6 +95,7 @@ const toggleShowReply = (event) => {
     let is_show_reply = message_item.querySelectorAll(".reply_details.hidden");
     let reply_details = message_item.querySelector(".reply_details");
 
+    event.target.classList.toggle("rotate");
     (is_show_reply.length) ? reply_details.classList.remove("hidden") : reply_details.classList.add("hidden");
 }
 

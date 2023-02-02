@@ -122,10 +122,18 @@
   outline: none;
   padding: 0;
 }
+#component_wrapper #left_panel .post_block .post_list .message_item .show_reply_btn.rotate .caret_arrow {
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+  -webkit-transition: 0.25s ease-in-out;
+  transition: 0.25s ease-in-out;
+}
 #component_wrapper #left_panel .post_block .post_list .message_item .show_reply_btn .caret_arrow {
   background: url("../../../images/svg_icons_stripe.svg") no-repeat -126px -9px;
   display: block;
   height: 18px;
+  -webkit-transition: 0.25s ease-in-out;
+  transition: 0.25s ease-in-out;
   width: 18px;
 }
 #component_wrapper #left_panel .post_block .post_list .message_item .reply_details .reply_list .reply_item {
