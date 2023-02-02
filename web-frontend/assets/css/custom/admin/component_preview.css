@@ -42,7 +42,7 @@ label.input_field input[type=text] {
 #component_wrapper #left_panel .section_details {
   background: url("../../../images/section_bg.png") no-repeat right 0px, #FFFFFF;
   border-radius: 8px;
-  height: 244px;
+  min-height: 244px;
   padding: 24px;
 }
 #component_wrapper #left_panel .section_details .title_block {
@@ -94,7 +94,7 @@ label.input_field input[type=text] {
   border: none;
   color: #4B626A;
   font: 16px/24px "Roboto-Regular";
-  height: 143px;
+  min-height: 143px;
   outline: none;
   resize: none;
   width: 100%;

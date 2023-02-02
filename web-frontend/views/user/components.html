@@ -14,7 +14,7 @@
 
     <!-- CUSTOM JS -->
     <script>
-        let current_js  = "../../assets/js/custom/admin/component_preview.js";
+        let current_js  = "../../assets/js/custom/user/components.js";
     </script>
 
     <!-- ASSETS LOADER -->
@@ -109,9 +109,9 @@
 
     <div id="clone_block">
         <ul>
-            <li class="post_item">
+            <li class="post_item message_item">
                 <div class="header">
-                    <img src="#" alt="User Profile">
+                    <img src="../../assets/images/Image.png" alt="User Profile">
                     <span class="user_name">Ruel</span>
                     ∙
                     <span class="timestamp">1 min ago</span>
@@ -122,11 +122,15 @@
                     </div>
                 </div>
                 <p class="user_post_message"></p>
-                <form action="#" class="update_post_form" method="POST">
-                    <input type="text" class="user_post_input" class="required_input">
+                <form action="#" class="update_post_form hidden" method="POST">
+                    <label class="input_field">
+                        <span>Update Post</span>
+                        <input type="text" class="update_post_input" class="required_input" maxlength="250" placeholder="Update post item...">
+                        <span class="char_count">0/250</span>
+                    </label>
                 </form>
 
-                <button class="show_reply_btn"><span class="caret_arrow"></span> 1 Reply</button>
+                <button class="show_reply_btn"><span class="caret_arrow"></span> 0 Reply</button>
 
                 <div class="reply_details">
                     <ul class="reply_list"></ul>
@@ -134,16 +138,16 @@
                     <form action="#" class="reply_form" method="post">
                         <label class="input_field">
                             <span>Reply</span>
-                            <input type="text" name="reply_comment" class="reply_comment" placeholder="Enter Post...">
+                            <input type="text" name="reply_comment" class="reply_comment" maxlength="250" placeholder="Enter Post...">
                             <span class="char_count">0/250</span>
                         </label>
                     </form>
                 </div>
             </li>
 
-            <li class="reply_item">
+            <li class="reply_item message_item">
                 <div class="header">
-                    <img src="#" alt="User Profile">
+                    <img src="../../assets/images/Image.png" alt="User Profile">
                     <span class="user_name">Ruel</span>
                     ∙
                     <span class="timestamp">1 min ago</span>
@@ -154,13 +158,15 @@
                     </div>
                 </div>
                 <p class="user_reply_message"></p>
-                <form action="#" class="update_reply_form" method="POST">
-                    <input type="text" class="user_reply_input" class="required_input">
+                <form action="#" class="update_reply_form hidden" method="POST">
+                    <label class="input_field">
+                        <span>Update Post</span>
+                        <input type="text" class="update_reply_input" class="required_input" maxlength="250" placeholder="Update post item...">
+                        <span class="char_count">0/250</span>
+                    </label>
                 </form>
             </li>
         </ul>
     </div>
-
-    <script src="../../assets/js/custom/user/components.js"></script>
 </body>
 </html>
