@@ -61,6 +61,8 @@ const addTab = (component_item, component_id) => {
     tab_clone.querySelector(".remove_tab").addEventListener("click", (event) => removeTab(event));
     tab_name.addEventListener("click", (event) => fetchSelectedTabDetails(event, component_id, random_tab_id));
     tab_name.click();
+
+    $(".tab_list").sortable();
 }
 
 const submitUpdateTabDetails = (tab_details_data, component_id, event) => {
