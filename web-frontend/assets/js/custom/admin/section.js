@@ -164,6 +164,8 @@ const autoGrowTextArea = (document_textarea)=>{
 }
 
 const submitCreateSection = (event)=> {
+    event.preventDefault();
+
     let form_input = event.target.querySelector("#add_section_input");
 
     (form_input.value.length) ? form_input.closest("label").classList.remove("input_error") : form_input.closest("label").classList.add("input_error") ;
@@ -179,12 +181,8 @@ const submitCreateSection = (event)=> {
 
         renderSections(sections_list_by_size);
     }
-}
 
-const addNewSection = (event)=> {
-    if(event.keyCode === 13) {
-        document.getElementById("add_section_form").submit();
-    }
+    return false;
 }
 
 const changePrivacySettings = () => {
@@ -240,7 +238,6 @@ const duplicateSection = (event) => {
 autoGrowTextArea(document.getElementById("document_description_input"));
 
 document.getElementById("document_description_input").addEventListener("keyup", function(){ autoGrowTextArea(this);});
-document.getElementById("add_section_input").addEventListener("keyup", addNewSection);
 document.getElementById("add_section_form").addEventListener("submit", submitCreateSection);
 document.getElementById("private_setting_block").addEventListener("click", changePrivacySettings);
 document.addEventListener("click", deleteSection);
