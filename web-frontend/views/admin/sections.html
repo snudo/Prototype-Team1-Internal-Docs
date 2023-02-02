@@ -27,14 +27,14 @@
     <div data-include="./templates/navigation.html"></div>
     <div id="section_wrapper">
         <ul>
-            <li class="documentation_link"><a href="/">Documentations</a></li>
-            <li class="active section_link"><a href="/">Engineering Guide</a></li>
+            <li class="documentation_link"><a href="../admin/docs.html?size=7">Documentations</a></li>
+            <li class="active section_link"><a href="#">Engineering Guide</a></li>
         </ul>
         <div id="section_main_contents">
             <form id="documents_editable_form" action="#" data-is-processing="0">
                 <input id="documents_title" type="text" value="Engineering Guide">
                 <div id="viewers_editors_count"><span>46 viewers and 3 editors</span></div>
-                <textarea id="document_description_input" role="textbox">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</textarea>
+                <textarea id="document_description_input" role="textbox">Engineering Guidelines are a collection of your an organizations’ Best Practices; a distillation of the institutional knowledge around “how things should be done here”. They are a cross between a Mission Statement, Company Values, and an Employee Handbook for your engineering department. You need a rationale so people understand the context in which these decisions have been made. This allows exceptions when these base assumptions do not hold, or updating the guidelines when the larger context changes. It’s about making decisions once for consistency. It’s about avoiding known issues or edge cases. It’s about choosing a specific technique with known tradeoffs for dealing with problems.</textarea>
                 <div id="private_setting_block">
                     <button>Set as Public</button>
                 </div>
@@ -49,7 +49,7 @@
                 </form>
 
                 <ul id="section_list_container">
-                    <li role="button" data-bs-toggle="popover">
+                    <li id="1" role="button" data-bs-toggle="popover">
                         <a href="#">
                             <div></div>
                             <div>
@@ -58,7 +58,7 @@
                             </div>
                         </a>
                     </li>
-                    <li role="button" data-bs-toggle="popover">
+                    <li id="2" role="button" data-bs-toggle="popover">
                         <a href="#">
                             <div></div>
                             <div>
@@ -67,7 +67,7 @@
                             </div>
                         </a>
                     </li>
-                    <li role="button" data-bs-toggle="popover">
+                    <li id="3" role="button" data-bs-toggle="popover">
                         <a href="#">
                             <div></div>
                             <div>
@@ -76,7 +76,7 @@
                             </div>
                         </a>
                     </li>
-                    <li role="button" data-bs-toggle="popover">
+                    <li id="4" role="button" data-bs-toggle="popover">
                         <a href="#">
                             <div></div>
                             <div>
@@ -100,7 +100,18 @@
         </a>
     </li>
 
-    
+    <div class="modal fade" id="confirm_private_modal" tabindex="-1" aria-labelledby="confirm_private_modal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <p>Are you sure you want to update it to public?</p>
+                <div>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                    <button id="confirm_button_yes" type="button" class="btn btn-primary">Yes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 </body>

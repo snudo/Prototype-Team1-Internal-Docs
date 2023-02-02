@@ -69,7 +69,7 @@
         >div{
             max-height: 796px;
         }
-        #documents_editable_form{
+        #documents_information{
             background-color: @white;
             border-radius: 8px;
             padding: 23px 24px 29px;
@@ -101,12 +101,6 @@
                     font: 12px/16px @font_medium;
                 }
             }
-            textarea{
-                overflow: hidden;
-                resize: none;
-                width: 100%;
-                border: none;
-            }
             p:first-of-type{
                 margin: 0 0 25px;
             }
@@ -116,36 +110,13 @@
                 margin: 0 0 0;
                 outline: none;
             }
-            #private_setting_block{
-                display: flex;
-                justify-content: flex-end;
-                margin: 82px 0 0;
-                width: 100%;
-                button{
-                    align-items: center;
-                    background-color: transparent;
-                    border: none;
-                    color: @primary_60;
-                    display: flex;
-                    font: 12px/16px @font_medium;
-                    outline: none;
-                    &::before{
-                        background: url("/web-frontend/assets/images/svg_icons_stripe.svg");
-                        background-position: -776px -10px;
-                        content: "";
-                        height: 17px;
-                        margin-right: 9px;
-                        width: 12px;
-                    }
-                }
-            }
         }
-        #create_section_block{
+        #sections_block{
             background-color: @white;
             border-radius: 8px;
             padding: 24px;
             width: 663px;
-            #add_section_form{
+            #search_section_form{
                 position: relative;
                 label{
                     background-color: @teal_50;
@@ -245,25 +216,14 @@
                                     margin-right: 30px;
                                     color: @teal_500;
                                 }
-                                button{
-                                    background: url("/web-frontend/assets/images/svg_icons_stripe.svg");
-                                    background-position: -697px -9px;
-                                    border: none;
-                                    height: 20px;
-                                    opacity: 0;
-                                    outline: none;
-                                    transition: all .21s;
-                                    width: 13px;
-                                    &.delete_section{
-                                        background-position: -736px -9px;
-                                        margin-left: 9px;
-                                    }
-                                }
                             }
-                            
                         }
                     }
                 }
+            }
+            #no_section_data_logo{
+                display: block;
+                margin: 200px auto;
             }
         }
     }

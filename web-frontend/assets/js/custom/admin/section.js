@@ -1,3 +1,8 @@
+const confirm_modal = document.getElementById("confirm_private_modal");
+const confirm_private_modal = new bootstrap.Modal(confirm_modal, {});
+
+let current_privacy_setting = IS_PRIVATE.yes;
+
 const autoGrowTextArea = (document_textarea)=>{
     document_textarea.style.height = "5px";
     document_textarea.style.height = (document_textarea.scrollHeight)+"px";
@@ -23,10 +28,52 @@ const addNewSection = (event)=> {
         document.getElementById("add_section_form").submit();
     }
 }
+
+const changePrivacySettings = () => {
+    let private_setting_btn = document.getElementById("private_setting_block").children[ITEMS.first];
+    if(current_privacy_setting){
+        confirm_private_modal.show();
+
+        confirm_modal.querySelector("#confirm_button_yes").addEventListener("click", function(){
+            current_privacy_setting = IS_PRIVATE.no;
+            private_setting_btn.innerHTML = "Set as Private";
+
+            confirm_private_modal.hide();
+        });
+    }
+    else{
+        current_privacy_setting = IS_PRIVATE.yes;
+        private_setting_btn.innerHTML = "Set as Public";
+    }
+}
+
+const deleteSection = (event) => {
+    let delete_section_btn = event.target;
+
+    if(delete_section_btn.classList.value === "delete_section"){
+        /* Remove the Section */
+        delete_section_btn.closest("li").remove();
+    }
+}
+
+const duplicateSection = (event) => {
+    let duplicate_section_btn = event.target;
+
+    if(duplicate_section_btn.classList.value  === "duplicate_section"){
+        /* Duplicate the Section */
+        let duplicated_section = duplicate_section_btn.closest("li").cloneNode(true);
+        duplicated_section.id = new Date().getUTCMilliseconds();
+        document.getElementById("section_list_container").appendChild(duplicated_section);
+    }
+}
+
 autoGrowTextArea(document.getElementById("document_description_input"));
 
 document.getElementById("document_description_input").addEventListener("keyup", function(){ autoGrowTextArea(this);});
 document.getElementById("add_section_input").addEventListener("keyup", addNewSection);
 document.getElementById("add_section_form").addEventListener("submit", submitCreateSection);
+document.getElementById("private_setting_block").addEventListener("click", changePrivacySettings);
+document.addEventListener("click", deleteSection);
+document.addEventListener("click", duplicateSection);
 
 $(function() {$("#section_list_container").sortable();});
