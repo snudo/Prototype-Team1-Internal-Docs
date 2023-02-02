@@ -13,4 +13,4 @@ document.querySelectorAll(".tab_item .nav-link").forEach((item_link) => {
 
 document.querySelector(".title_block button").addEventListener("click", () => {
     window.location.href = "/web-frontend/views/admin/components.html"
- });
+});

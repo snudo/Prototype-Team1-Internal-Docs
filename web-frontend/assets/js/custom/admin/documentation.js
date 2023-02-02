@@ -246,18 +246,16 @@ let archived_document = [
 
 const renderDocuments = (documents_list) => {
     document.getElementById("document_list_container").innerHTML = "";
-    documents_list = [...new Map(documents_list.map(item => [item["id"], item])).values()];
 
     if(documents_list.length && doc_count > 0){
         document.getElementById("no_data_logo").setAttribute("hidden", "hidden");
         document.getElementById("documents_category_selection").removeAttribute("hidden");
+        documents_index = [...new Map(documents_list.map(item => [item["id"], item])).values()];
 
-        documents_list = [...new Map(documents_list.map(item => [item["id"], item])).values()];
-
-        for(let index in documents_list){
+        for(let index in documents_index){
             /* Only display specified size from the URL */
             if(index < parseInt(doc_count)){
-                let document_item = documents_array[index];
+                let document_item = documents_index[index];
                 let cloned_document = document.getElementById("clone").cloneNode(true);
 
                 cloned_document.id = document_item.id;
@@ -405,21 +403,23 @@ const starredDocument = (event)=> {
 
 const FilterDocuments = (event)=> {
     let filtered_documents = [];
+    let documents_list_by_size = documents_array.slice(0, doc_count);
+
     document.getElementById("documents_category_selection").innerHTML = "Show " + event.target.innerHTML;
 
     if(event.target.getAttribute("data-selection") === "data-documents"){
-        renderDocuments(documents_array);
+        renderDocuments(documents_list_by_size);
     }
     else if(event.target.getAttribute("data-selection") === "data-starred"){
-        filtered_documents = documents_array.filter(document => document.is_starred);
+        filtered_documents = documents_list_by_size.filter(document => document.is_starred);
         renderDocuments(filtered_documents);
     }
     else if(event.target.getAttribute("data-selection") === "data-private"){
-        filtered_documents = documents_array.filter(document => document.is_private);
+        filtered_documents = documents_list_by_size.filter(document => document.is_private);
         renderDocuments(filtered_documents);
     }
     else if(event.target.getAttribute("data-selection") === "data-public"){
-        filtered_documents = documents_array.filter(document => !document.is_private);
+        filtered_documents = documents_list_by_size.filter(document => !document.is_private);
         renderDocuments(filtered_documents);
     }
     else if(event.target.getAttribute("data-selection") === "data-archive"){

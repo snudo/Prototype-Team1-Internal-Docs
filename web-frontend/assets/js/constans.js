@@ -13,3 +13,8 @@ const FILTER_TYPE = {
     public: 3,
     archived: 4
 }
+
+const IS_PRIVATE = {
+    no: false,
+    yes: true
+}
