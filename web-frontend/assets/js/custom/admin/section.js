@@ -12,91 +12,91 @@ let sections_array = [
         id: 1,
         title: "The red power ranger of source.",
         description: "Rey Plumb had always loved Cups San Fernando City with it Reyna the cups.",
-        url: "../user/components.html?size=3&tabs=4"
+        url: "../admin/components.html?size=3&tabs=4"
     },
     {
         id: 2,
         title: "The blue power ranger of source.",
         description: "Rey Plumb had always loved Cups San Fernando City with it Reyna the cups.",
-        url: "../user/components.html?size=3&tabs=4"
+        url: "../admin/components.html?size=3&tabs=4"
     },
     {
         id: 3,
         title: "The green power ranger of source.",
         description: "Rey Plumb had always loved Cups San Fernando City with it Reyna the cups.",
-        url: "../user/components.html?size=3&tabs=4"
+        url: "../admin/components.html?size=3&tabs=4"
     },
     {
         id: 4,
         title: "TH11 Life Hacks",
         description: "Rey Plumb had always loved Cups San Fernando City with it Reyna the cups.",
-        url: "../user/components.html?size=3&tabs=4"
+        url: "../admin/components.html?size=3&tabs=4"
     },
     {
         id: 5,
         title: "The pink power ranger of source.",
         description: "Rey Plumb had always loved Cups San Fernando City with it Reyna the cups.",
-        url: "../user/components.html?size=3&tabs=4"
+        url: "../admin/components.html?size=3&tabs=4"
     },
     {
         id: 6,
         title: "Lost Ark Saga",
         description: "Rey Plumb had always loved Cups San Fernando City with it Reyna the cups.",
-        url: "../user/components.html?size=3&tabs=4"
+        url: "../admin/components.html?size=3&tabs=4"
     },
     {
         id: 7,
         title: "New World Saga",
         description: "Rey Plumb had always loved Cups San Fernando City with it Reyna the cups.",
-        url: "../user/components.html?size=3&tabs=4"
+        url: "../admin/components.html?size=3&tabs=4"
     },
     {
         id: 8,
         title: "Dota 2 Cheats",
         description: "Rey Plumb had always loved Cups San Fernando City with it Reyna the cups.",
-        url: "../user/components.html?size=3&tabs=4"
+        url: "../admin/components.html?size=3&tabs=4"
     },
     {
         id: 9,
         title: "Creative guide to increase power.",
         description: "Rey Plumb had always loved Cups San Fernando City with it Reyna the cups.",
-        url: "../user/components.html?size=3&tabs=4"
+        url: "../admin/components.html?size=3&tabs=4"
     },
     {
         id: 10,
         title: "White Magic",
         description: "Rey Plumb had always loved Cups San Fernando City with it Reyna the cups.",
-        url: "../user/components.html?size=3&tabs=4"
+        url: "../admin/components.html?size=3&tabs=4"
     },
     {
         id: 11,
         title: "Black Magic",
         description: "Rey Plumb had always loved Cups San Fernando City with it Reyna the cups.",
-        url: "../user/components.html?size=3&tabs=4"
+        url: "../admin/components.html?size=3&tabs=4"
     },
     {
         id: 12,
         title: "Imprisionment rules and regulations",
         description: "Rey Plumb had always loved Cups San Fernando City with it Reyna the cups.",
-        url: "../user/components.html?size=3&tabs=4"
+        url: "../admin/components.html?size=3&tabs=4"
     },
     {
         id: 13,
         title: "The greedy chapter",
         description: "Rey Plumb had always loved Cups San Fernando City with it Reyna the cups.",
-        url: "../user/components.html?size=3&tabs=4"
+        url: "../admin/components.html?size=3&tabs=4"
     },
     {
         id: 14,
         title: "Meow Meow",
         description: "Rey Plumb had always loved Cups San Fernando City with it Reyna the cups.",
-        url: "../user/components.html?size=3&tabs=4"
+        url: "../admin/components.html?size=3&tabs=4"
     },
     {
         id: 15,
         title: "Last move Chapter",
         description: "Rey Plumb had always loved Cups San Fernando City with it Reyna the cups.",
-        url: "../user/components.html?size=3&tabs=4"
+        url: "../admin/components.html?size=3&tabs=4"
     }
 ];
 
