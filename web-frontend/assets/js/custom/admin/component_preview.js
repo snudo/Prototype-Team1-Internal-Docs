@@ -14,4 +14,14 @@ document.querySelector(".title_block button").addEventListener("click", () => {
     window.location.href = "/web-frontend/views/admin/components.html";
 });
 
-$(".tab_list").sortable();
+$(".tab_list").sortable({
+    opacity: 0.8,
+    revert: true,
+    forceHelperSize: true,
+    forcePlaceholderSize: true,
+    placeholder: "draggable-placeholder",
+    tolerance: "pointer",
+    axis: "x",
+    handle: "button",
+    cancel: ""
+});
