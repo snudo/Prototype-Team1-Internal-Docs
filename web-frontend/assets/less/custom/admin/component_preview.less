@@ -42,7 +42,7 @@ label.input_field{
         .section_details{
             background: url("../../../images/section_bg.png") no-repeat right 0px, @white;
             border-radius: 8px;
-            height: 244px;
+            min-height: 244px;
             padding: 24px;
 
             .title_block{
@@ -88,7 +88,7 @@ label.input_field{
                 border: none;
                 color: @secondary_40;
                 font: 16px/24px @font_regular;
-                height: 143px;
+                min-height: 143px;
                 outline: none;
                 resize: none;
                 width: 100%;
@@ -280,6 +280,11 @@ label.input_field{
                         opacity: .5;
                         pointer-events: none;
                         position: relative;
+
+                        &.user_input_block{
+                            opacity: 1;
+                            pointer-events: unset;
+                        }
 
                         .char_count{
                             bottom: -22px;

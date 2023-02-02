@@ -1,8 +1,3 @@
-const confirm_modal = document.getElementById("confirm_private_modal");
-const confirm_private_modal = new bootstrap.Modal(confirm_modal, {});
-
-let current_privacy_setting = IS_PRIVATE.yes;
-
 /* Get params from URL of current Page */
 let url_obj = new URL((window.location.href).toLowerCase());
 let doc_count = url_obj.searchParams.get("size") || 5;
@@ -101,6 +96,7 @@ let sections_array = [
 ];
 
 let sections_list_by_size = sections_array.slice(0, doc_count);
+let searched_sections = [];
 
 const renderSections = (sections_list) => {
     let section_container = document.getElementById("section_list_container");
@@ -128,92 +124,22 @@ const renderSections = (sections_list) => {
 
 renderSections(sections_list_by_size);
 
-const autoGrowTextArea = (document_textarea)=>{
-    document_textarea.style.height = "5px";
-    document_textarea.style.height = (document_textarea.scrollHeight)+"px";
-}
+const searchSection = (event) => {
+    event.preventDefault();
+    let search_input = event.target.value.toLowerCase();
 
-const submitCreateSection = (event)=> {
-    let form_input = event.target.querySelector("#add_section_input");
-
-    (form_input.value.length) ? form_input.closest("label").classList.remove("input_error") : form_input.closest("label").classList.add("input_error") ;
-    if(form_input.value.length){
-        sections_list_by_size.splice(doc_count, 0, {
-            id: new Date().getUTCMilliseconds(),
-            title: form_input.value,
-            description: "",
-            url: "../user/components.html?size=3&tabs=4"
-        });
-
-        form_input.value = "";
-
+    // Render all if no search_input value
+    if (search_input === "") {
         renderSections(sections_list_by_size);
     }
+
+    // Discontinue if there is no search yet
+    if (search_input === null || search_input === "" || searched_sections === []) return;
+
+    // Filter section array, depending on given size, to get the title based on search input
+    searched_sections =  sections_list_by_size.filter(section => section.title.toLowerCase().includes(search_input));
+    renderSections(searched_sections);
 }
 
-const addNewSection = (event)=> {
-    if(event.keyCode === 13) {
-        document.getElementById("add_section_form").submit();
-    }
-}
-
-const changePrivacySettings = () => {
-    let private_setting_btn = document.getElementById("private_setting_block").children[ITEMS.first];
-
-    if(current_privacy_setting){
-        confirm_private_modal.show();
-
-        confirm_modal.querySelector("#confirm_button_yes").addEventListener("click", function(){
-            current_privacy_setting = IS_PRIVATE.no;
-            private_setting_btn.innerHTML = "Set as Public";
-
-            confirm_private_modal.hide();
-        });
-    }
-    else{
-        current_privacy_setting = IS_PRIVATE.yes;
-        private_setting_btn.innerHTML = "Set as Private";
-    }
-}
-
-const deleteSection = (event) => {
-    let delete_section_btn = event.target;
-
-    if(delete_section_btn.classList.value === "delete_section"){
-        let section_id = parseInt(event.target.closest("li").getAttribute("id"));
-        let selected_section = sections_list_by_size.find(obj_id => obj_id.id === section_id);
-
-        sections_list_by_size.splice(sections_list_by_size.map((obj_index) => obj_index.id).indexOf(selected_section.id), 1);
-        renderSections(sections_list_by_size);
-    }
-}
-
-const duplicateSection = (event) => {
-    let duplicate_section_btn = event.target;
-
-    if(duplicate_section_btn.classList.value  === "duplicate_section"){
-        /* Duplicate the Section */
-        let section_to_duplicate = event.target.closest("li");
-
-        let duplicated_section_obj = {
-            id: new Date().getUTCMilliseconds(),
-            title: section_to_duplicate.querySelectorAll(".section_title")[ITEMS.first].textContent,
-            description: section_to_duplicate.querySelectorAll(".section_description")[ITEMS.first].textContent,
-            url: section_to_duplicate.querySelector("a").getAttribute("href")
-        }
-
-        sections_list_by_size.push(duplicated_section_obj);
-        renderSections(sections_list_by_size);
-    }
-}
-
-autoGrowTextArea(document.getElementById("document_description_input"));
-
-document.getElementById("document_description_input").addEventListener("keyup", function(){ autoGrowTextArea(this);});
-document.getElementById("add_section_input").addEventListener("keyup", addNewSection);
-document.getElementById("add_section_form").addEventListener("submit", submitCreateSection);
-document.getElementById("private_setting_block").addEventListener("click", changePrivacySettings);
-document.addEventListener("click", deleteSection);
-document.addEventListener("click", duplicateSection);
-
+document.getElementById("search_section_input").addEventListener("keyup", searchSection);
 $(function() {$("#section_list_container").sortable();});

@@ -5,8 +5,8 @@
     display: none;
 }
 #section_wrapper{
-    margin: 24px auto 0;
     max-width: 1055px;
+    margin: 24px auto 0;
 
     >ul{
         display: flex;
@@ -20,8 +20,8 @@
                 margin-right: 11px;
             }
             a{
-                color: @primary_60;
                 font: 14px/20px @font_medium;
+                color: @primary_60;
                 text-decoration: none;
             }
             &.documentation_link{
@@ -64,13 +64,12 @@
     }
     #section_main_contents{
         display: flex;
-        justify-content: stretch;
-        margin: 23px 0 50px;
-
+        justify-content: space-between;
+        margin: 23px 0 0;
         >div{
-            margin-left: auto;
+            max-height: 796px;
         }
-        #documents_editable_form{
+        #documents_information{
             background-color: @white;
             border-radius: 8px;
             padding: 23px 24px 29px;
@@ -82,8 +81,8 @@
                 width: 100%;
             }
             #documents_title{
-                color: @secondary_20;
                 font: 22px/28px @font_regular;
+                color: @secondary_20;
                 margin: 0 0 0;
             }
             #viewers_editors_count{
@@ -102,12 +101,6 @@
                     font: 12px/16px @font_medium;
                 }
             }
-            textarea{
-                border: none;
-                overflow: hidden;
-                resize: none;
-                width: 100%;
-            }
             p:first-of-type{
                 margin: 0 0 25px;
             }
@@ -117,41 +110,18 @@
                 margin: 0 0 0;
                 outline: none;
             }
-            #private_setting_block{
-                display: flex;
-                justify-content: flex-end;
-                margin: 82px 0 0;
-                width: 100%;
-                button{
-                    align-items: center;
-                    background-color: transparent;
-                    border: none;
-                    color: @primary_60;
-                    display: flex;
-                    font: 12px/16px @font_medium;
-                    outline: none;
-                    &::before{
-                        background: url("/web-frontend/assets/images/svg_icons_stripe.svg");
-                        background-position: -776px -10px;
-                        content: "";
-                        height: 17px;
-                        margin-right: 9px;
-                        width: 12px;
-                    }
-                }
-            }
         }
-        #create_section_block{
+        #sections_block{
             background-color: @white;
             border-radius: 8px;
             padding: 24px;
             width: 663px;
-            #add_section_form{
+            #search_section_form{
                 position: relative;
                 label{
                     background-color: @teal_50;
-                    border-bottom: 2px solid @teal_500;
                     border-radius: 8px 8px 0px 0px;
+                    border-bottom: 2px solid @teal_500;
                     height: 58px;
                     padding: 8px 0 0 11px;
                     width: 100%;
@@ -162,10 +132,10 @@
                     input[type=text]{
                         background-color: transparent;
                         border: none;
-                        color: @secondary_20;
                         font: 16px/24px @font_medium;
                         outline: none;
                         width: 100%;
+                        color: @secondary_20;
                     }
                 }
                 button{
@@ -186,8 +156,8 @@
                 margin: 12px 0 0;
                 padding: 0 0 0;
                 li{
-                    background-color: @white;
                     border-radius: 8px;
+                    background-color: @white;
                     box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
                     height: 94px;
                     list-style: none;
@@ -196,7 +166,7 @@
                         margin-bottom: 0;
                     }
                     &:hover{
-                        >div{
+                        a{
                             div{
                                 h3{
                                     button{
@@ -206,7 +176,7 @@
                             }
                         }
                     }
-                    >div{
+                    a{
                         align-items: center;
                         display: flex;
                         height: 100%;
@@ -222,9 +192,9 @@
                                 justify-content: center;
                                 width: 44px;
                                 &::before{
+                                    content: "";
                                     background: url("/web-frontend/assets/images/svg_icons_stripe.svg");
                                     background-position: -862px -7px;
-                                    content: "";
                                     height: 24px;
                                     width: 13px;
                                 }
@@ -241,35 +211,20 @@
                                 align-items: center;
                                 display: flex;
                                 margin-bottom: 8px;
-                                a{
-                                    color: @teal_500;
+                                span{
                                     font: 16px/20px @font_medium;
                                     margin-right: 30px;
-                                    text-decoration: none;
-                                }
-                                button{
-                                    background: url("/web-frontend/assets/images/svg_icons_stripe.svg");
-                                    background-position: -697px -9px;
-                                    border: none;
-                                    height: 20px;
-                                    opacity: 0;
-                                    outline: none;
-                                    transition: all .21s;
-                                    width: 13px;
-                                    &.delete_section{
-                                        background-position: -736px -9px;
-                                        margin-left: 9px;
-                                    }
+                                    color: @teal_500;
                                 }
                             }
                         }
                     }
                 }
             }
-        }
-        #no_section_data_logo{
-            display: block;
-            margin: 200px auto;
+            #no_section_data_logo{
+                display: block;
+                margin: 200px auto;
+            }
         }
     }
 }
