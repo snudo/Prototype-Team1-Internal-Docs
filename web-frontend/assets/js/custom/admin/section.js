@@ -10,92 +10,122 @@ let doc_count = url_obj.searchParams.get("size") || 5;
 let sections_array = [
     {
         id: 1,
-        title: "The red power ranger of source.",
-        description: "Rey Plumb had always loved Cups San Fernando City with it Reyna the cups.",
+        title: "The code (formatting, style, tests)",
+        description: "There should also be thought put into writing down the *cultural* guidelines for yo...",
         url: "../admin/components.html?size=3&tabs=4"
     },
     {
         id: 2,
-        title: "The blue power ranger of source.",
-        description: "Rey Plumb had always loved Cups San Fernando City with it Reyna the cups.",
+        title: "The development process (CI, code review, deployments)",
+        description: "You need a rationale so people understand the context in which these decisions ha...",
         url: "../admin/components.html?size=3&tabs=4"
     },
     {
         id: 3,
-        title: "The green power ranger of source.",
-        description: "Rey Plumb had always loved Cups San Fernando City with it Reyna the cups.",
+        title: "The service (flags, configs, metrics, logging)",
+        description: "This is the role guidelines play. The goal is consistency. You may not agree with a p...",
         url: "../admin/components.html?size=3&tabs=4"
     },
     {
         id: 4,
-        title: "TH11 Life Hacks",
-        description: "Rey Plumb had always loved Cups San Fernando City with it Reyna the cups.",
+        title: "Writing Your Own Guidelines",
+        description: "As the first internal advocate for Go at a large technology company, I took on the ta...",
         url: "../admin/components.html?size=3&tabs=4"
     },
     {
         id: 5,
-        title: "The pink power ranger of source.",
-        description: "Rey Plumb had always loved Cups San Fernando City with it Reyna the cups.",
+        title: "How do you eat an elephant? One bite at a time.",
+        description: "Having guidelines is all good for greenfield development: As new code arrives, you...",
         url: "../admin/components.html?size=3&tabs=4"
     },
     {
         id: 6,
-        title: "Lost Ark Saga",
-        description: "Rey Plumb had always loved Cups San Fernando City with it Reyna the cups.",
+        title: "The code (formatting, style, tests)",
+        description: "There should also be thought put into writing down the *cultural* guidelines for yo...",
         url: "../admin/components.html?size=3&tabs=4"
     },
     {
         id: 7,
-        title: "New World Saga",
-        description: "Rey Plumb had always loved Cups San Fernando City with it Reyna the cups.",
+        title: "The development process (CI, code review, deployments)",
+        description: "You need a rationale so people understand the context in which these decisions ha...",
         url: "../admin/components.html?size=3&tabs=4"
     },
     {
         id: 8,
-        title: "Dota 2 Cheats",
-        description: "Rey Plumb had always loved Cups San Fernando City with it Reyna the cups.",
+        title: "The service (flags, configs, metrics, logging)",
+        description: "This is the role guidelines play. The goal is consistency. You may not agree with a p...",
         url: "../admin/components.html?size=3&tabs=4"
     },
     {
         id: 9,
-        title: "Creative guide to increase power.",
-        description: "Rey Plumb had always loved Cups San Fernando City with it Reyna the cups.",
+        title: "Writing Your Own Guidelines",
+        description: "As the first internal advocate for Go at a large technology company, I took on the ta...",
         url: "../admin/components.html?size=3&tabs=4"
     },
     {
         id: 10,
-        title: "White Magic",
-        description: "Rey Plumb had always loved Cups San Fernando City with it Reyna the cups.",
+        title: "How do you eat an elephant? One bite at a time.",
+        description: "Having guidelines is all good for greenfield development: As new code arrives, you...",
         url: "../admin/components.html?size=3&tabs=4"
     },
     {
         id: 11,
-        title: "Black Magic",
-        description: "Rey Plumb had always loved Cups San Fernando City with it Reyna the cups.",
+        title: "The code (formatting, style, tests)",
+        description: "There should also be thought put into writing down the *cultural* guidelines for yo...",
         url: "../admin/components.html?size=3&tabs=4"
     },
     {
         id: 12,
-        title: "Imprisionment rules and regulations",
-        description: "Rey Plumb had always loved Cups San Fernando City with it Reyna the cups.",
+        title: "The development process (CI, code review, deployments)",
+        description: "You need a rationale so people understand the context in which these decisions ha...",
         url: "../admin/components.html?size=3&tabs=4"
     },
     {
         id: 13,
-        title: "The greedy chapter",
-        description: "Rey Plumb had always loved Cups San Fernando City with it Reyna the cups.",
+        title: "The service (flags, configs, metrics, logging)",
+        description: "This is the role guidelines play. The goal is consistency. You may not agree with a p...",
         url: "../admin/components.html?size=3&tabs=4"
     },
     {
         id: 14,
-        title: "Meow Meow",
-        description: "Rey Plumb had always loved Cups San Fernando City with it Reyna the cups.",
+        title: "Writing Your Own Guidelines",
+        description: "As the first internal advocate for Go at a large technology company, I took on the ta...",
         url: "../admin/components.html?size=3&tabs=4"
     },
     {
         id: 15,
-        title: "Last move Chapter",
-        description: "Rey Plumb had always loved Cups San Fernando City with it Reyna the cups.",
+        title: "How do you eat an elephant? One bite at a time.",
+        description: "Having guidelines is all good for greenfield development: As new code arrives, you...",
+        url: "../admin/components.html?size=3&tabs=4"
+    },
+    {
+        id: 16,
+        title: "The code (formatting, style, tests)",
+        description: "There should also be thought put into writing down the *cultural* guidelines for yo...",
+        url: "../admin/components.html?size=3&tabs=4"
+    },
+    {
+        id: 17,
+        title: "The development process (CI, code review, deployments)",
+        description: "You need a rationale so people understand the context in which these decisions ha...",
+        url: "../admin/components.html?size=3&tabs=4"
+    },
+    {
+        id: 18,
+        title: "The service (flags, configs, metrics, logging)",
+        description: "This is the role guidelines play. The goal is consistency. You may not agree with a p...",
+        url: "../admin/components.html?size=3&tabs=4"
+    },
+    {
+        id: 19,
+        title: "Writing Your Own Guidelines",
+        description: "As the first internal advocate for Go at a large technology company, I took on the ta...",
+        url: "../admin/components.html?size=3&tabs=4"
+    },
+    {
+        id: 20,
+        title: "How do you eat an elephant? One bite at a time.",
+        description: "Having guidelines is all good for greenfield development: As new code arrives, you...",
         url: "../admin/components.html?size=3&tabs=4"
     }
 ];
@@ -213,4 +243,14 @@ document.getElementById("private_setting_block").addEventListener("click", chang
 document.addEventListener("click", deleteSection);
 document.addEventListener("click", duplicateSection);
 
-$(function() {$("#section_list_container").sortable();});
+$(function() {
+    $("#section_list_container").sortable();
+
+    /* Onload focus Add Sections input box and clear description if no data */
+    document.getElementById("add_section_input").focus();
+    
+    if(doc_count < 1){
+        document.getElementById("document_description_input").textContent = "Add description. . .";
+        document.querySelector("#viewers_editors_count span").textContent = "0 viewer and 0 editor";
+    }
+});
