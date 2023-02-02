@@ -47,11 +47,33 @@ const changePrivacySettings = () => {
     }
 }
 
+const deleteSection = (event) => {
+    let delete_section_btn = event.target;
+
+    if(delete_section_btn.classList.value === "delete_section"){
+        /* Remove the Section */
+        delete_section_btn.closest("li").remove();
+    }
+}
+
+const duplicateSection = (event) => {
+    let duplicate_section_btn = event.target;
+
+    if(duplicate_section_btn.classList.value  === "duplicate_section"){
+        /* Duplicate the Section */
+        let duplicated_section = duplicate_section_btn.closest("li").cloneNode(true);
+        duplicated_section.id = new Date().getUTCMilliseconds();
+        document.getElementById("section_list_container").appendChild(duplicated_section);
+    }
+}
+
 autoGrowTextArea(document.getElementById("document_description_input"));
 
 document.getElementById("document_description_input").addEventListener("keyup", function(){ autoGrowTextArea(this);});
 document.getElementById("add_section_input").addEventListener("keyup", addNewSection);
 document.getElementById("add_section_form").addEventListener("submit", submitCreateSection);
 document.getElementById("private_setting_block").addEventListener("click", changePrivacySettings);
+document.addEventListener("click", deleteSection);
+document.addEventListener("click", duplicateSection);
 
 $(function() {$("#section_list_container").sortable();});
