@@ -138,7 +138,7 @@
   background-position: -125px -2px;
 }
 body {
-  overflow: hidden;
+  overflow: auto;
 }
 #dashboard_wrapper {
   -webkit-box-align: center;

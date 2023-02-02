@@ -159,19 +159,20 @@ const addNewSection = (event)=> {
 
 const changePrivacySettings = () => {
     let private_setting_btn = document.getElementById("private_setting_block").children[ITEMS.first];
+
     if(current_privacy_setting){
         confirm_private_modal.show();
 
         confirm_modal.querySelector("#confirm_button_yes").addEventListener("click", function(){
             current_privacy_setting = IS_PRIVATE.no;
-            private_setting_btn.innerHTML = "Set as Private";
+            private_setting_btn.innerHTML = "Set as Public";
 
             confirm_private_modal.hide();
         });
     }
     else{
         current_privacy_setting = IS_PRIVATE.yes;
-        private_setting_btn.innerHTML = "Set as Public";
+        private_setting_btn.innerHTML = "Set as Private";
     }
 }
 

@@ -5,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Components</title>
-    <link rel="stylesheet" href="../../assets/css/custom/user/components.css">
     <link rel="stylesheet" href="../../assets/css/custom/admin/component_preview.css">
+    <link rel="stylesheet" href="../../assets/css/custom/user/components.css">
     <link rel="icon" type="image/x-icon" href="/web-frontend/assets/images/favicon.svg">
 
     <!-- CONSTANTS -->
@@ -14,7 +14,7 @@
 
     <!-- CUSTOM JS -->
     <script>
-        let current_js  = "../../assets/js/custom/admin/component_preview.js";
+        let current_js  = "../../assets/js/custom/user/components.js";
     </script>
 
     <!-- ASSETS LOADER -->
@@ -27,17 +27,16 @@
     <section id="component_wrapper">
         <div id="left_panel">
             <ul class="breadcrumbs_block">
-                <li><a href="/web-frontend/views/admin/docs.html"><span class="breadcrumbs_icon"></span> Documentations</a></li>
-                <li><a href="/web-frontend/views/admin/sections.html"><span class="breadcrumbs_icon section_icon"></span> Engineering Guide</a></li>
+                <li><a href="/web-frontend/views/user/docs.html"><span class="breadcrumbs_icon"></span> Documentations</a></li>
+                <li><a href="/web-frontend/views/user/sections.html"><span class="breadcrumbs_icon section_icon"></span> Engineering Guide</a></li>
                 <li><p><span class="breadcrumbs_icon component_icon"></span> Data Usage, Collection, and Processing</p></li>
             </ul>
 
             <div class="section_details">
                 <div class="title_block">
                     <h1 id="section_title">Data Usage, Collection, and Processing</h1>
-                    <button type="button"><span class="update_icon"></span> Update</button>
                 </div>
-                
+
                 <p id="section_details">Dick Plumb had always loved Cups San Fernando City with its rabblesnatching, regurgitated Rivers. It was a place where he felt Happy. He was a wild, understanding, tea drinker with charming lips and sloppy hands. His friends saw him as a late, lovely lawyer. Once, he had even made a cup of tea for an enthusiastic Baby bird. That's the sort of man he was.</p>
             </div>
 
@@ -81,7 +80,7 @@
         
                     <div class="post_block">
                         <form action="#" class="add_post_form" method="post">
-                            <label class="input_field">
+                            <label class="input_field user_input_block">
                                 <span>Post</span>
                                 <input type="text" name="post_comment" class="post_comment" placeholder="Enter Post...">
                                 <span class="char_count">0/250</span>
@@ -110,9 +109,9 @@
 
     <div id="clone_block">
         <ul>
-            <li class="post_item">
+            <li class="post_item message_item">
                 <div class="header">
-                    <img src="#" alt="User Profile">
+                    <img src="../../assets/images/Image.png" alt="User Profile">
                     <span class="user_name">Ruel</span>
                     ∙
                     <span class="timestamp">1 min ago</span>
@@ -123,11 +122,15 @@
                     </div>
                 </div>
                 <p class="user_post_message"></p>
-                <form action="#" class="update_post_form" method="POST">
-                    <input type="text" class="user_post_input" class="required_input">
+                <form action="#" class="update_post_form hidden" method="POST">
+                    <label class="input_field">
+                        <span>Update Post</span>
+                        <input type="text" class="update_post_input" class="required_input" maxlength="250" placeholder="Update post item...">
+                        <span class="char_count">0/250</span>
+                    </label>
                 </form>
 
-                <button class="show_reply_btn"><span class="caret_arrow"></span> 1 Reply</button>
+                <button class="show_reply_btn"><span class="caret_arrow"></span> 0 Reply</button>
 
                 <div class="reply_details">
                     <ul class="reply_list"></ul>
@@ -135,16 +138,16 @@
                     <form action="#" class="reply_form" method="post">
                         <label class="input_field">
                             <span>Reply</span>
-                            <input type="text" name="post_comment" class="post_comment" placeholder="Enter Post...">
+                            <input type="text" name="reply_comment" class="reply_comment" maxlength="250" placeholder="Enter Post...">
                             <span class="char_count">0/250</span>
                         </label>
                     </form>
                 </div>
             </li>
 
-            <li class="reply_item">
+            <li class="reply_item message_item">
                 <div class="header">
-                    <img src="#" alt="User Profile">
+                    <img src="../../assets/images/Image.png" alt="User Profile">
                     <span class="user_name">Ruel</span>
                     ∙
                     <span class="timestamp">1 min ago</span>
@@ -155,13 +158,15 @@
                     </div>
                 </div>
                 <p class="user_reply_message"></p>
-                <form action="#" class="update_reply_form" method="POST">
-                    <input type="text" class="user_reply_input" class="required_input">
+                <form action="#" class="update_reply_form hidden" method="POST">
+                    <label class="input_field">
+                        <span>Update Post</span>
+                        <input type="text" class="update_reply_input" class="required_input" maxlength="250" placeholder="Update post item...">
+                        <span class="char_count">0/250</span>
+                    </label>
                 </form>
             </li>
         </ul>
     </div>
-
-    <script src="../../assets/js/custom/user/components.js"></script>
 </body>
 </html>

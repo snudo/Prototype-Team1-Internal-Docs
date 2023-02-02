@@ -5,8 +5,8 @@
   display: none;
 }
 #section_wrapper {
-  max-width: 1055px;
   margin: 24px auto 0;
+  max-width: 1055px;
 }
 #section_wrapper > ul {
   display: -webkit-box;
@@ -28,8 +28,8 @@
   margin-right: 11px;
 }
 #section_wrapper > ul li a {
-  font: 14px/20px "Roboto-Medium";
   color: #009EBE;
+  font: 14px/20px "Roboto-Medium";
   text-decoration: none;
 }
 #section_wrapper > ul li.documentation_link::before {
@@ -64,13 +64,13 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  margin: 23px 0 0;
+  -webkit-box-pack: stretch;
+      -ms-flex-pack: stretch;
+          justify-content: stretch;
+  margin: 23px 0 50px;
 }
 #section_wrapper #section_main_contents > div {
-  max-height: 796px;
+  margin-left: auto;
 }
 #section_wrapper #section_main_contents #documents_editable_form {
   background-color: #FFFFFF;
@@ -85,8 +85,8 @@
   width: 100%;
 }
 #section_wrapper #section_main_contents #documents_editable_form #documents_title {
-  font: 22px/28px "Roboto-Regular";
   color: #1D333B;
+  font: 22px/28px "Roboto-Regular";
   margin: 0 0 0;
 }
 #section_wrapper #section_main_contents #documents_editable_form #viewers_editors_count {
@@ -108,10 +108,10 @@
   font: 12px/16px "Roboto-Medium";
 }
 #section_wrapper #section_main_contents #documents_editable_form textarea {
+  border: none;
   overflow: hidden;
   resize: none;
   width: 100%;
-  border: none;
 }
 #section_wrapper #section_main_contents #documents_editable_form p:first-of-type {
   margin: 0 0 25px;
@@ -165,8 +165,8 @@
 }
 #section_wrapper #section_main_contents #create_section_block #add_section_form label {
   background-color: #F0FDFA;
-  border-radius: 8px 8px 0px 0px;
   border-bottom: 2px solid #14B8A6;
+  border-radius: 8px 8px 0px 0px;
   height: 58px;
   padding: 8px 0 0 11px;
   width: 100%;
@@ -178,10 +178,10 @@
 #section_wrapper #section_main_contents #create_section_block #add_section_form label input[type=text] {
   background-color: transparent;
   border: none;
+  color: #1D333B;
   font: 16px/24px "Roboto-Medium";
   outline: none;
   width: 100%;
-  color: #1D333B;
 }
 #section_wrapper #section_main_contents #create_section_block #add_section_form button {
   background: url("/web-frontend/assets/images/svg_icons_stripe.svg");
@@ -202,8 +202,8 @@
   padding: 0 0 0;
 }
 #section_wrapper #section_main_contents #create_section_block ul li {
-  border-radius: 8px;
   background-color: #FFFFFF;
+  border-radius: 8px;
   -webkit-box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
           box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
   height: 94px;
@@ -243,9 +243,9 @@
   width: 44px;
 }
 #section_wrapper #section_main_contents #create_section_block ul li a div:first-child::before {
-  content: "";
   background: url("/web-frontend/assets/images/svg_icons_stripe.svg");
   background-position: -862px -7px;
+  content: "";
   height: 24px;
   width: 13px;
 }
@@ -267,9 +267,9 @@
   margin-bottom: 8px;
 }
 #section_wrapper #section_main_contents #create_section_block ul li a div h3 span {
+  color: #14B8A6;
   font: 16px/20px "Roboto-Medium";
   margin-right: 30px;
-  color: #14B8A6;
 }
 #section_wrapper #section_main_contents #create_section_block ul li a div h3 button {
   background: url("/web-frontend/assets/images/svg_icons_stripe.svg");
