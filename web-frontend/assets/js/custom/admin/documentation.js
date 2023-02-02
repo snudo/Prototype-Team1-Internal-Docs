@@ -248,8 +248,9 @@ const renderDocuments = (documents_list) => {
     document.getElementById("document_list_container").innerHTML = "";
     documents_list = [...new Map(documents_list.map(item => [item["id"], item])).values()];
 
-    if(documents_list.length){
+    if(documents_list.length && doc_count > 0){
         document.getElementById("no_data_logo").setAttribute("hidden", "hidden");
+        document.getElementById("documents_category_selection").removeAttribute("hidden");
 
         documents_list = [...new Map(documents_list.map(item => [item["id"], item])).values()];
 
@@ -285,6 +286,7 @@ const renderDocuments = (documents_list) => {
         }
     }
     else{
+        document.getElementById("documents_category_selection").setAttribute("hidden", "hidden");
         document.getElementById("no_data_logo").removeAttribute("hidden");
     }
 }
@@ -303,7 +305,7 @@ const getDocumentValue = (event) => {
         if(event.target.value.length){
             let timestamp = new Date().getUTCMilliseconds();
 
-            documents_array.push({
+            documents_array.splice(doc_count, 0, {
                 id: timestamp,
                 title: event.target.value,
                 viewers: 0,
@@ -315,12 +317,16 @@ const getDocumentValue = (event) => {
 
             event.target.value = "";
             document.getElementById("documents_category_selection").innerHTML = "Show All";
+            doc_count++;
+
             renderDocuments(documents_array);
         }
         else{
             event.target.closest("label").classList.add("input_error");
         }
     }
+
+    return false;
 }
 
 const DuplicateDocument = (event)=> {
@@ -427,6 +433,15 @@ document.addEventListener("click", starredDocument);
 document.addEventListener("click", DuplicateDocument);
 document.getElementById("filter_dropdown_menu").addEventListener("click", FilterDocuments);
 document.getElementById("add_documentation_input").addEventListener("keyup", getDocumentValue);
+
+/* Prevent redirect to sections page when documentation menu clicked */
+let documents_menus = document.getElementsByClassName("documents_menu");
+for(let i = 0; i < documents_menus.length; i++) {
+    documents_menus[i].addEventListener("click", function(event){
+        event.preventDefault();
+        return false;
+    })
+}
 
 $(function(){
     $("#document_list_container").sortable();
