@@ -5,7 +5,7 @@ const submitLoginForm = (event) => {
     let login_form_entries = login_form.entries();
     let login_details      = Object.fromEntries(login_form_entries);
 
-    window.location.href = (login_details.user_type === "admin") ? "/web-frontend/views/admin/docs.html" : "/web-frontend/views/user/docs.html";
+    window.location.href = (login_details.user_type === "admin") ? "/web-frontend/views/admin/docs.html?size=7" : "/web-frontend/views/user/docs.html?size=7";
 };
 
 /* EVENTS */

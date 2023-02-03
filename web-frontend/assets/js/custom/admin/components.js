@@ -1,5 +1,9 @@
 var component_data = [];
 
+/* Get params from URL of current Page */
+let url_obj = new URL((window.location.href).toLowerCase());
+let components_count = url_obj.searchParams.get("size") || 1;
+
 /* CALLBACK FUNCTIONS */
 const removeTab = (event) => {
     let remove_btn      = event.target;
@@ -18,46 +22,63 @@ const removeTab = (event) => {
     (!tab_list.querySelectorAll("li.active").length && tab_list.querySelectorAll("li").length !== 1) && tab_list.querySelector("li:not(.active) .tab_name").click();
 }
 
-const fetchSelectedTabDetails = (event, component_id) => {
+const fetchSelectedTabDetails = (event, component_id, tab_id) => {
     let selected_tab_item    = event.target.closest("li");
     let active_tab_item      = selected_tab_item.closest(".tab_list").querySelector(".tab_item.active");
-    let component_block_item = selected_tab_item.closest(".component_block");
 
     if(selected_tab_item.closest(".tab_list").querySelectorAll(".tab_item.active").length){
         active_tab_item.classList.remove("active");
     }
     selected_tab_item.classList.add("active");
 
-    component_block_item.querySelector(".update_tab_form .title_tab_input").value = selected_tab_item.querySelector(".tab_name").textContent;
-    document.querySelector(`.component_block[data-component-id="${ component_id }"] .tab_description_input`).value = component_data[component_id].tabs[selected_tab_item.getAttribute("data-tab-id")].description;
-
     setTimeout(() => {
-        let active_tab_item_id = document.querySelector(`.component_block[data-component-id="${ component_id }"] .tab_item.active`).getAttribute("data-tab-id");
-        let tab_description    = component_data[component_id].tabs[active_tab_item_id].description;
-
-        document.querySelector(`.component_block[data-component-id="${ component_id }"] .tab_description_input`).value = tab_description;
-        renderRedactorX({ textarea: component_block_item.querySelector(".tab_description_input"), random_component_id: component_id, random_tab_id: active_tab_item_id, content_data: tab_description });
+        renderRedactorX({ textarea: document.getElementById(tab_id).querySelector(".tab_description_input") });
     }, 380);
 }
 
 const addTab = (component_item, component_id) => {
-    let tab_clone     = document.querySelector("#clone_block ul .tab_item").cloneNode(true);
-    let random_tab_id = (Math.random() + 1).toString(36).substring(5);
-    let tab_name      = tab_clone.querySelector(".tab_name");
+    let tab_clone      = document.querySelector("#clone_block ul .tab_item").cloneNode(true);
+    let tab_pane_clone = document.querySelector("#clone_block .tab-pane").cloneNode(true);
+    let random_tab_id  = (Math.random() + 1).toString(36).substring(5);
+    let tab_name       = tab_clone.querySelector(".tab_name");
 
     tab_clone.setAttribute("data-tab-id", random_tab_id);
+    tab_clone.querySelector("button").setAttribute("data-bs-target", "#" + random_tab_id);
+    tab_pane_clone.setAttribute("id", random_tab_id);
 
     component_data[component_id].tabs[random_tab_id] = {
         name: "Untitled",
         description: ""
     }
 
-    component_item.querySelector(".tab_list").prepend(tab_clone);
+    /* Insert new tab before the add tab button */
+    let add_tab_btn = document.querySelector('[data-component-id="'+component_id+'"]').querySelector('.add_tab')
+    component_item.querySelector(".tab_list").insertBefore(tab_clone, add_tab_btn);
+
+    tab_pane_clone.querySelector(".update_tab_form .title_tab_input").addEventListener("blur", (event) => {
+        let tab_title_data = event.target.value;
+        
+        submitUpdateTabDetails({is_title: true, tab_title_data}, component_id, event);
+    });
+
+    component_item.querySelector(".tab-content").prepend(tab_pane_clone);
 
     /* EVENTS */
     tab_clone.querySelector(".remove_tab").addEventListener("click", (event) => removeTab(event));
-    tab_name.addEventListener("click", (event) => fetchSelectedTabDetails(event, component_id));
+    tab_name.addEventListener("click", (event) => fetchSelectedTabDetails(event, component_id, random_tab_id));
     tab_name.click();
+
+    $(".tab_list").sortable({
+        opacity: 0.8,
+        revert: true,
+        forceHelperSize: true,
+        forcePlaceholderSize: true,
+        placeholder: "draggable-placeholder",
+        tolerance: "pointer",
+        axis: "x",
+        handle: "button",
+        cancel: ""
+    });
 }
 
 const submitUpdateTabDetails = (tab_details_data, component_id, event) => {
@@ -72,7 +93,7 @@ const submitUpdateTabDetails = (tab_details_data, component_id, event) => {
 
     if(!document.querySelectorAll(`${ component_tab } .input_error`).length){
         active_tab.querySelector(".tab_name").textContent = tab_title;
-    
+        
         component_data[component_id].tabs[active_tab_id].name = tab_title;
     }
 }
@@ -82,9 +103,10 @@ const addComponentItem = () => {
     let random_component_id  = (Math.random() + 1).toString(36).substring(7);
     let random_tab_id        = (Math.random() + 1).toString(36).substring(5);
     let tab_name             = component_item_clone.querySelector(".tab_name");
+    let tab_item             = component_item_clone.querySelector(".tab_item");
 
     component_item_clone.setAttribute("data-component-id", random_component_id);
-    component_item_clone.querySelector(".tab_item").setAttribute("data-tab-id", random_tab_id);
+    tab_item.setAttribute("data-tab-id", random_tab_id);
 
     /* Add component data */
     component_data[random_component_id] = {
@@ -96,6 +118,9 @@ const addComponentItem = () => {
         name: "Untitled",
         description: ""
     }
+
+    tab_item.querySelector("button").setAttribute("data-bs-target", "#" + random_tab_id);
+    component_item_clone.querySelector(".tab-pane").setAttribute("id", random_tab_id);
 
     document.getElementById("component_list").append(component_item_clone);
     
@@ -110,26 +135,27 @@ const addComponentItem = () => {
     });
 
     tab_name.addEventListener("click", (event) => fetchSelectedTabDetails(event, random_component_id, random_tab_id));
-    tab_name.click();
+
+
+    setTimeout(() => {
+        tab_name.click();
+    }, 400);
 };
 
 const renderRedactorX = (params) => {
-    let app = RedactorX(params.textarea, {
+    RedactorX(params.textarea, {
         placeholder: "Enter Description...",
-        content: params.content_data || "",
         subscribe: {
             "editor.keydown": () => {
-                setTimeout(() => {
-                    const { textarea, random_component_id } = params;
-                    let tab_id = document.querySelector(`.component_block[data-component-id="${random_component_id}"] .tab_item.active`).getAttribute("data-tab-id");
+                // setTimeout(() => {
+                //     const { textarea, random_component_id } = params;
+                //     let tab_id = document.querySelector(`.component_block[data-component-id="${random_component_id}"] .tab_item.active`).getAttribute("data-tab-id");
     
-                    component_data[random_component_id].tabs[tab_id].description = textarea.value;
-                }, 380);
+                //     component_data[random_component_id].tabs[tab_id].description = textarea.value;
+                // }, 380);
             }
         }
     });
-
-    app.editor.setContent({ html: params.content_data });
 }
 
 const updateSectionTitle = () => {
@@ -138,8 +164,33 @@ const updateSectionTitle = () => {
     section_title.style.width = section_title.value.length * 11.5 + "px";
 }
 
+/* Hide/Unhide Comments section */
+const toggleComments = (event)=> {
+    if(event.target.classList.contains("allow_comments")){
+        if(event.target.checked){
+            event.target.closest("div").querySelector(".input_field").removeAttribute("hidden");
+        }
+        else{
+            event.target.closest("div").querySelector(".input_field").setAttribute("hidden", "hidden");
+        }
+    }
+}
+
 updateSectionTitle();
 
 /* EVENTS */
+document.addEventListener("click", toggleComments);
 document.getElementById("add_component").addEventListener("click", addComponentItem);
 document.getElementById("section_title").addEventListener("keyup", updateSectionTitle);
+document.querySelector(".title_block button").addEventListener("click", () => {
+   window.location.href = "/web-frontend/views/admin/component_preview.html";
+});
+
+
+$(function(){
+    /* Onload focus Description textarea if 0 size */
+    if(components_count < 1){
+        document.getElementById("add_component").click();
+        document.getElementById("section_details").focus();
+    }
+});

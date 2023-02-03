@@ -33,7 +33,7 @@ label.input_field input[type=text] {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  margin: 0 auto;
+  margin: 0 auto 20px;
   width: 1045px;
 }
 #component_wrapper #left_panel {
@@ -42,7 +42,7 @@ label.input_field input[type=text] {
 #component_wrapper #left_panel .section_details {
   background: url("../../../images/section_bg.png") no-repeat right 0px, #FFFFFF;
   border-radius: 8px;
-  height: 244px;
+  min-height: 244px;
   padding: 24px;
 }
 #component_wrapper #left_panel .section_details .title_block {
@@ -63,22 +63,38 @@ label.input_field input[type=text] {
   outline: none;
 }
 #component_wrapper #left_panel .section_details .title_block button {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   background: #F0FDFA;
   border: none;
   border-radius: 5px;
   color: #14B8A6;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   font: 12px/16px "Roboto-Medium";
   height: 34px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   margin-left: 24px;
   outline: none;
   width: 104px;
+}
+#component_wrapper #left_panel .section_details .title_block button .update_icon {
+  background: url("/web-frontend/assets/images/preview_update_svg_icon.svg") no-repeat -32px 0px;
+  display: block;
+  height: 18px;
+  margin-right: 8px;
+  width: 18px;
 }
 #component_wrapper #left_panel .section_details #section_details {
   background: transparent;
   border: none;
   color: #4B626A;
   font: 16px/24px "Roboto-Regular";
-  height: 143px;
+  min-height: 143px;
   outline: none;
   resize: none;
   width: 100%;
@@ -161,28 +177,92 @@ label.input_field input[type=text] {
   outline: none;
   width: 18px;
 }
-#component_wrapper #left_panel #component_list .component_block form {
+#component_wrapper #left_panel #component_list .component_block .tab_list li.tab_item button {
+  background-color: transparent;
+  border: none;
+  color: #14B8A6;
+}
+#component_wrapper #left_panel #component_list .component_block .tab_details {
   background: #FFFFFF;
   padding: 24px;
 }
-#component_wrapper #left_panel #component_list .component_block form .rx-container {
-  border: 1px solid #CEE6F0;
-  border-radius: 8px;
-  margin-top: 24px;
+#component_wrapper #left_panel #component_list .component_block .tab_details h1 {
+  color: #1D333B;
+  font: 22px/28px "Roboto-Medium";
 }
-#component_wrapper #left_panel #component_list .component_block form .rx-container .rx-toolbar-container {
-  background: #F2FBFF;
-  border-bottom: none;
-  border-radius: 8px 8px 0 0;
+#component_wrapper #left_panel #component_list .component_block .tab_details h3,
+#component_wrapper #left_panel #component_list .component_block .tab_details h4,
+#component_wrapper #left_panel #component_list .component_block .tab_details h5 {
+  color: #7D949D;
+  font: 22px/28px "Roboto-Regular";
 }
-#component_wrapper #left_panel #component_list .component_block form .rx-container .rx-editor-container p {
+#component_wrapper #left_panel #component_list .component_block .tab_details h2 {
+  color: #1D333B;
+  font: 22px/28px "Roboto-Medium";
+}
+#component_wrapper #left_panel #component_list .component_block .tab_details p {
   color: #4B626A;
   font: 14px/20px "Roboto-Regular";
+}
+#component_wrapper #left_panel #component_list .component_block .action_btn {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: #FFFFFF;
+  border-bottom: 0.5px solid #CEE6F0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  padding: 0 24px 24px;
+}
+#component_wrapper #left_panel #component_list .component_block .action_btn button {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: transparent;
+  border: transparent;
+  color: #7D949D;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font: 14px/20px "Roboto-Medium";
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  opacity: 0.5;
+  outline: none;
+}
+#component_wrapper #left_panel #component_list .component_block .action_btn button:first-child {
+  margin-right: 24px;
+}
+#component_wrapper #left_panel #component_list .component_block .action_btn button.active {
+  color: #14B8A6;
+  opacity: 1;
+}
+#component_wrapper #left_panel #component_list .component_block .action_btn button.active span {
+  background-position: -57px 0px;
+}
+#component_wrapper #left_panel #component_list .component_block .action_btn button.active span.next_tab_icon {
+  background-position: -82px 0px;
+}
+#component_wrapper #left_panel #component_list .component_block .action_btn button span {
+  background: url("../../../images/arrow_icon.svg") no-repeat 0px 0px;
+  display: block;
+  height: 18px;
+  margin-right: 8px;
+  width: 18px;
+}
+#component_wrapper #left_panel #component_list .component_block .action_btn button span.next_tab_icon {
+  background-position: -27px 0px;
+  margin: 0 0 0 8px;
 }
 #component_wrapper #left_panel #component_list .component_block .post_block {
   background: #FFFFFF;
   border-radius: 0 0 8px 8px;
-  padding: 0 24px 24px 24px;
+  padding: 24px;
 }
 #component_wrapper #left_panel #component_list .component_block .post_block .checkbox_style {
   background: #CEE6F0;
@@ -212,6 +292,10 @@ label.input_field input[type=text] {
   opacity: 0.5;
   pointer-events: none;
   position: relative;
+}
+#component_wrapper #left_panel #component_list .component_block .post_block .input_field.user_input_block {
+  opacity: 1;
+  pointer-events: unset;
 }
 #component_wrapper #left_panel #component_list .component_block .post_block .input_field .char_count {
   bottom: -22px;

@@ -5,10 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="/web-frontend/assets/images/favicon.svg">
-    <title>Documentation</title>
+    <title>BoomYEAH Docs Tool | Documentations</title>
 
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="/web-frontend/assets/css/custom/documentation.css">
+
+    <script src="/web-frontend/assets/js/vendor/bootstrap/bootstrap.bundle.min.js"></script>
     <script src="/web-frontend/assets/js/vendor/bootstrap/bootstrap.bundle.min.js"></script>
 
     <!-- CONSTANTS -->
@@ -38,7 +40,7 @@
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="documents_category_selection" data-bs-toggle="dropdown" aria-expanded="false">
                   Show All
                 </button>
-                <ul class="dropdown-menu" aria-labelledby="documents_category_selection">
+                <ul id="filter_dropdown_menu" class="dropdown-menu" aria-labelledby="documents_category_selection">
                     <li><button data-selection="data-documents" class="document_filter dropdown-item">All</button></li>
                     <li><button data-selection="data-starred" class="document_filter dropdown-item">Starred</button></li>
                     <li><button data-selection="data-private" class="document_filter dropdown-item">Private</button></li>
@@ -69,7 +71,7 @@
     </div>
 
     <li id="clone">
-        <a href="#">
+        <a href="../admin/sections.html?size=7">
             <div></div>
             <div class="document_information">
                 <button type="button" class="documents_menu" role="button" data-bs-toggle="popover"></button>

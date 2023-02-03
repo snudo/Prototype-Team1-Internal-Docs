@@ -10,6 +10,10 @@
 
 .input_error{
     border: 1px solid @red;
+    border-bottom: 2px solid @red !important;
+    span{
+        color: @red !important;
+    }
 }
 
 body{
@@ -22,6 +26,9 @@ nav{
     display: flex;
     height: 64px;
     padding: 0 24px;
+    position: sticky;
+    top: 0;
+    z-index: 1;
 
     >a{
         height: 30px;
@@ -224,6 +231,7 @@ nav{
 
     a{
         color: @primary_60;
+        cursor: pointer;
         font: 14px/20px @font_medium;
         text-decoration: none;
     }
