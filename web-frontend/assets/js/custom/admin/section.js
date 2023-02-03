@@ -250,7 +250,7 @@ $(function() {
     document.getElementById("add_section_input").focus();
     
     if(doc_count < 1){
-        document.getElementById("document_description_input").textContent = "Add description. . .";
+        document.getElementById("document_description_input").textContent = "";
         document.querySelector("#viewers_editors_count span").textContent = "0 viewer and 0 editor";
     }
 });

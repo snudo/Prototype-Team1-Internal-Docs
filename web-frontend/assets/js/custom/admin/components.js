@@ -179,6 +179,6 @@ $(function(){
     /* Onload focus Description textarea if 0 size */
     if(components_count < 1){
         document.getElementById("add_component").click();
-        document.getElementById("section_details").focus();
     }
+    document.getElementById("section_details").focus();
 });
