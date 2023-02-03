@@ -247,7 +247,7 @@ const showFilterDropdownEmailData = (event) => {
     let add_email_block     = event.target.closest(".add_email_block");
     let filter_email_search = add_email_block.querySelector(".filter_email_search");
 
-    if(event.target.value.length > 3){
+    if(event.target.value.length){
         filter_email_search.classList.remove("hidden");
         filter_email_search.style.cssText = `margin-top: ${add_email_block.querySelector(".added_email_list").offsetHeight}px`;
     }
@@ -271,7 +271,7 @@ document.getElementById("viewers_editors_count").addEventListener("click", () =>
 document.querySelectorAll("#invite_user_modal .dropdown-item").forEach((selected_status) => {
     selected_status.addEventListener("click", selectAddedEmailStatus);
 });
-document.querySelector(".add_email_input").addEventListener("keydown", showFilterDropdownEmailData);
+document.querySelector(".add_email_input").addEventListener("keyup", showFilterDropdownEmailData);
 
 let example_modal =  new bootstrap.Modal(document.getElementById("invite_user_modal"));
 
