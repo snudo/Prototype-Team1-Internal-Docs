@@ -497,3 +497,68 @@ body {
 #confirm_private_modal .modal-dialog .modal-content div button:last-child:hover {
   opacity: 0.8;
 }
+@media only screen and (max-width: 1080px) {
+  #dashboard_wrapper {
+    width: 920px;
+  }
+  #dashboard_wrapper #document_list_container li {
+    width: 290px;
+  }
+}
+@media only screen and (max-width: 980px) {
+  #dashboard_wrapper {
+    width: 860px;
+  }
+  #dashboard_wrapper #document_list_container li {
+    width: 270px;
+  }
+}
+@media only screen and (max-width: 920px) {
+  #dashboard_wrapper {
+    width: 790px;
+  }
+  #dashboard_wrapper #document_list_container li {
+    margin-bottom: 15px;
+    margin-right: 15px;
+    width: 253px;
+  }
+  #dashboard_wrapper #document_list_container li a div .documents_menu {
+    right: 15px;
+  }
+}
+@media only screen and (max-width: 840px) {
+  #dashboard_wrapper {
+    padding: 24px 35px 0;
+    width: 100%;
+  }
+  #dashboard_wrapper #document_list_container {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  #dashboard_wrapper #document_list_container li {
+    width: 100%;
+    margin-right: 0;
+  }
+}
+@media only screen and (max-width: 768px) {
+  #dashboard_wrapper #form_container form #search_document {
+    width: 340px;
+  }
+}
+@media only screen and (max-width: 580px) {
+  #dashboard_wrapper {
+    padding: 24px 18px 0;
+  }
+  #dashboard_wrapper #form_container {
+    display: none;
+  }
+  #dashboard_wrapper #document_list_container li {
+    height: 90px;
+    margin-bottom: 12px;
+  }
+  #dashboard_wrapper #document_list_container li a div p {
+    display: none;
+  }
+}
