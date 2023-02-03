@@ -25,4 +25,6 @@ let custom_assets_js = [
     {url: current_js, type: "script"}
 ]
 
-loader.load(custom_assets_js, callback);
+setTimeout(() => {
+    loader.load(custom_assets_js, callback);
+}, 380);
