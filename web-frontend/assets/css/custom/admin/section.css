@@ -292,7 +292,7 @@
   display: block;
   margin: 200px auto;
 }
-#confirm_private_modal .modal-dialog {
+#confirm_modal .modal-dialog {
   background-color: #FFFFFF;
   border-radius: 8px;
   -webkit-box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
@@ -301,19 +301,19 @@
   max-width: 328px;
   padding: 20px 35px 24px;
 }
-#confirm_private_modal .modal-dialog .modal-content {
+#confirm_modal .modal-dialog .modal-content {
   border: none;
 }
-#confirm_private_modal .modal-dialog .modal-content p {
+#confirm_modal .modal-dialog .modal-content p {
   color: #4B626A;
   font: 16px/24px "Roboto-Regular";
   margin: 0 0 17px;
   text-align: center;
 }
-#confirm_private_modal .modal-dialog .modal-content p span {
+#confirm_modal .modal-dialog .modal-content p span {
   font: 16px/24px "Roboto-Regular";
 }
-#confirm_private_modal .modal-dialog .modal-content div {
+#confirm_modal .modal-dialog .modal-content div {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -325,7 +325,7 @@
           justify-content: center;
   width: 100%;
 }
-#confirm_private_modal .modal-dialog .modal-content div button {
+#confirm_modal .modal-dialog .modal-content div button {
   background-color: transparent;
   border: none;
   color: #7D949D;
@@ -333,7 +333,7 @@
   height: 40px;
   width: 80px;
 }
-#confirm_private_modal .modal-dialog .modal-content div button:last-child {
+#confirm_modal .modal-dialog .modal-content div button:last-child {
   background-color: #009EBE;
   border-radius: 8px;
   color: #FFFFFF;
@@ -341,6 +341,6 @@
   -webkit-transition: 0.21s;
   transition: 0.21s;
 }
-#confirm_private_modal .modal-dialog .modal-content div button:last-child:hover {
+#confirm_modal .modal-dialog .modal-content div button:last-child:hover {
   opacity: 0.8;
 }

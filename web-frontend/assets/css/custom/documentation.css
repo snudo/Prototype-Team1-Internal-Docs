@@ -171,6 +171,9 @@ body {
   margin: 0 0 24px;
   width: 100%;
 }
+#dashboard_wrapper #form_container form {
+  position: relative;
+}
 #dashboard_wrapper #form_container form label {
   background-color: #FFFFFF;
   border-bottom: 2px solid #009EBE;
@@ -179,18 +182,6 @@ body {
   padding: 7px 16px;
   position: relative;
   width: 502px;
-}
-#dashboard_wrapper #form_container form label::before {
-  background: url("../../images/admin/admin-sprite-icons.svg") no-repeat;
-  background-position: -33px -59px;
-  content: "";
-  height: 19px;
-  position: absolute;
-  right: 16px;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
-  width: 19px;
 }
 #dashboard_wrapper #form_container form label span {
   color: #1D333B;
@@ -203,6 +194,20 @@ body {
   outline: none;
   padding: 0 0 0 0;
   width: 100%;
+}
+#dashboard_wrapper #form_container form button {
+  background: url("../../images/admin/admin-sprite-icons.svg") no-repeat;
+  background-position: -33px -59px;
+  border: none;
+  content: "";
+  height: 19px;
+  outline: none;
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  width: 19px;
 }
 #dashboard_wrapper #form_container form #search_document {
   background-color: #FFFFFF;
