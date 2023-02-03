@@ -75,12 +75,11 @@ const addTab = (component_item, component_id) => {
 
     $(".tab_list").sortable({
         opacity: 0.8,
-        revert: true,
         forceHelperSize: true,
         forcePlaceholderSize: true,
         placeholder: "draggable-placeholder",
         tolerance: "pointer",
-        axis: "x",
+        items: ".tab_item",
         handle: "button",
         cancel: ""
     });

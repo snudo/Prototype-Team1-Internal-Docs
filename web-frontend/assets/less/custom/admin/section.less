@@ -322,4 +322,220 @@
         }
     }
 }
+#invite_user_modal{
+    .modal-dialog{
+        max-width: 611px;
+        
+        .modal-content{
+            padding: 24px;
+            .modal-header{
+                align-items: center;
+                border-bottom: none;
+                display: flex;
+                padding-bottom: 2px;
+
+                h5{
+                    margin: 0;
+                }
+            }
+            .modal-body{
+                .dropdown{
+                    margin-left: 12px;
+
+                    #added_email_status, #update_status{
+                        background: transparent;
+                        border: 1px solid @secondary_60;
+                        color: @secondary_60;
+                        font: 16px/20px @font_regular;
+                        height: 48px;
+                        outline: none;
+                        width: 134px;
+
+                        &::after{
+                            margin-left: 15px;
+                        }
+                    }
+
+                    ul.dropdown-menu{
+                        li{
+                            button{
+                                background: transparent;
+                                color: @secondary_60;
+                                font: 14px/18px @font_medium;
+                                height: 48px;
+                                
+                                &.active{
+                                    background: @primary_95;
+                                    color: @primary_60;
+                                }
+                            }
+                        }
+                    }
+                }
+                
+                .add_email_block{
+                    align-items: flex-start;
+                    display: flex;
+                    position: relative;
+                    
+                    .added_email_list{
+                        align-items: center;
+                        border: 1px solid @secondary_60;
+                        border-radius: 8px;
+                        display: flex;
+                        flex: 1;
+                        flex-wrap: wrap;
+                        list-style: none;
+                        margin: 0;
+                        min-height: 48px;
+                        padding: 8px;
+                        position: relative;
+
+                        li{
+                            align-items: center;
+                            border: 1px solid @secondary_60;
+                            border-radius: 20px;
+                            display: flex;
+                            font: 12px/16px @font_medium;
+                            height: 32px;
+                            justify-content: center;
+                            padding: 8px 12px;
+
+                            &:last-child{
+                                border: none;
+                            }
+
+                            
+                            .btn-close{
+                                cursor: pointer;
+                                height: .5em;
+                                margin-left: 24px;
+                                width: .5em;
+                            }
+
+                            .add_email_input{
+                                border: none;
+                                font: 12px/16px @font_medium;
+                                outline: none;
+                            }
+                        }
+                    }
+
+                    .filter_email_search{
+                        background: @white;
+                        border-radius: 8px;
+                        box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.25);
+                        left: 0;
+                        margin: 0;
+                        padding: 0;
+                        padding: 10px 24px;
+                        position: absolute;
+                        width: 387px;
+
+                        li{
+                            align-items: center;
+                            display: flex;
+                            height: 62px;
+    
+                            img{
+                                height: 40px;
+                                width: 40px;
+                            }
+    
+                            .user_details{
+                                margin-left: 16px;
+    
+                                h3{
+                                    color: @secondary_20;                    
+                                    font: 14px/16px @font_medium;
+                                    margin: 0;
+                                }
+                                a{
+                                    color: @primary_60;
+                                    font: 12px/16px @font_medium;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                >h5{
+                    margin-top: 21px;
+                }
+
+                .with_access_list{
+                    list-style: none;
+                    margin: 0;
+                    padding: 0;
+
+                    li{
+                        align-items: center;
+                        display: flex;
+                        height: 62px;
+
+                        img{
+                            height: 40px;
+                            width: 40px;
+                        }
+
+                        .user_details{
+                            margin-left: 16px;
+
+                            h3{
+                                color: @secondary_20;                    
+                                font: 14px/16px @font_medium;
+                                margin: 0;
+                            }
+                            a{
+                                color: @primary_60;
+                                font: 12px/16px @font_medium;
+                            }
+                        }
+
+                        >h5{
+                            color: @secondary_60;
+                            font: 16px/24px @font_regular;
+                            margin-left: auto;
+                        }
+
+                        .dropdown{
+                            margin-left: auto;
+
+                            #update_status{
+                                border: none;
+                                width: unset;
+                            }
+                        }
+                    }
+                }
+            }
+            .modal-footer{
+                align-items: center;
+                display: flex;
+                justify-content: flex-start;
+                padding-left: 0;
+
+                .copy_link{
+                    align-items: center;
+                    background: transparent;
+                    border: none;
+                    color: @primary_60;
+                    display: flex;
+                    font: 12px/16px @font_medium;
+                    justify-content: center;
+                    margin-top: 21px;
+                    padding: 0;
+
+                    .copy_link_icon{
+                        background: url("../../../images/link_icon.svg") no-repeat 0px 0px;
+                        display: block;
+                        height: 18px;
+                        margin-right: 8px;
+                        width: 18px;
+                    }
+                }
+            }
+        }
+    }
+}
 
