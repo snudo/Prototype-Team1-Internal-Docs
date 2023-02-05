@@ -244,6 +244,8 @@ let archived_document = [
     }
 ]
 
+let filtered_documents = [];
+
 const renderDocuments = (documents_list) => {
     document.getElementById("document_list_container").innerHTML = "";
 
@@ -396,18 +398,18 @@ const starredDocument = (event)=> {
             let last_starred_index = documents_array.findLastIndex((doc_obj) => doc_obj.is_starred);
             documents_array.splice(last_starred_index+1, 0, selected_document_id);
 
-            renderDocuments(documents_array);
+            renderDocuments((!filtered_documents.length) ? documents_array : filtered_documents);
         }
     }
 }
 
 const FilterDocuments = (event)=> {
-    let filtered_documents = [];
     let documents_list_by_size = documents_array.slice(0, doc_count);
 
     document.getElementById("documents_category_selection").innerHTML = "Show " + event.target.innerHTML;
 
     if(event.target.getAttribute("data-selection") === "data-documents"){
+        filtered_documents = [];
         renderDocuments(documents_list_by_size);
     }
     else if(event.target.getAttribute("data-selection") === "data-starred"){

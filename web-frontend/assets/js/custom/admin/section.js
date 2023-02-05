@@ -1,5 +1,5 @@
-const confirm_modal = document.getElementById("confirm_private_modal");
-const confirm_private_modal = new bootstrap.Modal(confirm_modal, {});
+let confirm_modal = document.getElementById("confirm_private_modal");
+let confirm_private_modal = new bootstrap.Modal(confirm_modal, {});
 
 let current_privacy_setting = IS_PRIVATE.yes;
 
@@ -185,7 +185,9 @@ const submitCreateSection = (event)=> {
     return false;
 }
 
-const changePrivacySettings = () => {
+const changePrivacySettings = (event) => {
+    event.preventDefault();
+
     let private_setting_btn = document.getElementById("private_setting_block").children[ITEMS.first];
 
     if(current_privacy_setting){
@@ -193,15 +195,17 @@ const changePrivacySettings = () => {
 
         confirm_modal.querySelector("#confirm_button_yes").addEventListener("click", function(){
             current_privacy_setting = IS_PRIVATE.no;
-            private_setting_btn.innerHTML = "Set as Public";
+            private_setting_btn.innerHTML = "Set as Private";
 
             confirm_private_modal.hide();
         });
     }
     else{
         current_privacy_setting = IS_PRIVATE.yes;
-        private_setting_btn.innerHTML = "Set as Private";
+        private_setting_btn.innerHTML = "Set as Public";
     }
+
+    return false;
 }
 
 const deleteSection = (event) => {

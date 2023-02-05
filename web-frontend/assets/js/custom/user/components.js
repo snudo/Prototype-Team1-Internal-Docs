@@ -138,3 +138,15 @@ document.querySelectorAll(".add_post_form").forEach((post_form) => {
 document.querySelectorAll(".tab_item .nav-link").forEach((item_link) => {
     item_link.addEventListener("click", selectActiveTab);
 });
+
+$(".tab_list").sortable({
+    opacity: 0.8,
+    revert: true,
+    forceHelperSize: true,
+    forcePlaceholderSize: true,
+    placeholder: "draggable-placeholder",
+    tolerance: "pointer",
+    axis: "x",
+    handle: "button",
+    cancel: ""
+});
