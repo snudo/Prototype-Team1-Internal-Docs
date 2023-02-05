@@ -62,6 +62,11 @@ const addTab = (component_item, component_id) => {
     });
 
     component_item.querySelector(".tab-content").prepend(tab_pane_clone);
+    
+    /* Focus on the tab name input box when new tab is added */
+    setTimeout(()=>{
+        document.getElementById(random_tab_id).querySelector(".title_tab_input").select();
+    }, 300)
 
     /* EVENTS */
     tab_clone.querySelector(".remove_tab").addEventListener("click", (event) => removeTab(event));
@@ -191,6 +196,6 @@ $(function(){
     /* Onload focus Description textarea if 0 size */
     if(components_count < 1){
         document.getElementById("add_component").click();
+        document.getElementById("section_details").focus();
     }
-    document.getElementById("section_details").focus();
 });
