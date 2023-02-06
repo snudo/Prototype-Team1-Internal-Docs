@@ -244,6 +244,8 @@ let archived_document = [
     }
 ]
 
+let filtered_documents = [];
+
 const renderDocuments = (documents_list) => {
     document.getElementById("document_list_container").innerHTML = "";
 
@@ -295,33 +297,34 @@ renderDocuments(documents_array);
 
 const getDocumentValue = (event) => {
     event.preventDefault();
+    let add_document_input_field = document.querySelector("#add_documentation_label");
 
     /* Remove red border */
-    event.target.closest("label").classList.remove("input_error");
-    
-    if(event.keyCode === 13) {
-        if(event.target.value.length){
-            let timestamp = new Date().getUTCMilliseconds();
+    add_document_input_field.classList.remove("input_error");
 
-            documents_array.splice(doc_count, 0, {
-                id: timestamp,
-                title: event.target.value,
-                viewers: 0,
-                editors: 0,
-                is_private: false,
-                is_starred: false,
-                description:"",
-            });
+    let form_input = document.querySelector("#add_documentation_input");
 
-            event.target.value = "";
-            document.getElementById("documents_category_selection").innerHTML = "Show All";
-            doc_count++;
+    if(form_input.value.length){
+        let timestamp = new Date().getUTCMilliseconds();
 
-            renderDocuments(documents_array);
-        }
-        else{
-            event.target.closest("label").classList.add("input_error");
-        }
+        documents_array.splice(doc_count, 0, {
+            id: timestamp,
+            title: form_input.value,
+            viewers: 0,
+            editors: 0,
+            is_private: false,
+            is_starred: false,
+            description:"",
+        });
+
+        form_input.value = "";
+        document.getElementById("documents_category_selection").innerHTML = "Show All";
+        doc_count++;
+
+        renderDocuments(documents_array);
+    }
+    else{
+        add_document_input_field.classList.add("input_error");
     }
 
     return false;
@@ -396,18 +399,18 @@ const starredDocument = (event)=> {
             let last_starred_index = documents_array.findLastIndex((doc_obj) => doc_obj.is_starred);
             documents_array.splice(last_starred_index+1, 0, selected_document_id);
 
-            renderDocuments(documents_array);
+            renderDocuments((!filtered_documents.length) ? documents_array : filtered_documents);
         }
     }
 }
 
 const FilterDocuments = (event)=> {
-    let filtered_documents = [];
     let documents_list_by_size = documents_array.slice(0, doc_count);
 
     document.getElementById("documents_category_selection").innerHTML = "Show " + event.target.innerHTML;
 
     if(event.target.getAttribute("data-selection") === "data-documents"){
+        filtered_documents = [];
         renderDocuments(documents_list_by_size);
     }
     else if(event.target.getAttribute("data-selection") === "data-starred"){
@@ -432,8 +435,7 @@ document.addEventListener("click", applySettings);
 document.addEventListener("click", starredDocument);
 document.addEventListener("click", DuplicateDocument);
 document.getElementById("filter_dropdown_menu").addEventListener("click", FilterDocuments);
-document.getElementById("add_documentation_input").addEventListener("keyup", getDocumentValue);
-document.getElementById("create_document_form").addEventListener("submit", (event) => {event.preventDefault();});
+document.getElementById("create_document_form").addEventListener("submit", getDocumentValue);
 
 /* Prevent redirect to sections page when documentation menu clicked */
 let documents_menus = document.getElementsByClassName("documents_menu");

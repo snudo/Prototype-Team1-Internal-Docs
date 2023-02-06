@@ -156,6 +156,9 @@
 #component_wrapper #left_panel .post_block .post_list .message_item .reply_details .reply_form label input {
   background: transparent;
 }
+#component_wrapper #left_panel .section_details p:last-child {
+  margin-bottom: 0;
+}
 @media screen and (max-width: 1100px) {
   #component_wrapper {
     margin: 20px auto;

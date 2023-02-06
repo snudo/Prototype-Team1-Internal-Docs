@@ -1,5 +1,5 @@
-const confirm_modal = document.getElementById("confirm_private_modal");
-const confirm_private_modal = new bootstrap.Modal(confirm_modal, {});
+let confirm_modal_element = document.getElementById("confirm_modal");
+let confirm_modal = new bootstrap.Modal(confirm_modal_element, {});
 
 let current_privacy_setting = IS_PRIVATE.yes;
 
@@ -185,34 +185,58 @@ const submitCreateSection = (event)=> {
     return false;
 }
 
-const changePrivacySettings = () => {
+const changePrivacySettings = (event) => {
+    event.preventDefault();
+
     let private_setting_btn = document.getElementById("private_setting_block").children[ITEMS.first];
 
     if(current_privacy_setting){
-        confirm_private_modal.show();
+        confirm_modal_element.querySelector("#modal_message").innerHTML = "Are you sure you want to update it to public?"
+        confirm_modal.show();
 
-        confirm_modal.querySelector("#confirm_button_yes").addEventListener("click", function(){
+        confirm_modal_element.querySelector("#confirm_button_yes").addEventListener("click", function(){
             current_privacy_setting = IS_PRIVATE.no;
-            private_setting_btn.innerHTML = "Set as Public";
+            private_setting_btn.innerHTML = "Set as Private";
 
-            confirm_private_modal.hide();
+            confirm_modal.hide();
         });
     }
     else{
         current_privacy_setting = IS_PRIVATE.yes;
-        private_setting_btn.innerHTML = "Set as Private";
+        private_setting_btn.innerHTML = "Set as Public";
     }
+
+    return false;
 }
 
 const deleteSection = (event) => {
     let delete_section_btn = event.target;
+    let section_element = delete_section_btn.closest("li");
 
     if(delete_section_btn.classList.value === "delete_section"){
-        let section_id = parseInt(event.target.closest("li").getAttribute("id"));
-        let selected_section = sections_list_by_size.find(obj_id => obj_id.id === section_id);
+        confirm_modal_element.querySelector("#modal_message").innerHTML = `Are you sure you want to delete
+           ${section_element.querySelectorAll(".section_title")[ITEMS.first].textContent}
+        section?`;
 
-        sections_list_by_size.splice(sections_list_by_size.map((obj_index) => obj_index.id).indexOf(selected_section.id), 1);
-        renderSections(sections_list_by_size);
+        confirm_modal.show();
+
+        confirm_modal_element.querySelector("#confirm_button_yes").addEventListener("click", function(){
+            let section_id = parseInt(section_element.getAttribute("id"));
+
+            let section_list_new_data = sections_list_by_size.filter((section_item) => {
+                if(section_item.id !== section_id){
+                    return section_item
+                }
+
+                return false;
+            });
+
+            sections_list_by_size = section_list_new_data;
+
+            renderSections(sections_list_by_size);
+
+            confirm_modal.hide();
+        });
     }
 }
 
