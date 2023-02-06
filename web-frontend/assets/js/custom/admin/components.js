@@ -23,15 +23,16 @@ const removeTab = (event) => {
 }
 
 const fetchSelectedTabDetails = (event, component_id, tab_id) => {
-    let selected_tab_item    = event.target.closest("li");
-    let active_tab_item      = selected_tab_item.closest(".tab_list").querySelector(".tab_item.active");
-
-    if(selected_tab_item.closest(".tab_list").querySelectorAll(".tab_item.active").length){
-        active_tab_item.classList.remove("active");
-    }
-    selected_tab_item.classList.add("active");
-
     setTimeout(() => {
+        let selected_tab_item = event.target.closest("li");
+        let active_tab_item   = selected_tab_item.closest(".tab_list").querySelector(".tab_item.active");
+
+        if(selected_tab_item.closest(".tab_list").querySelectorAll(".tab_item.active").length){
+            active_tab_item.classList.remove("active");
+        }
+        
+        selected_tab_item.classList.add("active");
+
         renderRedactorX({ textarea: document.getElementById(tab_id).querySelector(".tab_description_input") });
     }, 380);
 }
@@ -57,7 +58,7 @@ const addTab = (component_item, component_id) => {
 
     tab_pane_clone.querySelector(".update_tab_form").addEventListener("submit", (event) => {
         event.preventDefault();
-        component_item_clone.querySelector(".update_tab_form .title_tab_input").blur();
+        component_item.querySelector(".update_tab_form .title_tab_input").blur();
     });
 
     tab_pane_clone.querySelector(".update_tab_form .title_tab_input").addEventListener("blur", (event) => {
@@ -153,7 +154,6 @@ const addComponentItem = () => {
     });
 
     tab_name.addEventListener("click", (event) => fetchSelectedTabDetails(event, random_component_id, random_tab_id));
-
 
     setTimeout(() => {
         tab_name.click();

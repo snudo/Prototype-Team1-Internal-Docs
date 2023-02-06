@@ -17,8 +17,12 @@ const selectSectionItem = (event) => {
 setTimeout(() => {
     document.getElementById("light_mode").addEventListener("click", (event) => toggleActiveStateTheme(event, is_dark = false));
     document.getElementById("dark_mode").addEventListener("click", (event) => toggleActiveStateTheme(event, is_dark = true));
+    document.addEventListener("click", function(event){
+        (event.target.classList == "mobile_menu_button") ? event.target.closest("nav").classList.toggle("show_mobile_menu") : "";
+    });
 }, 500);
 
 document.querySelectorAll("#section_list li").forEach((section_item) => {
     section_item.addEventListener("click", selectSectionItem);
 });
+
