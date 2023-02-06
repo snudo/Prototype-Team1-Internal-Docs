@@ -294,27 +294,33 @@ $(function() {
 });
 
 /* Script for Invite Documentations modal */
-const listOfValidEmails = [];
+let listOfValidEmails = [];
+let invite_user_modal_element = document.getElementById("invite_user_modal");
+let invite_user_modal =  new bootstrap.Modal(invite_user_modal_element);
 
 document.getElementById("viewers_editors_count").addEventListener("click", () => {
-    let invite_user_modal =  new bootstrap.Modal(document.getElementById("invite_user_modal"));
-
     invite_user_modal.show();
 });
 
 if(is_invite_modal_open){
-    let invite_user_modal =  new bootstrap.Modal(document.getElementById("invite_user_modal"));
-
     invite_user_modal.show();
 }
 
-const inputContainerNode = document.querySelector('.added_email_list');
-
+let inputContainerNode = document.querySelector('.added_email_list');
 EmailsInput(inputContainerNode, {
     limitEmailsToDomain: 'village88',
     validEmailClass: 'valid-email',
 });
 
+invite_user_modal_element.addEventListener('hidden.bs.modal', () => {
+    listOfValidEmails = [];
+
+    inputContainerNode.innerHTML = "";
+    EmailsInput(inputContainerNode, {
+        limitEmailsToDomain: 'village88',
+        validEmailClass: 'valid-email',
+    });
+});
 
 function isValidEmail(email, limitEmailsToDomain) {
     const expression = new RegExp(
@@ -361,13 +367,13 @@ function addEmailToList(emailsContainer, email, options) {
 }
 
 function createTextBox(emailsContainer, options) {
-    const input_li = document.createElement('li');
     const input = document.createElement('input');
     input.classList.add('add_email_input');
     input.setAttribute('name', 'add_email_input');
     input.setAttribute('type', 'text');
     input.setAttribute('placeholder', 'Enter email...');
 
+    const input_li = document.createElement('li');
     input_li.appendChild(input);
 
     /* Create email block in case user press 'Enter' or comma */
@@ -422,4 +428,73 @@ function EmailsInput(selector, options) {
             addEmailToList(selector, email, options);
         },
     };
+}
+
+document.querySelector('.add_email_input').addEventListener('keyup', searchHandler);
+document.querySelector('.filter_email_search').addEventListener('click', useSuggestion);
+
+const all_users_obj = [
+    {profile_pic: "../../assets/images/Image.png", full_name: "Fitz Gerald Villegas", email: "fvillegas@village88.com"},
+    {profile_pic: "../../assets/images/Image.png", full_name: "Jessie De Leon", email: "jdeleon@village88.com"},
+    {profile_pic: "../../assets/images/Image.png", full_name: "Ruelito Ytac", email: "ruelito-ytac@village88.com"},
+    {profile_pic: "../../assets/images/Image.png", full_name: "Stan Bernie Nudo", email: "snudo@village88.com"},
+]
+
+function search(input_string) {
+    const val = input_string.toLowerCase();
+    let results = all_users_obj.filter(user => new RegExp(`^${val}`).test(user.email.toLowerCase()));
+    return results;
+}
+
+function searchHandler(event) {
+    const inputVal = event.currentTarget.value;
+    let results = [];
+
+    if (inputVal.length > 0) {
+        results = search(inputVal);
+    }
+
+    showSuggestions(results);
+}
+
+function useSuggestion(event) {
+    let input = document.querySelector('.add_email_input');
+    let suggestions = document.querySelector('.filter_email_search');
+
+    input.value = event.target.closest('li').getAttribute("data-email");
+    input.focus();
+    input.blur();
+    input.focus();
+    suggestions.innerHTML = '';
+    suggestions.classList.add("hidden");
+}
+
+function showSuggestions(results) {
+    let suggestions = document.querySelector('.filter_email_search');
+    suggestions.innerHTML = '';
+
+    let add_email_block     = document.querySelector(".add_email_block");
+    suggestions.style.cssText = `margin-top: ${add_email_block.querySelector(".added_email_list").offsetHeight}px`;
+
+    if (results.length > 0) {
+        for (i = 0; i < results.length; i++) {
+            let item = results[i];
+            suggestions.innerHTML += `
+                <li data-email="${item.email}">
+                    <img src="${item.profile_pic}" alt="User Profile">
+                    <div class="user_details">
+                        <h3>${item.full_name}</h3>
+                        <a href="#">${item.email}</a>
+                    </div>
+                </li>
+            `;
+        }
+
+        suggestions.classList.remove('hidden');
+    }
+    else {
+        results = [];
+        suggestions.innerHTML = '';
+        suggestions.classList.add("hidden");
+    }
 }
