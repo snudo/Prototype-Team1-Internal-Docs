@@ -74,6 +74,11 @@ const addTab = (component_item, component_id) => {
     });
 
     component_item.querySelector(".tab-content").prepend(tab_pane_clone);
+    
+    /* Focus on the tab name input box when new tab is added */
+    setTimeout(()=>{
+        document.getElementById(random_tab_id).querySelector(".title_tab_input").select();
+    }, 300)
 
     /* EVENTS */
     tab_clone.querySelector(".remove_tab").addEventListener("click", (event) => removeTab(event));
@@ -202,7 +207,10 @@ document.addEventListener("click", toggleComments);
 document.getElementById("add_component").addEventListener("click", addComponentItem);
 document.getElementById("section_title").addEventListener("keyup", updateSectionTitle);
 document.querySelector(".title_block button").addEventListener("click", () => {
-   window.location.href = "/web-frontend/views/admin/component_preview.html";
+    // window.location.href = "/web-frontend/views/admin/component_preview.html";
+
+    // Temporary for User Testing only
+    window.location.href = "/web-frontend/views/user/components.html";
 });
 
 

@@ -30,60 +30,66 @@
             <ul class="breadcrumbs_block">
                 <li><a href="/web-frontend/views/user/docs.html"><span class="breadcrumbs_icon"></span> Documentations</a></li>
                 <li><a href="/web-frontend/views/user/sections.html"><span class="breadcrumbs_icon section_icon"></span> Engineering Guide</a></li>
-                <li><p><span class="breadcrumbs_icon component_icon"></span> Data Usage, Collection, and Processing</p></li>
+                <li><p><span class="breadcrumbs_icon component_icon"></span> The code (formatting, style, tests)</p></li>
             </ul>
 
             <div class="section_details">
                 <div class="title_block">
-                    <h1 id="section_title">Data Usage, Collection, and Processing</h1>
+                    <h1 id="section_title">The code (formatting, style, tests)</h1>
                 </div>
 
-                <p>Dick Plumb had always loved Cups San Fernando City with its rabblesnatching, regurgitated Rivers. It was a place where he felt Happy. He was a wild, understanding, tea drinker with charming lips and sloppy hands. His friends saw him as a late, lovely lawyer. Once, he had even made a cup of tea for an enthusiastic Baby bird. That's the sort of man he was. Dick Plumb had always loved Cups San Fernando City with its rabblesnatching, regurgitated Rivers. It was a place where he felt Happy. He was a wild, understanding, tea drinker with charming lips and sloppy hands. His friends saw him as a late, lovely lawyer. Once, he had even made a cup of tea for an enthusiastic Baby bird. That's the sort of man he was. Dick Plumb had always loved Cups San Fernando City with its rabblesnatching, regurgitated Rivers. It was a place where he felt Happy. He was a wild, understanding, tea drinker with charming lips and sloppy hands. His friends saw him as a late, lovely lawyer. Once, he had even made a cup of tea for an enthusiastic Baby bird. That's the sort of man he was. Dick Plumb had always loved Cups San Fernando City with its rabblesnatching, regurgitated Rivers. It was a place where he felt Happy. He was a wild, understanding, tea drinker with charming lips and sloppy hands. His friends saw him as a late, lovely lawyer. Once, he had even made a cup of tea for an enthusiastic Baby bird. That's the sort of man he was.</p>
+                <p id="section_details">This is what most people think of when they think of guidelines: a document that specifies four-space indents, Allman style braces and that every function have a 10-line Javadoc listing inputs and outputs. 
+                    <br><br>But beyond that, this section needs to describe not only the “allowed languages”, but how they should be written at your company. Note that this might be at odds with how the chosen languages are written elsewhere. For example, Google famously does not use C++ exceptions. Note that If you plan on deviating substantially from the existing cultural norms for your chosen languages, it’s worth reading the Goals section of Google’s guidelines and similarly Titus Winters’ CppCon talk on “The Philosphy of Google’s C++ code”.
+                </p>
             </div>
 
             <div id="component_list">
                 <div class="component_block">
                     <ul class="tab_list nav nav-tabs" role="tablist">
                         <li class="tab_item active nav-item" role="presentation">
-                            <button class="nav-link active" id="nav-assignment-tab" data-bs-toggle="tab" data-bs-target="#assignment" type="button" role="tab" aria-selected="true">Assignment</button>
+                            <button class="nav-link active" id="nav-assignment-tab" data-bs-toggle="tab" data-bs-target="#assignment" type="button" role="tab" aria-selected="true">Coding</button>
                         </li>
                         <li class="tab_item nav-item" role="presentation">
-                            <button class="nav-link" id="nav-collections-tab" data-bs-toggle="tab" data-bs-target="#collections" type="button" role="tab" aria-selected="false">Collections</button>
+                            <button class="nav-link" id="nav-collections-tab" data-bs-toggle="tab" data-bs-target="#collections" type="button" role="tab" aria-selected="false">Services</button>
                         </li>
                         <li class="tab_item nav-item" role="presentation">
-                            <button class="nav-link" id="nav-hny-tab" data-bs-toggle="tab" data-bs-target="#hny" type="button" role="tab" aria-selected="false">Happy New Year</button>
+                            <button class="nav-link" id="nav-hny-tab" data-bs-toggle="tab" data-bs-target="#hny" type="button" role="tab" aria-selected="false">Development</button>
                         </li>
                     </ul>
 
                     <div class="tab-content tab_details">
                         <div class="tab-pane fade show active" id="assignment" role="tabpanel">
-                            <h1>Heading 1 sample</h1>
-                            <p>Sample description data</p>
-                            <p>Dick Plumb had always loved Cups San Fernando City with its rabblesnatching, regurgitated Rivers. It was a place where he felt Happy. He was a wild, understanding, tea drinker with charming lips and sloppy hands. His friends saw him as a late, lovely lawyer. Once, he had even made a cup of tea for an enthusiastic Baby bird. That's the sort of man he was.</p>
+                            <h1>The Code</h1>
+                            <p>This will probably be the largest section of your guidelines. It covers a wide range of topics covering how the code you write interacts with the rest of the environment. If the previous section covered *how* you code, this section covers *what* you code.</p>
+                            <p>From the moment your service starts up, it’s going to need to be need information to configure itself. Standard configuration file locations and formats, as well and guides for naming command line flags are useful. Does your service need to reload its configuration in-place while still running, or a graceful restart while not dropping network connections? Should you aim for graceful-shutdowns or crash-only with recovery on startup?</p>
+                            <img src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" style="max-width:100%" alt="Photo of Routeburn Flats, on the Routeburn Track in New Zealand." />
+                            <br><br>    
+                            <p>Once your service is up and running, how does it communicate with other services? Does it need to contact a directory service? What about service authentication? Does it speak JSON over HTTP(S) or something else? What should the retry strategy be? How does it handle API versioning? And all of these need to be answered for the service as a client and a server.</p>
+                            <p>Finally, how do you report to the rest of the world what’s happening? At the bare minimum, what are the policies around logging and metrics? For logs, what should be logged and where does it go? Are the logs structured for free-form? If using structured logs, what are the naming guidelines for common fields? Do you have different logging verbosity levels? If so, what are they and what should be logged at each level? Metrics again need a common destination and consistent guidelines around what to track and what to name them. How are distributed traces collected?</p>
                         </div>
                         <div class="tab-pane fade" id="collections" role="tabpanel">
-                            <h2>Heading 2 sample</h2>
-                            <p>Dick Plumb had always loved Cups San Fernando City with its rabblesnatching, regurgitated Rivers. It was a place where he felt Happy. He was a wild, understanding, tea drinker with charming lips and sloppy hands. His friends saw him as a late, lovely lawyer. Once, he had even made a cup of tea for an enthusiastic Baby bird. That's the sort of man he was.</p>
-                            <p>Sample description tab 2 data</p>
+                            <h2>The Service</h2>
+                            <p>Finally, how do you report to the rest of the world what’s happening? At the bare minimum, what are the policies around logging and metrics? For logs, what should be logged and where does it go? Are the logs structured for free-form? If using structured logs, what are the naming guidelines for common fields? Do you have different logging verbosity levels? If so, what are they and what should be logged at each level? Metrics again need a common destination and consistent guidelines around what to track and what to name them. How are distributed traces collected?</p>
+                            <p>As this was all basically greenfield and I was on my own at the start. Part of it clarifying what development was like on the Go side of things (also for advocacy purposes — “Come play with our nice tools!”), but at the same time making clear my expectations for code people commited. This mostly covered differences from the development processes that the company had deemed acceptable for the multi-million line Perl codebase.</p>
+                            <p>I spent a lot of time looking for best practices from similar organizations, with rationales if possible so that I could see if their goals matched mine. For example, people often point to Google engineering practices and try to imitate them and apply them to their own organization. But lots of practices that make sense at Google do not make sense in other organizations. You can not just absorb another company’s guidelines wholesale without taking their assumptions about their culture and associated infrastructure. (I might explore this more in another blog post I’m tentatively calling “The parable of glog”.)</p>
                         </div>
                         <div class="tab-pane fade" id="hny" role="tabpanel">
-                            <h3>Heading 3 sample</h3>
-                            <h4>Heading 4 sample</h4>
-                            <p>Dick Plumb had always loved Cups San Fernando City with its rabblesnatching, regurgitated Rivers. It was a place where he felt Happy. He was a wild, understanding, tea drinker with charming lips and sloppy hands. His friends saw him as a late, lovely lawyer. Once, he had even made a cup of tea for an enthusiastic Baby bird. That's the sort of man he was.</p>
-                            <h5>Heading 5 sample</h5>
+                            <h1>The Development Process</h1>
+                            <p>Modern software development has lots of steps between writing code in your editor and having it successfully merged into HEAD. This section will have policies in place for each of them.</p>
+                            <p>This will probably be the largest section of your guidelines. It covers a wide range of topics covering how the code you write interacts with the rest of the environment. If the previous section covered *how* you code, this section covers *what* you code.</p>
                         </div>
                     </div>
 
                     <div class="action_btn">
-                        <button class="next_tab"><span class="prev_tab_icon"></span> Previous Tab</button>
-                        <button class="prev_tab active">Next Tab <span class="next_tab_icon"></span></button>
+                        <button class="prev_tab"><span class="prev_tab_icon"></span> Previous Tab</button>
+                        <button class="next_tab active">Next Tab <span class="next_tab_icon"></span></button>
                     </div>
         
                     <div class="post_block">
                         <form action="#" class="add_post_form" method="post">
                             <label class="input_field user_input_block">
-                                <span>Post</span>
-                                <input type="text" name="post_comment" class="post_comment" placeholder="Enter Post...">
+                                <span>Comments</span>
+                                <input type="text" name="post_comment" class="post_comment" placeholder="Type here...">
                                 <span class="char_count">0/250</span>
                             </label>
                         </form>
@@ -100,7 +106,7 @@
 
             <ul id="section_list">
                 <li><a href="#">The power ranger of source.</a></li>
-                <li class="active"><a href="#">Data Usage, Collection, and Processing</a></li>
+                <li class="active"><a href="#">The code (formatting, style, tests)</a></li>
                 <li><a href="#">Collection of Nikola Tesla</a></li>
                 <li><a href="#">Destructing of JavaScript</a></li>
                 <li><a href="#">Learn the HTML structure</a></li>
@@ -113,7 +119,7 @@
             <li class="post_item message_item">
                 <div class="header">
                     <img src="../../assets/images/Image.png" alt="User Profile">
-                    <span class="user_name">Ruel</span>
+                    <span class="user_name">User</span>
                     ∙
                     <span class="timestamp">1 min ago</span>
 
@@ -125,8 +131,8 @@
                 <p class="user_post_message"></p>
                 <form action="#" class="update_post_form hidden" method="POST">
                     <label class="input_field">
-                        <span>Update Post</span>
-                        <input type="text" class="update_post_input" class="required_input" maxlength="250" placeholder="Update post item...">
+                        <span>Update Comment</span>
+                        <input type="text" class="update_post_input" class="required_input" maxlength="250" placeholder="">
                         <span class="char_count">0/250</span>
                     </label>
                 </form>
@@ -139,7 +145,7 @@
                     <form action="#" class="reply_form" method="post">
                         <label class="input_field">
                             <span>Reply</span>
-                            <input type="text" name="reply_comment" class="reply_comment" maxlength="250" placeholder="Enter Post...">
+                            <input type="text" name="reply_comment" class="reply_comment" maxlength="250" placeholder="Type here...">
                             <span class="char_count">0/250</span>
                         </label>
                     </form>
@@ -149,7 +155,7 @@
             <li class="reply_item message_item">
                 <div class="header">
                     <img src="../../assets/images/Image.png" alt="User Profile">
-                    <span class="user_name">Ruel</span>
+                    <span class="user_name">User</span>
                     ∙
                     <span class="timestamp">1 min ago</span>
 
@@ -161,8 +167,8 @@
                 <p class="user_reply_message"></p>
                 <form action="#" class="update_reply_form hidden" method="POST">
                     <label class="input_field">
-                        <span>Update Post</span>
-                        <input type="text" class="update_reply_input" class="required_input" maxlength="250" placeholder="Update post item...">
+                        <span>Update Reply</span>
+                        <input type="text" class="update_reply_input" class="required_input" maxlength="250" placeholder="">
                         <span class="char_count">0/250</span>
                     </label>
                 </form>

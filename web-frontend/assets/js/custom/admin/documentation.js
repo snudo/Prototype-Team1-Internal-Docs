@@ -458,6 +458,10 @@ preventPageRedirect();
 $(function(){
     $("#document_list_container").sortable();
 
+    $("body").on("click", ".edit_document", function(){
+        window.location.href = "/web-frontend/views/admin/sections.html?size=7"
+    });
+
     /* Onload focus Add Documentation input box */
     document.getElementById("add_documentation_input").focus();
 });
