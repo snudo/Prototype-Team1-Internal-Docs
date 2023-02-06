@@ -407,26 +407,29 @@ const starredDocument = (event)=> {
 const FilterDocuments = (event)=> {
     let documents_list_by_size = documents_array.slice(0, doc_count);
 
-    document.getElementById("documents_category_selection").innerHTML = "Show " + event.target.innerHTML;
+    if(event.target.getAttribute("id") != "filter_dropdown_menu"){
 
-    if(event.target.getAttribute("data-selection") === "data-documents"){
-        filtered_documents = [];
-        renderDocuments(documents_list_by_size);
-    }
-    else if(event.target.getAttribute("data-selection") === "data-starred"){
-        filtered_documents = documents_list_by_size.filter(document => document.is_starred);
-        renderDocuments(filtered_documents);
-    }
-    else if(event.target.getAttribute("data-selection") === "data-private"){
-        filtered_documents = documents_list_by_size.filter(document => document.is_private);
-        renderDocuments(filtered_documents);
-    }
-    else if(event.target.getAttribute("data-selection") === "data-public"){
-        filtered_documents = documents_list_by_size.filter(document => !document.is_private);
-        renderDocuments(filtered_documents);
-    }
-    else if(event.target.getAttribute("data-selection") === "data-archive"){
-        renderDocuments(archived_document);
+        document.getElementById("documents_category_selection").innerHTML = "Show " + event.target.innerHTML;
+
+        if(event.target.getAttribute("data-selection") === "data-documents"){
+            filtered_documents = [];
+            renderDocuments(documents_list_by_size);
+        }
+        else if(event.target.getAttribute("data-selection") === "data-starred"){
+            filtered_documents = documents_list_by_size.filter(document => document.is_starred);
+            renderDocuments(filtered_documents);
+        }
+        else if(event.target.getAttribute("data-selection") === "data-private"){
+            filtered_documents = documents_list_by_size.filter(document => document.is_private);
+            renderDocuments(filtered_documents);
+        }
+        else if(event.target.getAttribute("data-selection") === "data-public"){
+            filtered_documents = documents_list_by_size.filter(document => !document.is_private);
+            renderDocuments(filtered_documents);
+        }
+        else if(event.target.getAttribute("data-selection") === "data-archive"){
+            renderDocuments(archived_document);
+        }
     }
 }
 

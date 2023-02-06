@@ -262,6 +262,19 @@ body{
                 &::after{
                     border-top: 0.3em solid @primary_60;
                 }
+                li{
+                    display: none;
+                }
+            }
+            ul{
+                padding: 0 0 0;
+                li{
+                    &:last-child{
+                        button{
+                            border-bottom: 0;
+                        }
+                    }
+                }
             }
         }
     }
