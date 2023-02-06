@@ -27,14 +27,18 @@
     <div data-include="../admin/templates/navigation.html"></div>
     <div id="section_wrapper">
         <ul>
-            <li class="documentation_link"><a href="/web-frontend/views/user/docs.html">Documentations</a></li>
-            <li class="active section_link"><a href="/web-frontend/views/user/sections.html">Engineering Guide</a></li>
+            <li class="documentation_link"><a href="/web-frontend/views/user/docs.html"><span>Documentations</span></a></li>
+            <li class="active section_link"><a href="/web-frontend/views/user/sections.html"><span>Engineering Guide</span></a></li>
         </ul>
         <div id="section_main_contents">
             <div id="documents_information">
                 <h1 id="documents_title">Engineering Guide</h1>
                 <div id="viewers_editors_count"><span>46 viewers and 3 editors</span></div>
-                <p id="document_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <div id="document_description_container">
+                    <p id="document_description">Engineering Guidelines are a collection of your an organizations’ Best Practices; a distillation of the institutional knowledge around “how things should be done here”. They are a cross between a Mission Statement, Company Values, and an Employee Handbook for your engineering department. You need a rationale so people understand the context in which these decisions have been made. &#10;&#10;.</p>
+                    <p class="description">This allows exceptions when these base assumptions do not hold, or updating the guidelines when the larger context changes. It’s about making decisions once for consistency. It’s about avoiding known issues or edge cases. It’s about choosing a specific technique with known tradeoffs for dealing with problems.</p>
+                    <button id="see_more_button">See More</button>
+                </div>
             </div>
             <div id="sections_block">
                 <form id="search_section_form" action="#" data-is-processing="0">

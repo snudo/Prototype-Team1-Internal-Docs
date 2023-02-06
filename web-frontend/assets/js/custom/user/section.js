@@ -141,5 +141,20 @@ const searchSection = (event) => {
     renderSections(searched_sections);
 }
 
+const showMoreText = (event) => {
+    if(event.target.textContent == "See More"){
+        event.target.closest("#document_description_container").querySelector(".description").classList.add("shown");
+        event.target.textContent = "See Less"
+    }else{
+        event.target.closest("#document_description_container").querySelector(".description").classList.remove("shown");
+        event.target.textContent = "See More"
+    }
+
+    (event.target.textContent == "See More") ? event.target.classList.remove("open") : event.target.classList.add("open");
+}
+
+/*EVENTS*/
+document.getElementById("see_more_button").addEventListener("click", showMoreText)
+
 document.getElementById("search_section_input").addEventListener("keyup", searchSection);
 $(function() {$("#section_list_container").sortable();});
