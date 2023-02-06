@@ -322,6 +322,7 @@ const getDocumentValue = (event) => {
         doc_count++;
 
         renderDocuments(documents_array);
+        preventPageRedirect();
     }
     else{
         add_document_input_field.classList.add("input_error");
@@ -441,13 +442,18 @@ document.getElementById("filter_dropdown_menu").addEventListener("click", Filter
 document.getElementById("create_document_form").addEventListener("submit", getDocumentValue);
 
 /* Prevent redirect to sections page when documentation menu clicked */
-let documents_menus = document.getElementsByClassName("documents_menu");
-for(let i = 0; i < documents_menus.length; i++) {
-    documents_menus[i].addEventListener("click", function(event){
-        event.preventDefault();
-        return false;
-    })
+const preventPageRedirect = ()=> {
+    let documents_menus = document.getElementsByClassName("documents_menu");
+    for(let i = 0; i < documents_menus.length; i++) {
+        documents_menus[i].addEventListener("click", function(event){
+            event.preventDefault();
+            event.stopPropagation();
+            return false;
+        })
+    }
 }
+
+preventPageRedirect();
 
 $(function(){
     $("#document_list_container").sortable();
