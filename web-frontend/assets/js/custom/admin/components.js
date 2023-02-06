@@ -55,9 +55,14 @@ const addTab = (component_item, component_id) => {
     let add_tab_btn = document.querySelector('[data-component-id="'+component_id+'"]').querySelector('.add_tab')
     component_item.querySelector(".tab_list").insertBefore(tab_clone, add_tab_btn);
 
+    tab_pane_clone.querySelector(".update_tab_form").addEventListener("submit", (event) => {
+        event.preventDefault();
+        component_item_clone.querySelector(".update_tab_form .title_tab_input").blur();
+    });
+
     tab_pane_clone.querySelector(".update_tab_form .title_tab_input").addEventListener("blur", (event) => {
         let tab_title_data = event.target.value;
-        
+
         submitUpdateTabDetails({is_title: true, tab_title_data}, component_id, event);
     });
 
@@ -75,18 +80,19 @@ const addTab = (component_item, component_id) => {
 
     $(".tab_list").sortable({
         opacity: 0.8,
-        revert: true,
         forceHelperSize: true,
         forcePlaceholderSize: true,
         placeholder: "draggable-placeholder",
         tolerance: "pointer",
-        axis: "x",
+        items: ".tab_item",
         handle: "button",
         cancel: ""
     });
 }
 
 const submitUpdateTabDetails = (tab_details_data, component_id, event) => {
+    event.preventDefault();
+
     let selected_title = event.target || undefined;
     let { is_title }   = tab_details_data;
     let tab_title      = (is_title) && tab_details_data.tab_title_data;
@@ -101,6 +107,8 @@ const submitUpdateTabDetails = (tab_details_data, component_id, event) => {
         
         component_data[component_id].tabs[active_tab_id].name = tab_title;
     }
+
+    return false;
 }
 
 const addComponentItem = () => {
@@ -132,7 +140,12 @@ const addComponentItem = () => {
     /* EVENTS */
     component_item_clone.querySelector(".add_tab_btn").addEventListener("click", () => addTab(component_item_clone, random_component_id));
     component_item_clone.querySelector(".remove_tab").addEventListener("click", (event) => removeTab(event));
-    component_item_clone.querySelector(".update_tab_form").addEventListener("submit", (event) => submitUpdateTabDetails({is_title: true, tab_title_data}, random_component_id, event));
+
+    component_item_clone.querySelector(".update_tab_form").addEventListener("submit", (event) => {
+        event.preventDefault();
+        component_item_clone.querySelector(".update_tab_form .title_tab_input").blur();
+    });
+
     component_item_clone.querySelector(".update_tab_form .title_tab_input").addEventListener("blur", (event) => {
         let tab_title_data = event.target.value;
         

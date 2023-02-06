@@ -1,5 +1,5 @@
-let confirm_modal = document.getElementById("confirm_private_modal");
-let confirm_private_modal = new bootstrap.Modal(confirm_modal, {});
+let confirm_modal_element = document.getElementById("confirm_modal");
+let confirm_modal = new bootstrap.Modal(confirm_modal_element, {});
 
 let current_privacy_setting = IS_PRIVATE.yes;
 
@@ -191,13 +191,14 @@ const changePrivacySettings = (event) => {
     let private_setting_btn = document.getElementById("private_setting_block").children[ITEMS.first];
 
     if(current_privacy_setting){
-        confirm_private_modal.show();
+        confirm_modal_element.querySelector("#modal_message").innerHTML = "Are you sure you want to update it to public?"
+        confirm_modal.show();
 
-        confirm_modal.querySelector("#confirm_button_yes").addEventListener("click", function(){
+        confirm_modal_element.querySelector("#confirm_button_yes").addEventListener("click", function(){
             current_privacy_setting = IS_PRIVATE.no;
             private_setting_btn.innerHTML = "Set as Private";
 
-            confirm_private_modal.hide();
+            confirm_modal.hide();
         });
     }
     else{
@@ -210,13 +211,24 @@ const changePrivacySettings = (event) => {
 
 const deleteSection = (event) => {
     let delete_section_btn = event.target;
+    let section_element = delete_section_btn.closest("li");
 
     if(delete_section_btn.classList.value === "delete_section"){
-        let section_id = parseInt(event.target.closest("li").getAttribute("id"));
-        let selected_section = sections_list_by_size.find(obj_id => obj_id.id === section_id);
+        confirm_modal_element.querySelector("#modal_message").innerHTML = `Are you sure you want to delete
+           ${section_element.querySelectorAll(".section_title")[ITEMS.first].textContent}
+        section?`;
 
-        sections_list_by_size.splice(sections_list_by_size.map((obj_index) => obj_index.id).indexOf(selected_section.id), 1);
-        renderSections(sections_list_by_size);
+        confirm_modal.show();
+
+        confirm_modal_element.querySelector("#confirm_button_yes").addEventListener("click", function(){
+            let section_id = parseInt(section_element.getAttribute("id"));
+            let selected_section = sections_list_by_size.find(obj_id => obj_id.id === section_id);
+
+            sections_list_by_size.splice(sections_list_by_size.map((obj_index) => obj_index.id).indexOf(selected_section.id), 1);
+            renderSections(sections_list_by_size);
+
+            confirm_modal.hide();
+        });
     }
 }
 
@@ -239,6 +251,27 @@ const duplicateSection = (event) => {
     }
 }
 
+const selectAddedEmailStatus = (event) => {
+    let selected_status = event.target;
+
+    selected_status.closest(".dropdown").querySelector("#added_email_status").textContent = selected_status.textContent;
+    selected_status.closest(".dropdown-menu").querySelector(".dropdown-item.active").classList.remove("active");
+    selected_status.classList.add("active");
+}
+
+const showFilterDropdownEmailData = (event) => {
+    let add_email_block     = event.target.closest(".add_email_block");
+    let filter_email_search = add_email_block.querySelector(".filter_email_search");
+
+    if(event.target.value.length){
+        filter_email_search.classList.remove("hidden");
+        filter_email_search.style.cssText = `margin-top: ${add_email_block.querySelector(".added_email_list").offsetHeight}px`;
+    }
+    else{
+        filter_email_search.classList.add("hidden");
+    }
+}
+
 autoGrowTextArea(document.getElementById("document_description_input"));
 
 document.getElementById("document_description_input").addEventListener("keyup", function(){ autoGrowTextArea(this);});
@@ -246,6 +279,19 @@ document.getElementById("add_section_form").addEventListener("submit", submitCre
 document.getElementById("private_setting_block").addEventListener("click", changePrivacySettings);
 document.addEventListener("click", deleteSection);
 document.addEventListener("click", duplicateSection);
+document.getElementById("viewers_editors_count").addEventListener("click", () => {
+    let example_modal =  new bootstrap.Modal(document.getElementById("invite_user_modal"));
+
+    example_modal.show();
+});
+document.querySelectorAll("#invite_user_modal .dropdown-item").forEach((selected_status) => {
+    selected_status.addEventListener("click", selectAddedEmailStatus);
+});
+document.querySelector(".add_email_input").addEventListener("keyup", showFilterDropdownEmailData);
+
+let example_modal =  new bootstrap.Modal(document.getElementById("invite_user_modal"));
+
+    example_modal.show();
 
 $(function() {
     $("#section_list_container").sortable();
