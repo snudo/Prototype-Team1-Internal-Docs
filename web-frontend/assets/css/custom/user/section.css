@@ -317,13 +317,11 @@
   }
   #section_wrapper > ul li.documentation_link::before {
     background: url("/web-frontend/assets/images/svg_icons_stripe.svg");
-    background-position: -426px -11px;
+    background-position: -1142px -11px;
     content: "";
-    height: 14px;
+    height: 15px;
     margin: 0 12px 0 0;
     min-width: 10px;
-    -webkit-transform: rotate(180deg);
-            transform: rotate(180deg);
     width: 10px;
   }
   #section_wrapper > ul li.documentation_link a span {
