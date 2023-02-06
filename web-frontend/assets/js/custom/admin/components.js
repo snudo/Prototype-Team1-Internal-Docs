@@ -57,7 +57,7 @@ const addTab = (component_item, component_id) => {
 
     tab_pane_clone.querySelector(".update_tab_form").addEventListener("submit", (event) => {
         event.preventDefault();
-        component_item_clone.querySelector(".update_tab_form .title_tab_input").blur();
+        component_item.querySelector(".update_tab_form .title_tab_input").blur();
     });
 
     tab_pane_clone.querySelector(".update_tab_form .title_tab_input").addEventListener("blur", (event) => {
