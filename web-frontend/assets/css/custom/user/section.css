@@ -69,9 +69,6 @@
           justify-content: space-between;
   margin: 23px 0 0;
 }
-#section_wrapper #section_main_contents > div {
-  max-height: 796px;
-}
 #section_wrapper #section_main_contents #documents_information {
   background-color: #FFFFFF;
   border-radius: 8px;
@@ -148,7 +145,7 @@
 }
 #section_wrapper #section_main_contents #sections_block #search_section_form button {
   background: url("/web-frontend/assets/images/svg_icons_stripe.svg");
-  background-position: -602px -7px;
+  background-position: -1077px -5px;
   border: none;
   content: "";
   height: 26px;
