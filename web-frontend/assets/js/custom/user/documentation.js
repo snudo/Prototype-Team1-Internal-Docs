@@ -151,32 +151,35 @@ const searchDocumentation = (event) => {
 }
 
 const FilterDocuments = (event)=> {
-    document.getElementById("search_documentation_input").value = "";
-    document.getElementById("documents_category_selection").innerHTML = "Show " + event.target.innerHTML;
 
-    if(event.target.getAttribute("data-selection") === "data-documents"){
-        current_filter_type = FILTER_TYPE.all;
-        renderDocuments(documents_array);
-    }
-    else if(event.target.getAttribute("data-selection") === "data-starred"){
-        current_filter_type = FILTER_TYPE.starred;
-        filtered_documents = documents_array.filter(document => document.is_starred);
-        renderDocuments(filtered_documents);
-    }
-    else if(event.target.getAttribute("data-selection") === "data-private"){
-        current_filter_type = FILTER_TYPE.private;
-        filtered_documents = documents_array.filter(document => document.is_private);
-        renderDocuments(filtered_documents);
-    }
-    else if(event.target.getAttribute("data-selection") === "data-public"){
-        current_filter_type = FILTER_TYPE.public;
-        filtered_documents = documents_array.filter(document => !document.is_private);
-        renderDocuments(filtered_documents);
-    }
-    else if(event.target.getAttribute("data-selection") === "data-archive"){
-        current_filter_type = FILTER_TYPE.archived;
-        filtered_documents = archived_document;
-        renderDocuments(filtered_documents);
+    if(event.target.getAttribute("id") != "filter_dropdown_menu"){
+        document.getElementById("search_documentation_input").value = "";
+        document.getElementById("documents_category_selection").innerHTML = "Show " + event.target.innerHTML;
+
+        if(event.target.getAttribute("data-selection") === "data-documents"){
+            current_filter_type = FILTER_TYPE.all;
+            renderDocuments(documents_array);
+        }
+        else if(event.target.getAttribute("data-selection") === "data-starred"){
+            current_filter_type = FILTER_TYPE.starred;
+            filtered_documents = documents_array.filter(document => document.is_starred);
+            renderDocuments(filtered_documents);
+        }
+        else if(event.target.getAttribute("data-selection") === "data-private"){
+            current_filter_type = FILTER_TYPE.private;
+            filtered_documents = documents_array.filter(document => document.is_private);
+            renderDocuments(filtered_documents);
+        }
+        else if(event.target.getAttribute("data-selection") === "data-public"){
+            current_filter_type = FILTER_TYPE.public;
+            filtered_documents = documents_array.filter(document => !document.is_private);
+            renderDocuments(filtered_documents);
+        }
+        else if(event.target.getAttribute("data-selection") === "data-archive"){
+            current_filter_type = FILTER_TYPE.archived;
+            filtered_documents = archived_document;
+            renderDocuments(filtered_documents);
+        }
     }
 }
 
