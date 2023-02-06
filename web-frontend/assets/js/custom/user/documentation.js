@@ -188,4 +188,13 @@ document.addEventListener("click", starredDocument);
 document.getElementById("filter_dropdown_menu").addEventListener("click", FilterDocuments);
 document.getElementById("search_documentation_input").addEventListener("keyup", searchDocumentation);
 
+/* Prevent redirect to sections page when documentation menu clicked */
+let documents_menus = document.getElementsByClassName("documents_menu");
+for(let i = 0; i < documents_menus.length; i++) {
+    documents_menus[i].addEventListener("click", function(event){
+        event.preventDefault();
+        return false;
+    })
+}
+
 $(function() {$("#document_list_container").sortable();});
