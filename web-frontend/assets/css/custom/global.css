@@ -7,6 +7,9 @@
 .hidden {
   display: none;
 }
+.disabled {
+  pointer-events: none;
+}
 .input_error {
   border: 1px solid #e97575;
   border-bottom: 2px solid #e97575 !important;
