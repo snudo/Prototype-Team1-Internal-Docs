@@ -23,24 +23,30 @@ const removeTab = (event) => {
 }
 
 const fetchSelectedTabDetails = (event, component_id, tab_id) => {
-    setTimeout(() => {
-        let selected_tab_item = event.target.closest("li");
-        let active_tab_item   = selected_tab_item.closest(".tab_list").querySelector(".tab_item.active");
+    let selected_tab_item = event.target.closest("li");
+    let tab_list          = selected_tab_item.closest(".tab_list");
 
-        if(selected_tab_item.closest(".tab_list").querySelectorAll(".tab_item.active").length){
+    tab_list.classList.add("disabled");
+
+    setTimeout(() => {
+        let active_tab_item   = tab_list.querySelector(".tab_item.active");
+
+
+        if(tab_list.querySelectorAll(".tab_item.active").length){
             active_tab_item.classList.remove("active");
         }
         
+        tab_list.classList.remove("disabled");
         selected_tab_item.classList.add("active");
-
-        renderRedactorX({ textarea: document.getElementById(tab_id).querySelector(".tab_description_input") });
     }, 380);
+
+    renderRedactorX({ textarea: document.getElementById(tab_id).querySelector(".tab_description_input") });
 }
 
 const addTab = (component_item, component_id) => {
     let tab_clone      = document.querySelector("#clone_block ul .tab_item").cloneNode(true);
     let tab_pane_clone = document.querySelector("#clone_block .tab-pane").cloneNode(true);
-    let random_tab_id  = (Math.random() + 1).toString(36).substring(5);
+    let random_tab_id  = "random_id" + (Math.random() + 1).toString(36).substring(5);
     let tab_name       = tab_clone.querySelector(".tab_name");
 
     tab_clone.setAttribute("data-tab-id", random_tab_id);
@@ -110,7 +116,7 @@ const submitUpdateTabDetails = (tab_details_data, component_id, event) => {
 const addComponentItem = () => {
     let component_item_clone = document.querySelector("#clone_block .component_block").cloneNode(true);
     let random_component_id  = (Math.random() + 1).toString(36).substring(7);
-    let random_tab_id        = (Math.random() + 1).toString(36).substring(5);
+    let random_tab_id        = "random_id" + (Math.random() + 1).toString(36).substring(5);
     let tab_name             = component_item_clone.querySelector(".tab_name");
     let tab_item             = component_item_clone.querySelector(".tab_item");
 
