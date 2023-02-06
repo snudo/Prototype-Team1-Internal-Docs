@@ -1,15 +1,35 @@
 <nav>
+    <button class="mobile_menu_button">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
     <a href="/web-frontend/views/admin/login.html"><img src="../../assets/images/logo_small.svg" alt="Internal Doc Logo"></a>
 
-    <div>
+    <div id="user_settings">
         <div id="theme_block" class="set_light_mode">
             <button class="set_theme_btn" id="light_mode"></button>
             <button class="set_theme_btn" id="dark_mode"></button>
         </div>
-
         <div id="user_profile_wrapper">
             <img src="../../assets/images/profile.jpg" alt="User Profile">
             <button id="user_detail">Jannah M.<span class="caret_arrow"></span></button>
         </div>
     </div>
+
+    <div id="mobile_menus">
+        <button class="mobile_menu_button"></button>
+        <div>
+            <img src="../../assets/images/profile.jpg" alt="User Profile">
+            <span>
+                Janna Myers
+                <span>jmyers@village88.com</span>
+            </span>
+        </div>
+        <ul>
+            <li id="home_link"><a href="/">Home</a></li>
+            <li id="settings_link"><a href="/">Settings</a></li>
+        </ul>
+    </div>
+    <div id="overlay" class="mobile_menu_button"></div>
 </nav>

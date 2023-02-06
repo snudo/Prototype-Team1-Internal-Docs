@@ -141,12 +141,11 @@ document.querySelectorAll(".tab_item .nav-link").forEach((item_link) => {
 
 $(".tab_list").sortable({
     opacity: 0.8,
-    revert: true,
     forceHelperSize: true,
     forcePlaceholderSize: true,
     placeholder: "draggable-placeholder",
     tolerance: "pointer",
-    axis: "x",
+    items: ".tab_item",
     handle: "button",
     cancel: ""
 });

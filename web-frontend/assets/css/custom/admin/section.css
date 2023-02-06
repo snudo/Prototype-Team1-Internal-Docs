@@ -292,7 +292,7 @@
   display: block;
   margin: 200px auto;
 }
-#confirm_private_modal .modal-dialog {
+#confirm_modal .modal-dialog {
   background-color: #FFFFFF;
   border-radius: 8px;
   -webkit-box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
@@ -301,19 +301,19 @@
   max-width: 328px;
   padding: 20px 35px 24px;
 }
-#confirm_private_modal .modal-dialog .modal-content {
+#confirm_modal .modal-dialog .modal-content {
   border: none;
 }
-#confirm_private_modal .modal-dialog .modal-content p {
+#confirm_modal .modal-dialog .modal-content p {
   color: #4B626A;
   font: 16px/24px "Roboto-Regular";
   margin: 0 0 17px;
   text-align: center;
 }
-#confirm_private_modal .modal-dialog .modal-content p span {
+#confirm_modal .modal-dialog .modal-content p span {
   font: 16px/24px "Roboto-Regular";
 }
-#confirm_private_modal .modal-dialog .modal-content div {
+#confirm_modal .modal-dialog .modal-content div {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -325,7 +325,7 @@
           justify-content: center;
   width: 100%;
 }
-#confirm_private_modal .modal-dialog .modal-content div button {
+#confirm_modal .modal-dialog .modal-content div button {
   background-color: transparent;
   border: none;
   color: #7D949D;
@@ -333,7 +333,7 @@
   height: 40px;
   width: 80px;
 }
-#confirm_private_modal .modal-dialog .modal-content div button:last-child {
+#confirm_modal .modal-dialog .modal-content div button:last-child {
   background-color: #009EBE;
   border-radius: 8px;
   color: #FFFFFF;
@@ -341,6 +341,229 @@
   -webkit-transition: 0.21s;
   transition: 0.21s;
 }
-#confirm_private_modal .modal-dialog .modal-content div button:last-child:hover {
+#confirm_modal .modal-dialog .modal-content div button:last-child:hover {
   opacity: 0.8;
+}
+#invite_user_modal .modal-dialog {
+  max-width: 611px;
+}
+#invite_user_modal .modal-dialog .modal-content {
+  padding: 24px;
+}
+#invite_user_modal .modal-dialog .modal-content .modal-header {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-bottom: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding-bottom: 2px;
+}
+#invite_user_modal .modal-dialog .modal-content .modal-header h5 {
+  margin: 0;
+}
+#invite_user_modal .modal-dialog .modal-content .modal-body .dropdown {
+  margin-left: 12px;
+}
+#invite_user_modal .modal-dialog .modal-content .modal-body .dropdown #added_email_status,
+#invite_user_modal .modal-dialog .modal-content .modal-body .dropdown #update_status {
+  background: transparent;
+  border: 1px solid #7D949D;
+  color: #7D949D;
+  font: 16px/20px "Roboto-Regular";
+  height: 48px;
+  outline: none;
+  width: 134px;
+}
+#invite_user_modal .modal-dialog .modal-content .modal-body .dropdown #added_email_status::after,
+#invite_user_modal .modal-dialog .modal-content .modal-body .dropdown #update_status::after {
+  margin-left: 15px;
+}
+#invite_user_modal .modal-dialog .modal-content .modal-body .dropdown ul.dropdown-menu li button {
+  background: transparent;
+  color: #7D949D;
+  font: 14px/18px "Roboto-Medium";
+  height: 48px;
+}
+#invite_user_modal .modal-dialog .modal-content .modal-body .dropdown ul.dropdown-menu li button.active {
+  background: #DBF5FF;
+  color: #009EBE;
+}
+#invite_user_modal .modal-dialog .modal-content .modal-body .add_email_block {
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+}
+#invite_user_modal .modal-dialog .modal-content .modal-body .add_email_block .added_email_list {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border: 1px solid #7D949D;
+  border-radius: 8px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  list-style: none;
+  margin: 0;
+  min-height: 48px;
+  padding: 8px;
+  position: relative;
+}
+#invite_user_modal .modal-dialog .modal-content .modal-body .add_email_block .added_email_list li {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border: 1px solid #7D949D;
+  border-radius: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font: 12px/16px "Roboto-Medium";
+  height: 32px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 8px 12px;
+}
+#invite_user_modal .modal-dialog .modal-content .modal-body .add_email_block .added_email_list li:last-child {
+  border: none;
+}
+#invite_user_modal .modal-dialog .modal-content .modal-body .add_email_block .added_email_list li .btn-close {
+  cursor: pointer;
+  height: 0.5em;
+  margin-left: 24px;
+  width: 0.5em;
+}
+#invite_user_modal .modal-dialog .modal-content .modal-body .add_email_block .added_email_list li .add_email_input {
+  border: none;
+  font: 12px/16px "Roboto-Medium";
+  outline: none;
+}
+#invite_user_modal .modal-dialog .modal-content .modal-body .add_email_block .filter_email_search {
+  background: #FFFFFF;
+  border-radius: 8px;
+  -webkit-box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.25);
+          box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.25);
+  left: 0;
+  margin: 0;
+  padding: 0;
+  padding: 10px 24px;
+  position: absolute;
+  width: 387px;
+}
+#invite_user_modal .modal-dialog .modal-content .modal-body .add_email_block .filter_email_search li {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 62px;
+}
+#invite_user_modal .modal-dialog .modal-content .modal-body .add_email_block .filter_email_search li img {
+  height: 40px;
+  width: 40px;
+}
+#invite_user_modal .modal-dialog .modal-content .modal-body .add_email_block .filter_email_search li .user_details {
+  margin-left: 16px;
+}
+#invite_user_modal .modal-dialog .modal-content .modal-body .add_email_block .filter_email_search li .user_details h3 {
+  color: #1D333B;
+  font: 14px/16px "Roboto-Medium";
+  margin: 0;
+}
+#invite_user_modal .modal-dialog .modal-content .modal-body .add_email_block .filter_email_search li .user_details a {
+  color: #009EBE;
+  font: 12px/16px "Roboto-Medium";
+}
+#invite_user_modal .modal-dialog .modal-content .modal-body > h5 {
+  margin-top: 21px;
+}
+#invite_user_modal .modal-dialog .modal-content .modal-body .with_access_list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+#invite_user_modal .modal-dialog .modal-content .modal-body .with_access_list li {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 62px;
+}
+#invite_user_modal .modal-dialog .modal-content .modal-body .with_access_list li img {
+  height: 40px;
+  width: 40px;
+}
+#invite_user_modal .modal-dialog .modal-content .modal-body .with_access_list li .user_details {
+  margin-left: 16px;
+}
+#invite_user_modal .modal-dialog .modal-content .modal-body .with_access_list li .user_details h3 {
+  color: #1D333B;
+  font: 14px/16px "Roboto-Medium";
+  margin: 0;
+}
+#invite_user_modal .modal-dialog .modal-content .modal-body .with_access_list li .user_details a {
+  color: #009EBE;
+  font: 12px/16px "Roboto-Medium";
+}
+#invite_user_modal .modal-dialog .modal-content .modal-body .with_access_list li > h5 {
+  color: #7D949D;
+  font: 16px/24px "Roboto-Regular";
+  margin-left: auto;
+}
+#invite_user_modal .modal-dialog .modal-content .modal-body .with_access_list li .dropdown {
+  margin-left: auto;
+}
+#invite_user_modal .modal-dialog .modal-content .modal-body .with_access_list li .dropdown #update_status {
+  border: none;
+  width: unset;
+}
+#invite_user_modal .modal-dialog .modal-content .modal-footer {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  padding-left: 0;
+}
+#invite_user_modal .modal-dialog .modal-content .modal-footer .copy_link {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: transparent;
+  border: none;
+  color: #009EBE;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font: 12px/16px "Roboto-Medium";
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-top: 21px;
+  padding: 0;
+}
+#invite_user_modal .modal-dialog .modal-content .modal-footer .copy_link .copy_link_icon {
+  background: url("../../../images/link_icon.svg") no-repeat 0px 0px;
+  display: block;
+  height: 18px;
+  margin-right: 8px;
+  width: 18px;
 }
