@@ -453,6 +453,19 @@ const preventPageRedirect = ()=> {
     }
 }
 
+var elements = document.getElementsByClassName("document_cards");
+
+for (var i = 0; i < elements.length; i++) {
+    elements[i].addEventListener('click', (event) => {
+        if(event.target.classList.contains("all_access_count")){
+            window.location.href = "/web-frontend/views/admin/sections.html?size=7&invite_open=true";
+        }
+        else{
+            window.location.href = "/web-frontend/views/admin/sections.html?size=7";
+        }
+    });
+}
+
 preventPageRedirect();
 
 $(function(){

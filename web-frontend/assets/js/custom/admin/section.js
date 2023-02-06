@@ -6,6 +6,7 @@ let current_privacy_setting = IS_PRIVATE.yes;
 /* Get params from URL of current Page */
 let url_obj = new URL((window.location.href).toLowerCase());
 let doc_count = url_obj.searchParams.get("size") || 5;
+let is_invite_modal_open = url_obj.searchParams.get("invite_open") || false;
 
 let sections_array = [
     {
@@ -267,18 +268,6 @@ const selectAddedEmailStatus = (event) => {
     selected_status.classList.add("active");
 }
 
-const showFilterDropdownEmailData = (event) => {
-    let add_email_block     = event.target.closest(".add_email_block");
-    let filter_email_search = add_email_block.querySelector(".filter_email_search");
-
-    if(event.target.value.length){
-        filter_email_search.classList.remove("hidden");
-        filter_email_search.style.cssText = `margin-top: ${add_email_block.querySelector(".added_email_list").offsetHeight}px`;
-    }
-    else{
-        filter_email_search.classList.add("hidden");
-    }
-}
 
 autoGrowTextArea(document.getElementById("document_description_input"));
 
@@ -287,28 +276,225 @@ document.getElementById("add_section_form").addEventListener("submit", submitCre
 document.getElementById("private_setting_block").addEventListener("click", changePrivacySettings);
 document.addEventListener("click", deleteSection);
 document.addEventListener("click", duplicateSection);
-document.getElementById("viewers_editors_count").addEventListener("click", () => {
-    let example_modal =  new bootstrap.Modal(document.getElementById("invite_user_modal"));
-
-    example_modal.show();
-});
 document.querySelectorAll("#invite_user_modal .dropdown-item").forEach((selected_status) => {
     selected_status.addEventListener("click", selectAddedEmailStatus);
 });
-document.querySelector(".add_email_input").addEventListener("keyup", showFilterDropdownEmailData);
 
-let example_modal =  new bootstrap.Modal(document.getElementById("invite_user_modal"));
-
-    example_modal.show();
 
 $(function() {
     $("#section_list_container").sortable();
 
     /* Onload focus Add Sections input box and clear description if no data */
     document.getElementById("add_section_input").focus();
-    
+
     if(doc_count < 1){
         document.getElementById("document_description_input").textContent = "";
         document.querySelector("#viewers_editors_count span").textContent = "0 viewer and 0 editor";
     }
 });
+
+/* Script for Invite Documentations modal */
+let listOfValidEmails = [];
+let invite_user_modal_element = document.getElementById("invite_user_modal");
+let invite_user_modal =  new bootstrap.Modal(invite_user_modal_element);
+
+document.getElementById("viewers_editors_count").addEventListener("click", () => {
+    invite_user_modal.show();
+});
+
+if(is_invite_modal_open){
+    invite_user_modal.show();
+}
+
+let inputContainerNode = document.querySelector('.added_email_list');
+EmailsInput(inputContainerNode, {
+    limitEmailsToDomain: 'village88',
+    validEmailClass: 'valid-email',
+});
+
+invite_user_modal_element.addEventListener('hidden.bs.modal', () => {
+    listOfValidEmails = [];
+
+    inputContainerNode.innerHTML = "";
+    EmailsInput(inputContainerNode, {
+        limitEmailsToDomain: 'village88',
+        validEmailClass: 'valid-email',
+    });
+});
+
+function isValidEmail(email, limitEmailsToDomain) {
+    const expression = new RegExp(
+        '^([a-zA-Z0-9_\\-\\.]+)@' +
+        (limitEmailsToDomain || '([a-zA-Z0-9_\\-\\.]+)') +
+        '\\.([a-zA-Z]{2,5})$'
+    );
+
+    return expression.test(email);
+}
+
+function getEmailsList() {
+    return listOfValidEmails;
+}
+
+function addEmailToList(emailsContainer, email, options) {
+    email = email.trim();
+    if (!email || listOfValidEmails.indexOf(email) > -1 || !isValidEmail(email, options.limitEmailsToDomain)) return;
+
+    const emailBlock = document.createElement('li');
+    emailBlock.innerText = email;
+
+    listOfValidEmails.push(email);
+
+    /* Stop propagation to enable selection email block */
+    emailBlock.addEventListener('click', function (event) {
+        event.stopPropagation();
+    });
+
+    /* Add remove button */
+    const removeBtn = document.createElement('button');
+    removeBtn.classList.add('btn-close');
+
+    removeBtn.addEventListener('click', function () {
+        if (this.parentElement.className.indexOf('invalid-email') === -1) {
+            listOfValidEmails.splice(parseInt(this.parentElement.getAttribute('data-value')), 1);
+        }
+
+        this.parentElement.parentNode.removeChild(this.parentElement);
+    });
+    emailBlock.appendChild(removeBtn);
+
+    emailsContainer.insertBefore(emailBlock, emailsContainer.firstChild);
+}
+
+function createTextBox(emailsContainer, options) {
+    const input = document.createElement('input');
+    input.classList.add('add_email_input');
+    input.setAttribute('name', 'add_email_input');
+    input.setAttribute('type', 'text');
+    input.setAttribute('placeholder', 'Enter email...');
+
+    const input_li = document.createElement('li');
+    input_li.appendChild(input);
+
+    /* Create email block in case user press 'Enter' or comma */
+    input.addEventListener('keypress', function (e) {
+        if (e.key === ',' || e.key === 'Enter') {
+            if (e.target.value !== '') {
+                addEmailToList(emailsContainer, e.target.value, options);
+            }
+
+            e.preventDefault();
+            e.target.value = '';
+        }
+    });
+
+    /* Create email block in case user lose focus */
+    input.addEventListener('blur', function (e) {
+        if (e.target.value !== '') {
+            addEmailToList(emailsContainer, e.target.value, options);
+            e.target.value = '';
+        }
+    });
+
+    /* Listen to the paste event to split and show emails blocks */
+    input.addEventListener('paste', function (e) {
+        setTimeout(function () {
+            const pastedContent = e.target.value.split(',');
+
+            pastedContent.forEach(function (element) {
+                addEmailToList(emailsContainer, element, options);
+                e.target.value = '';
+            });
+        }, 50);
+    });
+
+    return input_li;
+}
+
+function EmailsInput(selector, options) {
+    if (!options) options = {};
+
+    const input = createTextBox(selector, options);
+
+    selector.addEventListener('click', function () {
+        input.focus();
+    });
+
+    selector.appendChild(input);
+
+    return {
+        getEmailsList,
+        addEmail: function (email) {
+            addEmailToList(selector, email, options);
+        },
+    };
+}
+
+document.querySelector('.add_email_input').addEventListener('keyup', searchHandler);
+document.querySelector('.filter_email_search').addEventListener('click', useSuggestion);
+
+const all_users_obj = [
+    {profile_pic: "../../assets/images/Image.png", full_name: "Fitz Gerald Villegas", email: "fvillegas@village88.com"},
+    {profile_pic: "../../assets/images/Image.png", full_name: "Jessie De Leon", email: "jdeleon@village88.com"},
+    {profile_pic: "../../assets/images/Image.png", full_name: "Ruelito Ytac", email: "ruelito-ytac@village88.com"},
+    {profile_pic: "../../assets/images/Image.png", full_name: "Stan Bernie Nudo", email: "snudo@village88.com"},
+]
+
+function search(input_string) {
+    const val = input_string.toLowerCase();
+    let results = all_users_obj.filter(user => new RegExp(`^${val}`).test(user.email.toLowerCase()));
+    return results;
+}
+
+function searchHandler(event) {
+    const inputVal = event.currentTarget.value;
+    let results = [];
+
+    if (inputVal.length > 0) {
+        results = search(inputVal);
+    }
+
+    showSuggestions(results);
+}
+
+function useSuggestion(event) {
+    let input = document.querySelector('.add_email_input');
+    let suggestions = document.querySelector('.filter_email_search');
+
+    input.value = event.target.closest('li').getAttribute("data-email");
+    input.focus();
+    input.blur();
+    input.focus();
+    suggestions.innerHTML = '';
+    suggestions.classList.add("hidden");
+}
+
+function showSuggestions(results) {
+    let suggestions = document.querySelector('.filter_email_search');
+    suggestions.innerHTML = '';
+
+    let add_email_block     = document.querySelector(".add_email_block");
+    suggestions.style.cssText = `margin-top: ${add_email_block.querySelector(".added_email_list").offsetHeight}px`;
+
+    if (results.length > 0) {
+        for (i = 0; i < results.length; i++) {
+            let item = results[i];
+            suggestions.innerHTML += `
+                <li data-email="${item.email}">
+                    <img src="${item.profile_pic}" alt="User Profile">
+                    <div class="user_details">
+                        <h3>${item.full_name}</h3>
+                        <a href="#">${item.email}</a>
+                    </div>
+                </li>
+            `;
+        }
+
+        suggestions.classList.remove('hidden');
+    }
+    else {
+        results = [];
+        suggestions.innerHTML = '';
+        suggestions.classList.add("hidden");
+    }
+}
