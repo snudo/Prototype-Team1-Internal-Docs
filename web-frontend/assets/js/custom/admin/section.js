@@ -223,9 +223,17 @@ const deleteSection = (event) => {
 
         confirm_modal_element.querySelector("#confirm_button_yes").addEventListener("click", function(){
             let section_id = parseInt(section_element.getAttribute("id"));
-            let selected_section = sections_list_by_size.find(obj_id => obj_id.id === section_id);
 
-            sections_list_by_size.splice(sections_list_by_size.map((obj_index) => obj_index.id).indexOf(selected_section.id), 1);
+            let section_list_new_data = sections_list_by_size.filter((section_item) => {
+                if(section_item.id !== section_id){
+                    return section_item
+                }
+
+                return false;
+            });
+
+            sections_list_by_size = section_list_new_data;
+
             renderSections(sections_list_by_size);
 
             confirm_modal.hide();
