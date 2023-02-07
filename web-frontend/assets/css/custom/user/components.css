@@ -441,6 +441,7 @@
   border: none;
   display: block;
   height: 18px;
+  outline: none;
   width: 18px;
 }
 .comments_block_mobile .post_message_list .post_item .message_details {
