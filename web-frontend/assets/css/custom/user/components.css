@@ -26,6 +26,7 @@
   -webkit-transition: all 0.21s;
   transition: all 0.21s;
   width: 42px;
+  z-index: 20;
 }
 .toggle_right_panel:hover {
   background-color: #009EBE;
@@ -305,7 +306,7 @@
     background-color: #14B8A6;
   }
   #component_wrapper #left_panel #component_list_mobile .component_block .carousel-item {
-    padding: 25px 25px 90px;
+    padding: 25px 25px 60px;
     -webkit-transition: 0.25s ease-in-out;
     transition: 0.25s ease-in-out;
   }
@@ -347,6 +348,16 @@
   #component_wrapper #left_panel #component_list_mobile .component_block .carousel-item .tab_details {
     padding: 0;
   }
+  #component_wrapper #left_panel #component_list_mobile .component_block .carousel-item .show_comments_mobile {
+    background: transparent;
+    border: none;
+    border-top: 1px solid #B3CAD4;
+    color: #14B8A6;
+    font: 14px/20px "Roboto-Regular";
+    padding: 20px 0 0 0;
+    text-align: right;
+    width: 100%;
+  }
   #component_wrapper #left_panel #component_list_mobile .component_block.is_hide {
     border-radius: 8px;
     height: 62px;
@@ -371,7 +382,6 @@
   position: fixed;
   top: 64px;
   width: 100%;
-  z-index: 10;
 }
 .comments_block_mobile .handle_hide_btn {
   -webkit-box-align: center;
