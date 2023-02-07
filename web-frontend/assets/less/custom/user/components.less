@@ -106,6 +106,7 @@
     top: 291px;
     transition: all .21s;
     width: 42px;
+    z-index: 20;
     &:hover{
         background-color: @primary_60;
     }
@@ -430,7 +431,7 @@
                     }
 
                     .carousel-item{
-                        padding: 25px 25px 90px;
+                        padding: 25px 25px 60px;
                         transition: .25s ease-in-out;
 
                         .header{
@@ -465,6 +466,17 @@
 
                         .tab_details{
                             padding: 0;
+                        }
+
+                        .show_comments_mobile{
+                            background: transparent;
+                            border: none;
+                            border-top: 1px solid @secondary_80;
+                            color: @teal_500;
+                            font: 14px/20px @font_regular;
+                            padding: 20px 0 0 0;
+                            text-align: right;
+                            width: 100%;
                         }
                     }
 
@@ -503,7 +515,6 @@
     position: fixed;
     top: 64px;
     width: 100%;
-    z-index: 10;
 
     .handle_hide_btn{
         align-items: center;

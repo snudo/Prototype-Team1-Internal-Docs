@@ -123,7 +123,7 @@ const submitAddPost = (event) => {
     
         document.querySelector("#component_list .post_list").prepend(post_item_clone);
         post_message_form.reset();
-        post_message_form.querySelector(".char_count").textContent = "0/250"
+        post_message_form.querySelector(".char_count").textContent = "0/250";  
     }
 
     let reply_form = post_item_clone.querySelector(".reply_form");
@@ -215,7 +215,14 @@ document.querySelectorAll(".component_block .tab_title").forEach(tab_item => {
 });
 
 document.querySelector(".see_more_btn").addEventListener("click", showSectionDetails);
+document.querySelectorAll(".show_comments_mobile").forEach((show_item) => {
+    show_item.addEventListener("click", () => {
+        document.querySelector(".comments_block_mobile").classList.remove("hidden");
+    });
+});
 
 $(function(){
     $("body").on("click", ".prev_tab, .next_tab", navigateTab);
-})
+});
+
+Drog.on(document.querySelector(".comments_block_mobile"));
