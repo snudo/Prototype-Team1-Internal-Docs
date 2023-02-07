@@ -146,7 +146,25 @@ const showComponentsDetails = (event) => {
     document.querySelectorAll(".component_block").forEach(component_item => {
         component_item.classList.add("is_hide");
     })
-    event.target.closest(".component_block").classList.remove("is_hide")
+    event.target.closest(".component_block").classList.remove("is_hide");
+}
+
+function navigateTab(){
+    let this_btn = $(this);
+    let active_tab_btn = this_btn.closest(".component_block").find(".tab_item.active");
+
+    /* Next Tab */
+    if(this_btn.hasClass("next_tab")){
+        active_tab_btn.next().children().click();
+        (this_btn.closest(".component_block").find(".tab_item.active").next().children().length == 0) ? this_btn.removeClass("active") : this_btn.addClass("active");
+        (this_btn.closest(".component_block").find(".tab_item.active").prev().children().length == 0) ? this_btn.siblings(".prev_tab").removeClass("active") : this_btn.siblings(".prev_tab").addClass("active");
+    }
+    /* Previous Tab */
+    else{
+        active_tab_btn.prev().children().click();
+        (this_btn.closest(".component_block").find(".tab_item.active").prev().children().length == 0) ? this_btn.removeClass("active") : this_btn.addClass("active");
+        (this_btn.closest(".component_block").find(".tab_item.active").next().children().length == 0) ? this_btn.siblings(".next_tab").removeClass("active") : this_btn.siblings(".next_tab").addClass("active");
+    }
 }
 
 /* EVENTS */
@@ -179,3 +197,6 @@ document.querySelectorAll(".component_block .tab_title").forEach(tab_item => {
 
 document.querySelector(".see_more_btn").addEventListener("click", showSectionDetails);
 
+$(function(){
+    $("body").on("click", ".prev_tab, .next_tab", navigateTab);
+})
