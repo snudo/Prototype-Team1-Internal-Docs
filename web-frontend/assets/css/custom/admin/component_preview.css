@@ -36,6 +36,28 @@ label.input_field input[type=text] {
   margin: 0 auto 20px;
   width: 1045px;
 }
+#component_wrapper .tab_details {
+  background: #FFFFFF;
+  padding: 24px;
+}
+#component_wrapper .tab_details h1 {
+  color: #1D333B;
+  font: 22px/28px "Roboto-Medium";
+}
+#component_wrapper .tab_details h3,
+#component_wrapper .tab_details h4,
+#component_wrapper .tab_details h5 {
+  color: #7D949D;
+  font: 22px/28px "Roboto-Regular";
+}
+#component_wrapper .tab_details h2 {
+  color: #1D333B;
+  font: 22px/28px "Roboto-Medium";
+}
+#component_wrapper .tab_details p {
+  color: #4B626A;
+  font: 14px/20px "Roboto-Regular";
+}
 #component_wrapper #left_panel {
   width: 812px;
 }
@@ -181,28 +203,6 @@ label.input_field input[type=text] {
   background-color: transparent;
   border: none;
   color: #14B8A6;
-}
-#component_wrapper #left_panel #component_list .component_block .tab_details {
-  background: #FFFFFF;
-  padding: 24px;
-}
-#component_wrapper #left_panel #component_list .component_block .tab_details h1 {
-  color: #1D333B;
-  font: 22px/28px "Roboto-Medium";
-}
-#component_wrapper #left_panel #component_list .component_block .tab_details h3,
-#component_wrapper #left_panel #component_list .component_block .tab_details h4,
-#component_wrapper #left_panel #component_list .component_block .tab_details h5 {
-  color: #7D949D;
-  font: 22px/28px "Roboto-Regular";
-}
-#component_wrapper #left_panel #component_list .component_block .tab_details h2 {
-  color: #1D333B;
-  font: 22px/28px "Roboto-Medium";
-}
-#component_wrapper #left_panel #component_list .component_block .tab_details p {
-  color: #4B626A;
-  font: 14px/20px "Roboto-Regular";
 }
 #component_wrapper #left_panel #component_list .component_block .action_btn {
   -webkit-box-align: center;
