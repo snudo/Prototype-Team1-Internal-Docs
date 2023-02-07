@@ -1,3 +1,5 @@
+var confirm_modal = new bootstrap.Modal(document.getElementById("delete_post_modal"), {});
+
 /* CALLBACK FUNCTIONS */
 const updateMessageCount = (event, message_form) => {
     event.target.maxLength = "249";
@@ -16,9 +18,17 @@ const removeItemData = (event) => {
     let selected_item = event.target;
     let message_item  = selected_item.closest(".post_item");
     let reply_count   = message_item.querySelectorAll(".reply_list li").length - 1;
+    let post_type     = (selected_item.closest("ul").getAttribute("class") == "post_list") ? "post" : "reply" ;
 
-    message_item.querySelector(".show_reply_btn").innerHTML = `<span class="caret_arrow"></span> ${ reply_count } ${ (reply_count > 1) ? "Replies" : "Reply" }`;
-    selected_item.closest("li").remove();
+    confirm_modal._element.querySelector("#post_type").textContent = post_type;
+
+    confirm_modal.show(); 
+
+    document.getElementById("confirm_button_yes").addEventListener("click", function(){
+        selected_item.closest("li").remove();
+        message_item.querySelector(".show_reply_btn").innerHTML = `<span class="caret_arrow"></span> ${ reply_count } ${ (reply_count > 1) ? "Replies" : "Reply" }`;
+        confirm_modal.hide();
+    });
 }
 
 const updateItemData = (event) => {
@@ -127,6 +137,36 @@ const submitAddPost = (event) => {
     post_item_clone.querySelector(".show_reply_btn").addEventListener("click", toggleShowReply);
 }
 
+const showSectionDetails = (event) => {
+    event.target.classList.toggle("is_show");
+    event.target.closest(".section_details").querySelector("p").classList.toggle("is_hide");
+}
+
+const showComponentsDetails = (event) => {
+    document.querySelectorAll(".component_block").forEach(component_item => {
+        component_item.classList.add("is_hide");
+    })
+    event.target.closest(".component_block").classList.remove("is_hide");
+}
+
+function navigateTab(){
+    let this_btn = $(this);
+    let active_tab_btn = this_btn.closest(".component_block").find(".tab_item.active");
+
+    /* Next Tab */
+    if(this_btn.hasClass("next_tab")){
+        active_tab_btn.next().children().click();
+        (this_btn.closest(".component_block").find(".tab_item.active").next().children().length == 0) ? this_btn.removeClass("active") : this_btn.addClass("active");
+        (this_btn.closest(".component_block").find(".tab_item.active").prev().children().length == 0) ? this_btn.siblings(".prev_tab").removeClass("active") : this_btn.siblings(".prev_tab").addClass("active");
+    }
+    /* Previous Tab */
+    else{
+        active_tab_btn.prev().children().click();
+        (this_btn.closest(".component_block").find(".tab_item.active").prev().children().length == 0) ? this_btn.removeClass("active") : this_btn.addClass("active");
+        (this_btn.closest(".component_block").find(".tab_item.active").next().children().length == 0) ? this_btn.siblings(".next_tab").removeClass("active") : this_btn.siblings(".next_tab").addClass("active");
+    }
+}
+
 /* EVENTS */
 document.querySelectorAll(".add_post_form").forEach((post_form) => {
     post_form.addEventListener("submit", submitAddPost);
@@ -135,6 +175,28 @@ document.querySelectorAll(".add_post_form").forEach((post_form) => {
     });
 });
 
+document.addEventListener("click", function(event){
+    (event.target.classList == "toggle_right_panel") ? document.getElementById("right_panel").classList.toggle("show_right_panel") : "";
+    (event.target.classList == "toggle_right_panel") ? document.getElementById("overlay").classList.toggle("show_overlay") : "";
+});
+
+document.addEventListener("click", function(event){
+    (event.target.id == "overlay") ? event.target.classList.remove("show_overlay") : "";
+    (event.target.id == "overlay") ? document.getElementById("right_panel").classList.toggle("show_right_panel") : "";
+});
+
+
+
 document.querySelectorAll(".tab_item .nav-link").forEach((item_link) => {
     item_link.addEventListener("click", selectActiveTab);
 });
+
+document.querySelectorAll(".component_block .tab_title").forEach(tab_item => {
+    tab_item.addEventListener("click", showComponentsDetails);
+});
+
+document.querySelector(".see_more_btn").addEventListener("click", showSectionDetails);
+
+$(function(){
+    $("body").on("click", ".prev_tab, .next_tab", navigateTab);
+})
