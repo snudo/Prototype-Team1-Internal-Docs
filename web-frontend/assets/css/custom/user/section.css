@@ -28,9 +28,11 @@
   margin-right: 11px;
 }
 #section_wrapper > ul li a {
+  text-decoration: none;
+}
+#section_wrapper > ul li a span {
   font: 14px/20px "Roboto-Medium";
   color: #009EBE;
-  text-decoration: none;
 }
 #section_wrapper > ul li.documentation_link::before {
   background: url("/web-frontend/assets/images/svg_icons_stripe.svg");
@@ -57,7 +59,7 @@
 #section_wrapper > ul li:last-child::after {
   display: none;
 }
-#section_wrapper > ul li.active a {
+#section_wrapper > ul li.active a span {
   color: #7D949D;
 }
 #section_wrapper #section_main_contents {
@@ -68,9 +70,6 @@
       -ms-flex-pack: justify;
           justify-content: space-between;
   margin: 23px 0 0;
-}
-#section_wrapper #section_main_contents > div {
-  max-height: 796px;
 }
 #section_wrapper #section_main_contents #documents_information {
   background-color: #FFFFFF;
@@ -107,15 +106,41 @@
   color: #009EBE;
   font: 12px/16px "Roboto-Medium";
 }
-#section_wrapper #section_main_contents #documents_information p:first-of-type {
+#section_wrapper #section_main_contents #documents_information #document_description_container p:first-of-type {
   margin: 0 0 25px;
 }
-#section_wrapper #section_main_contents #documents_information p,
-#section_wrapper #section_main_contents #documents_information textarea {
+#section_wrapper #section_main_contents #documents_information #document_description_container p,
+#section_wrapper #section_main_contents #documents_information #document_description_container textarea {
   color: #4B626A;
   font: 16px/24px "Roboto-Regular";
   margin: 0 0 0;
   outline: none;
+}
+#section_wrapper #section_main_contents #documents_information #document_description_container #see_more_button {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: transparent;
+  border: none;
+  color: #009EBE;
+  display: none;
+  font: 12px/16px "Roboto-Medium";
+  margin: 11px auto 0;
+  text-decoration: none;
+}
+#section_wrapper #section_main_contents #documents_information #document_description_container #see_more_button.open::after {
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+#section_wrapper #section_main_contents #documents_information #document_description_container #see_more_button::after {
+  background: url("/web-frontend/assets/images/svg_icons_stripe.svg");
+  background-position: -1118px -15px;
+  content: "";
+  height: 5px;
+  margin-left: 5px;
+  -webkit-transition: all 0.21s;
+  transition: all 0.21s;
+  width: 9px;
 }
 #section_wrapper #section_main_contents #sections_block {
   background-color: #FFFFFF;
@@ -148,7 +173,7 @@
 }
 #section_wrapper #section_main_contents #sections_block #search_section_form button {
   background: url("/web-frontend/assets/images/svg_icons_stripe.svg");
-  background-position: -602px -7px;
+  background-position: -1077px -5px;
   border: none;
   content: "";
   height: 26px;
@@ -203,6 +228,7 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  min-width: 44px;
   width: 44px;
 }
 #section_wrapper #section_main_contents #sections_block ul li a div:first-child::before {
@@ -213,7 +239,7 @@
   width: 13px;
 }
 #section_wrapper #section_main_contents #sections_block ul li a div:last-child {
-  padding-left: 26px;
+  padding: 0 26px;
 }
 #section_wrapper #section_main_contents #sections_block ul li a div p {
   color: #7D949D;
@@ -237,6 +263,155 @@
 #section_wrapper #section_main_contents #sections_block #no_section_data_logo {
   display: block;
   margin: 200px auto;
+}
+@media only screen and (max-width: 1120px) {
+  #section_wrapper {
+    max-width: 100%;
+    padding: 0 35px;
+    width: 100%;
+  }
+  #section_wrapper #section_main_contents #documents_information {
+    margin-right: 32px;
+  }
+  #section_wrapper #section_main_contents #sections_block {
+    width: 67%;
+  }
+}
+@media only screen and (max-width: 980px) {
+  #section_wrapper #section_main_contents #documents_information {
+    width: 280px;
+  }
+  #section_wrapper #section_main_contents #sections_block {
+    width: 70%;
+  }
+}
+@media only screen and (max-width: 768px) {
+  #section_wrapper {
+    padding: 0 25px 25px;
+  }
+  #section_wrapper #section_main_contents {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  #section_wrapper #section_main_contents #documents_information {
+    margin-right: 0;
+    margin-bottom: 32px;
+    width: 100%;
+  }
+  #section_wrapper #section_main_contents #documents_information,
+  #section_wrapper #section_main_contents #sections_block {
+    width: 100%;
+  }
+}
+@media only screen and (max-width: 480px) {
+  #section_wrapper {
+    margin: 12px auto 0;
+    padding: 0 25px 18px;
+  }
+  #section_wrapper > ul li a span {
+    font: 14px/20px "Roboto-Medium";
+  }
+  #section_wrapper > ul li.documentation_link::before {
+    background: url("/web-frontend/assets/images/svg_icons_stripe.svg");
+    background-position: -1142px -11px;
+    content: "";
+    height: 15px;
+    margin: 0 12px 0 0;
+    min-width: 10px;
+    width: 10px;
+  }
+  #section_wrapper > ul li.documentation_link a span {
+    display: none;
+  }
+  #section_wrapper > ul li.documentation_link a::after {
+    background: none;
+    color: #98AFB8;
+    content: "Go Back" !important;
+    display: block;
+    font: 14px/20px "Roboto-Medium";
+    height: auto;
+    margin: 0 0 0 0;
+    width: 100%;
+  }
+  #section_wrapper > ul li::after {
+    display: none;
+  }
+  #section_wrapper > ul li::after {
+    display: none;
+  }
+  #section_wrapper > ul li:last-child {
+    display: none;
+  }
+  #section_wrapper #section_main_contents {
+    margin: 12px 0 0;
+  }
+  #section_wrapper #section_main_contents #documents_information {
+    margin-bottom: 12px;
+    padding: 22px 21px 11px;
+  }
+  #section_wrapper #section_main_contents #documents_information #documents_title {
+    font: 16px/24px "Roboto-Medium";
+    margin-bottom: 10px;
+  }
+  #section_wrapper #section_main_contents #documents_information #viewers_editors_count {
+    display: none;
+  }
+  #section_wrapper #section_main_contents #documents_information #document_description_container p:first-of-type {
+    margin: 0 0 13px;
+  }
+  #section_wrapper #section_main_contents #documents_information #document_description_container p {
+    font: 12px/16px "Roboto-Regular";
+  }
+  #section_wrapper #section_main_contents #documents_information #document_description_container .shown {
+    display: block !important;
+  }
+  #section_wrapper #section_main_contents #documents_information #document_description_container .description {
+    display: none;
+  }
+  #section_wrapper #section_main_contents #documents_information #document_description_container #see_more_button {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  #section_wrapper #section_main_contents #sections_block {
+    background-color: transparent;
+    padding: 0;
+  }
+  #section_wrapper #section_main_contents #sections_block #search_section_form {
+    display: none;
+  }
+  #section_wrapper #section_main_contents #sections_block ul li {
+    border-radius: 0 8px 8px 0;
+    height: 92px;
+  }
+  #section_wrapper #section_main_contents #sections_block ul li a div:first-child {
+    background-color: #99F6E4;
+    border-radius: 0;
+    min-width: 8px;
+    width: 8px;
+  }
+  #section_wrapper #section_main_contents #sections_block ul li a div:first-child::before {
+    display: none;
+  }
+  #section_wrapper #section_main_contents #sections_block ul li a div h3 span {
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    display: -webkit-box;
+    font: 12px/16px "Roboto-Medium";
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-right: 0;
+  }
+  #section_wrapper #section_main_contents #sections_block ul li a div p {
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    display: -webkit-box;
+    font: 12px/16px "Roboto-Medium";
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }
 #confirm_private_modal .modal-dialog {
   background-color: #FFFFFF;
