@@ -19,16 +19,16 @@
     background: url("/web-frontend/assets/images/svg_icons_stripe.svg") no-repeat; 
     background-color: rgba(0, 158, 190, 0.5);
     background-position: -1159px 3px;
+    border: none;
     border-radius: 8px 0 0 8px;
     display: none;
-    border: none;
     height: 42px;
     outline: none;
     position: fixed;
     right: 0;
     top: 291px;
-    width: 42px;
     transition: all .21s;
+    width: 42px;
     &:hover{
         background-color: @primary_60;
     }
@@ -619,14 +619,15 @@
             background: @primary98;
             border-radius: 0px 0px 16px 0px;
             display: block;
-            padding: 64px 23px;
+            padding: 24px 23px;
             position: fixed;
             right: 0;
             top: 0; 
             transform: translateX(250px);
             transition: .21s;
             width: 246px;
-            z-index: 3;
+            z-index: 99;
+
             &.show_right_panel{
                 transform: translateX(0px);
             }
@@ -677,9 +678,9 @@
                     }
                     a{
                         -webkit-box-orient: vertical;
-                        -webkit-line-clamp: 1;
                         display: -webkit-box;
                         font: 14px/20px @font_regular;
+                        -webkit-line-clamp: 1;
                         overflow: hidden;
                         text-overflow: ellipsis;
                     }
