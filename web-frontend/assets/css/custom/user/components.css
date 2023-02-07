@@ -11,6 +11,74 @@
   opacity: 1 !important;
   pointer-events: unset !important;
 }
+.popover {
+  border: none;
+  border-radius: 8px;
+  border-radius: unset;
+  width: 200px;
+}
+.popover .popover-body {
+  border: none;
+  border-radius: 8px;
+  -webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3), 0px 2px 6px 2px rgba(0, 0, 0, 0.15);
+          box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3), 0px 2px 6px 2px rgba(0, 0, 0, 0.15);
+  padding: 0;
+}
+.popover .popover-body ul {
+  border-radius: 8px;
+  list-style: none;
+  margin: 0 0 0;
+  padding: 7px 0;
+}
+.popover .popover-body ul li {
+  width: 100%;
+}
+.popover .popover-body ul li button,
+.popover .popover-body ul li div {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: transparent;
+  border: none;
+  color: #7D949D;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font: 14px/20px "Roboto-Medium";
+  padding: 15px;
+  width: 100%;
+}
+.popover .popover-body ul li button::before,
+.popover .popover-body ul li div::before {
+  content: "";
+  height: 22px;
+  margin-right: 14px;
+  width: 20px;
+}
+.popover .popover-body ul li:first-child button::before {
+  background: url("/web-frontend/assets/images/comment_thread_mobile_icons.svg") no-repeat;
+  background-position: -87px 0px;
+  content: "";
+}
+.popover .popover-body ul li:nth-child(2) button::before {
+  background: url("/web-frontend/assets/images/comment_thread_mobile_icons.svg") no-repeat;
+  background-position: -120px 0px;
+  content: "";
+}
+.popover .popover-body ul li:hover {
+  background-color: #F0FDFA;
+}
+.popover .popover-body ul li:hover button,
+.popover .popover-body ul li:hover label {
+  color: #14B8A6;
+}
+.popover .popover-body ul li:hover:first-child button::before {
+  background-position: 2px 0;
+}
+.popover .popover-body ul li:hover:nth-child(2) button::before {
+  background-position: -31px 0px;
+}
 .toggle_right_panel {
   background: url("/web-frontend/assets/images/svg_icons_stripe.svg") no-repeat;
   background-color: rgba(0, 158, 190, 0.5);
