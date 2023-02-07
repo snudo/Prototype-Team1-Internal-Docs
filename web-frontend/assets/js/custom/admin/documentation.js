@@ -273,7 +273,7 @@ const renderDocuments = (documents_list) => {
 
             document.getElementById("document_list_container").appendChild(cloned_document);
 
-            new bootstrap.Popover(cloned_document.querySelector(".documents_menu"), {
+            new bootstrap.Popover(cloned_document.querySelector(".show_message_actions"), {
                 animation: true,
                 container: "body",
                 content: popover_content,
