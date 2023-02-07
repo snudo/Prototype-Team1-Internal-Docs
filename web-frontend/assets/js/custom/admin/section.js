@@ -378,13 +378,29 @@ function createTextBox(emailsContainer, options) {
 
     /* Create email block in case user press 'Enter' or comma */
     input.addEventListener('keypress', function (e) {
-        if (e.key === ',' || e.key === 'Enter') {
+        if (e.key === ',' || e.key === 'Tab') {
             if (e.target.value !== '') {
                 addEmailToList(emailsContainer, e.target.value, options);
             }
 
-            e.preventDefault();
             e.target.value = '';
+            clearSearchSuggestion();
+        }
+        else if (e.key === 'Enter') {
+            if (e.target.value !== '') {
+                let clone_invited_user = document.getElementById("clone_invited_user").cloneNode(true);
+                clone_invited_user.classList.remove("id");
+
+                let email_address = clone_invited_user.querySelector("#invited_email");
+                email_address.innerHTML = e.target.value;
+                email_address.setAttribute("href", "mailto:" + e.target.value);
+
+                document.querySelector(".with_access_list").appendChild(clone_invited_user);
+            }
+
+            e.target.value = '';
+            e.preventDefault();
+            clearSearchSuggestion();
         }
     });
 
@@ -393,6 +409,7 @@ function createTextBox(emailsContainer, options) {
         if (e.target.value !== '') {
             addEmailToList(emailsContainer, e.target.value, options);
             e.target.value = '';
+            clearSearchSuggestion();
         }
     });
 
@@ -404,6 +421,7 @@ function createTextBox(emailsContainer, options) {
             pastedContent.forEach(function (element) {
                 addEmailToList(emailsContainer, element, options);
                 e.target.value = '';
+                clearSearchSuggestion();
             });
         }, 50);
     });
@@ -497,4 +515,10 @@ function showSuggestions(results) {
         suggestions.innerHTML = '';
         suggestions.classList.add("hidden");
     }
+}
+
+function clearSearchSuggestion() {
+    let suggestions = document.querySelector('.filter_email_search');
+    suggestions.innerHTML = '';
+    suggestions.classList.add("hidden");
 }
