@@ -8,6 +8,7 @@ let assets_data = [
     {url: "/web-frontend/assets/js/vendor/bootstrap/bootstrap.bundle.min.js", type: "script"},
     {url: "/web-frontend/assets/js/vendor/csi.min.js", type: "script"},
     {url: "/web-frontend/assets/js/vendor/redactorx.min.js", type: "script"},
+    {url: "/web-frontend/assets/js/custom/user/drag_and_drop.js", type: "script"},
     {url: "/web-frontend/assets/js/custom/global.js", type: "script"},
 ];
 

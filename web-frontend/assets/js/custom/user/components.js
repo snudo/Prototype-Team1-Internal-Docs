@@ -1,4 +1,5 @@
-var confirm_modal = new bootstrap.Modal(document.getElementById("delete_post_modal"), {});
+var confirm_modal   = new bootstrap.Modal(document.getElementById("delete_post_modal"), {});
+var popover_content = document.getElementById("comment_options");
 
 /* CALLBACK FUNCTIONS */
 const updateMessageCount = (event, message_form) => {
@@ -91,6 +92,7 @@ const submitReplyData = (event) => {
     reply_item_clone.querySelector(".update_reply_form").addEventListener("submit", updateReplyData);
     reply_item_clone.querySelector(".delete_btn").addEventListener("click", removeItemData);
     reply_item_clone.querySelector(".update_btn").addEventListener("click", updateItemData);
+    showCommentsMenu();
 }
 
 const updatePostData = (event) => {
@@ -121,7 +123,7 @@ const submitAddPost = (event) => {
     
         document.querySelector("#component_list .post_list").prepend(post_item_clone);
         post_message_form.reset();
-        post_message_form.querySelector(".char_count").textContent = "0/250"
+        post_message_form.querySelector(".char_count").textContent = "0/250";  
     }
 
     let reply_form = post_item_clone.querySelector(".reply_form");
@@ -135,7 +137,23 @@ const submitAddPost = (event) => {
         updateMessageCount(event, reply_form);
     });
     post_item_clone.querySelector(".show_reply_btn").addEventListener("click", toggleShowReply);
+
+    showCommentsMenu();
 }
+
+const showCommentsMenu = () => {
+    document.querySelector(".post_message_list").querySelectorAll(".show_message_actions").forEach(function(comments){
+        new bootstrap.Popover(comments, {
+            animation: true,
+            container: "body",
+            content: popover_content,
+            html: true,
+            trigger: "focus"
+        });
+    });
+}
+
+showCommentsMenu();
 
 const showSectionDetails = (event) => {
     event.target.classList.toggle("is_show");
@@ -181,8 +199,9 @@ document.addEventListener("click", function(event){
 });
 
 document.addEventListener("click", function(event){
+    (event.target.id == "overlay") ? document.getElementsByTagName("nav")[0].classList.remove("show_mobile_menu") : "";
     (event.target.id == "overlay") ? event.target.classList.remove("show_overlay") : "";
-    (event.target.id == "overlay") ? document.getElementById("right_panel").classList.toggle("show_right_panel") : "";
+    (event.target.id == "overlay") ? document.getElementById("right_panel").classList.remove("show_right_panel") : "";
 });
 
 
@@ -196,7 +215,14 @@ document.querySelectorAll(".component_block .tab_title").forEach(tab_item => {
 });
 
 document.querySelector(".see_more_btn").addEventListener("click", showSectionDetails);
+document.querySelectorAll(".show_comments_mobile").forEach((show_item) => {
+    show_item.addEventListener("click", () => {
+        document.querySelector(".comments_block_mobile").classList.remove("hidden");
+    });
+});
 
 $(function(){
     $("body").on("click", ".prev_tab, .next_tab", navigateTab);
-})
+});
+
+Drog.on(document.querySelector(".comments_block_mobile"));

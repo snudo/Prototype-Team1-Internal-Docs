@@ -15,6 +15,83 @@
     pointer-events: unset !important;
 }
 
+.popover{
+    border: none;
+    border-radius: 8px;
+    border-radius: unset;
+    width: 200px;
+    .popover-body{
+        border: none;
+        border-radius: 8px;
+        box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3), 0px 2px 6px 2px rgba(0, 0, 0, 0.15);
+        padding: 0;
+        ul{
+            border-radius: 8px;
+            list-style: none;
+            margin: 0 0 0;
+            padding: 7px 0;
+            li{
+                width: 100%;
+                button, div{
+                    align-items: center;
+                    background-color: transparent;
+                    border: none;
+                    color: #7D949D;
+                    cursor: pointer;
+                    display: flex;
+                    font: 14px/20px @font_medium;
+                    padding: 15px;
+                    width: 100%;
+                    &::before{
+                        content: "";
+                        height: 22px;
+                        margin-right: 14px;
+                        width: 20px;
+                    }
+                }
+                &:first-child{
+                    button{
+                        &::before{
+                            background: url("/web-frontend/assets/images/comment_thread_mobile_icons.svg") no-repeat; 
+                            background-position: -87px 0px;
+                            content: "";
+                        }
+                    }
+                }
+                &:nth-child(2){
+                    button{
+                        &::before{
+                            background: url("/web-frontend/assets/images/comment_thread_mobile_icons.svg") no-repeat; 
+                            background-position: -120px 0px;
+                            content: "";
+                        }
+                    }
+                }
+                &:hover{
+                    background-color: @teal_50;
+                    button, label{
+                        color: @teal_500;
+                    }
+                    &:first-child{
+                        button{
+                            &::before{
+                                background-position: 2px 0;
+                            }
+                        }
+                    }
+                    &:nth-child(2){
+                        button{
+                            &::before{
+                                background-position: -31px 0px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
 .toggle_right_panel{
     background: url("/web-frontend/assets/images/svg_icons_stripe.svg") no-repeat; 
     background-color: rgba(0, 158, 190, 0.5);
@@ -29,6 +106,7 @@
     top: 291px;
     transition: all .21s;
     width: 42px;
+    z-index: 20;
     &:hover{
         background-color: @primary_60;
     }
@@ -353,7 +431,7 @@
                     }
 
                     .carousel-item{
-                        padding: 25px 25px 90px;
+                        padding: 25px 25px 60px;
                         transition: .25s ease-in-out;
 
                         .header{
@@ -388,6 +466,17 @@
 
                         .tab_details{
                             padding: 0;
+                        }
+
+                        .show_comments_mobile{
+                            background: transparent;
+                            border: none;
+                            border-top: 1px solid @secondary_80;
+                            color: @teal_500;
+                            font: 14px/20px @font_regular;
+                            padding: 20px 0 0 0;
+                            text-align: right;
+                            width: 100%;
                         }
                     }
 
@@ -426,7 +515,6 @@
     position: fixed;
     top: 64px;
     width: 100%;
-    z-index: 10;
 
     .handle_hide_btn{
         align-items: center;
