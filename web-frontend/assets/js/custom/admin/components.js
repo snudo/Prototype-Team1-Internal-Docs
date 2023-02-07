@@ -23,23 +23,30 @@ const removeTab = (event) => {
 }
 
 const fetchSelectedTabDetails = (event, component_id, tab_id) => {
-    let selected_tab_item    = event.target.closest("li");
-    let active_tab_item      = selected_tab_item.closest(".tab_list").querySelector(".tab_item.active");
+    let selected_tab_item = event.target.closest("li");
+    let tab_list          = selected_tab_item.closest(".tab_list");
 
-    if(selected_tab_item.closest(".tab_list").querySelectorAll(".tab_item.active").length){
-        active_tab_item.classList.remove("active");
-    }
-    selected_tab_item.classList.add("active");
+    tab_list.classList.add("disabled");
 
     setTimeout(() => {
-        renderRedactorX({ textarea: document.getElementById(tab_id).querySelector(".tab_description_input") });
+        let active_tab_item   = tab_list.querySelector(".tab_item.active");
+
+
+        if(tab_list.querySelectorAll(".tab_item.active").length){
+            active_tab_item.classList.remove("active");
+        }
+        
+        tab_list.classList.remove("disabled");
+        selected_tab_item.classList.add("active");
     }, 380);
+
+    renderRedactorX({ textarea: document.getElementById(tab_id).querySelector(".tab_description_input") });
 }
 
 const addTab = (component_item, component_id) => {
     let tab_clone      = document.querySelector("#clone_block ul .tab_item").cloneNode(true);
     let tab_pane_clone = document.querySelector("#clone_block .tab-pane").cloneNode(true);
-    let random_tab_id  = (Math.random() + 1).toString(36).substring(5);
+    let random_tab_id  = "random_id" + (Math.random() + 1).toString(36).substring(5);
     let tab_name       = tab_clone.querySelector(".tab_name");
 
     tab_clone.setAttribute("data-tab-id", random_tab_id);
@@ -57,7 +64,7 @@ const addTab = (component_item, component_id) => {
 
     tab_pane_clone.querySelector(".update_tab_form").addEventListener("submit", (event) => {
         event.preventDefault();
-        component_item_clone.querySelector(".update_tab_form .title_tab_input").blur();
+        component_item.querySelector(".update_tab_form .title_tab_input").blur();
     });
 
     tab_pane_clone.querySelector(".update_tab_form .title_tab_input").addEventListener("blur", (event) => {
@@ -67,6 +74,11 @@ const addTab = (component_item, component_id) => {
     });
 
     component_item.querySelector(".tab-content").prepend(tab_pane_clone);
+    
+    /* Focus on the tab name input box when new tab is added */
+    setTimeout(()=>{
+        document.getElementById(random_tab_id).querySelector(".title_tab_input").select();
+    }, 300)
 
     /* EVENTS */
     tab_clone.querySelector(".remove_tab").addEventListener("click", (event) => removeTab(event));
@@ -109,7 +121,7 @@ const submitUpdateTabDetails = (tab_details_data, component_id, event) => {
 const addComponentItem = () => {
     let component_item_clone = document.querySelector("#clone_block .component_block").cloneNode(true);
     let random_component_id  = (Math.random() + 1).toString(36).substring(7);
-    let random_tab_id        = (Math.random() + 1).toString(36).substring(5);
+    let random_tab_id        = "random_id" + (Math.random() + 1).toString(36).substring(5);
     let tab_name             = component_item_clone.querySelector(".tab_name");
     let tab_item             = component_item_clone.querySelector(".tab_item");
 
@@ -148,7 +160,6 @@ const addComponentItem = () => {
     });
 
     tab_name.addEventListener("click", (event) => fetchSelectedTabDetails(event, random_component_id, random_tab_id));
-
 
     setTimeout(() => {
         tab_name.click();
@@ -196,7 +207,10 @@ document.addEventListener("click", toggleComments);
 document.getElementById("add_component").addEventListener("click", addComponentItem);
 document.getElementById("section_title").addEventListener("keyup", updateSectionTitle);
 document.querySelector(".title_block button").addEventListener("click", () => {
-   window.location.href = "/web-frontend/views/admin/component_preview.html";
+    // window.location.href = "/web-frontend/views/admin/component_preview.html";
+
+    // Temporary for User Testing only
+    window.location.href = "/web-frontend/views/user/components.html";
 });
 
 

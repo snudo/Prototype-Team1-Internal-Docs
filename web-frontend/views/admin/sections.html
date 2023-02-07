@@ -33,7 +33,7 @@
             <form id="documents_editable_form" action="#" data-is-processing="0">
                 <input id="documents_title" type="text" value="Engineering Guide">
                 <div id="viewers_editors_count"><span>46 viewers and 3 editors</span></div>
-                <textarea id="document_description_input" role="textbox">Engineering Guidelines are a collection of your an organizations’ Best Practices; a distillation of the institutional knowledge around “how things should be done here”. They are a cross between a Mission Statement, Company Values, and an Employee Handbook for your engineering department. You need a rationale so people understand the context in which these decisions have been made. &#10;&#10;This allows exceptions when these base assumptions do not hold, or updating the guidelines when the larger context changes. It’s about making decisions once for consistency. It’s about avoiding known issues or edge cases. It’s about choosing a specific technique with known tradeoffs for dealing with problems.</textarea>
+                <textarea id="document_description_input" role="textbox" placeholder="Documentation description . . .">Engineering Guidelines are a collection of your an organizations’ Best Practices; a distillation of the institutional knowledge around “how things should be done here”. They are a cross between a Mission Statement, Company Values, and an Employee Handbook for your engineering department. You need a rationale so people understand the context in which these decisions have been made. &#10;&#10;This allows exceptions when these base assumptions do not hold, or updating the guidelines when the larger context changes. It’s about making decisions once for consistency. It’s about avoiding known issues or edge cases. It’s about choosing a specific technique with known tradeoffs for dealing with problems.</textarea>
                 <div id="private_setting_block">
                     <button>Set as Public</button>
                 </div>
@@ -89,12 +89,7 @@
             </div>
             <div class="modal-body">
                 <div class="add_email_block">
-                    <ul class="added_email_list">
-                        <li>ruelito.ytac@village88.com <button class="btn-close"></button></li>
-                        <li>
-                            <input type="text" name="add_email_input" class="add_email_input" placeholder="Enter email...">
-                        </li>
-                    </ul>
+                    <ul class="added_email_list"></ul>
 
                     <ul class="filter_email_search hidden">
                         <li>
@@ -108,7 +103,6 @@
 
                     <div class="dropdown">
                         <button class="btn btn-secondary dropdown-toggle" type="button" id="added_email_status" data-bs-toggle="dropdown" aria-expanded="false">Viewer</button>
-                        
                         <ul class="dropdown-menu" aria-labelledby="added_email_status">
                             <li><button class="dropdown-item active" type="button">Viewer</button></li>
                             <li><button class="dropdown-item" type="button">Editor</button></li>
