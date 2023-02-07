@@ -24,6 +24,7 @@
 <body>
     <div data-include="../admin/templates/navigation.html"></div>
     
+    <button class="toggle_right_panel"></button>
     <section id="component_wrapper">
         <div id="left_panel">
             <button class="go_back_btn"><span class="go_back_icon"></span> Go Back</button>
@@ -100,8 +101,8 @@
                 </div>
             </div>
         </div>
-
         <div id="right_panel">
+            <button id="toggle_button" class="toggle_right_panel"></button>
             <h3>In This Documentation <span class="info_icon"></span></h3>
 
             <ul id="section_list">
@@ -174,6 +175,18 @@
                 </form>
             </li>
         </ul>
+    </div>
+
+    <div class="modal fade confirm_modal" id="delete_post_modal" tabindex="-1" aria-labelledby="confirm_private_modal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <p>Are you sure you want to remove this <span id="post_type"></span>?</p>
+                <div>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                    <button id="confirm_button_yes" type="button" class="btn btn-primary">Yes</button>
+                </div>
+            </div>
+        </div>
     </div>
     
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
