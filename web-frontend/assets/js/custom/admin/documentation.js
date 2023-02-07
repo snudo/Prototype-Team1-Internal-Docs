@@ -244,6 +244,7 @@ let archived_document = [
     }
 ]
 
+let documentations_list_by_size = documents_array.slice(0, doc_count);
 let filtered_documents = [];
 
 const renderDocuments = (documents_list) => {
@@ -252,37 +253,58 @@ const renderDocuments = (documents_list) => {
     if(documents_list.length && doc_count > 0){
         document.getElementById("no_data_logo").setAttribute("hidden", "hidden");
         document.getElementById("documents_category_selection").removeAttribute("hidden");
-        documents_index = [...new Map(documents_list.map(item => [item["id"], item])).values()];
+        let documents_index = [...new Map(documents_list.map(item => [item["id"], item])).values()];
 
         for(let index in documents_index){
-            /* Only display specified size from the URL */
-            if(index < parseInt(doc_count)){
-                let document_item = documents_index[index];
-                let cloned_document = document.getElementById("clone").cloneNode(true);
+            let document_item = documents_index[index];
+            let cloned_document = document.getElementById("clone").cloneNode(true);
 
-                cloned_document.id = document_item.id;
-                cloned_document.querySelectorAll(".document_title")[ITEMS.first].textContent = document_item.title;
-                cloned_document.querySelectorAll(".viewers_count")[ITEMS.first].textContent = document_item.viewers;
-                cloned_document.querySelectorAll(".editors_count")[ITEMS.first].textContent = document_item.editors;
-                cloned_document.querySelectorAll(".document_information p")[ITEMS.first].textContent = document_item.description;
+            cloned_document.id = document_item.id;
+            cloned_document.querySelectorAll(".document_title")[ITEMS.first].textContent = document_item.title;
+            cloned_document.querySelectorAll(".viewers_count")[ITEMS.first].textContent = document_item.viewers;
+            cloned_document.querySelectorAll(".editors_count")[ITEMS.first].textContent = document_item.editors;
+            cloned_document.querySelectorAll(".document_information p")[ITEMS.first].textContent = document_item.description;
 
-                (document_item.is_private) ? cloned_document.classList.add("is_private") : cloned_document.classList.remove("is_private");
-                (document_item.is_starred) ? cloned_document.querySelector("input[type=checkbox]").checked = true : cloned_document.querySelector("input[type=checkbox]").checked = false;
+            (document_item.is_private) ? cloned_document.classList.add("is_private") : cloned_document.classList.remove("is_private");
+            (document_item.is_starred) ? cloned_document.querySelector("input[type=checkbox]").checked = true : cloned_document.querySelector("input[type=checkbox]").checked = false;
 
-                (document_item.is_starred) ? cloned_document.setAttribute("data-starred", "all_starred") : cloned_document.removeAttribute("data-star");
-                (document_item.is_private) ? cloned_document.setAttribute("data-private", "all_private") : cloned_document.removeAttribute("data-private");
+            (document_item.is_starred) ? cloned_document.setAttribute("data-starred", "all_starred") : cloned_document.removeAttribute("data-star");
+            (document_item.is_private) ? cloned_document.setAttribute("data-private", "all_private") : cloned_document.removeAttribute("data-private");
 
-                document.getElementById("document_list_container").appendChild(cloned_document);
+            document.getElementById("document_list_container").appendChild(cloned_document);
 
-                new bootstrap.Popover(cloned_document.querySelector(".documents_menu"), {
-                    animation: true,
-                    container: "body",
-                    content: popover_content,
-                    html: true,
-                    trigger: "focus",
-                    delay: {"hide": ANIMATION_TIME.hide}
-                });
-            }
+            new bootstrap.Popover(cloned_document.querySelector(".documents_menu"), {
+                animation: true,
+                container: "body",
+                content: popover_content,
+                html: true,
+                trigger: "focus",
+                delay: {"hide": ANIMATION_TIME.hide}
+            });
+
+            cloned_document.querySelector(".document_cards").addEventListener('click', (event) => {
+                if(event.target.classList.contains("all_access_count")){
+                    window.location.href = "/web-frontend/views/admin/sections.html?size=7&invite_open=true";
+                }
+                else if(event.target.classList.contains("star_toggle_button")){
+                    event.preventDefault();
+                    event.stopPropagation();
+                    starredDocument(event);
+                    return false;
+                }
+                else if(event.target.classList.contains("documents_menu")){
+                    event.preventDefault();
+                    event.stopPropagation();
+
+                    let document_id = parseInt(event.target.closest("li").getAttribute("id"));
+                    selected_document = documentations_list_by_size.find(obj_id => obj_id.id === document_id);
+
+                    return false;
+                }
+                else{
+                    window.location.href = "/web-frontend/views/admin/sections.html?size=7";
+                }
+            });
         }
     }
     else{
@@ -291,7 +313,7 @@ const renderDocuments = (documents_list) => {
     }
 }
 
-renderDocuments(documents_array);
+renderDocuments(documentations_list_by_size);
 
 /* CALLBACK FUNCTIONS */
 
@@ -307,7 +329,7 @@ const getDocumentValue = (event) => {
     if(form_input.value.length){
         let timestamp = new Date().getUTCMilliseconds();
 
-        documents_array.splice(doc_count, 0, {
+        documentations_list_by_size.splice(doc_count, 0, {
             id: timestamp,
             title: form_input.value,
             viewers: 0,
@@ -321,7 +343,7 @@ const getDocumentValue = (event) => {
         document.getElementById("documents_category_selection").innerHTML = "Show All";
         doc_count++;
 
-        renderDocuments(documents_array);
+        renderDocuments(documentations_list_by_size);
         preventPageRedirect();
     }
     else{
@@ -335,7 +357,7 @@ const DuplicateDocument = (event)=> {
     if(event.target.classList == "documents_menu"){
         let document_id = parseInt(event.target.closest("li").getAttribute("id"));
 
-        selected_document = documents_array.find(obj_id => obj_id.id === document_id);
+        selected_document = documentations_list_by_size.find(obj_id => obj_id.id === document_id);
         document.getElementById(event.target.getAttribute("aria-describedby")).querySelector(".public_document input[type=checkbox]").checked = !selected_document.is_private;
     }
 }
@@ -356,17 +378,18 @@ const applySettings = (event)=> {
         confirm_private_modal.show();
 
         confirm_modal.querySelector("#confirm_button_yes").addEventListener("click", function(){
-            documents_array.push(duplicated_object);
+            documentations_list_by_size.push(duplicated_object);
 
             confirm_private_modal.hide();
-            renderDocuments(documents_array);
+            renderDocuments(documentations_list_by_size);
         });
     }else if(event.target.classList == "archive_document"){
-        documents_array.splice(documents_array.map((obj_index) => obj_index.id).indexOf(selected_document.id), 1);
-        renderDocuments(documents_array);
+        archived_document.push(documentations_list_by_size.filter(obj_index => obj_index.id === selected_document.id)[ITEMS.first]);
+        documentations_list_by_size.splice(documentations_list_by_size.map((obj_index) => obj_index.id).indexOf(selected_document.id), 1);
+        renderDocuments(documentations_list_by_size);
     }else if(event.target.classList == "remove_document"){
-        documents_array.splice(documents_array.map((obj_index) => obj_index.id).indexOf(selected_document.id), 1);
-        renderDocuments(documents_array);
+        documentations_list_by_size.splice(documentations_list_by_size.map((obj_index) => obj_index.id).indexOf(selected_document.id), 1);
+        renderDocuments(documentations_list_by_size);
     }else if(event.target.classList == "public_document"){
         let is_private = event.target.closest("li").querySelector(".public_checkbox_setting").checked;
 
@@ -374,11 +397,11 @@ const applySettings = (event)=> {
         confirm_private_modal.show();
 
         confirm_modal.querySelector("#confirm_button_yes").addEventListener("click", function(){
-            let selected_document_index = documents_array.map((obj_index) => obj_index.id).indexOf(selected_document.id);
+            let selected_document_index = documentations_list_by_size.map((obj_index) => obj_index.id).indexOf(selected_document.id);
 
-            (is_private) ? documents_array[selected_document_index].is_private = true : documents_array[selected_document_index].is_private = false;
+            (is_private) ? documentations_list_by_size[selected_document_index].is_private = true : documentations_list_by_size[selected_document_index].is_private = false;
 
-            renderDocuments(documents_array);
+            renderDocuments(documentations_list_by_size);
             confirm_private_modal.hide();
         });
     }
@@ -387,45 +410,43 @@ const applySettings = (event)=> {
 const starredDocument = (event)=> {
     if(event.target.classList.contains("star_toggle_button")){
         let starred_id = parseInt(event.target.closest("li").getAttribute("id"));
-        let selected_document_id = documents_array.find(obj_id => obj_id.id === starred_id);
-        let selected_document_index = documents_array.map((obj_index) => obj_index.id).indexOf(starred_id);
+        let selected_document_id = documentations_list_by_size.find(obj_id => obj_id.id === starred_id);
+        let selected_document_index = documentations_list_by_size.map((obj_index) => obj_index.id).indexOf(starred_id);
 
         if(selected_document_index !== -1) {
             selected_document_id.is_starred = !event.target.closest("label").querySelector("input[type=checkbox]").checked;
 
             /* If Starred, put to starred group at the start of array */
-            documents_array.splice(selected_document_index, 1);
+            documentations_list_by_size.splice(selected_document_index, 1);
 
             /* Get last index of starred */
-            let last_starred_index = documents_array.findLastIndex((doc_obj) => doc_obj.is_starred);
-            documents_array.splice(last_starred_index+1, 0, selected_document_id);
+            let last_starred_index = documentations_list_by_size.findLastIndex((doc_obj) => doc_obj.is_starred);
+            documentations_list_by_size.splice(last_starred_index+1, 0, selected_document_id);
 
-            renderDocuments((!filtered_documents.length) ? documents_array : filtered_documents);
+            renderDocuments((!filtered_documents.length) ? documentations_list_by_size : filtered_documents);
         }
     }
 }
 
 const FilterDocuments = (event)=> {
-    let documents_list_by_size = documents_array.slice(0, doc_count);
-
     if(event.target.getAttribute("id") != "filter_dropdown_menu"){
 
         document.getElementById("documents_category_selection").innerHTML = "Show " + event.target.innerHTML;
 
         if(event.target.getAttribute("data-selection") === "data-documents"){
             filtered_documents = [];
-            renderDocuments(documents_list_by_size);
+            renderDocuments(documentations_list_by_size);
         }
         else if(event.target.getAttribute("data-selection") === "data-starred"){
-            filtered_documents = documents_list_by_size.filter(document => document.is_starred);
+            filtered_documents = documentations_list_by_size.filter(document => document.is_starred);
             renderDocuments(filtered_documents);
         }
         else if(event.target.getAttribute("data-selection") === "data-private"){
-            filtered_documents = documents_list_by_size.filter(document => document.is_private);
+            filtered_documents = documentations_list_by_size.filter(document => document.is_private);
             renderDocuments(filtered_documents);
         }
         else if(event.target.getAttribute("data-selection") === "data-public"){
-            filtered_documents = documents_list_by_size.filter(document => !document.is_private);
+            filtered_documents = documentations_list_by_size.filter(document => !document.is_private);
             renderDocuments(filtered_documents);
         }
         else if(event.target.getAttribute("data-selection") === "data-archive"){
@@ -448,17 +469,29 @@ const preventPageRedirect = ()=> {
         documents_menus[i].addEventListener("click", function(event){
             event.preventDefault();
             event.stopPropagation();
+
+            let document_id = parseInt(event.target.closest("li").getAttribute("id"));
+            selected_document = documentations_list_by_size.find(obj_id => obj_id.id === document_id);
+
             return false;
         })
     }
 }
 
-var elements = document.getElementsByClassName("document_cards");
+let document_card_elements = document.getElementsByClassName("document_cards");
 
-for (var i = 0; i < elements.length; i++) {
-    elements[i].addEventListener('click', (event) => {
+for (var i = 0; i < document_card_elements.length; i++) {
+    document_card_elements[i].addEventListener('click', (event) => {
         if(event.target.classList.contains("all_access_count")){
             window.location.href = "/web-frontend/views/admin/sections.html?size=7&invite_open=true";
+        }
+        else if(event.target.classList.contains("star_toggle_button")){
+            event.preventDefault();
+            event.stopPropagation();
+
+            starredDocument(event);
+
+            return false;
         }
         else{
             window.location.href = "/web-frontend/views/admin/sections.html?size=7";
