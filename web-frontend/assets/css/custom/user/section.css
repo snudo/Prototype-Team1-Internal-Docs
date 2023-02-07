@@ -123,9 +123,7 @@
   background-color: transparent;
   border: none;
   color: #009EBE;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+  display: none;
   font: 12px/16px "Roboto-Medium";
   margin: 11px auto 0;
   text-decoration: none;
@@ -371,6 +369,11 @@
   }
   #section_wrapper #section_main_contents #documents_information #document_description_container .description {
     display: none;
+  }
+  #section_wrapper #section_main_contents #documents_information #document_description_container #see_more_button {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
   }
   #section_wrapper #section_main_contents #sections_block {
     background-color: transparent;
