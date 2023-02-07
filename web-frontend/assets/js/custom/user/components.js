@@ -199,8 +199,9 @@ document.addEventListener("click", function(event){
 });
 
 document.addEventListener("click", function(event){
+    (event.target.id == "overlay") ? document.getElementsByTagName("nav")[0].classList.remove("show_mobile_menu") : "";
     (event.target.id == "overlay") ? event.target.classList.remove("show_overlay") : "";
-    (event.target.id == "overlay") ? document.getElementById("right_panel").classList.toggle("show_right_panel") : "";
+    (event.target.id == "overlay") ? document.getElementById("right_panel").classList.remove("show_right_panel") : "";
 });
 
 
