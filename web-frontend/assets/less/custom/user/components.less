@@ -389,3 +389,198 @@
         }
     }
 }
+
+.comments_block_mobile{
+    background-color: @bg;
+    height: ~"calc(100% - 64px)";
+    overflow: auto;
+    padding: 0px 24px 90px;
+    position: fixed;
+    top: 64px;
+    width: 100%;
+    z-index: 10;
+
+    .handle_hide_btn{
+        align-items: center;
+        background-color: @bg;
+        border: 1px solid @bg;
+        display: flex;
+        height: 32px;
+        justify-content: center;
+        position: sticky;
+        top: 0;
+        width: 100%;
+
+        .handle_icon{
+            background: @teal_500;
+            border-radius: 8px;
+            display: block;
+            height: 2px;
+            width: 72px;
+        }
+    }
+
+    ul{
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .post_message_list{
+        .timestamp{
+            color: @secondary_60;
+            font: 12px/16px @font_regular;
+        }
+
+        .post_item{
+            background-color: @white;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            padding: 20px;
+            width: 100%;
+
+            &:last-child{
+                margin-bottom: 0;
+            }
+
+            .header{
+                align-items: center;
+                display: flex;
+
+                img{
+                    height: 40px;
+                    margin-right: 8px;
+                    width: 40px;
+                }
+
+                .user_name{
+                    color: @secondary_40;
+                    font: 16px/24px @font_medium;
+                }
+
+                .message_actions_block{
+                    margin-left: auto;
+
+                    .show_message_actions{
+                        background: url("../../../images/comment_thread_mobile_icons.svg") no-repeat -61px 0px;
+                        border: none;
+                        display: block;
+                        height: 18px;
+                        width: 18px;
+                    }
+                }
+            }
+
+            .message_details{
+                padding-left: 48px;
+
+                .user_post_message{
+                    color: @secondary_40;
+                    font: 14px/20px @font_regular;
+                    margin-bottom: 6px;
+                }
+
+                .show_reply_btn{
+                    align-items: center;
+                    background-color: transparent;
+                    border: none;
+                    color: @teal_500;
+                    display: flex;
+                    font: 12px/16px @font_regular;
+                    margin-bottom: 7px;
+                    outline: none;
+
+                    .caret_arrow{
+                        background: url("../../../images/comment_thread_mobile_icons.svg") no-repeat -148px 0px;
+                        display: inline-block;
+                        height: 18px;
+                        margin-right: 5px;
+                        transition: .25s ease-in-out;
+                        width: 18px;
+                    }
+                }
+
+                .reply_list{
+                    .reply_item{
+                        background: @teal_50;
+                        margin-bottom: 25px;
+                        padding: 12px;
+
+                        &:last-child{
+                            margin-bottom: 0;
+                        }
+
+                        .header{
+                            margin-bottom: 6px;
+                        }
+                        
+                        img{
+                            height: 28px;
+                            width: 28px;
+                        }
+
+                        .user_reply_message{
+                            color: @secondary_40;
+                            font: 14px/20px @font_regular;
+                            margin: 0;
+                        }
+                    }
+                }
+
+                .see_more_btn{
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+
+    .see_more_btn{
+        align-items: center;
+        background-color: transparent;
+        border: transparent;
+        color: @teal_500;
+        display: flex;
+        font: 12px/16px @font_regular;
+        justify-content: center;
+        margin: 20px auto;
+        outline: none;
+        width: 100%;
+
+        .caret_down{
+            background: url("../../../images/svg_icons_stripe.svg") no-repeat -126px -9px;
+            display: block;
+            height: 18px;
+            transition: .25s ease-in-out;
+            width: 18px;
+        }
+    }
+
+    .post_reply_block{
+        background: @bg;
+        bottom: 0;
+        display: flex;
+        flex: 1;
+        height: 90px;
+        position: fixed;
+        width: ~"calc(100% - 48px)";
+        
+        #post_reply_form{
+            width: 100%;
+    
+            .input_field{
+                background-color: @white;
+                position: relative;
+    
+                input{
+                    background: transparent;
+                }
+    
+                .char_count{
+                    bottom: -25px;
+                    position: absolute;
+                    right: 0;
+                }
+            }
+        }
+    }
+}
