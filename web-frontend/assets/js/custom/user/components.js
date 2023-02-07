@@ -1,4 +1,5 @@
-var confirm_modal = new bootstrap.Modal(document.getElementById("delete_post_modal"), {});
+var confirm_modal   = new bootstrap.Modal(document.getElementById("delete_post_modal"), {});
+var popover_content = document.getElementById("comment_options");
 
 /* CALLBACK FUNCTIONS */
 const updateMessageCount = (event, message_form) => {
@@ -91,6 +92,7 @@ const submitReplyData = (event) => {
     reply_item_clone.querySelector(".update_reply_form").addEventListener("submit", updateReplyData);
     reply_item_clone.querySelector(".delete_btn").addEventListener("click", removeItemData);
     reply_item_clone.querySelector(".update_btn").addEventListener("click", updateItemData);
+    showCommentsMenu();
 }
 
 const updatePostData = (event) => {
@@ -135,7 +137,23 @@ const submitAddPost = (event) => {
         updateMessageCount(event, reply_form);
     });
     post_item_clone.querySelector(".show_reply_btn").addEventListener("click", toggleShowReply);
+
+    showCommentsMenu();
 }
+
+const showCommentsMenu = () => {
+    document.querySelector(".post_message_list").querySelectorAll(".show_message_actions").forEach(function(comments){
+        new bootstrap.Popover(comments, {
+            animation: true,
+            container: "body",
+            content: popover_content,
+            html: true,
+            trigger: "focus"
+        });
+    });
+}
+
+showCommentsMenu();
 
 const showSectionDetails = (event) => {
     event.target.classList.toggle("is_show");
