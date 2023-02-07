@@ -127,6 +127,18 @@ const submitAddPost = (event) => {
     post_item_clone.querySelector(".show_reply_btn").addEventListener("click", toggleShowReply);
 }
 
+const showSectionDetails = (event) => {
+    event.target.classList.toggle("is_show");
+    event.target.closest(".section_details").querySelector("p").classList.toggle("is_hide");
+}
+
+const showComponentsDetails = (event) => {
+    document.querySelectorAll(".component_block").forEach(component_item => {
+        component_item.classList.add("is_hide");
+    })
+    event.target.closest(".component_block").classList.remove("is_hide")
+}
+
 /* EVENTS */
 document.querySelectorAll(".add_post_form").forEach((post_form) => {
     post_form.addEventListener("submit", submitAddPost);
@@ -139,13 +151,8 @@ document.querySelectorAll(".tab_item .nav-link").forEach((item_link) => {
     item_link.addEventListener("click", selectActiveTab);
 });
 
-$(".tab_list").sortable({
-    opacity: 0.8,
-    forceHelperSize: true,
-    forcePlaceholderSize: true,
-    placeholder: "draggable-placeholder",
-    tolerance: "pointer",
-    items: ".tab_item",
-    handle: "button",
-    cancel: ""
+document.querySelectorAll(".component_block .tab_title").forEach(tab_item => {
+    tab_item.addEventListener("click", showComponentsDetails);
 });
+
+document.querySelector(".see_more_btn").addEventListener("click", showSectionDetails);
