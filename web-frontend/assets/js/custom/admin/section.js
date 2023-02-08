@@ -171,8 +171,9 @@ const submitCreateSection = (event)=> {
 
     (form_input.value.length) ? form_input.closest("label").classList.remove("input_error") : form_input.closest("label").classList.add("input_error") ;
     if(form_input.value.length){
+        let new_section_id = new Date().getUTCMilliseconds();
         sections_list_by_size.splice(doc_count, 0, {
-            id: new Date().getUTCMilliseconds(),
+            id: new_section_id,
             title: form_input.value,
             description: "",
             url: "../user/components.html?size=3&tabs=4"
@@ -181,9 +182,15 @@ const submitCreateSection = (event)=> {
         form_input.value = "";
 
         renderSections(sections_list_by_size);
+        setNewSectionActive(new_section_id)
     }
 
     return false;
+}
+
+/* Adds active state to new or duplicated section */
+const setNewSectionActive = (new_section_id)=> {
+    document.getElementById(new_section_id).classList.add("active");
 }
 
 const changePrivacySettings = (event) => {
@@ -209,6 +216,14 @@ const changePrivacySettings = (event) => {
 
     return false;
 }
+
+window.addEventListener("scroll", () => {
+    if(this.scrollY > 40){
+        document.getElementById("add_section_form").classList.add("floated");
+    }else{
+        document.getElementById("add_section_form").classList.remove("floated");
+    }
+});
 
 const deleteSection = (event) => {
     let delete_section_btn = event.target;
@@ -247,9 +262,10 @@ const duplicateSection = (event) => {
     if(duplicate_section_btn.classList.value  === "duplicate_section"){
         /* Duplicate the Section */
         let section_to_duplicate = event.target.closest("li");
+        let section_new_id = new Date().getUTCMilliseconds();
 
         let duplicated_section_obj = {
-            id: new Date().getUTCMilliseconds(),
+            id: section_new_id,
             title: section_to_duplicate.querySelectorAll(".section_title")[ITEMS.first].textContent,
             description: section_to_duplicate.querySelectorAll(".section_description")[ITEMS.first].textContent,
             url: section_to_duplicate.querySelector("a").getAttribute("href")
@@ -257,6 +273,8 @@ const duplicateSection = (event) => {
 
         sections_list_by_size.push(duplicated_section_obj);
         renderSections(sections_list_by_size);
+
+        setNewSectionActive(section_new_id);
     }
 }
 
@@ -267,7 +285,6 @@ const selectAddedEmailStatus = (event, selected_class_item) => {
     selected_status.closest(".dropdown-menu").querySelector(".dropdown-item.active").classList.remove("active");
     selected_status.classList.add("active");
 }
-
 
 autoGrowTextArea(document.getElementById("document_description_input"));
 
@@ -310,6 +327,13 @@ document.getElementById("viewers_editors_count").addEventListener("click", () =>
 if(is_invite_modal_open){
     invite_user_modal.show();
 }
+
+/* Removes active class on sections when click anything */
+document.getElementById("create_section_block").addEventListener("click", function(){
+    document.querySelectorAll("#section_list_container li").forEach(function(section){
+        section.classList.remove("active");
+    })
+})
 
 let inputContainerNode = document.querySelector('.added_email_list');
 EmailsInput(inputContainerNode, {
