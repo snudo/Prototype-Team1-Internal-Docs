@@ -88,6 +88,14 @@
                         }
                     }
                 }
+                &:nth-child(5){
+                    button{
+                        &::before{
+                            background: url(../../images/star.svg) no-repeat 0px -2px;
+                            content: "";
+                        }
+                    }
+                }
                 &:last-child{
                     div{
                         input[type=checkbox]{
@@ -548,8 +556,8 @@ body{
         #document_list_container{
             flex-direction: column;
             li{
-                width: 100%;
                 margin-right: 0;
+                width: 100%;
             }
         }
     }

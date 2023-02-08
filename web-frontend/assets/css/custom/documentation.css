@@ -100,6 +100,10 @@
   background-position: -92px -31px;
   content: "";
 }
+.popover .popover-body ul li:nth-child(5) button::before {
+  background: url(../../images/star.svg) no-repeat 0px -2px;
+  content: "";
+}
 .popover .popover-body ul li:last-child div input[type=checkbox] {
   display: none;
 }
@@ -552,8 +556,8 @@ body {
             flex-direction: column;
   }
   #dashboard_wrapper #document_list_container li {
-    width: 100%;
     margin-right: 0;
+    width: 100%;
   }
 }
 @media only screen and (max-width: 768px) {
