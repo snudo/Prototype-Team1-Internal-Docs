@@ -247,7 +247,7 @@ let archived_document = [
 let documentations_list_by_size = documents_array.slice(0, doc_count);
 let filtered_documents = [];
 
-const renderDocuments = (documents_list) => {
+const renderDocuments = (documents_list, active_index = false) => {
     document.getElementById("document_list_container").innerHTML = "";
 
     if(documents_list.length && doc_count > 0){
@@ -270,6 +270,8 @@ const renderDocuments = (documents_list) => {
 
             (document_item.is_starred) ? cloned_document.setAttribute("data-starred", "all_starred") : cloned_document.removeAttribute("data-star");
             (document_item.is_private) ? cloned_document.setAttribute("data-private", "all_private") : cloned_document.removeAttribute("data-private");
+
+            (parseInt(index) === active_index) ? cloned_document.classList.add("active") : null;
 
             document.getElementById("document_list_container").appendChild(cloned_document);
 
@@ -366,7 +368,7 @@ const applySettings = (event)=> {
     if(event.target.classList == "duplicate_document"){
         let duplicated_object = {
             id: new Date().getUTCMilliseconds(),
-            title: selected_document.title,
+            title: "Copy of " + selected_document.title,
             viewers: selected_document.viewers,
             editors: selected_document.editors,
             is_private: selected_document.is_private,
@@ -374,14 +376,15 @@ const applySettings = (event)=> {
             description: selected_document.description,
         };
 
-        confirm_modal.querySelector(".public_private_content").textContent = "duplicate "+selected_document.title;
+        confirm_modal.querySelector(".message_content").textContent = "duplicate "+selected_document.title;
         confirm_action_modal.show();
 
         confirm_modal.querySelector("#confirm_button_yes").addEventListener("click", function(){
-            documentations_list_by_size.push(duplicated_object);
+            let index = documentations_list_by_size.map((obj_index) => obj_index.id).indexOf(selected_document.id) + 1;
+            documentations_list_by_size.splice(index, ITEMS.first, duplicated_object);
 
             confirm_action_modal.hide();
-            renderDocuments(documentations_list_by_size);
+            renderDocuments(documentations_list_by_size, index);
         });
     }else if(event.target.classList == "archive_document"){
         confirm_modal.querySelector(".message_content").textContent = `archive ${selected_document.title} documentation`;
@@ -475,6 +478,17 @@ document.addEventListener("click", starredDocument);
 document.addEventListener("click", DuplicateDocument);
 document.getElementById("filter_dropdown_menu").addEventListener("click", FilterDocuments);
 document.getElementById("create_document_form").addEventListener("submit", getDocumentValue);
+
+/* Reset active state of a Document card when click outside of list */
+document.addEventListener("click", (event) => {
+    if(event.target.id === ""){
+        let document_list_container = document.querySelector("#document_list_container");
+
+        document_list_container.childNodes.forEach((element) => {
+            element.classList.remove('active');
+        });
+    }
+});
 
 /* Prevent redirect to sections page when documentation menu clicked */
 const preventPageRedirect = ()=> {

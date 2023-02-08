@@ -303,7 +303,8 @@ body {
 #dashboard_wrapper #document_list_container li:nth-child(3n) {
   margin-right: 0;
 }
-#dashboard_wrapper #document_list_container li:hover {
+#dashboard_wrapper #document_list_container li:hover,
+#dashboard_wrapper #document_list_container li.active {
   border: 1px solid #009EBE;
 }
 #dashboard_wrapper #document_list_container li:last-child {
