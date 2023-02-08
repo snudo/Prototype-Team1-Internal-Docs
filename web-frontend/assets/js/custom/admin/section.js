@@ -4,7 +4,7 @@ let confirm_modal = new bootstrap.Modal(confirm_modal_element, {});
 let current_privacy_setting = IS_PRIVATE.yes;
 
 /* Get params from URL of current Page */
-let url_obj = new URL((window.location.href).toLowerCase());
+let url_obj = new URL((window.location.href));
 let doc_count = url_obj.searchParams.get("size") || 5;
 let is_invite_modal_open = url_obj.searchParams.get("invite_open") || false;
 
@@ -301,8 +301,17 @@ $(function() {
     document.getElementById("add_section_input").focus();
 
     if(doc_count < 1){
+        let new_doc_title = url_obj.searchParams.get("title"); 
         document.getElementById("document_description_input").textContent = "";
         document.querySelector("#viewers_editors_count span").textContent = "0 viewer and 0 editor";
+        document.getElementById("documents_title").value = url_obj.searchParams.get("title");     
+        $("#document_description_input").css("height", "460px").focus();   
+        $("#current_page").text(new_doc_title);
+    }
+    else{
+        $("#current_page").text("Engineering Guide");
+        document.getElementById("documents_title").value = "Engineering Guide";
+        $("#document_description_input").css("height", "460px").text("Engineering Guidelines are a collection of your an organizations’ Best Practices; a distillation of the institutional knowledge around “how things should be done here”. They are a cross between a Mission Statement, Company Values, and an Employee Handbook for your engineering department. You need a rationale so people understand the context in which these decisions have been made. \n\nThis allows exceptions when these base assumptions do not hold, or updating the guidelines when the larger context changes. It’s about making decisions once for consistency. It’s about avoiding known issues or edge cases. It’s about choosing a specific technique with known tradeoffs for dealing with problems.");
     }
 });
 
