@@ -67,7 +67,7 @@ const addTab = (component_item, component_id) => {
         component_item.querySelector(".update_tab_form .title_tab_input").blur();
     });
 
-    tab_pane_clone.querySelector(".update_tab_form .title_tab_input").addEventListener("blur", (event) => {
+    tab_pane_clone.querySelector(".update_tab_form .title_tab_input").addEventListener("keyup", (event) => {
         let tab_title_data = event.target.value;
 
         submitUpdateTabDetails({is_title: true, tab_title_data}, component_id, event);
@@ -153,9 +153,8 @@ const addComponentItem = () => {
         component_item_clone.querySelector(".update_tab_form .title_tab_input").blur();
     });
 
-    component_item_clone.querySelector(".update_tab_form .title_tab_input").addEventListener("blur", (event) => {
-        let tab_title_data = event.target.value;
-        
+    component_item_clone.querySelector(".update_tab_form .title_tab_input").addEventListener("keyup", (event) => {
+        let tab_title_data = event.target.value;        
         submitUpdateTabDetails({is_title: true, tab_title_data}, random_component_id, event);
     });
 
@@ -163,6 +162,7 @@ const addComponentItem = () => {
 
     setTimeout(() => {
         tab_name.click();
+        document.getElementById(random_tab_id).querySelector(".title_tab_input").select();
     }, 400);
 };
 
