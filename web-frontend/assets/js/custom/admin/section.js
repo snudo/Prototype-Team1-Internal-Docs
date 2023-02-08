@@ -260,25 +260,12 @@ const duplicateSection = (event) => {
     }
 }
 
-const selectAddedEmailStatus = (event) => {
+const selectAddedEmailStatus = (event, selected_class_item) => {
     let selected_status = event.target;
 
-    selected_status.closest(".dropdown").querySelector("#added_email_status").textContent = selected_status.textContent;
+    selected_status.closest(".dropdown").querySelector(selected_class_item).textContent = selected_status.textContent;
     selected_status.closest(".dropdown-menu").querySelector(".dropdown-item.active").classList.remove("active");
     selected_status.classList.add("active");
-
-    /* Change input in clone elemenet */
-    let clone_element = document.querySelector("#clone_invited_user").querySelector("#added_email_status");
-    clone_element.textContent = selected_status.textContent;
-
-    if(selected_status.textContent === "Viewer"){
-        document.getElementById("clone_viewer").classList.add("active");
-        document.getElementById("clone_editor").classList.remove("active");
-    }
-    else{
-        document.getElementById("clone_viewer").classList.remove("active");
-        document.getElementById("clone_editor").classList.add("active");
-    }
 }
 
 
@@ -289,10 +276,6 @@ document.getElementById("add_section_form").addEventListener("submit", submitCre
 document.getElementById("private_setting_block").addEventListener("click", changePrivacySettings);
 document.addEventListener("click", deleteSection);
 document.addEventListener("click", duplicateSection);
-document.querySelectorAll("#invite_user_modal .dropdown-item").forEach((selected_status) => {
-    selected_status.addEventListener("click", selectAddedEmailStatus);
-});
-
 
 $(function() {
     $("#section_list_container").sortable();
@@ -381,6 +364,10 @@ function addEmailToList(emailsContainer, email, options) {
     clearSearchSuggestion();
 }
 
+const removePeopleAccess = (event) => {
+    event.target.closest(".dropdown").closest("li").remove();
+}
+
 function createTextBox(emailsContainer, options) {
     const input = document.createElement('input');
     input.classList.add('add_email_input');
@@ -419,9 +406,16 @@ function createTextBox(emailsContainer, options) {
                     let clone_invited_user = document.getElementById("clone_invited_user").cloneNode(true);
                     clone_invited_user.classList.remove("id");
 
-                    let email_address = clone_invited_user.querySelector("#invited_email");
+                    let email_address        = clone_invited_user.querySelector("#invited_email");
+                    let selected_status_data = e.target.closest(".add_email_block").querySelector(".dropdown-item.active").textContent;
+                    let invited_user_name    = clone_invited_user.querySelector(".invited_user_name");
+
+                    invited_user_name.textContent = all_users_obj.filter(selected_item => selected_item.email === email)[0].full_name;
                     email_address.innerHTML = email;
                     email_address.setAttribute("href", "mailto:" + email);
+
+                    clone_invited_user.querySelector(`.dropdown-item[data-selector-text="${ selected_status_data }"]`).classList.add("active");
+                    clone_invited_user.querySelector(".update_status").textContent = selected_status_data;
 
                     document.querySelector(".with_access_list").appendChild(clone_invited_user);
                 });
@@ -437,6 +431,17 @@ function createTextBox(emailsContainer, options) {
                 validEmailClass: 'valid-email',
             });
             e.preventDefault();
+
+            /* EVENTS */
+            document.querySelectorAll(".remove_access_btn").forEach((selected_btn) => {
+                selected_btn.addEventListener("click", removePeopleAccess);
+            });
+
+            document.querySelectorAll(".dropdown-item").forEach((selected_btn) => {
+                selected_btn.addEventListener("click", (event) => selectAddedEmailStatus(event, ".update_status"));
+            });
+
+            document.querySelector('.add_email_input').addEventListener('keyup', searchHandler);
         }
     });
 
@@ -510,14 +515,14 @@ function searchHandler(event) {
 }
 
 function useSuggestion(event) {
-    let input = document.querySelector('.add_email_input');
-    let suggestions = document.querySelector('.filter_email_search');
+    let input = document.querySelector(".add_email_input");
+    let suggestions = document.querySelector(".filter_email_search");
 
-    input.value = event.target.closest('li').getAttribute("data-email");
+    input.value = event.target.closest("li").getAttribute("data-email");
     input.focus();
     input.blur();
     input.focus();
-    suggestions.innerHTML = '';
+    suggestions.innerHTML = "";
     suggestions.classList.add("hidden");
 }
 
@@ -552,8 +557,8 @@ function showSuggestions(results) {
 }
 
 function clearSearchSuggestion() {
-    console.log("went clearSearchSuggestion");
     let suggestions = document.querySelector('.filter_email_search');
+
     suggestions.innerHTML = '';
     suggestions.classList.add("hidden");
 }
@@ -568,10 +573,26 @@ const copyLink = () => {
     document.execCommand("copy");
     modal_footer.removeChild(temp_input);
 
-    var exampleTriggerEl = document.querySelector('.copy_link');
-    var tooltip = new bootstrap.Tooltip.getInstance(exampleTriggerEl);
+    var exampleTriggerEl = document.querySelector(".copy_link");
+    var popover = new bootstrap.Popover(exampleTriggerEl);
 
-    tooltip.show();
+    popover.show();
+
+    setTimeout(() => {
+        popover.hide();
+    }, 1000);
 }
 
 document.querySelector("#invite_user_modal .copy_link").addEventListener("click", copyLink);
+
+document.querySelectorAll(".remove_access_btn").forEach((selected_btn) => {
+    selected_btn.addEventListener("click", removePeopleAccess);
+});
+
+document.querySelectorAll(".with_access_list .dropdown-item").forEach((selected_btn) => {
+    selected_btn.addEventListener("click", (event) => selectAddedEmailStatus(event, ".update_status"));
+});
+
+document.querySelectorAll(".add_email_block .dropdown-item").forEach((selected_status) => {
+    selected_status.addEventListener("click", (event) => selectAddedEmailStatus(event, "#added_email_status"));
+});

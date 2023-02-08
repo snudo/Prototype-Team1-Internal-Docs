@@ -374,7 +374,7 @@ const applySettings = (event)=> {
             description: selected_document.description,
         };
 
-        confirm_modal.querySelector(".public_private_content").textContent = "duplicate "+selected_document.title;
+        confirm_modal.querySelector(".message_content").textContent = "duplicate "+selected_document.title;
         confirm_action_modal.show();
 
         confirm_modal.querySelector("#confirm_button_yes").addEventListener("click", function(){
