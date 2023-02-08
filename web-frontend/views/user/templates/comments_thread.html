@@ -1,7 +1,7 @@
 <div class="comments_block_mobile hidden">
     <button class="handle_hide_btn" data-drog><span class="handle_icon"></span></button>
     <ul class="post_message_list">
-        <li class="post_item">
+        <li id="post_1" class="post_item">
             <div class="header">
                 <img src="../../assets/images/Image.png" alt="User Profile">
                 <span class="user_name">Ruel</span>
@@ -17,7 +17,7 @@
                 <button class="show_reply_btn"><span class="timestamp">5 mins</span> <span class="caret_arrow"></span> 0 Reply</button>
     
                 <ul class="reply_list">
-                    <li class="reply_item">
+                    <li id="reply_1" class="reply_item">
                         <div class="header">
                             <img src="../../assets/images/Image.png" alt="User Profile">
                             <span class="user_name">Ruel</span>
@@ -30,7 +30,7 @@
                         </div>
                         <p class="user_reply_message">SAMPLE REPLY TEXT sample reply repl text</p>
                     </li>
-                    <li class="reply_item">
+                    <li id="reply_2" class="reply_item">
                         <div class="header">
                             <img src="../../assets/images/Image.png" alt="User Profile">
                             <span class="user_name">Ruel</span>
@@ -43,7 +43,7 @@
                         </div>
                         <p class="user_reply_message">SAMPLE REPLY TEXT sample reply repl text</p>
                     </li>
-                    <li class="reply_item">
+                    <li id="reply_3" class="reply_item">
                         <div class="header">
                             <img src="../../assets/images/Image.png" alt="User Profile">
                             <span class="user_name">Ruel</span>
@@ -61,7 +61,7 @@
                 <button class="see_more_btn">See More <span class="caret_down"></span></button>
             </div>
         </li>
-        <li class="post_item">
+        <li id="post_2" class="post_item">
             <div class="header">
                 <img src="../../assets/images/Image.png" alt="User Profile">
                 <span class="user_name">Ruel</span>
@@ -77,7 +77,7 @@
                 <button class="show_reply_btn"><span class="timestamp">5 mins</span> <span class="caret_arrow"></span> 0 Reply</button>
     
                 <ul class="reply_list">
-                    <li class="reply_item">
+                    <li id="reply_4" class="reply_item">
                         <div class="header">
                             <img src="../../assets/images/Image.png" alt="User Profile">
                             <span class="user_name">Ruel</span>
@@ -93,7 +93,7 @@
                 </ul>
             </div>
         </li>
-        <li class="post_item">
+        <li id="post_3" class="post_item">
             <div class="header">
                 <img src="../../assets/images/Image.png" alt="User Profile">
                 <span class="user_name">Ruel</span>
@@ -109,7 +109,7 @@
                 <button class="show_reply_btn"><span class="timestamp">5 mins</span> <span class="caret_arrow"></span> 0 Reply</button>
     
                 <ul class="reply_list">
-                    <li class="reply_item">
+                    <li id="reply_5" class="reply_item">
                         <div class="header">
                             <img src="../../assets/images/Image.png" alt="User Profile">
                             <span class="user_name">Ruel</span>
@@ -130,7 +130,7 @@
     <button class="see_more_btn">See More <span class="caret_down"></span></button>
 
     <div class="post_reply_block">
-        <form action="#" id="post_reply_form" method="POST">
+        <form action="#" id="post_reply_form" data-action_id="1" method="POST">
             <input type="hidden" name="is_reply" id="is_reply">
             <label class="input_field">
                 <span>Post</span>
@@ -139,4 +139,33 @@
             </label>
         </form>
     </div>
+
+    <li id="post_item_clone" class="post_item hidden">
+        <div class="header">
+            <img src="../../assets/images/Image.png" alt="User Profile">
+            <span class="user_name">Arthur</span>
+            <div class="message_actions_block">
+                <button class="show_message_actions"></button>
+            </div>
+        </div>
+        <div class="message_details">
+            <p class="user_post_message"></p>
+            <button class="show_reply_btn"><span class="timestamp">now</span> <span class="caret_arrow"></span> 0 Reply</button>
+            <ul class="reply_list"></ul>
+        </div>
+    </li>
+
+    <li id="reply_item_clone" class="reply_item hidden">
+        <div class="header">
+            <img src="../../assets/images/Image.png" alt="User Profile">
+            <span class="user_name">Arthur</span>
+            ∙
+            <span class="timestamp">now</span>
+
+            <div class="message_actions_block">
+                <button class="show_message_actions"></button>
+            </div>
+        </div>
+        <p class="user_reply_message">SAMPLE REPLY TEXT sample reply repl text</p>
+    </li>
 </div>
