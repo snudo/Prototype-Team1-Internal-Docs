@@ -451,7 +451,7 @@
   margin-left: 12px;
 }
 #invite_user_modal .modal-dialog .modal-content .modal-body .dropdown #added_email_status,
-#invite_user_modal .modal-dialog .modal-content .modal-body .dropdown #update_status {
+#invite_user_modal .modal-dialog .modal-content .modal-body .dropdown .update_status {
   background: transparent;
   border: 1px solid #7D949D;
   color: #7D949D;
@@ -461,7 +461,7 @@
   width: 134px;
 }
 #invite_user_modal .modal-dialog .modal-content .modal-body .dropdown #added_email_status::after,
-#invite_user_modal .modal-dialog .modal-content .modal-body .dropdown #update_status::after {
+#invite_user_modal .modal-dialog .modal-content .modal-body .dropdown .update_status::after {
   margin-left: 15px;
 }
 #invite_user_modal .modal-dialog .modal-content .modal-body .dropdown ul.dropdown-menu li button {
@@ -611,7 +611,7 @@
 #invite_user_modal .modal-dialog .modal-content .modal-body .with_access_list li .dropdown {
   margin-left: auto;
 }
-#invite_user_modal .modal-dialog .modal-content .modal-body .with_access_list li .dropdown #update_status {
+#invite_user_modal .modal-dialog .modal-content .modal-body .with_access_list li .dropdown .update_status {
   border: none;
   width: unset;
 }

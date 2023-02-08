@@ -333,12 +333,13 @@ const getDocumentValue = (event) => {
 
     /* Remove red border */
     add_document_input_field.classList.remove("input_error");
-
     let form_input = document.querySelector("#add_documentation_input");
-
+    
     if(form_input.value.length){
+        window.location.href = "/web-frontend/views/admin/sections.html?size=0&title="+encodeURIComponent(form_input.value);
         let timestamp = new Date().getUTCMilliseconds();
 
+        /* UX Changed
         documentations_list_by_size.splice(doc_count, 0, {
             id: timestamp,
             title: form_input.value,
@@ -356,6 +357,7 @@ const getDocumentValue = (event) => {
         renderDocuments(documentations_list_by_size);
         preventPageRedirect();
         setPopUpPrivate();
+        */
     }
     else{
         add_document_input_field.classList.add("input_error");
@@ -392,7 +394,7 @@ const applySettings = (event)=> {
             description: selected_document.description,
         };
 
-        confirm_modal.querySelector(".public_private_content").textContent = "duplicate "+selected_document.title;
+        confirm_modal.querySelector(".message_content").textContent = "duplicate "+selected_document.title;
         confirm_action_modal.show();
 
         confirm_modal.querySelector("#confirm_button_yes").addEventListener("click", function(){
@@ -435,6 +437,23 @@ const applySettings = (event)=> {
             renderDocuments(documentations_list_by_size);
             confirm_action_modal.hide();
         });
+    }else if(event.target.classList == "favorite_document"){
+        let starred_id = selected_document.id;
+        let selected_document_id = documentations_list_by_size.find(obj_id => obj_id.id === starred_id);
+        let selected_document_index = documentations_list_by_size.map((obj_index) => obj_index.id).indexOf(starred_id);
+        
+        if(selected_document_index !== -1) {
+            selected_document_id.is_starred = !$("#document_list_container").find("#"+starred_id).find("input[type=checkbox]").is(":checked");
+
+            /* If Starred, put to starred group at the start of array */
+            documentations_list_by_size.splice(selected_document_index, 1);
+
+            /* Get last index of starred */
+            let last_starred_index = documentations_list_by_size.findLastIndex((doc_obj) => doc_obj.is_starred);
+            documentations_list_by_size.splice(last_starred_index+1, 0, selected_document_id);
+
+            renderDocuments((!filtered_documents.length) ? documentations_list_by_size : filtered_documents);
+        }
     }
 }
 
