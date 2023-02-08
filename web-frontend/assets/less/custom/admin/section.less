@@ -84,6 +84,17 @@
                 padding: 0 0 0;
                 width: 100%;
             }
+            textarea::placeholder,input[type=text]::-webkit-input-placeholder { /* Edge */
+                color: rgba(0,11,29,.4);
+            }
+              
+            textarea::placeholder,input[type=text]:-ms-input-placeholder { /* Internet Explorer 10-11 */
+                color: rgba(0,11,29,.4);
+            }
+              
+            textarea::placeholder,input[type=text]::placeholder {
+                color: rgba(0,11,29,.4);
+            }
             #documents_title{
                 color: @secondary_20;
                 font: 22px/28px @font_regular;
@@ -153,6 +164,22 @@
             width: 663px;
             #add_section_form{
                 position: relative;
+                &.floated{
+                    background-color: rgba(20, 184, 166, 0.1);
+                    display: flex;
+                    justify-content: center;
+                    left: 0;
+                    padding: 20px 0 20px 393px;
+                    position: fixed;
+                    top: 65px;
+                    width: 100%;
+                    z-index: 99;
+                    >div{
+                        margin: 0 auto;
+                        position: relative;
+                        width: 663px;
+                    }
+                }
                 label{
                     background-color: @teal_50;
                     border-bottom: 2px solid @teal_500;
@@ -172,6 +199,18 @@
                         outline: none;
                         width: 100%;
                     }
+                    input[type=text]::-webkit-input-placeholder { /* Edge */
+                        color: rgba(0,11,29,.4);
+                    }
+                      
+                    input[type=text]:-ms-input-placeholder { /* Internet Explorer 10-11 */
+                        color: rgba(0,11,29,.4);
+                    }
+                      
+                    input[type=text]::placeholder {
+                        color: rgba(0,11,29,.4);
+                    }
+                    
                 }
                 button{
                     background: url("/web-frontend/assets/images/svg_icons_stripe.svg");
@@ -200,7 +239,11 @@
                     &:last-child{
                         margin-bottom: 0;
                     }
+                    &.active{
+                        border: 1px solid @teal_500;
+                    }
                     &:hover{
+                        border: 1px solid @teal_500;
                         >div{
                             div{
                                 h3{
@@ -345,7 +388,7 @@
                 .dropdown{
                     margin-left: 12px;
 
-                    #added_email_status, #update_status{
+                    #added_email_status, .update_status{
                         background: transparent;
                         border: 1px solid @secondary_60;
                         color: @secondary_60;
@@ -504,7 +547,7 @@
                         .dropdown{
                             margin-left: auto;
 
-                            #update_status{
+                            .update_status{
                                 border: none;
                                 width: unset;
                             }

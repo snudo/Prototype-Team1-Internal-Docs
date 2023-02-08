@@ -7,9 +7,21 @@ var current_reply_id = 5;
 
 /* CALLBACK FUNCTIONS */
 const updateMessageCount = (event, message_form) => {
-    event.target.maxLength = "249";
+    event.target.maxLength = "250";
 
-    message_form.querySelector(".char_count").textContent = `${event.target.value.length + 1}/250`;
+    message_form.querySelector(".char_count").textContent = `${event.target.value.length}/250`;
+
+}
+
+const scrollToElement = (selected_item) => {
+    let parent_container = document.getElementById("component_wrapper");
+    let targetPosition = selected_item.offsetTop - parent_container.offsetTop;
+
+    window.scroll({
+        top: targetPosition,
+        left: 0,
+        behavior: "smooth"
+    });
 }
 
 const selectActiveTab = (event) => {
@@ -47,7 +59,7 @@ const updateItemData = (event) => {
     char_count.textContent = `${ selected_input.value.length }/250`;
 
     /* EVENT */
-    selected_form.querySelector("input").addEventListener("keydown", (event) => {
+    selected_form.querySelector("input").addEventListener("input", (event) => {
         updateMessageCount(event, selected_form);
     });
 }
@@ -62,7 +74,7 @@ const updatePostReplyData = (event, update_value, item_message) => {
         selected_form.classList.add("hidden");
 
         /* EVENT */
-        selected_form.querySelector("input").addEventListener("keydown", (event) => {
+        selected_form.querySelector("input").addEventListener("input", (event) => {
             updateMessageCount(event, selected_form);
         });
     }
@@ -85,7 +97,15 @@ const submitReplyData = (event) => {
     reply_item_clone.querySelector(".user_reply_message").textContent = update_post_value;
     reply_item_clone.querySelector(".update_reply_input").value = update_post_value;
     reply_form.closest(".reply_details").querySelector(".reply_list").prepend(reply_item_clone);
+    reply_form.querySelector(".char_count").textContent = "0/250";
     reply_form.reset();
+
+    scrollToElement(reply_item_clone);
+    reply_item_clone.classList.add("newly_added_message");
+    
+    setTimeout(() => {
+        reply_item_clone.classList.remove("newly_added_message");
+    }, 1500);
 
     let message_item = reply_form.closest(".message_item");
     let reply_count  = message_item.querySelectorAll(".reply_list li").length;
@@ -124,10 +144,17 @@ const submitAddPost = (event) => {
     if(post_message_data){
         post_item_clone.querySelector(".user_post_message").textContent = post_message_data;
         post_item_clone.querySelector(".update_post_input").value = post_message_data;
-    
+        post_item_clone.classList.add("newly_added_message");
         document.querySelector("#component_list .post_list").prepend(post_item_clone);
-        post_message_form.reset();
-        post_message_form.querySelector(".char_count").textContent = "0/250";  
+
+        post_message_form.reset(post_item_clone);
+        post_message_form.querySelector(".char_count").textContent = "0/250";
+
+        scrollToElement(post_item_clone);
+
+        setTimeout(() => {
+            post_item_clone.classList.remove("newly_added_message");
+        }, 1500);
     }
 
     let reply_form = post_item_clone.querySelector(".reply_form");
@@ -137,7 +164,7 @@ const submitAddPost = (event) => {
     reply_form.addEventListener("submit", submitReplyData);
     post_item_clone.querySelector(".delete_btn").addEventListener("click", removeItemData);
     post_item_clone.querySelector(".update_btn").addEventListener("click", updateItemData);
-    post_item_clone.querySelector(".reply_comment").addEventListener("keydown", (event) => {
+    post_item_clone.querySelector(".reply_comment").addEventListener("input", (event) => {
         updateMessageCount(event, reply_form);
     });
     post_item_clone.querySelector(".show_reply_btn").addEventListener("click", toggleShowReply);
@@ -192,7 +219,7 @@ function navigateTab(){
 /* EVENTS */
 document.querySelectorAll(".add_post_form").forEach((post_form) => {
     post_form.addEventListener("submit", submitAddPost);
-    post_form.querySelector(".post_comment").addEventListener("keydown", (event) => {
+    post_form.querySelector(".post_comment").addEventListener("input", (event) => {
         updateMessageCount(event, post_form);
     });
 });

@@ -145,6 +145,31 @@
             width: 663px;
             #search_section_form{
                 position: relative;
+                &.floated{
+                    background-color: rgba(20, 184, 166, 0.1);
+                    display: flex;
+                    justify-content: center;
+                    left: 0;
+                    padding: 20px 0 20px 393px;
+                    position: fixed;
+                    top: 65px;
+                    width: 100%;
+                    z-index: 99;
+                    >div{
+                        margin: 0 auto;
+                        position: relative;
+                        width: 663px;
+                    }
+                    @media only screen and (max-width: 1120px){
+                        padding: 20px 35px 20px 406px;
+                    }
+                    @media only screen and (max-width: 980px){
+                        padding: 20px 35px 20px 335px;
+                    }
+                    @media only screen and (max-width: 768px){
+                        padding: 20px 0 20px 0;
+                    }
+                }
                 label{
                     background-color: @teal_50;
                     border-radius: 8px 8px 0px 0px;
@@ -212,19 +237,15 @@
                         div{
                             &:first-child{
                                 align-items: center;
-                                background-color: @teal_50;
+                                background-color: rgba(94, 234, 212, 0.5);
                                 border-radius: 8px 0px 0px 8px;
                                 display: flex;
                                 height: 100%;
                                 justify-content: center;
-                                min-width: 44px;
-                                width: 44px;
+                                min-width: 8px;
+                                width: 8px;
                                 &::before{
-                                    content: "";
-                                    background: url("/web-frontend/assets/images/svg_icons_stripe.svg");
-                                    background-position: -862px -7px;
-                                    height: 24px;
-                                    width: 13px;
+                                    display: none;
                                 }
                             } 
                             &:last-child{

@@ -4,7 +4,7 @@ let confirm_modal = new bootstrap.Modal(confirm_modal_element, {});
 let current_privacy_setting = IS_PRIVATE.yes;
 
 /* Get params from URL of current Page */
-let url_obj = new URL((window.location.href).toLowerCase());
+let url_obj = new URL((window.location.href));
 let doc_count = url_obj.searchParams.get("size") || 5;
 let is_invite_modal_open = url_obj.searchParams.get("invite_open") || false;
 
@@ -171,8 +171,9 @@ const submitCreateSection = (event)=> {
 
     (form_input.value.length) ? form_input.closest("label").classList.remove("input_error") : form_input.closest("label").classList.add("input_error") ;
     if(form_input.value.length){
+        let new_section_id = new Date().getUTCMilliseconds();
         sections_list_by_size.splice(doc_count, 0, {
-            id: new Date().getUTCMilliseconds(),
+            id: new_section_id,
             title: form_input.value,
             description: "",
             url: "../user/components.html?size=3&tabs=4"
@@ -181,9 +182,15 @@ const submitCreateSection = (event)=> {
         form_input.value = "";
 
         renderSections(sections_list_by_size);
+        setNewSectionActive(new_section_id)
     }
 
     return false;
+}
+
+/* Adds active state to new or duplicated section */
+const setNewSectionActive = (new_section_id)=> {
+    document.getElementById(new_section_id).classList.add("active");
 }
 
 const changePrivacySettings = (event) => {
@@ -209,6 +216,14 @@ const changePrivacySettings = (event) => {
 
     return false;
 }
+
+window.addEventListener("scroll", () => {
+    if(this.scrollY > 40){
+        document.getElementById("add_section_form").classList.add("floated");
+    }else{
+        document.getElementById("add_section_form").classList.remove("floated");
+    }
+});
 
 const deleteSection = (event) => {
     let delete_section_btn = event.target;
@@ -247,9 +262,10 @@ const duplicateSection = (event) => {
     if(duplicate_section_btn.classList.value  === "duplicate_section"){
         /* Duplicate the Section */
         let section_to_duplicate = event.target.closest("li");
+        let section_new_id = new Date().getUTCMilliseconds();
 
         let duplicated_section_obj = {
-            id: new Date().getUTCMilliseconds(),
+            id: section_new_id,
             title: section_to_duplicate.querySelectorAll(".section_title")[ITEMS.first].textContent,
             description: section_to_duplicate.querySelectorAll(".section_description")[ITEMS.first].textContent,
             url: section_to_duplicate.querySelector("a").getAttribute("href")
@@ -257,30 +273,18 @@ const duplicateSection = (event) => {
 
         sections_list_by_size.push(duplicated_section_obj);
         renderSections(sections_list_by_size);
+
+        setNewSectionActive(section_new_id);
     }
 }
 
-const selectAddedEmailStatus = (event) => {
+const selectAddedEmailStatus = (event, selected_class_item) => {
     let selected_status = event.target;
 
-    selected_status.closest(".dropdown").querySelector("#added_email_status").textContent = selected_status.textContent;
+    selected_status.closest(".dropdown").querySelector(selected_class_item).textContent = selected_status.textContent;
     selected_status.closest(".dropdown-menu").querySelector(".dropdown-item.active").classList.remove("active");
     selected_status.classList.add("active");
-
-    /* Change input in clone elemenet */
-    let clone_element = document.querySelector("#clone_invited_user").querySelector("#added_email_status");
-    clone_element.textContent = selected_status.textContent;
-
-    if(selected_status.textContent === "Viewer"){
-        document.getElementById("clone_viewer").classList.add("active");
-        document.getElementById("clone_editor").classList.remove("active");
-    }
-    else{
-        document.getElementById("clone_viewer").classList.remove("active");
-        document.getElementById("clone_editor").classList.add("active");
-    }
 }
-
 
 autoGrowTextArea(document.getElementById("document_description_input"));
 
@@ -289,10 +293,6 @@ document.getElementById("add_section_form").addEventListener("submit", submitCre
 document.getElementById("private_setting_block").addEventListener("click", changePrivacySettings);
 document.addEventListener("click", deleteSection);
 document.addEventListener("click", duplicateSection);
-document.querySelectorAll("#invite_user_modal .dropdown-item").forEach((selected_status) => {
-    selected_status.addEventListener("click", selectAddedEmailStatus);
-});
-
 
 $(function() {
     $("#section_list_container").sortable();
@@ -301,8 +301,17 @@ $(function() {
     document.getElementById("add_section_input").focus();
 
     if(doc_count < 1){
+        let new_doc_title = url_obj.searchParams.get("title"); 
         document.getElementById("document_description_input").textContent = "";
         document.querySelector("#viewers_editors_count span").textContent = "0 viewer and 0 editor";
+        document.getElementById("documents_title").value = url_obj.searchParams.get("title");     
+        $("#document_description_input").css("height", "460px").focus();   
+        $("#current_page").text(new_doc_title);
+    }
+    else{
+        $("#current_page").text("Engineering Guide");
+        document.getElementById("documents_title").value = "Engineering Guide";
+        $("#document_description_input").css("height", "460px").text("Engineering Guidelines are a collection of your an organizations’ Best Practices; a distillation of the institutional knowledge around “how things should be done here”. They are a cross between a Mission Statement, Company Values, and an Employee Handbook for your engineering department. You need a rationale so people understand the context in which these decisions have been made. \n\nThis allows exceptions when these base assumptions do not hold, or updating the guidelines when the larger context changes. It’s about making decisions once for consistency. It’s about avoiding known issues or edge cases. It’s about choosing a specific technique with known tradeoffs for dealing with problems.");
     }
 });
 
@@ -318,6 +327,13 @@ document.getElementById("viewers_editors_count").addEventListener("click", () =>
 if(is_invite_modal_open){
     invite_user_modal.show();
 }
+
+/* Removes active class on sections when click anything */
+document.getElementById("create_section_block").addEventListener("click", function(){
+    document.querySelectorAll("#section_list_container li").forEach(function(section){
+        section.classList.remove("active");
+    })
+})
 
 let inputContainerNode = document.querySelector('.added_email_list');
 EmailsInput(inputContainerNode, {
@@ -381,6 +397,10 @@ function addEmailToList(emailsContainer, email, options) {
     clearSearchSuggestion();
 }
 
+const removePeopleAccess = (event) => {
+    event.target.closest(".dropdown").closest("li").remove();
+}
+
 function createTextBox(emailsContainer, options) {
     const input = document.createElement('input');
     input.classList.add('add_email_input');
@@ -419,9 +439,16 @@ function createTextBox(emailsContainer, options) {
                     let clone_invited_user = document.getElementById("clone_invited_user").cloneNode(true);
                     clone_invited_user.classList.remove("id");
 
-                    let email_address = clone_invited_user.querySelector("#invited_email");
+                    let email_address        = clone_invited_user.querySelector("#invited_email");
+                    let selected_status_data = e.target.closest(".add_email_block").querySelector(".dropdown-item.active").textContent;
+                    let invited_user_name    = clone_invited_user.querySelector(".invited_user_name");
+
+                    invited_user_name.textContent = all_users_obj.filter(selected_item => selected_item.email === email)[0].full_name;
                     email_address.innerHTML = email;
                     email_address.setAttribute("href", "mailto:" + email);
+
+                    clone_invited_user.querySelector(`.dropdown-item[data-selector-text="${ selected_status_data }"]`).classList.add("active");
+                    clone_invited_user.querySelector(".update_status").textContent = selected_status_data;
 
                     document.querySelector(".with_access_list").appendChild(clone_invited_user);
                 });
@@ -437,6 +464,17 @@ function createTextBox(emailsContainer, options) {
                 validEmailClass: 'valid-email',
             });
             e.preventDefault();
+
+            /* EVENTS */
+            document.querySelectorAll(".remove_access_btn").forEach((selected_btn) => {
+                selected_btn.addEventListener("click", removePeopleAccess);
+            });
+
+            document.querySelectorAll(".dropdown-item").forEach((selected_btn) => {
+                selected_btn.addEventListener("click", (event) => selectAddedEmailStatus(event, ".update_status"));
+            });
+
+            document.querySelector('.add_email_input').addEventListener('keyup', searchHandler);
         }
     });
 
@@ -510,14 +548,14 @@ function searchHandler(event) {
 }
 
 function useSuggestion(event) {
-    let input = document.querySelector('.add_email_input');
-    let suggestions = document.querySelector('.filter_email_search');
+    let input = document.querySelector(".add_email_input");
+    let suggestions = document.querySelector(".filter_email_search");
 
-    input.value = event.target.closest('li').getAttribute("data-email");
+    input.value = event.target.closest("li").getAttribute("data-email");
     input.focus();
     input.blur();
     input.focus();
-    suggestions.innerHTML = '';
+    suggestions.innerHTML = "";
     suggestions.classList.add("hidden");
 }
 
@@ -552,8 +590,42 @@ function showSuggestions(results) {
 }
 
 function clearSearchSuggestion() {
-    console.log("went clearSearchSuggestion");
     let suggestions = document.querySelector('.filter_email_search');
+
     suggestions.innerHTML = '';
     suggestions.classList.add("hidden");
 }
+
+const copyLink = () => {
+    let temp_input   = document.createElement("input");
+    let modal_footer = document.querySelector("#invite_user_modal .modal-footer");
+
+    temp_input.value = window.location.href;
+    modal_footer.appendChild(temp_input);
+    temp_input.select();
+    document.execCommand("copy");
+    modal_footer.removeChild(temp_input);
+
+    var exampleTriggerEl = document.querySelector(".copy_link");
+    var popover = new bootstrap.Popover(exampleTriggerEl);
+
+    popover.show();
+
+    setTimeout(() => {
+        popover.hide();
+    }, 1000);
+}
+
+document.querySelector("#invite_user_modal .copy_link").addEventListener("click", copyLink);
+
+document.querySelectorAll(".remove_access_btn").forEach((selected_btn) => {
+    selected_btn.addEventListener("click", removePeopleAccess);
+});
+
+document.querySelectorAll(".with_access_list .dropdown-item").forEach((selected_btn) => {
+    selected_btn.addEventListener("click", (event) => selectAddedEmailStatus(event, ".update_status"));
+});
+
+document.querySelectorAll(".add_email_block .dropdown-item").forEach((selected_status) => {
+    selected_status.addEventListener("click", (event) => selectAddedEmailStatus(event, "#added_email_status"));
+});

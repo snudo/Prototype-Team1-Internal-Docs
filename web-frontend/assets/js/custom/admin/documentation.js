@@ -6,7 +6,7 @@ var selected_document = "";
 
 /* Get params from URL of current Page */
 let url_obj = new URL((window.location.href).toLowerCase());
-let doc_count = url_obj.searchParams.get("size") || 5;
+let doc_count = url_obj.searchParams.get("size") || 20;
 
 let documents_array = [
     {
@@ -247,6 +247,14 @@ let archived_document = [
 let documentations_list_by_size = documents_array.slice(0, doc_count);
 let filtered_documents = [];
 
+window.addEventListener("scroll", () => {
+    if(this.scrollY > 40){
+        document.getElementById("form_container").classList.add("floated");
+    }else{
+        document.getElementById("form_container").classList.remove("floated");
+    }
+});
+
 const renderDocuments = (documents_list, active_index = false) => {
     document.getElementById("document_list_container").innerHTML = "";
 
@@ -264,6 +272,8 @@ const renderDocuments = (documents_list, active_index = false) => {
             cloned_document.querySelectorAll(".viewers_count")[ITEMS.first].textContent = document_item.viewers;
             cloned_document.querySelectorAll(".editors_count")[ITEMS.first].textContent = document_item.editors;
             cloned_document.querySelectorAll(".document_information p")[ITEMS.first].textContent = document_item.description;
+
+            cloned_document.setAttribute("title", document_item.title);
 
             (document_item.is_private) ? cloned_document.classList.add("is_private") : cloned_document.classList.remove("is_private");
             (document_item.is_starred) ? cloned_document.querySelector("input[type=checkbox]").checked = true : cloned_document.querySelector("input[type=checkbox]").checked = false;
@@ -325,12 +335,13 @@ const getDocumentValue = (event) => {
 
     /* Remove red border */
     add_document_input_field.classList.remove("input_error");
-
     let form_input = document.querySelector("#add_documentation_input");
-
+    
     if(form_input.value.length){
+        window.location.href = "/web-frontend/views/admin/sections.html?size=0&title="+encodeURIComponent(form_input.value);
         let timestamp = new Date().getUTCMilliseconds();
 
+        /* UX Changed
         documentations_list_by_size.splice(doc_count, 0, {
             id: timestamp,
             title: form_input.value,
@@ -347,6 +358,8 @@ const getDocumentValue = (event) => {
 
         renderDocuments(documentations_list_by_size);
         preventPageRedirect();
+        setPopUpPrivate();
+        */
     }
     else{
         add_document_input_field.classList.add("input_error");
@@ -354,6 +367,13 @@ const getDocumentValue = (event) => {
 
     return false;
 }
+
+const fixInputOnScroll = ()=> {
+    window.onscroll = function() {
+
+    }
+};
+fixInputOnScroll();
 
 const DuplicateDocument = (event)=> {
     if(event.target.classList == "documents_menu"){
@@ -410,17 +430,33 @@ const applySettings = (event)=> {
     }else if(event.target.classList == "public_document"){
         let is_private = event.target.closest("li").querySelector(".public_checkbox_setting").checked;
 
-        confirm_modal.querySelector(".message_content").textContent = `set ${selected_document.title} to ${(is_private) ? "private" : "public"}`;
-        confirm_action_modal.show();
+        confirm_modal.querySelector(".message_content").textContent = `set ${selected_document.title} to ${(selected_document.is_private) ? "public" : "private"}`;
 
+        confirm_action_modal.show();
+        
         confirm_modal.querySelector("#confirm_button_yes").addEventListener("click", function(){
             let selected_document_index = documentations_list_by_size.map((obj_index) => obj_index.id).indexOf(selected_document.id);
-
             (is_private) ? documentations_list_by_size[selected_document_index].is_private = true : documentations_list_by_size[selected_document_index].is_private = false;
-
             renderDocuments(documentations_list_by_size);
             confirm_action_modal.hide();
         });
+    }else if(event.target.classList == "favorite_document"){
+        let starred_id = selected_document.id;
+        let selected_document_id = documentations_list_by_size.find(obj_id => obj_id.id === starred_id);
+        let selected_document_index = documentations_list_by_size.map((obj_index) => obj_index.id).indexOf(starred_id);
+        
+        if(selected_document_index !== -1) {
+            selected_document_id.is_starred = !$("#document_list_container").find("#"+starred_id).find("input[type=checkbox]").is(":checked");
+
+            /* If Starred, put to starred group at the start of array */
+            documentations_list_by_size.splice(selected_document_index, 1);
+
+            /* Get last index of starred */
+            let last_starred_index = documentations_list_by_size.findLastIndex((doc_obj) => doc_obj.is_starred);
+            documentations_list_by_size.splice(last_starred_index+1, 0, selected_document_id);
+
+            renderDocuments((!filtered_documents.length) ? documentations_list_by_size : filtered_documents);
+        }
     }
 }
 
@@ -472,6 +508,18 @@ const FilterDocuments = (event)=> {
     }
 }
 
+const setPopUpPrivate = ()=> {
+    document.querySelectorAll(".documents_menu").forEach((documents) => {
+        documents.addEventListener("click", function(){
+            let selected_document_index = documentations_list_by_size.map((obj_index) => obj_index.id).indexOf(parseInt(this.closest("li").id));
+            document.getElementById(this.getAttribute("aria-describedby")).querySelector(".public_checkbox_setting").checked = documentations_list_by_size[selected_document_index].is_private;
+        });
+    });
+}
+
+setPopUpPrivate();
+
+
 /* EVENTS */
 document.addEventListener("click", applySettings);
 document.addEventListener("click", starredDocument);
@@ -507,7 +555,6 @@ const preventPageRedirect = ()=> {
 }
 
 let document_card_elements = document.getElementsByClassName("document_cards");
-
 for (var i = 0; i < document_card_elements.length; i++) {
     document_card_elements[i].addEventListener('click', (event) => {
         if(event.target.classList.contains("all_access_count")){
