@@ -1,6 +1,6 @@
 var popover_content = document.getElementById("document_options");
-var confirm_modal = document.getElementById("confirm_private_modal");
-var confirm_private_modal = new bootstrap.Modal(confirm_modal, {});
+var confirm_modal = document.getElementById("confirm_action_modal");
+var confirm_action_modal = new bootstrap.Modal(confirm_modal, {});
 var document_id = "";
 var selected_document = "";
 
@@ -375,26 +375,40 @@ const applySettings = (event)=> {
         };
 
         confirm_modal.querySelector(".public_private_content").textContent = "duplicate "+selected_document.title;
-        confirm_private_modal.show();
+        confirm_action_modal.show();
 
         confirm_modal.querySelector("#confirm_button_yes").addEventListener("click", function(){
             documentations_list_by_size.push(duplicated_object);
 
-            confirm_private_modal.hide();
+            confirm_action_modal.hide();
             renderDocuments(documentations_list_by_size);
         });
     }else if(event.target.classList == "archive_document"){
-        archived_document.push(documentations_list_by_size.filter(obj_index => obj_index.id === selected_document.id)[ITEMS.first]);
-        documentations_list_by_size.splice(documentations_list_by_size.map((obj_index) => obj_index.id).indexOf(selected_document.id), 1);
-        renderDocuments(documentations_list_by_size);
+        confirm_modal.querySelector(".message_content").textContent = `archive ${selected_document.title} documentation`;
+        confirm_action_modal.show();
+
+        confirm_modal.querySelector("#confirm_button_yes").addEventListener("click", function(){
+            archived_document.push(selected_document);
+            documentations_list_by_size.splice(documentations_list_by_size.map((obj_index) => obj_index.id).indexOf(selected_document.id), 1);
+            renderDocuments(documentations_list_by_size);
+
+            confirm_action_modal.hide();
+        });
     }else if(event.target.classList == "remove_document"){
-        documentations_list_by_size.splice(documentations_list_by_size.map((obj_index) => obj_index.id).indexOf(selected_document.id), 1);
-        renderDocuments(documentations_list_by_size);
+        confirm_modal.querySelector(".message_content").textContent = `remove ${selected_document.title} documentation`;
+        confirm_action_modal.show();
+
+        confirm_modal.querySelector("#confirm_button_yes").addEventListener("click", function(){
+            documentations_list_by_size.splice(documentations_list_by_size.map((obj_index) => obj_index.id).indexOf(selected_document.id), 1);
+            renderDocuments(documentations_list_by_size);
+
+            confirm_action_modal.hide();
+        });
     }else if(event.target.classList == "public_document"){
         let is_private = event.target.closest("li").querySelector(".public_checkbox_setting").checked;
 
-        confirm_modal.querySelector(".public_private_content").textContent = (is_private) ? "private" : "public";
-        confirm_private_modal.show();
+        confirm_modal.querySelector(".message_content").textContent = `set ${selected_document.title} to ${(is_private) ? "private" : "public"}`;
+        confirm_action_modal.show();
 
         confirm_modal.querySelector("#confirm_button_yes").addEventListener("click", function(){
             let selected_document_index = documentations_list_by_size.map((obj_index) => obj_index.id).indexOf(selected_document.id);
@@ -402,7 +416,7 @@ const applySettings = (event)=> {
             (is_private) ? documentations_list_by_size[selected_document_index].is_private = true : documentations_list_by_size[selected_document_index].is_private = false;
 
             renderDocuments(documentations_list_by_size);
-            confirm_private_modal.hide();
+            confirm_action_modal.hide();
         });
     }
 }

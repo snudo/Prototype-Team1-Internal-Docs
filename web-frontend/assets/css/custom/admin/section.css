@@ -4,6 +4,9 @@
 #clone_section {
   display: none;
 }
+#clone_invited_user {
+  display: none;
+}
 #section_wrapper {
   margin: 24px auto 0;
   max-width: 1055px;

@@ -129,9 +129,9 @@
                         </div>
 
                         <div class="dropdown">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" id="update_status" data-bs-toggle="dropdown" aria-expanded="false">Viewer</button>
-                            
-                            <ul class="dropdown-menu" aria-labelledby="update_status">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="added_email_status" data-bs-toggle="dropdown" aria-expanded="false">Viewer</button>
+
+                            <ul class="dropdown-menu" aria-labelledby="added_email_status">
                                 <li><button class="dropdown-item active" type="button">Viewer</button></li>
                                 <li><button class="dropdown-item" type="button">Editor</button></li>
                             </ul>
@@ -145,6 +145,23 @@
             </div>
         </div>
     </div>
+
+    <li id="clone_invited_user">
+        <img src="../../assets/images/Image.png" alt="User Profile">
+        <div class="user_details">
+            <h3 id="invited_user_name"></h3>
+            <a id="invited_email" href="#"></a>
+        </div>
+
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="added_email_status" data-bs-toggle="dropdown" aria-expanded="false">Viewer</button>
+
+            <ul class="dropdown-menu" aria-labelledby="added_email_status">
+                <li><button id="clone_viewer" class="dropdown-item active" type="button">Viewer</button></li>
+                <li><button id="clone_editor" class="dropdown-item" type="button">Editor</button></li>
+            </ul>
+        </div>
+    </li>
 
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>

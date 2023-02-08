@@ -266,6 +266,19 @@ const selectAddedEmailStatus = (event) => {
     selected_status.closest(".dropdown").querySelector("#added_email_status").textContent = selected_status.textContent;
     selected_status.closest(".dropdown-menu").querySelector(".dropdown-item.active").classList.remove("active");
     selected_status.classList.add("active");
+
+    /* Change input in clone elemenet */
+    let clone_element = document.querySelector("#clone_invited_user").querySelector("#added_email_status");
+    clone_element.textContent = selected_status.textContent;
+
+    if(selected_status.textContent === "Viewer"){
+        document.getElementById("clone_viewer").classList.add("active");
+        document.getElementById("clone_editor").classList.remove("active");
+    }
+    else{
+        document.getElementById("clone_viewer").classList.remove("active");
+        document.getElementById("clone_editor").classList.add("active");
+    }
 }
 
 
@@ -341,6 +354,7 @@ function addEmailToList(emailsContainer, email, options) {
     if (!email || listOfValidEmails.indexOf(email) > -1 || !isValidEmail(email, options.limitEmailsToDomain)) return;
 
     const emailBlock = document.createElement('li');
+    emailBlock.classList.add("email_input_block");
     emailBlock.innerText = email;
 
     listOfValidEmails.push(email);
@@ -364,6 +378,7 @@ function addEmailToList(emailsContainer, email, options) {
     emailBlock.appendChild(removeBtn);
 
     emailsContainer.insertBefore(emailBlock, emailsContainer.firstChild);
+    clearSearchSuggestion();
 }
 
 function createTextBox(emailsContainer, options) {
@@ -378,13 +393,50 @@ function createTextBox(emailsContainer, options) {
 
     /* Create email block in case user press 'Enter' or comma */
     input.addEventListener('keypress', function (e) {
-        if (e.key === ',' || e.key === 'Enter') {
+        if (e.key === ',' || e.key === 'Tab') {
             if (e.target.value !== '') {
                 addEmailToList(emailsContainer, e.target.value, options);
             }
 
-            e.preventDefault();
             e.target.value = '';
+        }
+        else if (e.key === 'Enter') {
+            let all_emails = [];
+            let email_inputs = document.getElementsByClassName("email_input_block");
+
+            if(email_inputs.length > 0){
+                Array.from(email_inputs).forEach((email_input) => {
+                    all_emails.push(email_input.textContent);
+                });
+            }
+
+            if (e.target.value !== '') {
+                all_emails.push(e.target.value);
+            }
+
+            if(all_emails.length > 0){
+                all_emails.forEach( (email) => {
+                    let clone_invited_user = document.getElementById("clone_invited_user").cloneNode(true);
+                    clone_invited_user.classList.remove("id");
+
+                    let email_address = clone_invited_user.querySelector("#invited_email");
+                    email_address.innerHTML = email;
+                    email_address.setAttribute("href", "mailto:" + email);
+
+                    document.querySelector(".with_access_list").appendChild(clone_invited_user);
+                });
+            }
+
+            e.target.value = '';
+            all_emails = [];
+            listOfValidEmails = [];
+
+            inputContainerNode.innerHTML = "";
+            EmailsInput(inputContainerNode, {
+                limitEmailsToDomain: 'village88',
+                validEmailClass: 'valid-email',
+            });
+            e.preventDefault();
         }
     });
 
@@ -497,4 +549,11 @@ function showSuggestions(results) {
         suggestions.innerHTML = '';
         suggestions.classList.add("hidden");
     }
+}
+
+function clearSearchSuggestion() {
+    console.log("went clearSearchSuggestion");
+    let suggestions = document.querySelector('.filter_email_search');
+    suggestions.innerHTML = '';
+    suggestions.classList.add("hidden");
 }
