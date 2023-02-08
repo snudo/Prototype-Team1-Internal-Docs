@@ -557,3 +557,21 @@ function clearSearchSuggestion() {
     suggestions.innerHTML = '';
     suggestions.classList.add("hidden");
 }
+
+const copyLink = () => {
+    let temp_input   = document.createElement("input");
+    let modal_footer = document.querySelector("#invite_user_modal .modal-footer");
+
+    temp_input.value = window.location.href;
+    modal_footer.appendChild(temp_input);
+    temp_input.select();
+    document.execCommand("copy");
+    modal_footer.removeChild(temp_input);
+
+    var exampleTriggerEl = document.querySelector('.copy_link');
+    var tooltip = new bootstrap.Tooltip.getInstance(exampleTriggerEl);
+
+    tooltip.show();
+}
+
+document.querySelector("#invite_user_modal .copy_link").addEventListener("click", copyLink);
