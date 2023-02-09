@@ -467,9 +467,9 @@ body {
 }
 #dashboard_wrapper #document_list_container li a div h2 > span {
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 1;
   display: -webkit-box;
   font: 16px/24px "Roboto-Bold";
+  -webkit-line-clamp: 1;
   max-width: 170px;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -641,10 +641,23 @@ body {
     display: none;
   }
   #dashboard_wrapper #document_list_container li {
+    border-radius: 0;
     height: 90px;
     margin-bottom: 12px;
+    -ms-touch-action: unset;
+        touch-action: unset;
+  }
+  #dashboard_wrapper #document_list_container li a {
+    border-radius: 0;
   }
   #dashboard_wrapper #document_list_container li a div p {
+    display: none;
+  }
+  #dashboard_wrapper #document_list_container li a div:first-child {
+    min-width: 8px;
+    width: 8px;
+  }
+  #dashboard_wrapper #document_list_container li a div:first-child::before {
     display: none;
   }
 }

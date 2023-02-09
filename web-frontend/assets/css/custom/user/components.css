@@ -547,7 +547,7 @@
       -ms-flex-pack: center;
           justify-content: center;
   position: sticky;
-  top: 0;
+  top: -1px;
   width: 100%;
 }
 .comments_block_mobile .handle_hide_btn .handle_icon {

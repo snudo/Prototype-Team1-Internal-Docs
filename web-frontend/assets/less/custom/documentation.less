@@ -448,9 +448,9 @@ body{
                         margin: 0 0 0;
                         >span{
                             -webkit-box-orient: vertical;
-                            -webkit-line-clamp: 1;
                             display: -webkit-box;
                             font: 16px/24px @font_bold;
+                            -webkit-line-clamp: 1;
                             max-width: 170px;
                             overflow: hidden;
                             text-overflow: ellipsis;
@@ -631,12 +631,26 @@ body{
         }
         #document_list_container{
             li{
+                border-radius: 0;
                 height: 90px;
                 margin-bottom: 12px;
+                touch-action: unset;
+                
                 a{
+                    border-radius: 0;
+
                     div{
                         p{
                             display: none;
+                        }
+
+                        &:first-child{
+                            min-width: 8px;
+                            width: 8px;
+
+                            &::before{
+                                display: none;
+                            }
                         }
                     }
                 }
