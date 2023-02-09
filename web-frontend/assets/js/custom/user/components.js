@@ -1,11 +1,27 @@
 var confirm_modal   = new bootstrap.Modal(document.getElementById("delete_post_modal"), {});
 var popover_content = document.getElementById("comment_options");
+var selected_comment_element = "";
+var comment_to_insert_reply = "";
+var current_post_id = 3;
+var current_reply_id = 5;
 
 /* CALLBACK FUNCTIONS */
 const updateMessageCount = (event, message_form) => {
-    event.target.maxLength = "249";
+    event.target.maxLength = "250";
 
-    message_form.querySelector(".char_count").textContent = `${event.target.value.length + 1}/250`;
+    message_form.querySelector(".char_count").textContent = `${event.target.value.length}/250`;
+
+}
+
+const scrollToElement = (selected_item) => {
+    let parent_container = document.getElementById("component_wrapper");
+    let targetPosition = selected_item.offsetTop - parent_container.offsetTop;
+
+    window.scroll({
+        top: targetPosition,
+        left: 0,
+        behavior: "smooth"
+    });
 }
 
 const selectActiveTab = (event) => {
@@ -43,7 +59,7 @@ const updateItemData = (event) => {
     char_count.textContent = `${ selected_input.value.length }/250`;
 
     /* EVENT */
-    selected_form.querySelector("input").addEventListener("keydown", (event) => {
+    selected_form.querySelector("input").addEventListener("input", (event) => {
         updateMessageCount(event, selected_form);
     });
 }
@@ -58,7 +74,7 @@ const updatePostReplyData = (event, update_value, item_message) => {
         selected_form.classList.add("hidden");
 
         /* EVENT */
-        selected_form.querySelector("input").addEventListener("keydown", (event) => {
+        selected_form.querySelector("input").addEventListener("input", (event) => {
             updateMessageCount(event, selected_form);
         });
     }
@@ -81,7 +97,15 @@ const submitReplyData = (event) => {
     reply_item_clone.querySelector(".user_reply_message").textContent = update_post_value;
     reply_item_clone.querySelector(".update_reply_input").value = update_post_value;
     reply_form.closest(".reply_details").querySelector(".reply_list").prepend(reply_item_clone);
+    reply_form.querySelector(".char_count").textContent = "0/250";
     reply_form.reset();
+
+    scrollToElement(reply_item_clone);
+    reply_item_clone.classList.add("newly_added_message");
+    
+    setTimeout(() => {
+        reply_item_clone.classList.remove("newly_added_message");
+    }, 1500);
 
     let message_item = reply_form.closest(".message_item");
     let reply_count  = message_item.querySelectorAll(".reply_list li").length;
@@ -120,10 +144,17 @@ const submitAddPost = (event) => {
     if(post_message_data){
         post_item_clone.querySelector(".user_post_message").textContent = post_message_data;
         post_item_clone.querySelector(".update_post_input").value = post_message_data;
-    
+        post_item_clone.classList.add("newly_added_message");
         document.querySelector("#component_list .post_list").prepend(post_item_clone);
-        post_message_form.reset();
-        post_message_form.querySelector(".char_count").textContent = "0/250";  
+
+        post_message_form.reset(post_item_clone);
+        post_message_form.querySelector(".char_count").textContent = "0/250";
+
+        scrollToElement(post_item_clone);
+
+        setTimeout(() => {
+            post_item_clone.classList.remove("newly_added_message");
+        }, 1500);
     }
 
     let reply_form = post_item_clone.querySelector(".reply_form");
@@ -133,7 +164,7 @@ const submitAddPost = (event) => {
     reply_form.addEventListener("submit", submitReplyData);
     post_item_clone.querySelector(".delete_btn").addEventListener("click", removeItemData);
     post_item_clone.querySelector(".update_btn").addEventListener("click", updateItemData);
-    post_item_clone.querySelector(".reply_comment").addEventListener("keydown", (event) => {
+    post_item_clone.querySelector(".reply_comment").addEventListener("input", (event) => {
         updateMessageCount(event, reply_form);
     });
     post_item_clone.querySelector(".show_reply_btn").addEventListener("click", toggleShowReply);
@@ -188,7 +219,7 @@ function navigateTab(){
 /* EVENTS */
 document.querySelectorAll(".add_post_form").forEach((post_form) => {
     post_form.addEventListener("submit", submitAddPost);
-    post_form.querySelector(".post_comment").addEventListener("keydown", (event) => {
+    post_form.querySelector(".post_comment").addEventListener("input", (event) => {
         updateMessageCount(event, post_form);
     });
 });
@@ -220,6 +251,155 @@ document.querySelectorAll(".show_comments_mobile").forEach((show_item) => {
         document.querySelector(".comments_block_mobile").classList.remove("hidden");
     });
 });
+
+const commentPopover = (event) => {
+    if(event.target.classList == "show_message_actions"){
+        selected_comment_element = event.target.closest("li");
+    }
+}
+
+const manipulateComment = (event) => {
+    if(event.target.classList == "remove_action"){
+        let post_type = (selected_comment_element.getAttribute("class") == "post_item") ? "post" : "reply";
+        confirm_modal._element.querySelector("#post_type").textContent = post_type;
+        confirm_modal.show();
+
+        document.getElementById("confirm_button_yes").addEventListener("click", function(){
+            document.getElementById(selected_comment_element.id).remove();
+            confirm_modal.hide();
+        });
+    }
+    else if(event.target.classList == "edit_action"){
+        let form_element = document.getElementById("post_reply_form");
+        let action_type = "";
+        let form_label_element = form_element.querySelector("span");
+        let comment_reply_input = form_element.querySelector(".reply_post_input");
+
+        if(selected_comment_element.getAttribute("class") == "post_item"){
+            action_type = MOBILE_COMMENT_ACTION_TYPES.edit_comment;
+            form_label_element.innerHTML = "Edit Comment"
+            comment_reply_input.value = selected_comment_element.querySelector(".user_post_message").textContent;
+        }
+        else{
+            action_type = MOBILE_COMMENT_ACTION_TYPES.edit_reply;
+            form_label_element.innerHTML = "Edit Reply"
+            comment_reply_input.value = selected_comment_element.querySelector(".user_reply_message").textContent;
+        }
+
+        /* Create cancel trigger for editing */
+        let cancel_btn = document.createElement("span");
+        cancel_btn.id = "cancel_btn";
+        cancel_btn.innerHTML = "Cancel";
+        form_label_element.appendChild(cancel_btn);
+
+        cancel_btn.addEventListener("click", () => {
+            let form_element = document.getElementById("post_reply_form");
+            form_element.querySelector("span").innerHTML = "Post"
+            form_element.querySelector(".reply_post_input").value = "";
+            form_element.setAttribute("data-action_id", MOBILE_COMMENT_ACTION_TYPES.create_comment);
+
+            selected_comment_element = "";
+        });
+
+        form_element.setAttribute("data-action_id", action_type);
+        form_element.querySelector(".reply_post_input").focus();
+    }
+}
+
+const submitPostReplyForm = (event) => {
+    event.preventDefault();
+
+    let form_element = event.target;
+    let action_type = parseInt(form_element.getAttribute("data-action_id"));
+    let reply_post_input = form_element.querySelector(".reply_post_input");
+
+    if(action_type === MOBILE_COMMENT_ACTION_TYPES.create_comment){
+        let cloned_post = document.getElementById("post_item_clone").cloneNode(true);
+        current_post_id = current_post_id + 1;
+        cloned_post.id = "post_" + current_post_id;
+        cloned_post.classList.remove("hidden");
+        cloned_post.querySelector(".user_post_message").innerHTML = reply_post_input.value;
+
+        document.querySelector(".post_message_list").prepend(cloned_post);
+        showCommentsMenu();
+
+        cloned_post.querySelector(".show_reply_btn").addEventListener("click", (event) => {
+            comment_to_insert_reply = event.target.closest("li");
+            let form_element = document.getElementById("post_reply_form");
+            let form_label_element = form_element.querySelector("span");
+            form_label_element.innerHTML = "Reply to " + comment_to_insert_reply.querySelector(".user_name").textContent;
+            form_element.setAttribute("data-action_id", MOBILE_COMMENT_ACTION_TYPES.create_reply);
+    
+            /* Create cancel trigger for editing */
+            let cancel_btn = document.createElement("span");
+            cancel_btn.id = "cancel_btn";
+            cancel_btn.innerHTML = "Cancel";
+            form_label_element.appendChild(cancel_btn);
+    
+            cancel_btn.addEventListener("click", () => {
+                let form_element = document.getElementById("post_reply_form");
+                form_element.querySelector("span").innerHTML = "Post"
+                form_element.querySelector(".reply_post_input").value = "";
+                form_element.setAttribute("data-action_id", MOBILE_COMMENT_ACTION_TYPES.create_comment);
+    
+                comment_to_insert_reply = "";
+            });
+    
+            form_element.querySelector(".reply_post_input").focus();
+        });
+    }
+    else if(action_type === MOBILE_COMMENT_ACTION_TYPES.create_reply){
+        let cloned_reply = document.getElementById("reply_item_clone").cloneNode(true);
+        current_reply_id = current_reply_id + 1;
+        cloned_reply.id = "reply_" + current_reply_id;
+        cloned_reply.classList.remove("hidden");
+        cloned_reply.querySelector(".user_reply_message").innerHTML = reply_post_input.value;
+
+        comment_to_insert_reply.querySelector(".reply_list").prepend(cloned_reply);
+        showCommentsMenu();
+    }
+    else{
+        let message_element = (action_type === MOBILE_COMMENT_ACTION_TYPES.edit_comment) ? ".user_post_message" : ".user_reply_message";
+        selected_comment_element.querySelector(message_element).textContent = reply_post_input.value;
+
+        form_element.querySelector("span").innerHTML = "Post"
+    }
+
+    reply_post_input.value = "";
+    return false;
+}
+
+document.addEventListener("click", commentPopover);
+document.addEventListener("click", manipulateComment);
+document.getElementById("post_reply_form").addEventListener("submit", submitPostReplyForm);
+
+let all_show_replies_dropdown = document.getElementsByClassName("show_reply_btn");
+Array.from(all_show_replies_dropdown).forEach((element) => {
+    element.addEventListener("click", (event) => {
+        comment_to_insert_reply = event.target.closest("li");
+        let form_element = document.getElementById("post_reply_form");
+        let form_label_element = form_element.querySelector("span");
+        form_label_element.innerHTML = "Reply to " + comment_to_insert_reply.querySelector(".user_name").textContent;
+        form_element.setAttribute("data-action_id", MOBILE_COMMENT_ACTION_TYPES.create_reply);
+
+        /* Create cancel trigger for editing */
+        let cancel_btn = document.createElement("span");
+        cancel_btn.id = "cancel_btn";
+        cancel_btn.innerHTML = "Cancel";
+        form_label_element.appendChild(cancel_btn);
+
+        cancel_btn.addEventListener("click", () => {
+            let form_element = document.getElementById("post_reply_form");
+            form_element.querySelector("span").innerHTML = "Post"
+            form_element.querySelector(".reply_post_input").value = "";
+            form_element.setAttribute("data-action_id", MOBILE_COMMENT_ACTION_TYPES.create_comment);
+
+            comment_to_insert_reply = "";
+        });
+
+        form_element.querySelector(".reply_post_input").focus();
+    });
+})
 
 $(function(){
     $("body").on("click", ".prev_tab, .next_tab", navigateTab);

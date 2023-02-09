@@ -7,6 +7,9 @@
 #overlay.show_overlay {
   display: block !important;
 }
+.newly_added_message {
+  border: 1px solid #14B8A6 !important;
+}
 .input_field {
   opacity: 1 !important;
   pointer-events: unset !important;
@@ -133,6 +136,7 @@
 }
 #component_wrapper #left_panel .post_block .post_list .message_item {
   background: #F0FDFA;
+  border: 1px solid transparent;
   border-radius: 8px;
   margin-bottom: 24px;
   padding: 16px 24px 24px;

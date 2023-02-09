@@ -88,6 +88,14 @@
                         }
                     }
                 }
+                &:nth-child(5){
+                    button{
+                        &::before{
+                            background: url(../../images/star.svg) no-repeat 0px -2px;
+                            content: "";
+                        }
+                    }
+                }
                 &:last-child{
                     div{
                         input[type=checkbox]{
@@ -100,13 +108,13 @@
                         }
                         span{
                             &::before{
-                                content: "Set as Public";
+                                content: "Set as Private";
                                 font: 14px/20px @font_medium;
                             }
                         }
                         input[type=checkbox]:checked ~ span{
                             &::before{
-                                content: "Set as Private";
+                                content: "Set as Public";
                             }
                         }
                     }
@@ -173,6 +181,39 @@ body{
         justify-content: space-between;
         margin: 0 0 24px;
         width: 100%;
+        &.floated{
+            background-color: rgba(0, 158, 190, 0.2);
+            justify-content: center;
+            padding: 20px 0;
+            position: fixed;
+            top: 65px;
+            z-index: 99;
+            #create_document_form, #search_document_form{
+                margin-right: 387px;
+            }
+            @media only screen and (max-width: 1080px){
+                #create_document_form, #search_document_form{
+                    margin-right: 280px;
+                }
+            }
+            @media only screen and (max-width: 980px){
+                #create_document_form, #search_document_form{
+                    margin-right: 222px;
+                }
+            }
+            @media only screen and (max-width: 920px){
+                #create_document_form, #search_document_form{
+                    margin-right: 153px;
+                }
+            }
+            @media only screen and (max-width: 840px){
+                justify-content: space-between;
+                padding: 20px 36px;
+                #create_document_form, #search_document_form{
+                    margin-right: 0;
+                }
+            }
+        }
         form{
             position: relative;
             label{
@@ -194,6 +235,17 @@ body{
                     outline: none;
                     padding: 0 0 0 0;
                     width: 100%;
+                }
+                input[type=text]::-webkit-input-placeholder { /* Edge */
+                    color: rgba(0,11,29,.4);
+                }
+                  
+                input[type=text]:-ms-input-placeholder { /* Internet Explorer 10-11 */
+                    color: rgba(0,11,29,.4);
+                }
+                  
+                input[type=text]::placeholder {
+                    color: rgba(0,11,29,.4);
                 }
             }
             button{
@@ -297,7 +349,7 @@ body{
             &:nth-child(3n){
                 margin-right: 0;
             }
-            &:hover{
+            &:hover, &.active{
                 border: 1px solid @primary_60;
             }
             &:last-child{
@@ -378,7 +430,7 @@ body{
                     }
                     .documents_menu{
                         background: url("../../images/admin/admin-sprite-icons.svg");
-                        background-position: -4px -58px;
+                        background-position: 2px -58px;
                         border: none;
                         box-shadow: none;
                         height: 20px;
@@ -387,7 +439,7 @@ body{
                         position: absolute;
                         right: 26px;
                         top: 23px;
-                        width: 10px;
+                        width: 16px;
                     }
                     h2{
                         align-items: center;
@@ -395,7 +447,13 @@ body{
                         display: flex;
                         margin: 0 0 0;
                         >span{
+                            -webkit-box-orient: vertical;
+                            -webkit-line-clamp: 1;
+                            display: -webkit-box;
                             font: 16px/24px @font_bold;
+                            max-width: 170px;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
                         }
                         label{
                             display: flex;
@@ -548,8 +606,8 @@ body{
         #document_list_container{
             flex-direction: column;
             li{
-                width: 100%;
                 margin-right: 0;
+                width: 100%;
             }
         }
     }

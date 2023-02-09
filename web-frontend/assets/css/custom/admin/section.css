@@ -87,6 +87,44 @@
   padding: 0 0 0;
   width: 100%;
 }
+#section_wrapper #section_main_contents #documents_editable_form textarea::-webkit-input-placeholder {
+  /* Edge */
+  color: rgba(0, 11, 29, 0.4);
+}
+#section_wrapper #section_main_contents #documents_editable_form textarea::placeholder,
+#section_wrapper #section_main_contents #documents_editable_form input[type=text]::-webkit-input-placeholder {
+  /* Edge */
+  color: rgba(0, 11, 29, 0.4);
+}
+#section_wrapper #section_main_contents #documents_editable_form textarea:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: rgba(0, 11, 29, 0.4);
+}
+#section_wrapper #section_main_contents #documents_editable_form textarea::-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: rgba(0, 11, 29, 0.4);
+}
+#section_wrapper #section_main_contents #documents_editable_form textarea::placeholder,
+#section_wrapper #section_main_contents #documents_editable_form input[type=text]:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: rgba(0, 11, 29, 0.4);
+}
+#section_wrapper #section_main_contents #documents_editable_form textarea::-webkit-input-placeholder, #section_wrapper #section_main_contents #documents_editable_form input[type=text]::-webkit-input-placeholder {
+  color: rgba(0, 11, 29, 0.4);
+}
+#section_wrapper #section_main_contents #documents_editable_form textarea::-moz-placeholder, #section_wrapper #section_main_contents #documents_editable_form input[type=text]::-moz-placeholder {
+  color: rgba(0, 11, 29, 0.4);
+}
+#section_wrapper #section_main_contents #documents_editable_form textarea:-ms-input-placeholder, #section_wrapper #section_main_contents #documents_editable_form input[type=text]:-ms-input-placeholder {
+  color: rgba(0, 11, 29, 0.4);
+}
+#section_wrapper #section_main_contents #documents_editable_form textarea::-ms-input-placeholder, #section_wrapper #section_main_contents #documents_editable_form input[type=text]::-ms-input-placeholder {
+  color: rgba(0, 11, 29, 0.4);
+}
+#section_wrapper #section_main_contents #documents_editable_form textarea::placeholder,
+#section_wrapper #section_main_contents #documents_editable_form input[type=text]::placeholder {
+  color: rgba(0, 11, 29, 0.4);
+}
 #section_wrapper #section_main_contents #documents_editable_form #documents_title {
   color: #1D333B;
   font: 22px/28px "Roboto-Regular";
@@ -167,6 +205,26 @@
 #section_wrapper #section_main_contents #create_section_block #add_section_form {
   position: relative;
 }
+#section_wrapper #section_main_contents #create_section_block #add_section_form.floated {
+  background-color: rgba(20, 184, 166, 0.1);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  left: 0;
+  padding: 20px 0 20px 393px;
+  position: fixed;
+  top: 65px;
+  width: 100%;
+  z-index: 99;
+}
+#section_wrapper #section_main_contents #create_section_block #add_section_form.floated > div {
+  margin: 0 auto;
+  position: relative;
+  width: 663px;
+}
 #section_wrapper #section_main_contents #create_section_block #add_section_form label {
   background-color: #F0FDFA;
   border-bottom: 2px solid #14B8A6;
@@ -186,6 +244,23 @@
   font: 16px/24px "Roboto-Medium";
   outline: none;
   width: 100%;
+}
+#section_wrapper #section_main_contents #create_section_block #add_section_form label input[type=text]::-webkit-input-placeholder {
+  /* Edge */
+  color: rgba(0, 11, 29, 0.4);
+}
+#section_wrapper #section_main_contents #create_section_block #add_section_form label input[type=text]:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: rgba(0, 11, 29, 0.4);
+}
+#section_wrapper #section_main_contents #create_section_block #add_section_form label input[type=text]::-moz-placeholder {
+  color: rgba(0, 11, 29, 0.4);
+}
+#section_wrapper #section_main_contents #create_section_block #add_section_form label input[type=text]::-ms-input-placeholder {
+  color: rgba(0, 11, 29, 0.4);
+}
+#section_wrapper #section_main_contents #create_section_block #add_section_form label input[type=text]::placeholder {
+  color: rgba(0, 11, 29, 0.4);
 }
 #section_wrapper #section_main_contents #create_section_block #add_section_form button {
   background: url("/web-frontend/assets/images/svg_icons_stripe.svg");
@@ -216,6 +291,12 @@
 }
 #section_wrapper #section_main_contents #create_section_block ul li:last-child {
   margin-bottom: 0;
+}
+#section_wrapper #section_main_contents #create_section_block ul li.active {
+  border: 1px solid #14B8A6;
+}
+#section_wrapper #section_main_contents #create_section_block ul li:hover {
+  border: 1px solid #14B8A6;
 }
 #section_wrapper #section_main_contents #create_section_block ul li:hover > div div h3 button {
   opacity: 1;
@@ -370,7 +451,7 @@
   margin-left: 12px;
 }
 #invite_user_modal .modal-dialog .modal-content .modal-body .dropdown #added_email_status,
-#invite_user_modal .modal-dialog .modal-content .modal-body .dropdown #update_status {
+#invite_user_modal .modal-dialog .modal-content .modal-body .dropdown .update_status {
   background: transparent;
   border: 1px solid #7D949D;
   color: #7D949D;
@@ -380,7 +461,7 @@
   width: 134px;
 }
 #invite_user_modal .modal-dialog .modal-content .modal-body .dropdown #added_email_status::after,
-#invite_user_modal .modal-dialog .modal-content .modal-body .dropdown #update_status::after {
+#invite_user_modal .modal-dialog .modal-content .modal-body .dropdown .update_status::after {
   margin-left: 15px;
 }
 #invite_user_modal .modal-dialog .modal-content .modal-body .dropdown ul.dropdown-menu li button {
@@ -530,7 +611,7 @@
 #invite_user_modal .modal-dialog .modal-content .modal-body .with_access_list li .dropdown {
   margin-left: auto;
 }
-#invite_user_modal .modal-dialog .modal-content .modal-body .with_access_list li .dropdown #update_status {
+#invite_user_modal .modal-dialog .modal-content .modal-body .with_access_list li .dropdown .update_status {
   border: none;
   width: unset;
 }

@@ -23,6 +23,17 @@ label.input_field{
         padding: 0;
         width: 100%;
    }
+    input[type=text]::-webkit-input-placeholder { /* Edge */
+        color: rgba(0,11,29,.4);
+    }
+    
+    input[type=text]:-ms-input-placeholder { /* Internet Explorer 10-11 */
+        color: rgba(0,11,29,.4);
+    }
+    
+    input[type=text]::placeholder {
+        color: rgba(0,11,29,.4);
+    }
 }
 
 .text_allow_comments{
@@ -93,6 +104,17 @@ label.input_field{
                 outline: none;
                 resize: none;
                 width: 100%;
+            }
+            textarea::placeholder,input[type=text]::-webkit-input-placeholder { /* Edge */
+                color: rgba(0,11,29,.4);
+            }
+              
+            textarea::placeholder,input[type=text]:-ms-input-placeholder { /* Internet Explorer 10-11 */
+                color: rgba(0,11,29,.4);
+            }
+              
+            textarea::placeholder,input[type=text]::placeholder {
+                color: rgba(0,11,29,.4);
             }
         }
 
