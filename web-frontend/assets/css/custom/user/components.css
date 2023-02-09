@@ -378,7 +378,7 @@
     -webkit-box-pack: start;
         -ms-flex-pack: start;
             justify-content: flex-start;
-    margin: 0 25px;
+    margin: 0 0 0 24px;
     overflow: hidden;
     position: relative;
   }
@@ -858,12 +858,12 @@
 }
 #components_tab_list .modal-dialog .modal-content .modal-body ul li a {
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 1;
   color: #14B8A6;
   display: -webkit-box;
-  text-decoration: none;
   font: 14px/20px "Roboto-Regular";
+  -webkit-line-clamp: 1;
   overflow: hidden;
+  text-decoration: none;
   text-overflow: ellipsis;
 }
 @media only screen and (max-width: 576px) {
