@@ -171,6 +171,9 @@
   position: relative;
   width: 663px;
 }
+#section_wrapper #section_main_contents #sections_block #search_section_form.floated > div label {
+  background-color: #FFFFFF;
+}
 @media only screen and (max-width: 1120px) {
   #section_wrapper #section_main_contents #sections_block #search_section_form.floated {
     padding: 20px 35px 20px 406px;
@@ -241,6 +244,12 @@
 #section_wrapper #section_main_contents #sections_block ul li:last-child {
   margin-bottom: 0;
 }
+#section_wrapper #section_main_contents #sections_block ul li:hover {
+  border: 1px solid #14B8A6;
+}
+#section_wrapper #section_main_contents #sections_block ul li:hover a div:first-child {
+  background-color: #14B8A6;
+}
 #section_wrapper #section_main_contents #sections_block ul li:hover a div h3 button {
   opacity: 1;
 }
@@ -278,9 +287,14 @@
   padding: 0 26px;
 }
 #section_wrapper #section_main_contents #sections_block ul li a div p {
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
   color: #7D949D;
+  display: -webkit-box;
   font: 14px/20px "Roboto-Medium";
   margin: 0 0 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 #section_wrapper #section_main_contents #sections_block ul li a div h3 {
   -webkit-box-align: center;
@@ -292,9 +306,14 @@
   margin-bottom: 8px;
 }
 #section_wrapper #section_main_contents #sections_block ul li a div h3 span {
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  color: #14B8A6;
+  display: -webkit-box;
   font: 16px/20px "Roboto-Medium";
   margin-right: 30px;
-  color: #14B8A6;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 #section_wrapper #section_main_contents #sections_block #no_section_data_logo {
   display: block;

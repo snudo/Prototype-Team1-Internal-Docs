@@ -4,6 +4,9 @@ var component_data = [];
 let url_obj = new URL((window.location.href).toLowerCase());
 let components_count = url_obj.searchParams.get("size") || 1;
 
+let confirm_modal_element = document.getElementById("confirm_modal");
+let confirm_modal = new bootstrap.Modal(confirm_modal_element, {});
+
 /* CALLBACK FUNCTIONS */
 const removeTab = (event) => {
     let remove_btn      = event.target;
@@ -11,15 +14,22 @@ const removeTab = (event) => {
     let component_id    = component_block.getAttribute("data-component-id");
     let tab_id          = remove_btn.closest(".tab_item").getAttribute("data-tab-id");
     let stack_comp_id   = undefined;
-    
-    delete component_data[component_id].tabs[tab_id];
-    stack_comp_id = component_id;
+   
+    confirm_modal_element.querySelector("#modal_message").innerHTML = `Are you sure you want to delete `+remove_btn.previousElementSibling.innerHTML+` tab?`;
+    confirm_modal.show();
 
-    let tab_list = document.querySelector(`.component_block[data-component-id="${stack_comp_id}"] .tab_list`);
+    confirm_modal_element.querySelector("#confirm_button_yes").addEventListener("click", function(){
+        delete component_data[component_id].tabs[tab_id];
+        stack_comp_id = component_id;
 
-    remove_btn.closest("li").remove();
-    (tab_list.querySelectorAll("li").length === 1) && component_block.remove();
-    (!tab_list.querySelectorAll("li.active").length && tab_list.querySelectorAll("li").length !== 1) && tab_list.querySelector("li:not(.active) .tab_name").click();
+        let tab_list = document.querySelector(`.component_block[data-component-id="${stack_comp_id}"] .tab_list`);
+
+        remove_btn.closest("li").remove();
+        (tab_list.querySelectorAll("li").length === 1) && component_block.remove();
+        (!tab_list.querySelectorAll("li.active").length && tab_list.querySelectorAll("li").length !== 1) && tab_list.querySelector("li:not(.active) .tab_name").click();
+
+        confirm_modal.hide();
+    });
 }
 
 const fetchSelectedTabDetails = (event, component_id, tab_id) => {
@@ -207,10 +217,10 @@ document.addEventListener("click", toggleComments);
 document.getElementById("add_component").addEventListener("click", addComponentItem);
 document.getElementById("section_title").addEventListener("keyup", updateSectionTitle);
 document.querySelector(".title_block button").addEventListener("click", () => {
-    // window.location.href = "/web-frontend/views/admin/component_preview.html";
+    window.location.href = "/web-frontend/views/admin/component_preview.html";
 
     // Temporary for User Testing only
-    window.location.href = "/web-frontend/views/user/components.html";
+    // window.location.href = "/web-frontend/views/user/components.html";
 });
 
 
@@ -218,6 +228,7 @@ $(function(){
     /* Onload focus Description textarea if 0 size */
     if(components_count < 1){
         document.getElementById("add_component").click();
-        document.getElementById("section_details").focus();
     }
+    
+    document.getElementById("section_details").focus();
 });

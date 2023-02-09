@@ -159,6 +159,9 @@
                         margin: 0 auto;
                         position: relative;
                         width: 663px;
+                        label{
+                            background-color: @white;
+                        }
                     }
                     @media only screen and (max-width: 1120px){
                         padding: 20px 35px 20px 406px;
@@ -221,8 +224,12 @@
                         margin-bottom: 0;
                     }
                     &:hover{
+                        border: 1px solid @teal_500;
                         a{
                             div{
+                                &:first-child{
+                                    background-color: @teal_500;
+                                }
                                 h3{
                                     button{
                                         opacity: 1;
@@ -255,18 +262,29 @@
                                 padding: 0 26px;
                             }
                             p{
+                                -webkit-box-orient: vertical;
+                                -webkit-line-clamp: 1;
                                 color: @secondary_60;
+                                display: -webkit-box;
                                 font: 14px/20px @font_medium;
                                 margin: 0 0 0;
+                                overflow: hidden;
+                                text-overflow: ellipsis;
                             }
                             h3{
                                 align-items: center;
                                 display: flex;
                                 margin-bottom: 8px;
+                                
                                 span{
+                                    -webkit-box-orient: vertical;
+                                    -webkit-line-clamp: 1;
+                                    color: @teal_500;
+                                    display: -webkit-box;
                                     font: 16px/20px @font_medium;
                                     margin-right: 30px;
-                                    color: @teal_500;
+                                    overflow: hidden;
+                                    text-overflow: ellipsis;
                                 }
                             }
                         }

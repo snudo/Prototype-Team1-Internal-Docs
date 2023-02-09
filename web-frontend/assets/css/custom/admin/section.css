@@ -338,11 +338,18 @@
   padding-left: 26px;
 }
 #section_wrapper #section_main_contents #create_section_block ul li > div div p {
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
   color: #7D949D;
+  display: -webkit-box;
   font: 14px/20px "Roboto-Medium";
   margin: 0 0 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 #section_wrapper #section_main_contents #create_section_block ul li > div div h3 {
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -350,12 +357,20 @@
   display: -ms-flexbox;
   display: flex;
   margin-bottom: 8px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 #section_wrapper #section_main_contents #create_section_block ul li > div div h3 a {
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
   color: #14B8A6;
+  display: -webkit-box;
   font: 16px/20px "Roboto-Medium";
   margin-right: 30px;
+  max-width: 400px;
+  overflow: hidden;
   text-decoration: none;
+  text-overflow: ellipsis;
 }
 #section_wrapper #section_main_contents #create_section_block ul li > div div h3 button {
   background: url("/web-frontend/assets/images/svg_icons_stripe.svg");

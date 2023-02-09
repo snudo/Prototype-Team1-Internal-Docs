@@ -182,7 +182,8 @@ const submitCreateSection = (event)=> {
         form_input.value = "";
 
         renderSections(sections_list_by_size);
-        setNewSectionActive(new_section_id)
+        setNewSectionActive(new_section_id);
+        window.scrollTo(0, document.body.scrollHeight);
     }
 
     return false;
@@ -217,12 +218,10 @@ const changePrivacySettings = (event) => {
     return false;
 }
 
+/*Set search and add section forms stick or fixed on top*/
 window.addEventListener("scroll", () => {
-    if(this.scrollY > 40){
-        document.getElementById("add_section_form").classList.add("floated");
-    }else{
-        document.getElementById("add_section_form").classList.remove("floated");
-    }
+    let add_section_form = document.getElementById("add_section_form");
+    (this.scrollY > SCROLL_POSITION.top) ? add_section_form.classList.add("floated") : add_section_form.classList.remove("floated");
 });
 
 const deleteSection = (event) => {
@@ -263,18 +262,26 @@ const duplicateSection = (event) => {
         /* Duplicate the Section */
         let section_to_duplicate = event.target.closest("li");
         let section_new_id = new Date().getUTCMilliseconds();
+        let section_title = section_to_duplicate.querySelectorAll(".section_title")[ITEMS.first].textContent;
 
         let duplicated_section_obj = {
             id: section_new_id,
-            title: section_to_duplicate.querySelectorAll(".section_title")[ITEMS.first].textContent,
+            title: "Copy of "+section_title,
             description: section_to_duplicate.querySelectorAll(".section_description")[ITEMS.first].textContent,
             url: section_to_duplicate.querySelector("a").getAttribute("href")
         }
 
-        sections_list_by_size.push(duplicated_section_obj);
-        renderSections(sections_list_by_size);
+        confirm_modal_element.querySelector("#modal_message").innerHTML = `Are you sure you want to duplicate `+section_title+` section?`;
+        confirm_modal.show();
 
-        setNewSectionActive(section_new_id);
+        confirm_modal_element.querySelector("#confirm_button_yes").addEventListener("click", function(){
+            let index = sections_list_by_size.map((obj_index) => obj_index.id).indexOf(parseInt(section_to_duplicate.id)) + 1;
+            sections_list_by_size.splice(index, ITEMS.first, duplicated_section_obj);
+                        
+            confirm_modal.hide();
+            renderSections(sections_list_by_size);
+            setNewSectionActive(section_new_id);
+        });
     }
 }
 
