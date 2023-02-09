@@ -287,9 +287,14 @@
   padding: 0 26px;
 }
 #section_wrapper #section_main_contents #sections_block ul li a div p {
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
   color: #7D949D;
+  display: -webkit-box;
   font: 14px/20px "Roboto-Medium";
   margin: 0 0 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 #section_wrapper #section_main_contents #sections_block ul li a div h3 {
   -webkit-box-align: center;
@@ -301,9 +306,14 @@
   margin-bottom: 8px;
 }
 #section_wrapper #section_main_contents #sections_block ul li a div h3 span {
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  color: #14B8A6;
+  display: -webkit-box;
   font: 16px/20px "Roboto-Medium";
   margin-right: 30px;
-  color: #14B8A6;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 #section_wrapper #section_main_contents #sections_block #no_section_data_logo {
   display: block;
