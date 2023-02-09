@@ -718,3 +718,81 @@
     text-overflow: ellipsis;
   }
 }
+#components_tab_list .modal-dialog {
+  margin: 70px auto;
+}
+#components_tab_list .modal-dialog .modal-content .modal-body {
+  padding: 24px 23px;
+  position: relative;
+}
+#components_tab_list .modal-dialog .modal-content .modal-body .close_button {
+  background: url("/web-frontend/assets/images/svg_icons_stripe.svg") no-repeat;
+  background-position: -1201px -7px;
+  height: 15px;
+  opacity: 1;
+  position: absolute;
+  right: 16px;
+  top: 16px;
+  width: 17px;
+}
+#components_tab_list .modal-dialog .modal-content .modal-body h3 {
+  border-bottom: 1px solid #7D949D;
+  font: 16px/24px "Roboto-Medium";
+  margin: 31px 0 0;
+  padding-bottom: 7px;
+}
+#components_tab_list .modal-dialog .modal-content .modal-body h3 .info_icon {
+  display: none;
+}
+#components_tab_list .modal-dialog .modal-content .modal-body ul {
+  margin: 0 0 0;
+  padding: 18px 0 0 0;
+}
+#components_tab_list .modal-dialog .modal-content .modal-body ul li {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 10px;
+  padding-left: 0;
+}
+#components_tab_list .modal-dialog .modal-content .modal-body ul li:last-child {
+  margin-bottom: 0;
+}
+#components_tab_list .modal-dialog .modal-content .modal-body ul li::before {
+  background: url("/web-frontend/assets/images/svg_icons_stripe.svg") no-repeat;
+  background-position: -1302px -11px;
+  content: "";
+  height: 14px;
+  margin-right: 9px;
+  min-width: 17px;
+  width: 17px;
+}
+#components_tab_list .modal-dialog .modal-content .modal-body ul li.active {
+  border-left: none !important;
+  padding-left: 0;
+}
+#components_tab_list .modal-dialog .modal-content .modal-body ul li.active::before {
+  background-position: -1274px -11px;
+}
+#components_tab_list .modal-dialog .modal-content .modal-body ul li.active a {
+  color: #1D333B;
+  font: 14px/20px "Roboto-Regular";
+}
+#components_tab_list .modal-dialog .modal-content .modal-body ul li a {
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  color: #14B8A6;
+  display: -webkit-box;
+  text-decoration: none;
+  font: 14px/20px "Roboto-Regular";
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+@media only screen and (max-width: 576px) {
+  #components_tab_list .modal-dialog {
+    margin: 70px 25px;
+  }
+}

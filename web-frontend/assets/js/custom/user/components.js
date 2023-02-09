@@ -1,4 +1,5 @@
 var confirm_modal   = new bootstrap.Modal(document.getElementById("delete_post_modal"), {});
+var components_tab_modal = new bootstrap.Modal(document.getElementById("components_tab_list"), {});
 var popover_content = document.getElementById("comment_options");
 var selected_comment_element = "";
 var comment_to_insert_reply = "";
