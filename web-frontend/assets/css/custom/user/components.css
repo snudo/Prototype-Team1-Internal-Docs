@@ -309,7 +309,7 @@
     display: none;
   }
   #component_wrapper #left_panel .section_details {
-    min-height: 226px;
+    min-height: 160px;
   }
   #component_wrapper #left_panel .section_details .title_block {
     margin-bottom: 10px;
@@ -325,7 +325,7 @@
   #component_wrapper #left_panel .section_details p.is_hide {
     -webkit-box-orient: vertical;
     display: -webkit-box;
-    -webkit-line-clamp: 8;
+    -webkit-line-clamp: 3;
     overflow: hidden;
     text-overflow: ellipsis;
   }
