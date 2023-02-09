@@ -262,18 +262,29 @@
                                 padding: 0 26px;
                             }
                             p{
+                                -webkit-box-orient: vertical;
+                                -webkit-line-clamp: 1;
                                 color: @secondary_60;
+                                display: -webkit-box;
                                 font: 14px/20px @font_medium;
                                 margin: 0 0 0;
+                                overflow: hidden;
+                                text-overflow: ellipsis;
                             }
                             h3{
                                 align-items: center;
                                 display: flex;
                                 margin-bottom: 8px;
+                                
                                 span{
+                                    -webkit-box-orient: vertical;
+                                    -webkit-line-clamp: 1;
+                                    color: @teal_500;
+                                    display: -webkit-box;
                                     font: 16px/20px @font_medium;
                                     margin-right: 30px;
-                                    color: @teal_500;
+                                    overflow: hidden;
+                                    text-overflow: ellipsis;
                                 }
                             }
                         }
