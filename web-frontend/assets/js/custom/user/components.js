@@ -436,3 +436,6 @@ $(function(){
 Drog.on(document.querySelector(".comments_block_mobile"));
 
 document.querySelector(".reply_post_input").addEventListener("input", updatePostReplyInput);
+document.querySelector(".show_tabs_btn").addEventListener("click", () => {
+    components_tab_modal.show();
+});
