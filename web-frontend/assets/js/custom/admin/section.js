@@ -172,7 +172,7 @@ const submitCreateSection = (event)=> {
     (form_input.value.length) ? form_input.closest("label").classList.remove("input_error") : form_input.closest("label").classList.add("input_error") ;
     if(form_input.value.length){
         let new_section_id = new Date().getUTCMilliseconds();
-        sections_list_by_size.splice(doc_count, 0, {
+        sections_list_by_size.push({
             id: new_section_id,
             title: form_input.value,
             description: "",
