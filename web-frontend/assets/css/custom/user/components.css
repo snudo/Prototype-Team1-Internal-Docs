@@ -422,7 +422,7 @@
     display: none;
   }
   #component_wrapper #left_panel #component_list_mobile .component_block .carousel-item {
-    padding: 10px 25px 60px;
+    padding: 10px 25px 20px;
     -webkit-transition: 0.25s ease-in-out;
     transition: 0.25s ease-in-out;
   }
