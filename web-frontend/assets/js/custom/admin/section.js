@@ -217,12 +217,10 @@ const changePrivacySettings = (event) => {
     return false;
 }
 
+/*Set search and add section forms stick or fixed on top*/
 window.addEventListener("scroll", () => {
-    if(this.scrollY > 40){
-        document.getElementById("add_section_form").classList.add("floated");
-    }else{
-        document.getElementById("add_section_form").classList.remove("floated");
-    }
+    let add_section_form = document.getElementById("add_section_form");
+    (this.scrollY > SCROLL_POSITION.top) ? add_section_form.classList.add("floated") : add_section_form.classList.remove("floated");
 });
 
 const deleteSection = (event) => {

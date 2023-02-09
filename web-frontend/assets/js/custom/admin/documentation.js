@@ -247,12 +247,10 @@ let archived_document = [
 let documentations_list_by_size = documents_array.slice(0, doc_count);
 let filtered_documents = [];
 
+/*Set search and add document forms stick or fixed on top*/
 window.addEventListener("scroll", () => {
-    if(this.scrollY > 40){
-        document.getElementById("form_container").classList.add("floated");
-    }else{
-        document.getElementById("form_container").classList.remove("floated");
-    }
+    let form_container = document.getElementById("form_container");
+    (this.scrollY > 40) ? form_container.classList.add("floated") : form_container.classList.remove("floated");
 });
 
 const renderDocuments = (documents_list) => {

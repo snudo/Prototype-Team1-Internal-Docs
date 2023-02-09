@@ -2,6 +2,10 @@ const ITEMS = {
     first: 0
 };
 
+const SCROLL_POSITION = {
+    top: 0
+};
+
 const ANIMATION_TIME = {
     hide: 200
 };

@@ -159,6 +159,9 @@
                         margin: 0 auto;
                         position: relative;
                         width: 663px;
+                        label{
+                            background-color: @white;
+                        }
                     }
                     @media only screen and (max-width: 1120px){
                         padding: 20px 35px 20px 406px;
@@ -221,8 +224,12 @@
                         margin-bottom: 0;
                     }
                     &:hover{
+                        border: 1px solid @teal_500;
                         a{
                             div{
+                                &:first-child{
+                                    background-color: @teal_500;
+                                }
                                 h3{
                                     button{
                                         opacity: 1;
