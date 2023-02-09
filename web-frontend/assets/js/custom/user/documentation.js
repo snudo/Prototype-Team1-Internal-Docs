@@ -349,12 +349,10 @@ document.addEventListener("click", starredDocument);
 document.getElementById("filter_dropdown_menu").addEventListener("click", FilterDocuments);
 document.getElementById("search_documentation_input").addEventListener("keyup", searchDocumentation);
 
+/*Set search and add document forms stick or fixed on top*/
 window.addEventListener("scroll", () => {
-    if(this.scrollY > 40){
-        document.getElementById("form_container").classList.add("floated");
-    }else{
-        document.getElementById("form_container").classList.remove("floated");
-    }
+    let form_container = document.getElementById("form_container");
+    (this.scrollY > SCROLL_POSITION.top) ? form_container.classList.add("floated") : form_container.classList.remove("floated");
 });
 
 /* Prevent redirect to sections page when documentation menu clicked */

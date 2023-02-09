@@ -171,6 +171,9 @@
   position: relative;
   width: 663px;
 }
+#section_wrapper #section_main_contents #sections_block #search_section_form.floated > div label {
+  background-color: #FFFFFF;
+}
 @media only screen and (max-width: 1120px) {
   #section_wrapper #section_main_contents #sections_block #search_section_form.floated {
     padding: 20px 35px 20px 406px;
@@ -240,6 +243,12 @@
 }
 #section_wrapper #section_main_contents #sections_block ul li:last-child {
   margin-bottom: 0;
+}
+#section_wrapper #section_main_contents #sections_block ul li:hover {
+  border: 1px solid #14B8A6;
+}
+#section_wrapper #section_main_contents #sections_block ul li:hover a div:first-child {
+  background-color: #14B8A6;
 }
 #section_wrapper #section_main_contents #sections_block ul li:hover a div h3 button {
   opacity: 1;

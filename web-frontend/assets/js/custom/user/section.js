@@ -153,12 +153,10 @@ const showMoreText = (event) => {
     (event.target.textContent == "See More") ? event.target.classList.remove("open") : event.target.classList.add("open");
 }
 
+/*Set search and add section forms stick or fixed on top*/
 window.addEventListener("scroll", () => {
-    if(this.scrollY > 40){
-        document.getElementById("search_section_form").classList.add("floated");
-    }else{
-        document.getElementById("search_section_form").classList.remove("floated");
-    }
+    let search_section_form = document.getElementById("search_section_form");
+    (this.scrollY > SCROLL_POSITION.top) ? search_section_form.classList.add("floated") : search_section_form.classList.remove("floated");
 });
 
 /*EVENTS*/
