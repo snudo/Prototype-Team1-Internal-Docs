@@ -15,31 +15,21 @@ const removeTab = (event) => {
     let tab_id          = remove_btn.closest(".tab_item").getAttribute("data-tab-id");
     let stack_comp_id   = undefined;
    
-    delete component_data[component_id].tabs[tab_id];
-    stack_comp_id = component_id;
+    confirm_modal_element.querySelector("#modal_message").innerHTML = `Are you sure you want to delete `+remove_btn.previousElementSibling.innerHTML+` tab?`;
+    confirm_modal.show();
 
-    let tab_list = document.querySelector(`.component_block[data-component-id="${stack_comp_id}"] .tab_list`);
+    confirm_modal_element.querySelector("#confirm_button_yes").addEventListener("click", function(){
+        delete component_data[component_id].tabs[tab_id];
+        stack_comp_id = component_id;
 
-    remove_btn.closest("li").remove();
-    (tab_list.querySelectorAll("li").length === 1) && component_block.remove();
-    (!tab_list.querySelectorAll("li.active").length && tab_list.querySelectorAll("li").length !== 1) && tab_list.querySelector("li:not(.active) .tab_name").click();
+        let tab_list = document.querySelector(`.component_block[data-component-id="${stack_comp_id}"] .tab_list`);
 
+        remove_btn.closest("li").remove();
+        (tab_list.querySelectorAll("li").length === 1) && component_block.remove();
+        (!tab_list.querySelectorAll("li.active").length && tab_list.querySelectorAll("li").length !== 1) && tab_list.querySelector("li:not(.active) .tab_name").click();
 
-    // confirm_modal_element.querySelector("#modal_message").innerHTML = `Are you sure you want to delete `+remove_btn.previousElementSibling.innerHTML+` tab?`;
-    // confirm_modal.show();
-
-    // confirm_modal_element.querySelector("#confirm_button_yes").addEventListener("click", function(){
-    //     delete component_data[component_id].tabs[tab_id];
-    //     stack_comp_id = component_id;
-
-    //     let tab_list = document.querySelector(`.component_block[data-component-id="${stack_comp_id}"] .tab_list`);
-
-    //     remove_btn.closest("li").remove();
-    //     (tab_list.querySelectorAll("li").length === 1) && component_block.remove();
-    //     (!tab_list.querySelectorAll("li.active").length && tab_list.querySelectorAll("li").length !== 1) && tab_list.querySelector("li:not(.active) .tab_name").click();
-
-    //     confirm_modal.hide();
-    // });
+        confirm_modal.hide();
+    });
 }
 
 const fetchSelectedTabDetails = (event, component_id, tab_id) => {
