@@ -1,4 +1,5 @@
 var confirm_modal   = new bootstrap.Modal(document.getElementById("delete_post_modal"), {});
+var components_tab_modal = new bootstrap.Modal(document.getElementById("components_tab_list"), {});
 var popover_content = document.getElementById("comment_options");
 var selected_comment_element = "";
 var comment_to_insert_reply = "";
@@ -435,3 +436,6 @@ $(function(){
 Drog.on(document.querySelector(".comments_block_mobile"));
 
 document.querySelector(".reply_post_input").addEventListener("input", updatePostReplyInput);
+document.querySelector(".show_tabs_btn").addEventListener("click", () => {
+    components_tab_modal.show();
+});
