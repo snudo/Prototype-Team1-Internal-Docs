@@ -207,10 +207,10 @@ document.addEventListener("click", toggleComments);
 document.getElementById("add_component").addEventListener("click", addComponentItem);
 document.getElementById("section_title").addEventListener("keyup", updateSectionTitle);
 document.querySelector(".title_block button").addEventListener("click", () => {
-    // window.location.href = "/web-frontend/views/admin/component_preview.html";
+    window.location.href = "/web-frontend/views/admin/component_preview.html";
 
     // Temporary for User Testing only
-    window.location.href = "/web-frontend/views/user/components.html";
+    // window.location.href = "/web-frontend/views/user/components.html";
 });
 
 
@@ -218,6 +218,7 @@ $(function(){
     /* Onload focus Description textarea if 0 size */
     if(components_count < 1){
         document.getElementById("add_component").click();
-        document.getElementById("section_details").focus();
     }
+    
+    document.getElementById("section_details").focus();
 });
