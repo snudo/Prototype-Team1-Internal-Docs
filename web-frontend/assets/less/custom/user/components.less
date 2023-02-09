@@ -789,3 +789,85 @@
         }
     }
 }
+
+#components_tab_list{
+    .modal-dialog{
+        margin: 70px auto;
+        .modal-content{
+            .modal-body{
+                padding: 24px 23px;
+                position: relative;
+                .close_button{
+                    background: url("/web-frontend/assets/images/svg_icons_stripe.svg") no-repeat; 
+                    background-position: -1201px -7px;
+                    height: 15px;
+                    opacity: 1;
+                    position: absolute;
+                    right: 16px;
+                    top: 16px;
+                    width: 17px;
+                }
+    
+                h3{
+                    border-bottom: 1px solid @secondary_60;
+                    font: 16px/24px @font_medium;
+                    margin: 31px 0 0;
+                    padding-bottom: 7px;
+                    .info_icon{
+                        display: none;
+                    }
+                }
+    
+                ul{
+                    margin: 0 0 0;
+                    padding: 18px 0 0 0;
+                    li{
+                        align-items: center;
+                        display: flex;
+                        margin-bottom: 10px;
+                        padding-left: 0;
+                        &:last-child{
+                            margin-bottom: 0;
+                        }
+                        &::before{
+                            background: url("/web-frontend/assets/images/svg_icons_stripe.svg") no-repeat; 
+                            background-position: -1302px -11px;
+                            content: "";
+                            height: 14px;
+                            margin-right: 9px;
+                            min-width: 17px;
+                            width: 17px;
+                        }
+                        &.active{
+                            border-left: none !important;
+                            padding-left: 0;
+                            &::before{
+                                background-position: -1274px -11px;
+
+                            }
+                            a{
+                                color: @secondary_20;
+                                font: 14px/20px @font_regular;
+                            }
+                        }
+                        a{
+                            -webkit-box-orient: vertical;
+                            -webkit-line-clamp: 1;
+                            color: @teal_500;
+                            display: -webkit-box;
+                            text-decoration: none;
+                            font: 14px/20px @font_regular;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    @media only screen and (max-width: 576px){
+        .modal-dialog{
+            margin: 70px 25px;
+        }
+    }
+}
