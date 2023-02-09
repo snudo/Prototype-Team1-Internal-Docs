@@ -161,6 +161,4 @@ window.addEventListener("scroll", () => {
 
 /*EVENTS*/
 document.getElementById("see_more_button").addEventListener("click", showMoreText)
-
 document.getElementById("search_section_input").addEventListener("keyup", searchSection);
-$(function() {$("#section_list_container").sortable();});
