@@ -1,6 +1,6 @@
 /* Get params from URL of current Page */
 let url_obj = new URL((window.location.href).toLowerCase());
-let doc_count = url_obj.searchParams.get("size") || 5;
+let doc_count = url_obj.searchParams.get("size") || 20;
 
 let sections_array = [
     {
@@ -152,6 +152,12 @@ const showMoreText = (event) => {
 
     (event.target.textContent == "See More") ? event.target.classList.remove("open") : event.target.classList.add("open");
 }
+
+/*Set search and add section forms stick or fixed on top*/
+window.addEventListener("scroll", () => {
+    let search_section_form = document.getElementById("search_section_form");
+    (this.scrollY > SCROLL_POSITION.top) ? search_section_form.classList.add("floated") : search_section_form.classList.remove("floated");
+});
 
 /*EVENTS*/
 document.getElementById("see_more_button").addEventListener("click", showMoreText)

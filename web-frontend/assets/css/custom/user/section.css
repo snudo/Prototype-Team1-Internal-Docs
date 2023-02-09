@@ -151,6 +151,49 @@
 #section_wrapper #section_main_contents #sections_block #search_section_form {
   position: relative;
 }
+#section_wrapper #section_main_contents #sections_block #search_section_form.floated {
+  background-color: rgba(20, 184, 166, 0.1);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  left: 0;
+  padding: 20px 0 20px 393px;
+  position: fixed;
+  top: 65px;
+  width: 100%;
+  z-index: 99;
+}
+#section_wrapper #section_main_contents #sections_block #search_section_form.floated > div {
+  margin: 0 auto;
+  position: relative;
+  width: 663px;
+}
+#section_wrapper #section_main_contents #sections_block #search_section_form.floated > div label {
+  background-color: #FFFFFF;
+}
+@media only screen and (max-width: 1120px) {
+  #section_wrapper #section_main_contents #sections_block #search_section_form.floated {
+    padding: 20px 35px 20px 406px;
+  }
+}
+@media only screen and (max-width: 980px) {
+  #section_wrapper #section_main_contents #sections_block #search_section_form.floated {
+    padding: 20px 35px 20px 335px;
+  }
+}
+@media only screen and (max-width: 768px) {
+  #section_wrapper #section_main_contents #sections_block #search_section_form.floated {
+    padding: 20px 35px 20px;
+  }
+}
+@media only screen and (max-width: 768px) {
+  #section_wrapper #section_main_contents #sections_block #search_section_form.floated {
+    padding: 20px 23px 20px;
+  }
+}
 #section_wrapper #section_main_contents #sections_block #search_section_form label {
   background-color: #F0FDFA;
   border-radius: 8px 8px 0px 0px;
@@ -201,6 +244,12 @@
 #section_wrapper #section_main_contents #sections_block ul li:last-child {
   margin-bottom: 0;
 }
+#section_wrapper #section_main_contents #sections_block ul li:hover {
+  border: 1px solid #14B8A6;
+}
+#section_wrapper #section_main_contents #sections_block ul li:hover a div:first-child {
+  background-color: #14B8A6;
+}
 #section_wrapper #section_main_contents #sections_block ul li:hover a div h3 button {
   opacity: 1;
 }
@@ -219,7 +268,7 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  background-color: #F0FDFA;
+  background-color: rgba(94, 234, 212, 0.5);
   border-radius: 8px 0px 0px 8px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -228,15 +277,11 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  min-width: 44px;
-  width: 44px;
+  min-width: 8px;
+  width: 8px;
 }
 #section_wrapper #section_main_contents #sections_block ul li a div:first-child::before {
-  content: "";
-  background: url("/web-frontend/assets/images/svg_icons_stripe.svg");
-  background-position: -862px -7px;
-  height: 24px;
-  width: 13px;
+  display: none;
 }
 #section_wrapper #section_main_contents #sections_block ul li a div:last-child {
   padding: 0 26px;
