@@ -5,6 +5,13 @@ const toggleActiveStateTheme = (event, is_dark) => {
     theme_block.setAttribute("class", (is_dark) ? "set_dark_mode" : "set_light_mode");
 }
 
+const detectConfirmationModal = (action_type) => {
+    let cofirmation_modal = document.getElementById("confirm_modal").querySelector("#action_icon_container");
+
+    cofirmation_modal.className = "";
+    cofirmation_modal.classList.add(action_type+"_icon");
+}
+
 const selectSectionItem = (event) => {
     event.preventDefault();
     let section_item = event.target;
