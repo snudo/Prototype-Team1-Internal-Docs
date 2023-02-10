@@ -450,7 +450,7 @@ function createTextBox(emailsContainer, options) {
                     let selected_status_data = e.target.closest(".add_email_block").querySelector(".dropdown-item.active").textContent;
                     let invited_user_name    = clone_invited_user.querySelector(".invited_user_name");
 
-                    invited_user_name.textContent = all_users_obj.filter(selected_item => selected_item.email === email)[0].full_name;
+                    invited_user_name.textContent = (all_users_obj.filter(selected_item => selected_item.email === email).length) ? all_users_obj.filter(selected_item => selected_item.email === email)[0].full_name : "";
                     email_address.innerHTML = email;
                     email_address.setAttribute("href", "mailto:" + email);
 
