@@ -597,7 +597,7 @@
         height: 32px;
         justify-content: center;
         position: sticky;
-        top: 0;
+        top: -1px;
         width: 100%;
 
         .handle_icon{
@@ -784,6 +784,25 @@
                     right: 0;
                 }
             }
+        }
+    }
+
+    .no_post_result_mobile{
+        align-items: center;
+        color: @secondary_60;
+        display: flex;
+        flex-direction: column;
+        font: 16px/24px @font_regular;
+        justify-content: center;
+        margin: 80px auto;
+        width: 100%;
+
+        .no_post_icon{
+            background: url("../../../images/no_post_icon.svg") no-repeat 0px 0px;
+            display: block;
+            height: 90px;
+            margin: 0 0 20px 0;
+            width: 156px;
         }
     }
 }

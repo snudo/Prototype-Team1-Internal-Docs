@@ -118,16 +118,14 @@
         elmnt[Yi] = elmnt[Yf];
 
         elmnt.style.margin = (elmnt[Yf] < 0) ? 0 : elmnt[Yf] - 64 + "px 0 0 0";
-
-        if(elmnt[Yf] > 500){
-            document.querySelector(".comments_block_mobile").classList.add("hidden");
-            elmnt.style.margin = "0";
-        }
     }
 
     function drogEnd(){
-
         elmnt.style.margin = "0";
+        
+        if(elmnt[Yf] > 500){
+            document.querySelector(".comments_block_mobile").classList.add("hidden");
+        }
 
         that = this;
 

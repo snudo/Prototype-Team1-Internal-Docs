@@ -492,3 +492,6 @@ document.querySelector(".reply_post_input").addEventListener("input", updatePost
 document.querySelector(".show_tabs_btn").addEventListener("click", () => {
     components_tab_modal.show();
 });
+document.querySelector(".go_back_btn").addEventListener("click", () => {
+    window.location.href = "/web-frontend/views/user/sections.html";
+});
