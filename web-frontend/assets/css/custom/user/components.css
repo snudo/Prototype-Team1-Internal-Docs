@@ -639,6 +639,10 @@
   color: #14B8A6;
   font: 12px/16px "Roboto-Regular";
 }
+.comments_block_mobile .post_message_list .post_item .message_details .hideContent {
+  overflow: hidden;
+  height: 0px;
+}
 .comments_block_mobile .post_message_list .post_item .message_details .reply_list .reply_item {
   background: #F0FDFA;
   margin-bottom: 25px;
@@ -658,6 +662,9 @@
   color: #4B626A;
   font: 14px/20px "Roboto-Regular";
   margin: 0;
+}
+.comments_block_mobile .post_message_list .post_item .message_details .hidden {
+  display: none;
 }
 .comments_block_mobile .post_message_list .post_item .message_details .see_more_btn {
   margin-bottom: 0;
