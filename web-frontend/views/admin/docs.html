@@ -55,12 +55,12 @@
         <div id="document_options">
             <ul>
                 <li><button type="button" class="edit_document">Edit</button></li>
-                <li><button type="button" class="duplicate_document">Duplicate</button></li>
-                <li><button type="button" class="remove_document">Remove</button></li>
-                <li><button type="button" class="archive_document">Archive</button></li>
+                <li><button type="button" data-action="duplicate" class="duplicate_document">Duplicate</button></li>
+                <li><button type="button" data-action="remove" class="remove_document">Remove</button></li>
+                <li><button type="button" data-action="archive" class="archive_document">Archive</button></li>
                 <li><button type="button" class="favorite_document">Favorite</button></li>
                 <li>
-                    <div class="public_document">
+                    <div data-action="private_public" class="public_document">
                         <input class="public_checkbox_setting" type="checkbox" name="public_setting">
                         <span class="public_document"></span>
                     </div>
@@ -81,9 +81,10 @@
         </a>
     </li>
 
-    <div class="modal fade" id="confirm_action_modal" tabindex="-1" aria-labelledby="confirm_action_modal" aria-hidden="true">
+    <div class="modal fade" id="confirm_modal" tabindex="-1" aria-labelledby="confirm_modal" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
+                <span id="action_icon_container"></span>
                 <p>Are you sure you want to <span class="message_content"></span>?</p>
                 <div>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
