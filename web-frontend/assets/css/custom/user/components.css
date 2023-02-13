@@ -375,6 +375,7 @@
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
+    height: 71px;
     -webkit-box-pack: start;
         -ms-flex-pack: start;
             justify-content: flex-start;
@@ -640,8 +641,8 @@
   font: 12px/16px "Roboto-Regular";
 }
 .comments_block_mobile .post_message_list .post_item .message_details .hideContent {
-  overflow: hidden;
   height: 0px;
+  overflow: hidden;
 }
 .comments_block_mobile .post_message_list .post_item .message_details .reply_list .reply_item {
   background: #F0FDFA;
@@ -688,12 +689,17 @@
   width: 100%;
 }
 .comments_block_mobile .see_more_btn .caret_down {
-  background: url("../../../images/svg_icons_stripe.svg") no-repeat -126px -9px;
+  background: url("../../../images/comment_thread_mobile_icons.svg") no-repeat -150px 0px;
   display: block;
   height: 18px;
+  margin-left: 3px;
   -webkit-transition: 0.25s ease-in-out;
   transition: 0.25s ease-in-out;
   width: 18px;
+}
+.comments_block_mobile .see_more_btn.is_show .caret_down {
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
 }
 .comments_block_mobile .post_reply_block {
   background: #E7EFF6;
