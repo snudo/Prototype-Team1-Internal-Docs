@@ -38,6 +38,7 @@ const removeItemData = (event) => {
     let reply_count   = message_item.querySelectorAll(".reply_list li").length - 1;
     let post_type     = (selected_item.closest("ul").getAttribute("class") == "post_list") ? "post" : "reply" ;
 
+    detectConfirmationModal("remove");
     confirm_modal._element.querySelector("#post_type").textContent = post_type;
 
     confirm_modal.show(); 
@@ -266,6 +267,7 @@ const manipulateComment = (event) => {
         let parent_id      = document.querySelector(`.show_message_actions[aria-describedby="${action_btn_id}"]`).closest("li").getAttribute("id");
         let message_parent = document.getElementById(parent_id);
         
+        detectConfirmationModal("remove");
         confirm_modal._element.querySelector("#post_type").textContent = post_type;
         confirm_modal.show();
 
