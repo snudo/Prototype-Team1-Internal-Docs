@@ -1,4 +1,4 @@
-var confirm_modal   = new bootstrap.Modal(document.getElementById("delete_post_modal"), {});
+var confirm_modal   = new bootstrap.Modal(document.getElementById("confirm_modal"), {});
 var components_tab_modal = new bootstrap.Modal(document.getElementById("components_tab_list"), {});
 var popover_content = document.getElementById("comment_options");
 var selected_comment_element = "";
@@ -461,14 +461,16 @@ Array.from(all_show_replies_dropdown).forEach((element) => {
 
         let message_details = element.closest(".message_details");
 
-        message_details.querySelector(".more_replies_btn").toggleAttribute("data-is-show-reply");
+        if(message_details.querySelector(".more_replies_btn") !== null){
+            message_details.querySelector(".more_replies_btn").toggleAttribute("data-is-show-reply");
 
-        if(message_details.querySelector(".more_replies_btn").hasAttribute("data-is-show-reply")){
-            let all_reply_item = message_details.querySelector(".reply_list").getElementsByClassName("reply_item");
+            if(message_details.querySelector(".more_replies_btn").hasAttribute("data-is-show-reply")){
+                let all_reply_item = message_details.querySelector(".reply_list").getElementsByClassName("reply_item");
 
-            Array.from(all_reply_item).forEach((reply_item, index) => {
-                (index > 2) && reply_item.classList.add("hidden");
-            });
+                Array.from(all_reply_item).forEach((reply_item, index) => {
+                    (index > 2) && reply_item.classList.add("hidden");
+                });
+            }
         }
     });
 });
@@ -507,14 +509,13 @@ document.getElementById("see_all_comments_btn").addEventListener("click", seeAll
 
 const seeAllReplies = (event) => {
     event.target.classList.toggle("is_show");
+    console.log(event.target.getAttribute("class"));
 
-    if(event.target.getAttribute("class") === "see_more_btn more_replies_btn is_show"){
-        let reply_reply = event.target.closest(".message_details").querySelector(".reply_list").getElementsByClassName("reply_item");
+    let reply_reply = event.target.closest(".message_details").querySelector(".reply_list").getElementsByClassName("reply_item");
+    Array.from(reply_reply).forEach((reply_item, index) => {
+        (index > 2) && reply_item.classList.toggle("hidden");
+    });
 
-        Array.from(reply_reply).forEach((reply_item, index) => {
-            (index > 2) && reply_item.classList.toggle("hidden");
-        });
-    }
 }
 
 let show_other_replies_btn = document.getElementsByClassName("more_replies_btn");
