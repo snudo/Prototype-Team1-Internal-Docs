@@ -164,7 +164,7 @@
   position: fixed;
   top: 65px;
   width: 100%;
-  z-index: 99;
+  z-index: 12;
 }
 #section_wrapper #section_main_contents #sections_block #search_section_form.floated > div {
   margin: 0 auto;
@@ -437,9 +437,6 @@
   #section_wrapper #section_main_contents #sections_block {
     background-color: transparent;
     padding: 0;
-  }
-  #section_wrapper #section_main_contents #sections_block #search_section_form {
-    display: none;
   }
   #section_wrapper #section_main_contents #sections_block ul li {
     border-radius: 0 8px 8px 0;

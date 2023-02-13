@@ -585,8 +585,14 @@ body {
   #dashboard_wrapper {
     padding: 24px 18px 0;
   }
-  #dashboard_wrapper #form_container {
-    display: none;
+  #dashboard_wrapper #form_container.floated {
+    padding: 20px 20px;
+  }
+  #dashboard_wrapper #form_container form #search_document {
+    width: 220px;
+  }
+  #dashboard_wrapper #form_container .dropdown button {
+    min-width: 110px;
   }
   #dashboard_wrapper #document_list_container li {
     border-radius: 0;
