@@ -278,6 +278,22 @@ const manipulateComment = (event) => {
 
                 message_details.querySelector(".reply_text").textContent = `${ message_count } ${ (message_count > 1) ? "Replies" : "Reply" }`;
             }
+            else{
+                let post_count = document.querySelectorAll(".post_message_list .post_item").length - 1;
+                let no_post_result_mobile = document.querySelector(".no_post_result_mobile");
+
+                (post_count) ? no_post_result_mobile.classList.add("hidden") : no_post_result_mobile.classList.remove("hidden");
+
+                if(post_count < 4){
+                    let all_posts = document.querySelector(".post_message_list").getElementsByClassName("post_item");
+
+                    Array.from(all_posts).forEach((post_item, index) => {
+                        (index > 2) && post_item.classList.remove("hidden");
+                    });
+
+                    document.getElementById("see_all_comments_btn").classList.add("hidden");
+                }
+            }
 
             message_parent.remove();
         });
@@ -442,8 +458,20 @@ Array.from(all_show_replies_dropdown).forEach((element) => {
 
             comment_to_insert_reply = "";
         }
+
+        let message_details = element.closest(".message_details");
+
+        message_details.querySelector(".more_replies_btn").toggleAttribute("data-is-show-reply");
+
+        if(message_details.querySelector(".more_replies_btn").hasAttribute("data-is-show-reply")){
+            let all_reply_item = message_details.querySelector(".reply_list").getElementsByClassName("reply_item");
+
+            Array.from(all_reply_item).forEach((reply_item, index) => {
+                (index > 2) && reply_item.classList.add("hidden");
+            });
+        }
     });
-})
+});
 
 const updatePostReplyInput = (event) => {
     let selected_input = event.target;
@@ -451,33 +479,46 @@ const updatePostReplyInput = (event) => {
     selected_input.closest("form").querySelector(".char_count").textContent = `${selected_input.value.length}/250`;
 };
 
-const seeAllComments = (event) => {
+const fetchAllComments = () => {
     let all_posts = document.querySelector(".post_message_list").getElementsByClassName("post_item");
-    let posts_displayed = 3;
-    let text_content = event.target.textContent;
 
-    for(let index=posts_displayed; index<all_posts.length; index++){
-        (text_content === "See More") ? all_posts[index].classList.remove("hidden") : all_posts[index].classList.add("hidden");
-    }
-
-    event.target.innerHTML = (text_content === "See More") ? "See Less" : "See More";
+    Array.from(all_posts).forEach((post_item, index) => {
+        (index > 2) ? post_item.classList.add("hidden") : post_item.classList.remove("hidden");
+    });
 }
+
+const seeAllComments = (event) => {
+    fetchAllComments();
+
+    event.target.classList.toggle("is_show");
+
+    if(event.target.getAttribute("class") === "see_more_btn is_show"){
+        let all_posts = document.querySelector(".post_message_list").getElementsByClassName("post_item");
+
+        Array.from(all_posts).forEach((post_item, index) => {
+            (index > 2) && post_item.classList.toggle("hidden");
+        });
+    }
+}
+
+fetchAllComments();
 
 document.getElementById("see_all_comments_btn").addEventListener("click", seeAllComments);
 
 const seeAllReplies = (event) => {
-    let all_replies = event.target.closest("li").querySelector(".reply_list").getElementsByClassName("reply_item");
-    let replies_displayed = 3;
-    let text_content = event.target.textContent;
+    event.target.classList.toggle("is_show");
 
-    for(let index=replies_displayed; index<all_replies.length; index++){
-        (text_content === "See More") ? all_replies[index].classList.remove("hidden") : all_replies[index].classList.add("hidden");
+    if(event.target.getAttribute("class") === "see_more_btn more_replies_btn is_show"){
+        let reply_reply = event.target.closest(".message_details").querySelector(".reply_list").getElementsByClassName("reply_item");
+
+        Array.from(reply_reply).forEach((reply_item, index) => {
+            (index > 2) && reply_item.classList.toggle("hidden");
+        });
     }
-
-    event.target.innerHTML = (text_content === "See More") ? "See Less" : "See More";
 }
 
 let show_other_replies_btn = document.getElementsByClassName("more_replies_btn");
+
 Array.from(show_other_replies_btn).forEach((element) => {
     element.addEventListener("click", seeAllReplies);
 });
