@@ -5,7 +5,7 @@
   font: 14px/18px "Roboto-Regular";
 }
 .hidden {
-  display: none;
+  display: none !important;
 }
 .disabled {
   pointer-events: none;
