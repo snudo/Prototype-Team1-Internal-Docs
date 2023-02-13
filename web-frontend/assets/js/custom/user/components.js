@@ -44,6 +44,10 @@ const removeItemData = (event) => {
     confirm_modal.show(); 
 
     document.getElementById("confirm_button_yes").addEventListener("click", function(){
+        if(post_type === "post"){
+            document.getElementById("see_all_comments_btn").click();
+        }
+
         selected_item.closest("li").remove();
         message_item.querySelector(".show_reply_btn").innerHTML = `<span class="caret_arrow"></span> ${ reply_count } ${ (reply_count > 1) ? "Replies" : "Reply" }`;
         confirm_modal.hide();
@@ -266,6 +270,9 @@ const manipulateComment = (event) => {
         let action_btn_id  = event.target.closest(".popover").getAttribute("id");
         let parent_id      = document.querySelector(`.show_message_actions[aria-describedby="${action_btn_id}"]`).closest("li").getAttribute("id");
         let message_parent = document.getElementById(parent_id);
+        let parent_id_data = [];
+
+        parent_id_data.push(parent_id);
         
         detectConfirmationModal("remove");
         confirm_modal._element.querySelector("#post_type").textContent = post_type;
@@ -275,10 +282,13 @@ const manipulateComment = (event) => {
             confirm_modal.hide();
     
             if(post_type === "reply"){
-                let message_details = message_parent.closest(".message_details");
-                let message_count   = message_details.querySelectorAll(".reply_item").length - 1;
+                let message_details = document.getElementById(parent_id_data[0]);
+                
+                if(message_details){
+                    let message_count   = message_details.closest(".message_details").querySelectorAll(".reply_item").length - 1;
 
-                message_details.querySelector(".reply_text").textContent = `${ message_count } ${ (message_count > 1) ? "Replies" : "Reply" }`;
+                    message_details.closest(".message_details").querySelector(".reply_text").textContent = `${ message_count } ${ (message_count > 1) ? "Replies" : "Reply" }`;
+                }
             }
             else{
                 let post_count = document.querySelectorAll(".post_message_list .post_item").length - 1;
@@ -348,12 +358,21 @@ const submitPostReplyForm = (event) => {
 
     if(action_type === MOBILE_COMMENT_ACTION_TYPES.create_comment){
         let cloned_post = document.getElementById("post_item_clone").cloneNode(true);
+        let see_all_comments_btn = document.getElementById("see_all_comments_btn");
+
         current_post_id = current_post_id + 1;
         cloned_post.id = "post_" + current_post_id;
         cloned_post.classList.remove("hidden");
         cloned_post.querySelector(".user_post_message").innerHTML = reply_post_input.value;
 
         document.querySelector(".post_message_list").prepend(cloned_post);
+
+        see_all_comments_btn.classList.add("is_show");
+        see_all_comments_btn.innerHTML = "See Less <span class='caret_down'></span>";
+
+        document.querySelectorAll(".post_message_list .post_item").forEach((post_item) => {
+            post_item.classList.remove("hidden");
+        });
         showCommentsMenu();
 
         cloned_post.querySelector(".show_reply_btn").addEventListener("click", (event) => {
@@ -384,12 +403,23 @@ const submitPostReplyForm = (event) => {
     }
     else if(action_type === MOBILE_COMMENT_ACTION_TYPES.create_reply){
         let cloned_reply = document.getElementById("reply_item_clone").cloneNode(true);
+
         current_reply_id = current_reply_id + 1;
         cloned_reply.id = "reply_" + current_reply_id;
         cloned_reply.classList.remove("hidden");
         cloned_reply.querySelector(".user_reply_message").innerHTML = reply_post_input.value;
 
         comment_to_insert_reply.querySelector(".reply_list").prepend(cloned_reply);
+
+        let more_replies_btn = comment_to_insert_reply.querySelector(".more_replies_btn");
+
+        more_replies_btn.classList.add("is_show");
+        more_replies_btn.innerHTML = "See Less <span class='caret_down'></span>";
+
+        comment_to_insert_reply.querySelectorAll(".reply_list .reply_item").forEach((reply_item) => {
+            reply_item.classList.remove("hidden");
+        });
+
         showCommentsMenu();
 
         let reply_count = comment_to_insert_reply.querySelectorAll(".reply_item").length;
@@ -494,9 +524,12 @@ const fetchAllComments = () => {
 const seeAllComments = (event) => {
     fetchAllComments();
 
-    event.target.classList.toggle("is_show");
+    let see_more_post_btn = event.target;
 
-    if(event.target.getAttribute("class") === "see_more_btn is_show"){
+    see_more_post_btn.classList.toggle("is_show");
+    (see_more_post_btn.textContent.trim("") === "See More") ? see_more_post_btn.innerHTML = "See Less <span class='caret_down'></span>" : see_more_post_btn.innerHTML = "See More <span class='caret_down'></span>";
+
+    if(see_more_post_btn.getAttribute("class") === "see_more_btn is_show"){
         let all_posts = document.querySelector(".post_message_list").getElementsByClassName("post_item");
 
         Array.from(all_posts).forEach((post_item, index) => {
@@ -510,14 +543,16 @@ fetchAllComments();
 document.getElementById("see_all_comments_btn").addEventListener("click", seeAllComments);
 
 const seeAllReplies = (event) => {
-    event.target.classList.toggle("is_show");
-    console.log(event.target.getAttribute("class"));
+    let see_more_btn = event.target;
+    let reply_reply = see_more_btn.closest(".message_details").querySelector(".reply_list").getElementsByClassName("reply_item");
 
-    let reply_reply = event.target.closest(".message_details").querySelector(".reply_list").getElementsByClassName("reply_item");
+    see_more_btn.classList.toggle("is_show");
+    
+    (see_more_btn.textContent.trim("") === "See More") ? see_more_btn.innerHTML = "See Less <span class='caret_down'></span>" : see_more_btn.innerHTML = "See More <span class='caret_down'></span>";
+
     Array.from(reply_reply).forEach((reply_item, index) => {
         (index > 2) && reply_item.classList.toggle("hidden");
     });
-
 }
 
 let show_other_replies_btn = document.getElementsByClassName("more_replies_btn");
