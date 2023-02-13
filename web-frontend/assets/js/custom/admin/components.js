@@ -16,6 +16,7 @@ const removeTab = (event) => {
     let stack_comp_id   = undefined;
    
     confirm_modal_element.querySelector("#modal_message").innerHTML = `Are you sure you want to delete `+remove_btn.previousElementSibling.innerHTML+` tab?`;
+    detectConfirmationModal(remove_btn.getAttribute("data-action"));
     confirm_modal.show();
 
     confirm_modal_element.querySelector("#confirm_button_yes").addEventListener("click", function(){

@@ -233,8 +233,8 @@ const deleteSection = (event) => {
            ${section_element.querySelectorAll(".section_title")[ITEMS.first].textContent}
         section?`;
 
+        detectConfirmationModal(event.target.getAttribute("data-action"));
         confirm_modal.show();
-
         confirm_modal_element.querySelector("#confirm_button_yes").addEventListener("click", function(){
             let section_id = parseInt(section_element.getAttribute("id"));
 
@@ -270,6 +270,8 @@ const duplicateSection = (event) => {
             description: section_to_duplicate.querySelectorAll(".section_description")[ITEMS.first].textContent,
             url: section_to_duplicate.querySelector("a").getAttribute("href")
         }
+        
+        detectConfirmationModal(event.target.getAttribute("data-action"));
 
         confirm_modal_element.querySelector("#modal_message").innerHTML = `Are you sure you want to duplicate `+section_title+` section?`;
         confirm_modal.show();
@@ -450,7 +452,7 @@ function createTextBox(emailsContainer, options) {
                     let selected_status_data = e.target.closest(".add_email_block").querySelector(".dropdown-item.active").textContent;
                     let invited_user_name    = clone_invited_user.querySelector(".invited_user_name");
 
-                    invited_user_name.textContent = all_users_obj.filter(selected_item => selected_item.email === email)[0].full_name;
+                    invited_user_name.textContent = (all_users_obj.filter(selected_item => selected_item.email === email).length) ? all_users_obj.filter(selected_item => selected_item.email === email)[0].full_name : "";
                     email_address.innerHTML = email;
                     email_address.setAttribute("href", "mailto:" + email);
 

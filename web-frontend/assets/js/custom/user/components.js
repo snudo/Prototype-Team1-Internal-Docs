@@ -1,4 +1,4 @@
-var confirm_modal   = new bootstrap.Modal(document.getElementById("delete_post_modal"), {});
+var confirm_modal   = new bootstrap.Modal(document.getElementById("confirm_modal"), {});
 var components_tab_modal = new bootstrap.Modal(document.getElementById("components_tab_list"), {});
 var popover_content = document.getElementById("comment_options");
 var selected_comment_element = "";
@@ -38,6 +38,7 @@ const removeItemData = (event) => {
     let reply_count   = message_item.querySelectorAll(".reply_list li").length - 1;
     let post_type     = (selected_item.closest("ul").getAttribute("class") == "post_list") ? "post" : "reply" ;
 
+    detectConfirmationModal("remove");
     confirm_modal._element.querySelector("#post_type").textContent = post_type;
 
     confirm_modal.show(); 
@@ -273,6 +274,7 @@ const manipulateComment = (event) => {
 
         parent_id_data.push(parent_id);
         
+        detectConfirmationModal("remove");
         confirm_modal._element.querySelector("#post_type").textContent = post_type;
         confirm_modal.show();
 
@@ -491,14 +493,16 @@ Array.from(all_show_replies_dropdown).forEach((element) => {
 
         let message_details = element.closest(".message_details");
 
-        message_details.querySelector(".more_replies_btn").toggleAttribute("data-is-show-reply");
+        if(message_details.querySelector(".more_replies_btn") !== null){
+            message_details.querySelector(".more_replies_btn").toggleAttribute("data-is-show-reply");
 
-        if(message_details.querySelector(".more_replies_btn").hasAttribute("data-is-show-reply")){
-            let all_reply_item = message_details.querySelector(".reply_list").getElementsByClassName("reply_item");
+            if(message_details.querySelector(".more_replies_btn").hasAttribute("data-is-show-reply")){
+                let all_reply_item = message_details.querySelector(".reply_list").getElementsByClassName("reply_item");
 
-            Array.from(all_reply_item).forEach((reply_item, index) => {
-                (index > 2) && reply_item.classList.add("hidden");
-            });
+                Array.from(all_reply_item).forEach((reply_item, index) => {
+                    (index > 2) && reply_item.classList.add("hidden");
+                });
+            }
         }
     });
 });
