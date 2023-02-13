@@ -399,27 +399,49 @@ let all_show_replies_dropdown = document.getElementsByClassName("show_reply_btn"
 Array.from(all_show_replies_dropdown).forEach((element) => {
     element.addEventListener("click", (event) => {
         comment_to_insert_reply = event.target.closest("li");
-        let form_element = document.getElementById("post_reply_form");
-        let form_label_element = form_element.querySelector("h3");
-        form_label_element.innerHTML = "Reply to " + comment_to_insert_reply.querySelector(".user_name").textContent;
-        form_element.setAttribute("data-action_id", MOBILE_COMMENT_ACTION_TYPES.create_reply);
 
-        /* Create cancel trigger for editing */
-        let cancel_btn = document.createElement("span");
-        cancel_btn.id = "cancel_btn";
-        cancel_btn.innerHTML = "Cancel";
-        form_label_element.appendChild(cancel_btn);
+        if(comment_to_insert_reply.querySelector(".reply_list").classList.contains("hideContent")){
+            comment_to_insert_reply.querySelector(".reply_list").classList.remove("hideContent");
+            let form_element = document.getElementById("post_reply_form");
+            let form_label_element = form_element.querySelector("h3");
+            form_label_element.innerHTML = "Reply to " + comment_to_insert_reply.querySelector(".user_name").textContent;
+            form_element.setAttribute("data-action_id", MOBILE_COMMENT_ACTION_TYPES.create_reply);
 
-        cancel_btn.addEventListener("click", () => {
+            /* Create cancel trigger for editing */
+            let cancel_btn = document.createElement("span");
+            cancel_btn.id = "cancel_btn";
+            cancel_btn.innerHTML = "Cancel";
+            form_label_element.appendChild(cancel_btn);
+
+            cancel_btn.addEventListener("click", () => {
+                let form_element = document.getElementById("post_reply_form");
+                form_element.querySelector("h3").innerHTML = "Post"
+                form_element.querySelector(".reply_post_input").value = "";
+                form_element.setAttribute("data-action_id", MOBILE_COMMENT_ACTION_TYPES.create_comment);
+
+                comment_to_insert_reply = "";
+            });
+
+            if(comment_to_insert_reply.querySelector(".see_more_btn") !== null){
+                comment_to_insert_reply.querySelector(".see_more_btn").classList.remove("hidden");
+            }
+
+            form_element.querySelector(".reply_post_input").focus();
+        }
+        else{
+            comment_to_insert_reply.querySelector(".reply_list").classList.add("hideContent");
+
             let form_element = document.getElementById("post_reply_form");
             form_element.querySelector("h3").innerHTML = "Post"
             form_element.querySelector(".reply_post_input").value = "";
             form_element.setAttribute("data-action_id", MOBILE_COMMENT_ACTION_TYPES.create_comment);
 
-            comment_to_insert_reply = "";
-        });
+            if(comment_to_insert_reply.querySelector(".see_more_btn") !== null){
+                comment_to_insert_reply.querySelector(".see_more_btn").classList.add("hidden");
+            }
 
-        form_element.querySelector(".reply_post_input").focus();
+            comment_to_insert_reply = "";
+        }
     });
 })
 
@@ -428,6 +450,37 @@ const updatePostReplyInput = (event) => {
 
     selected_input.closest("form").querySelector(".char_count").textContent = `${selected_input.value.length}/250`;
 };
+
+const seeAllComments = (event) => {
+    let all_posts = document.querySelector(".post_message_list").getElementsByClassName("post_item");
+    let posts_displayed = 3;
+    let text_content = event.target.textContent;
+
+    for(let index=posts_displayed; index<all_posts.length; index++){
+        (text_content === "See More") ? all_posts[index].classList.remove("hidden") : all_posts[index].classList.add("hidden");
+    }
+
+    event.target.innerHTML = (text_content === "See More") ? "See Less" : "See More";
+}
+
+document.getElementById("see_all_comments_btn").addEventListener("click", seeAllComments);
+
+const seeAllReplies = (event) => {
+    let all_replies = event.target.closest("li").querySelector(".reply_list").getElementsByClassName("reply_item");
+    let replies_displayed = 3;
+    let text_content = event.target.textContent;
+
+    for(let index=replies_displayed; index<all_replies.length; index++){
+        (text_content === "See More") ? all_replies[index].classList.remove("hidden") : all_replies[index].classList.add("hidden");
+    }
+
+    event.target.innerHTML = (text_content === "See More") ? "See Less" : "See More";
+}
+
+let show_other_replies_btn = document.getElementsByClassName("more_replies_btn");
+Array.from(show_other_replies_btn).forEach((element) => {
+    element.addEventListener("click", seeAllReplies);
+});
 
 $(function(){
     $("body").on("click", ".prev_tab, .next_tab", navigateTab);
@@ -438,4 +491,7 @@ Drog.on(document.querySelector(".comments_block_mobile"));
 document.querySelector(".reply_post_input").addEventListener("input", updatePostReplyInput);
 document.querySelector(".show_tabs_btn").addEventListener("click", () => {
     components_tab_modal.show();
+});
+document.querySelector(".go_back_btn").addEventListener("click", () => {
+    window.location.href = "/web-frontend/views/user/sections.html";
 });

@@ -401,9 +401,10 @@ const applySettings = (event)=> {
         confirm_modal.querySelector("#confirm_button_yes").addEventListener("click", function(){
             let index = documentations_list_by_size.map((obj_index) => obj_index.id).indexOf(selected_document.id) + 1;
             documentations_list_by_size.splice(index, ITEMS.first, duplicated_object);
+            renderDocuments(documentations_list_by_size, index);
 
             confirm_action_modal.hide();
-            renderDocuments(documentations_list_by_size, index);
+            document.getElementById("documents_category_selection").innerHTML = "Show All";
         });
     }else if(event.target.classList == "archive_document"){
         confirm_modal.querySelector(".message_content").textContent = `archive ${selected_document.title} documentation`;
@@ -416,6 +417,7 @@ const applySettings = (event)=> {
             renderDocuments(documentations_list_by_size);
             detectConfirmationModal(event.target.getAttribute("data-action"));
             confirm_action_modal.hide();
+            document.getElementById("documents_category_selection").innerHTML = "Show All";
         });
     }else if(event.target.classList == "remove_document"){
         confirm_modal.querySelector(".message_content").textContent = `remove ${selected_document.title} documentation`;
@@ -427,6 +429,7 @@ const applySettings = (event)=> {
             renderDocuments(documentations_list_by_size);
 
             confirm_action_modal.hide();
+            document.getElementById("documents_category_selection").innerHTML = "Show All";
         });
     }else if(event.target.classList == "public_document"){
         let is_private = event.target.closest("li").querySelector(".public_checkbox_setting").checked;
@@ -440,7 +443,9 @@ const applySettings = (event)=> {
             let selected_document_index = documentations_list_by_size.map((obj_index) => obj_index.id).indexOf(selected_document.id);
             (is_private) ? documentations_list_by_size[selected_document_index].is_private = true : documentations_list_by_size[selected_document_index].is_private = false;
             renderDocuments(documentations_list_by_size);
+
             confirm_action_modal.hide();
+            document.getElementById("documents_category_selection").innerHTML = "Show All";
         });
     }else if(event.target.classList == "favorite_document"){
         let starred_id = selected_document.id;

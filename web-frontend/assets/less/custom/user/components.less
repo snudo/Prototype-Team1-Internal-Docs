@@ -597,7 +597,7 @@
         height: 32px;
         justify-content: center;
         position: sticky;
-        top: 0;
+        top: -1px;
         width: 100%;
 
         .handle_icon{
@@ -694,6 +694,10 @@
                         font: 12px/16px @font_regular;
                     }
                 }
+                .hideContent {
+                    overflow: hidden;
+                    height: 0px;
+                }
 
                 .reply_list{
                     .reply_item{
@@ -720,6 +724,10 @@
                             margin: 0;
                         }
                     }
+                }
+
+                .hidden{
+                    display: none;
                 }
 
                 .see_more_btn{
@@ -776,6 +784,25 @@
                     right: 0;
                 }
             }
+        }
+    }
+
+    .no_post_result_mobile{
+        align-items: center;
+        color: @secondary_60;
+        display: flex;
+        flex-direction: column;
+        font: 16px/24px @font_regular;
+        justify-content: center;
+        margin: 80px auto;
+        width: 100%;
+
+        .no_post_icon{
+            background: url("../../../images/no_post_icon.svg") no-repeat 0px 0px;
+            display: block;
+            height: 90px;
+            margin: 0 0 20px 0;
+            width: 156px;
         }
     }
 }

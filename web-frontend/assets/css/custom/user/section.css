@@ -5,8 +5,8 @@
   display: none;
 }
 #section_wrapper {
-  max-width: 1055px;
   margin: 24px auto 0;
+  max-width: 1055px;
 }
 #section_wrapper > ul {
   display: -webkit-box;
@@ -31,8 +31,8 @@
   text-decoration: none;
 }
 #section_wrapper > ul li a span {
-  font: 14px/20px "Roboto-Medium";
   color: #009EBE;
+  font: 14px/20px "Roboto-Medium";
 }
 #section_wrapper > ul li.documentation_link::before {
   background: url("/web-frontend/assets/images/svg_icons_stripe.svg");
@@ -84,8 +84,8 @@
   width: 100%;
 }
 #section_wrapper #section_main_contents #documents_information #documents_title {
-  font: 22px/28px "Roboto-Regular";
   color: #1D333B;
+  font: 22px/28px "Roboto-Regular";
   margin: 0 0 0;
 }
 #section_wrapper #section_main_contents #documents_information #viewers_editors_count {
@@ -196,8 +196,8 @@
 }
 #section_wrapper #section_main_contents #sections_block #search_section_form label {
   background-color: #F0FDFA;
-  border-radius: 8px 8px 0px 0px;
   border-bottom: 2px solid #14B8A6;
+  border-radius: 8px 8px 0px 0px;
   height: 58px;
   padding: 8px 0 0 11px;
   width: 100%;
@@ -209,10 +209,10 @@
 #section_wrapper #section_main_contents #sections_block #search_section_form label input[type=text] {
   background-color: transparent;
   border: none;
+  color: #1D333B;
   font: 16px/24px "Roboto-Medium";
   outline: none;
   width: 100%;
-  color: #1D333B;
 }
 #section_wrapper #section_main_contents #sections_block #search_section_form button {
   background: url("/web-frontend/assets/images/svg_icons_stripe.svg");
@@ -233,8 +233,8 @@
   padding: 0 0 0;
 }
 #section_wrapper #section_main_contents #sections_block ul li {
-  border-radius: 8px;
   background-color: #FFFFFF;
+  border-radius: 8px;
   -webkit-box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
           box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
   height: 94px;
@@ -252,6 +252,10 @@
 }
 #section_wrapper #section_main_contents #sections_block ul li:hover a div h3 button {
   opacity: 1;
+}
+#section_wrapper #section_main_contents #sections_block ul li.ui-sortable-handle {
+  -ms-touch-action: unset;
+      touch-action: unset;
 }
 #section_wrapper #section_main_contents #sections_block ul li a {
   -webkit-box-align: center;
@@ -288,10 +292,10 @@
 }
 #section_wrapper #section_main_contents #sections_block ul li a div p {
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 1;
   color: #7D949D;
   display: -webkit-box;
   font: 14px/20px "Roboto-Medium";
+  -webkit-line-clamp: 1;
   margin: 0 0 0;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -307,10 +311,10 @@
 }
 #section_wrapper #section_main_contents #sections_block ul li a div h3 span {
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 1;
   color: #14B8A6;
   display: -webkit-box;
   font: 16px/20px "Roboto-Medium";
+  -webkit-line-clamp: 1;
   margin-right: 30px;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -351,8 +355,8 @@
             flex-direction: column;
   }
   #section_wrapper #section_main_contents #documents_information {
-    margin-right: 0;
     margin-bottom: 32px;
+    margin-right: 0;
     width: 100%;
   }
   #section_wrapper #section_main_contents #documents_information,
@@ -452,18 +456,18 @@
   }
   #section_wrapper #section_main_contents #sections_block ul li a div h3 span {
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 1;
     display: -webkit-box;
     font: 12px/16px "Roboto-Medium";
+    -webkit-line-clamp: 1;
+    margin-right: 0;
     overflow: hidden;
     text-overflow: ellipsis;
-    margin-right: 0;
   }
   #section_wrapper #section_main_contents #sections_block ul li a div p {
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
     display: -webkit-box;
     font: 12px/16px "Roboto-Medium";
+    -webkit-line-clamp: 2;
     overflow: hidden;
     text-overflow: ellipsis;
   }

@@ -547,7 +547,7 @@
       -ms-flex-pack: center;
           justify-content: center;
   position: sticky;
-  top: 0;
+  top: -1px;
   width: 100%;
 }
 .comments_block_mobile .handle_hide_btn .handle_icon {
@@ -639,6 +639,10 @@
   color: #14B8A6;
   font: 12px/16px "Roboto-Regular";
 }
+.comments_block_mobile .post_message_list .post_item .message_details .hideContent {
+  overflow: hidden;
+  height: 0px;
+}
 .comments_block_mobile .post_message_list .post_item .message_details .reply_list .reply_item {
   background: #F0FDFA;
   margin-bottom: 25px;
@@ -658,6 +662,9 @@
   color: #4B626A;
   font: 14px/20px "Roboto-Regular";
   margin: 0;
+}
+.comments_block_mobile .post_message_list .post_item .message_details .hidden {
+  display: none;
 }
 .comments_block_mobile .post_message_list .post_item .message_details .see_more_btn {
   margin-bottom: 0;
@@ -715,6 +722,32 @@
   bottom: -25px;
   position: absolute;
   right: 0;
+}
+.comments_block_mobile .no_post_result_mobile {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: #7D949D;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  font: 16px/24px "Roboto-Regular";
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin: 80px auto;
+  width: 100%;
+}
+.comments_block_mobile .no_post_result_mobile .no_post_icon {
+  background: url("../../../images/no_post_icon.svg") no-repeat 0px 0px;
+  display: block;
+  height: 90px;
+  margin: 0 0 20px 0;
+  width: 156px;
 }
 @media screen and (max-width: 580px) {
   #component_wrapper #right_panel {
