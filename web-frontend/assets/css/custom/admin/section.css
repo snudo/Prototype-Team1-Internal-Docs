@@ -219,7 +219,7 @@
   position: fixed;
   top: 65px;
   width: 100%;
-  z-index: 99;
+  z-index: 12;
 }
 #section_wrapper #section_main_contents #create_section_block #add_section_form.floated > div {
   margin: 0 auto;
