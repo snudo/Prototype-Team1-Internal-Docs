@@ -197,7 +197,7 @@ const setNewSectionActive = (new_section_id)=> {
 const changePrivacySettings = (event) => {
     event.preventDefault();
 
-    let private_setting_btn = document.getElementById("private_setting_block").children[ITEMS.first];
+    let private_setting_btn = document.getElementById("set_private_button").children[ITEMS.first];
 
     if(current_privacy_setting){
         confirm_modal_element.querySelector("#modal_message").innerHTML = "Are you sure you want to update it to public?"
@@ -299,7 +299,7 @@ autoGrowTextArea(document.getElementById("document_description_input"));
 
 document.getElementById("document_description_input").addEventListener("keyup", function(){ autoGrowTextArea(this);});
 document.getElementById("add_section_form").addEventListener("submit", submitCreateSection);
-document.getElementById("private_setting_block").addEventListener("click", changePrivacySettings);
+document.getElementById("set_private_button").addEventListener("click", changePrivacySettings);
 document.addEventListener("click", deleteSection);
 document.addEventListener("click", duplicateSection);
 
