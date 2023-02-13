@@ -1,11 +1,11 @@
 let confirm_modal_element = document.getElementById("confirm_modal");
 let confirm_modal = new bootstrap.Modal(confirm_modal_element, {});
 
-let current_privacy_setting = IS_PRIVATE.yes;
+let current_privacy_setting = IS_PRIVATE.no;
 
 /* Get params from URL of current Page */
 let url_obj = new URL((window.location.href));
-let doc_count = url_obj.searchParams.get("size") || 5;
+let doc_count = url_obj.searchParams.get("size") || 20;
 let is_invite_modal_open = url_obj.searchParams.get("invite_open") || false;
 
 let sections_array = [
@@ -195,28 +195,24 @@ const setNewSectionActive = (new_section_id)=> {
 }
 
 const changePrivacySettings = (event) => {
-    event.preventDefault();
+    let private_setting_btn = document.getElementById("set_private_toggle").getAttribute("is-private");
+    let is_private_public_text = (private_setting_btn == null) ? "Are you sure you want to update it to private?" : "Are you sure you want to update it to public?" ;
 
-    let private_setting_btn = document.getElementById("set_private_button").children[ITEMS.first];
+    let is_public = (private_setting_btn == null) ? "private" : "public";
+    detectConfirmationModal(is_public);
 
-    if(current_privacy_setting){
-        confirm_modal_element.querySelector("#modal_message").innerHTML = "Are you sure you want to update it to public?"
-        confirm_modal.show();
-
-        confirm_modal_element.querySelector("#confirm_button_yes").addEventListener("click", function(){
-            current_privacy_setting = IS_PRIVATE.no;
-            private_setting_btn.innerHTML = "Set as Private";
-
-            confirm_modal.hide();
-        });
-    }
-    else{
-        current_privacy_setting = IS_PRIVATE.yes;
-        private_setting_btn.innerHTML = "Set as Public";
-    }
-
-    return false;
+    confirm_modal_element.querySelector("#modal_message").innerHTML = is_private_public_text;
+    confirm_modal.show();
 }
+
+document.getElementById("confirm_button_yes").addEventListener("click", function(){
+    document.getElementById("set_private_toggle").toggleAttribute("is-private");
+
+    let is_private = document.getElementById("set_private_toggle").getAttribute("is-private");
+
+    document.getElementById("set_private_toggle").textContent = (is_private == null) ? "Set as Private" : "Set as Public";
+    confirm_modal.hide();
+});
 
 /*Set search and add section forms stick or fixed on top*/
 window.addEventListener("scroll", () => {
@@ -299,7 +295,7 @@ autoGrowTextArea(document.getElementById("document_description_input"));
 
 document.getElementById("document_description_input").addEventListener("keyup", function(){ autoGrowTextArea(this);});
 document.getElementById("add_section_form").addEventListener("submit", submitCreateSection);
-document.getElementById("set_private_button").addEventListener("click", changePrivacySettings);
+document.getElementById("set_private_toggle").addEventListener("click", changePrivacySettings);
 document.addEventListener("click", deleteSection);
 document.addEventListener("click", duplicateSection);
 
