@@ -517,7 +517,8 @@ const FilterDocuments = (event)=> {
 
 const setPopUpPrivate = ()=> {
     document.querySelectorAll(".documents_menu").forEach((documents) => {
-        documents.addEventListener("click", function(){
+        documents.addEventListener("click", function(event){
+            event.target.focus();
             let selected_document_index = documentations_list_by_size.map((obj_index) => obj_index.id).indexOf(parseInt(this.closest("li").id));
             document.getElementById(this.getAttribute("aria-describedby")).querySelector(".public_checkbox_setting").checked = documentations_list_by_size[selected_document_index].is_private;
         });

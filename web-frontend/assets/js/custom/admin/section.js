@@ -411,11 +411,11 @@ const removePeopleAccess = (event) => {
 }
 
 function createTextBox(emailsContainer, options) {
-    const input = document.createElement('input');
-    input.classList.add('add_email_input');
-    input.setAttribute('name', 'add_email_input');
-    input.setAttribute('type', 'text');
-    input.setAttribute('placeholder', 'Enter email...');
+    const input = document.createElement("input");
+    input.classList.add("add_email_input");
+    input.setAttribute("name", "add_email_input");
+    input.setAttribute("type", "text");
+    input.setAttribute("placeholder", "Enter email...");
 
     const input_li = document.createElement('li');
     input_li.appendChild(input);
