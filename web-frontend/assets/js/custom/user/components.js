@@ -43,9 +43,6 @@ const removeItemData = (event) => {
     confirm_modal.show(); 
 
     document.getElementById("confirm_button_yes").addEventListener("click", function(){
-        if(post_type === "post"){
-            document.getElementById("see_all_comments_btn").click();
-        }
 
         selected_item.closest("li").remove();
         message_item.querySelector(".show_reply_btn").innerHTML = `<span class="caret_arrow"></span> ${ reply_count } ${ (reply_count > 1) ? "Replies" : "Reply" }`;
@@ -283,7 +280,18 @@ const manipulateComment = (event) => {
                 let message_details = document.getElementById(parent_id_data[0]);
                 
                 if(message_details){
-                    let message_count   = message_details.closest(".message_details").querySelectorAll(".reply_item").length - 1;
+                    let parent_block  = message_details.closest(".message_details");
+                    let reply_item    = parent_block.querySelectorAll(".reply_item");
+                    let message_count = reply_item.length - 1;
+                    let see_more_btn  = parent_block.querySelector(".see_more_btn");
+
+                    reply_item.forEach((item) => {
+                        item.classList.remove("hidden");
+                    });
+
+                    (message_count < 4) ? see_more_btn.classList.add("hidden") : see_more_btn.classList.remove("is_show");
+
+                    see_more_btn.innerHTML = "See Less <span class='caret_down'></span>";
 
                     message_details.closest(".message_details").querySelector(".reply_text").textContent = `${ message_count } ${ (message_count > 1) ? "Replies" : "Reply" }`;
                 }
@@ -295,14 +303,17 @@ const manipulateComment = (event) => {
                 (post_count) ? no_post_result_mobile.classList.add("hidden") : no_post_result_mobile.classList.remove("hidden");
 
                 if(post_count < 4){
-                    let all_posts = document.querySelector(".post_message_list").getElementsByClassName("post_item");
-
-                    Array.from(all_posts).forEach((post_item, index) => {
-                        (index > 2) && post_item.classList.remove("hidden");
-                    });
-
                     document.getElementById("see_all_comments_btn").classList.add("hidden");
                 }
+
+                let see_all_comments_btn = document.getElementById("see_all_comments_btn");
+            
+                see_all_comments_btn.classList.add("is_show");
+                see_all_comments_btn.innerHTML = "See Less <span class='caret_down'></span>";
+
+                document.querySelectorAll(".post_message_list .post_item").forEach((post_item) => {
+                    post_item.classList.remove("hidden");
+                });
             }
 
             message_parent.remove();
