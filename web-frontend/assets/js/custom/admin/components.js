@@ -256,3 +256,10 @@ document.getElementById("section_title").addEventListener("focus", function(){
 document.getElementById("section_title").addEventListener("blur", function(){
     blurInput(this);
 });
+
+document.getElementById("section_details").addEventListener("focus", function(){
+    focusInput(this);
+});
+document.getElementById("section_details").addEventListener("blur", function(){
+    blurInput(this);
+});
