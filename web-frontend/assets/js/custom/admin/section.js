@@ -310,13 +310,13 @@ $(function() {
         document.getElementById("document_description_input").textContent = "";
         document.querySelector("#viewers_editors_count span").textContent = "0 viewer and 0 editor";
         document.getElementById("documents_title").value = url_obj.searchParams.get("title");     
-        $("#document_description_input").css("height", "460px").focus();   
+        $("#document_description_input").css("height", "480px").focus();   
         $("#current_page").text(new_doc_title);
     }
     else{
         $("#current_page").text("Engineering Guide");
         document.getElementById("documents_title").value = "Engineering Guide";
-        $("#document_description_input").css("height", "460px").text("Engineering Guidelines are a collection of your an organizations’ Best Practices; a distillation of the institutional knowledge around “how things should be done here”. They are a cross between a Mission Statement, Company Values, and an Employee Handbook for your engineering department. You need a rationale so people understand the context in which these decisions have been made. \n\nThis allows exceptions when these base assumptions do not hold, or updating the guidelines when the larger context changes. It’s about making decisions once for consistency. It’s about avoiding known issues or edge cases. It’s about choosing a specific technique with known tradeoffs for dealing with problems.");
+        $("#document_description_input").css("height", "480px").text("Engineering Guidelines are a collection of your an organizations’ Best Practices; a distillation of the institutional knowledge around “how things should be done here”. They are a cross between a Mission Statement, Company Values, and an Employee Handbook for your engineering department. You need a rationale so people understand the context in which these decisions have been made. \n\nThis allows exceptions when these base assumptions do not hold, or updating the guidelines when the larger context changes. It’s about making decisions once for consistency. It’s about avoiding known issues or edge cases. It’s about choosing a specific technique with known tradeoffs for dealing with problems.");
     }
 });
 
@@ -619,6 +619,28 @@ const copyLink = () => {
     setTimeout(() => {
         popover.hide();
     }, 1000);
+}
+
+document.getElementById("documents_title").addEventListener("focus", function(){
+    focusInput(this);
+});
+document.getElementById("documents_title").addEventListener("blur", function(){
+    blurInput(this);
+});
+
+document.getElementById("document_description_input").addEventListener("focus", function(){
+    focusInput(this);
+});
+document.getElementById("document_description_input").addEventListener("blur", function(){
+    blurInput(this);
+});
+
+const focusInput = (input)=> {
+    input.classList.add("input_focused");
+}
+
+const blurInput = (input)=> {
+    input.classList.remove("input_focused");
 }
 
 document.querySelector("#invite_user_modal .copy_link").addEventListener("click", copyLink);

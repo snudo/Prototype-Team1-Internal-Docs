@@ -98,6 +98,8 @@ label.input_field input[type=text] {
   font: 22px/28px "Roboto-Regular";
   margin: 0;
   outline: none;
+  -webkit-transition: all 0.21s;
+  transition: all 0.21s;
 }
 #component_wrapper #left_panel .section_details .title_block button {
   -webkit-box-align: center;

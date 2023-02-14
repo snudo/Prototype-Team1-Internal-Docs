@@ -211,6 +211,14 @@ const toggleComments = (event)=> {
     }
 }
 
+const focusInput = (input)=> {
+    input.classList.add("input_focused");
+}
+
+const blurInput = (input)=> {
+    input.classList.remove("input_focused");
+}
+
 updateSectionTitle();
 
 /* EVENTS */
@@ -223,7 +231,6 @@ document.querySelector(".title_block button").addEventListener("click", () => {
     // Temporary for User Testing only
     // window.location.href = "/web-frontend/views/user/components.html";
 });
-
 
 $(function(){
     /* Onload focus Description textarea if 0 size */
@@ -241,4 +248,11 @@ $(function(){
             return false;  
         }
     });
+});
+
+document.getElementById("section_title").addEventListener("focus", function(){
+    focusInput(this);
+});
+document.getElementById("section_title").addEventListener("blur", function(){
+    blurInput(this);
 });
