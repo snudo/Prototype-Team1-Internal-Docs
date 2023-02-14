@@ -428,6 +428,7 @@
                     .carousel-indicators{
                         align-items: flex-start;
                         display: flex;
+                        height: 71px;
                         justify-content: flex-start;
                         margin: 0 0 0 24px;
                         overflow: hidden;
@@ -695,8 +696,8 @@
                     }
                 }
                 .hideContent {
-                    overflow: hidden;
                     height: 0px;
+                    overflow: hidden;
                 }
 
                 .reply_list{
@@ -750,11 +751,18 @@
         width: 100%;
 
         .caret_down{
-            background: url("../../../images/svg_icons_stripe.svg") no-repeat -126px -9px;
+            background: url("../../../images/comment_thread_mobile_icons.svg") no-repeat -150px 0px;
             display: block;
             height: 18px;
+            margin-left: 3px;
             transition: .25s ease-in-out;
             width: 18px;
+        }
+
+        &.is_show{
+            .caret_down{
+                transform: rotate(180deg);
+            }
         }
     }
 
