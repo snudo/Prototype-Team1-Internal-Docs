@@ -80,6 +80,8 @@ label.input_field input[type=text]::placeholder {
   font: 22px/28px "Roboto-Regular";
   min-width: 130px;
   outline: none;
+  -webkit-transition: all 0.21s;
+  transition: all 0.21s;
   width: 130px;
 }
 #component_wrapper #left_panel .section_details .title_block button {
