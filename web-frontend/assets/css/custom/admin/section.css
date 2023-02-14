@@ -85,6 +85,8 @@
   border: none;
   outline: none;
   padding: 0 0 0;
+  -webkit-transition: all 0.21s;
+  transition: all 0.21s;
   width: 100%;
 }
 #section_wrapper #section_main_contents #documents_editable_form textarea::-webkit-input-placeholder {
@@ -153,6 +155,8 @@
   border: none;
   overflow: hidden;
   resize: none;
+  -webkit-transition: all 0.21s;
+  transition: all 0.21s;
   width: 100%;
 }
 #section_wrapper #section_main_contents #documents_editable_form p:first-of-type {

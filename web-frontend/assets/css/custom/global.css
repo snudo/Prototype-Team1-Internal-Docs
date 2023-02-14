@@ -10,6 +10,12 @@
 .disabled {
   pointer-events: none;
 }
+.input_focused {
+  background: #F0FDFA !important;
+  border-radius: 4px !important;
+  color: rgba(0, 11, 29, 0.4) !important;
+  padding: 8px !important;
+}
 .input_error {
   border: 1px solid #e97575;
   border-bottom: 2px solid #e97575 !important;
