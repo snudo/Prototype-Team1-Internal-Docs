@@ -232,4 +232,13 @@ $(function(){
     }
     
     document.getElementById("section_details").focus();
+
+    /* Focus the description/content when Enter key is pressed from tab title input box */
+    $("body").on("keypress", ".title_tab_input", function(e) {
+        /* When enter key is pressed */
+        if(e.which === 13){
+            $(this).closest(".update_tab_form").find(".rx-editor").focus();
+            return false;  
+        }
+    });
 });

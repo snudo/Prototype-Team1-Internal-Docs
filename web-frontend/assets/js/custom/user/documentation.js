@@ -364,4 +364,7 @@ for(let i = 0; i < documents_menus.length; i++) {
     })
 }
 
-$(function() {$("#document_list_container").sortable();});
+$(function() {
+    $("#document_list_container").sortable();
+    $("#search_documentation_input").select();
+});
