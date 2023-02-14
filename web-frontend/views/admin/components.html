@@ -64,7 +64,7 @@
         <ul>
             <li class="tab_item nav-item" role="presentation">
                 <button class="tab_name nav-link" data-bs-toggle="tab" data-bs-target="#hny" type="button" role="tab" aria-selected="true">Untitled</button>
-                <button class="remove_tab"></button>
+                <button class="remove_tab" data-action="remove"></button>
             </li>
         </ul>
 
@@ -82,7 +82,7 @@
             <ul id="tablist" class="tab_list nav nav-tabs" role="tablist">
                 <li class="tab_item active nav-item" role="presentation">
                     <button class="tab_name nav-link" data-bs-toggle="tab" data-bs-target="#hny" type="button" role="tab" aria-selected="true">Untitled</button>
-                    <button class="remove_tab"></button>
+                    <button class="remove_tab" data-action="remove"></button>
                 </li>
                 <li class="add_tab"><button class="add_tab_btn"></button></li>
             </ul>
@@ -121,6 +121,7 @@
     <div class="modal fade" id="confirm_modal" tabindex="-1" aria-labelledby="confirm_modal" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
+                <span id="action_icon_container"></span>
                 <p id="modal_message"></p>
                 <div>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
