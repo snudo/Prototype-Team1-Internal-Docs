@@ -535,7 +535,7 @@ const fetchAllComments = () => {
 const seeAllComments = (event) => {
     fetchAllComments();
 
-    let see_more_post_btn = event.target;
+    let see_more_post_btn = event.target.closest("button");
 
     see_more_post_btn.classList.toggle("is_show");
     (see_more_post_btn.textContent.trim("") === "See More") ? see_more_post_btn.innerHTML = "See Less <span class='caret_down'></span>" : see_more_post_btn.innerHTML = "See More <span class='caret_down'></span>";
@@ -554,11 +554,11 @@ fetchAllComments();
 document.getElementById("see_all_comments_btn").addEventListener("click", seeAllComments);
 
 const seeAllReplies = (event) => {
-    let see_more_btn = event.target;
+    let see_more_btn = event.target.closest("button");
     let reply_reply = see_more_btn.closest(".message_details").querySelector(".reply_list").getElementsByClassName("reply_item");
 
     see_more_btn.classList.toggle("is_show");
-    
+
     (see_more_btn.textContent.trim("") === "See More") ? see_more_btn.innerHTML = "See Less <span class='caret_down'></span>" : see_more_btn.innerHTML = "See More <span class='caret_down'></span>";
 
     Array.from(reply_reply).forEach((reply_item, index) => {

@@ -7,7 +7,6 @@ var selected_document = "";
 /* Get params from URL of current Page */
 let url_obj = new URL((window.location.href).toLowerCase());
 let doc_count = url_obj.searchParams.get("size") || 3;
-
 let documents_array = [
     {
         id: 105,
@@ -326,7 +325,6 @@ const renderDocuments = (documents_list, active_index = false) => {
 renderDocuments(documentations_list_by_size);
 
 /* CALLBACK FUNCTIONS */
-
 const getDocumentValue = (event) => {
     event.preventDefault();
     let add_document_input_field = document.querySelector("#add_documentation_label");
@@ -517,7 +515,8 @@ const FilterDocuments = (event)=> {
 
 const setPopUpPrivate = ()=> {
     document.querySelectorAll(".documents_menu").forEach((documents) => {
-        documents.addEventListener("click", function(){
+        documents.addEventListener("click", function(event){
+            event.target.focus();
             let selected_document_index = documentations_list_by_size.map((obj_index) => obj_index.id).indexOf(parseInt(this.closest("li").id));
             document.getElementById(this.getAttribute("aria-describedby")).querySelector(".public_checkbox_setting").checked = documentations_list_by_size[selected_document_index].is_private;
         });
