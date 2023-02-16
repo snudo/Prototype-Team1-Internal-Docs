@@ -138,10 +138,11 @@ const renderSections = (sections_list) => {
     section_container.innerHTML = "";
 
     if(sections_list.length){
+        let sections_index = [...new Map(sections_list.map(item => [item["id"], item])).values()];
         document.getElementById("no_section_data_logo").setAttribute("hidden", "hidden");
 
-        for(let index in sections_list){
-            let section_item = sections_list[index];
+        for(let index in sections_index){
+            let section_item = sections_index[index];
             let cloned_section = document.getElementById("clone_section").cloneNode(true);
 
             cloned_section.id = section_item.id;
