@@ -67,21 +67,21 @@
   font: 16px/24px "Roboto-Regular";
 }
 #confirm_modal .modal-dialog .modal-content div {
-  -webkit-box-align: center;
-      -ms-flex-align: center;
           align-items: center;
+  -webkit-box-align: center;
+  -webkit-box-pack: center;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
+      -ms-flex-align: center;
       -ms-flex-pack: center;
           justify-content: center;
   width: 100%;
 }
 #confirm_modal .modal-dialog .modal-content div button {
   background-color: transparent;
-  border-radius: 8px;
   border: 1px solid #B3CAD4;
+  border-radius: 8px;
   color: #B3CAD4;
   font: 16px/24px "Roboto-Medium";
   height: 40px;
@@ -102,13 +102,13 @@ body {
   background: #E7EFF6;
 }
 nav {
-  -webkit-box-align: center;
-      -ms-flex-align: center;
           align-items: center;
   background: #FFFFFF;
+  -webkit-box-align: center;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+      -ms-flex-align: center;
   height: 64px;
   padding: 0 24px;
   position: sticky;
@@ -138,23 +138,23 @@ nav > a {
   height: 30px;
 }
 nav #user_settings {
-  -webkit-box-align: center;
-      -ms-flex-align: center;
           align-items: center;
+  -webkit-box-align: center;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+      -ms-flex-align: center;
   margin-left: auto;
 }
 nav #user_settings #theme_block {
-  -webkit-box-align: center;
-      -ms-flex-align: center;
           align-items: center;
   background: #DBF5FF;
   border-radius: 30px;
+  -webkit-box-align: center;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+      -ms-flex-align: center;
   height: 30px;
   margin-right: 24px;
   padding: 0 3px;
@@ -451,26 +451,26 @@ nav #user_settings #theme_block.set_light_mode #light_mode::after {
   background: url("../../images/svg_icons_stripe.svg") no-repeat;
 }
 nav #user_settings #user_profile_wrapper {
-  -webkit-box-align: center;
-      -ms-flex-align: center;
           align-items: center;
+  -webkit-box-align: center;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+      -ms-flex-align: center;
 }
 nav #user_settings #user_profile_wrapper img {
   margin-right: 9px;
 }
 nav #user_settings #user_profile_wrapper button {
-  -webkit-box-align: center;
-      -ms-flex-align: center;
           align-items: center;
   background: transparent;
   border: none;
+  -webkit-box-align: center;
   color: #009EBE;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+      -ms-flex-align: center;
   font: 16px/24px "Roboto-Medium";
   outline: none;
 }
@@ -519,13 +519,13 @@ nav #mobile_menus ul li:last-child {
   margin-bottom: 0;
 }
 nav #mobile_menus ul li a {
-  -webkit-box-align: center;
-      -ms-flex-align: center;
           align-items: center;
+  -webkit-box-align: center;
   color: #009EBE;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+      -ms-flex-align: center;
   font: 12px/16px "Roboto-Medium";
   padding: 10px 0;
   text-decoration: none;
@@ -545,13 +545,13 @@ nav #mobile_menus ul li#settings_link a::before {
   width: 20px;
 }
 nav #mobile_menus div {
-  -webkit-box-align: center;
-      -ms-flex-align: center;
           align-items: center;
   border-bottom: 1px solid #DBE8ED;
+  -webkit-box-align: center;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+      -ms-flex-align: center;
   margin: 42px 0 17px;
   padding-bottom: 15px;
 }
@@ -591,12 +591,12 @@ nav #overlay {
   }
 }
 .breadcrumbs_block {
-  -webkit-box-align: center;
-      -ms-flex-align: center;
           align-items: center;
+  -webkit-box-align: center;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+      -ms-flex-align: center;
   list-style: none;
   margin: 24px 0 23px;
   padding: 0;
@@ -618,12 +618,12 @@ nav #overlay {
 }
 .breadcrumbs_block li a,
 .breadcrumbs_block li p {
-  -webkit-box-align: center;
-      -ms-flex-align: center;
           align-items: center;
+  -webkit-box-align: center;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+      -ms-flex-align: center;
 }
 .breadcrumbs_block li a .breadcrumbs_icon,
 .breadcrumbs_block li p .breadcrumbs_icon {
