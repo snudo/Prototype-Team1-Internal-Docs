@@ -1,6 +1,8 @@
 const ITEMS = {
     first: 0,
-    second: 1
+    second: 1,
+    third: 2,
+    fourth: 3
 };
 
 const SCROLL_POSITION = {

@@ -129,28 +129,30 @@ const addComponentItem = () => {
     let component_item_clone = document.querySelector("#clone_block .component_block").cloneNode(true);
     let tab_name             = component_item_clone.querySelector(".tab_name");
     let tab_item             = component_item_clone.querySelector(".tab_item");
+    let random_component_id  = (Math.random() + 1).toString(36).substring(7);
+    let random_tab_id        = "random_id" + (Math.random() + 1).toString(36).substring(5);
 
-    component_item_clone.setAttribute("data-component-id", ITEM_RANDOM_ID.random_component_id);
-    tab_item.setAttribute("data-tab-id", ITEM_RANDOM_ID.random_tab_id);
+    component_item_clone.setAttribute("data-component-id", random_component_id);
+    tab_item.setAttribute("data-tab-id", random_tab_id);
 
     /* Add component data */
-    component_data[ITEM_RANDOM_ID.random_component_id] = {
+    component_data[random_component_id] = {
         tabs: []
     }
 
     /* Add tabs data */
-    component_data[ITEM_RANDOM_ID.random_component_id].tabs[ITEM_RANDOM_ID.random_tab_id] = {
+    component_data[random_component_id].tabs[random_tab_id] = {
         name: "Untitled",
         description: ""
     }
 
-    tab_item.querySelector("button").setAttribute("data-bs-target", "#" + ITEM_RANDOM_ID.random_tab_id);
-    component_item_clone.querySelector(".tab-pane").setAttribute("id", ITEM_RANDOM_ID.random_tab_id);
+    tab_item.querySelector("button").setAttribute("data-bs-target", "#" + random_tab_id);
+    component_item_clone.querySelector(".tab-pane").setAttribute("id", random_tab_id);
 
     document.getElementById("component_list").append(component_item_clone);
     
     /* EVENTS */
-    component_item_clone.querySelector(".add_tab_btn").addEventListener("click", () => addTab(component_item_clone, ITEM_RANDOM_ID.random_component_id));
+    component_item_clone.querySelector(".add_tab_btn").addEventListener("click", () => addTab(component_item_clone, random_component_id));
     component_item_clone.querySelector(".remove_tab").addEventListener("click", (event) => removeTab(event));
 
     component_item_clone.querySelector(".update_tab_form").addEventListener("submit", (event) => {
@@ -160,14 +162,14 @@ const addComponentItem = () => {
 
     component_item_clone.querySelector(".update_tab_form .title_tab_input").addEventListener("keyup", (event) => {
         let tab_title_data = event.target.value;        
-        submitUpdateTabDetails({is_title: true, tab_title_data}, ITEM_RANDOM_ID.random_component_id, event);
+        submitUpdateTabDetails({is_title: true, tab_title_data}, random_component_id, event);
     });
 
-    tab_name.addEventListener("click", (event) => fetchSelectedTabDetails(event, ITEM_RANDOM_ID.random_component_id, ITEM_RANDOM_ID.random_tab_id));
+    tab_name.addEventListener("click", (event) => fetchSelectedTabDetails(event, random_component_id, random_tab_id));
 
     setTimeout(() => {
         tab_name.click();
-        document.getElementById(ITEM_RANDOM_ID.random_tab_id).querySelector(".title_tab_input").select();
+        document.getElementById(random_tab_id).querySelector(".title_tab_input").select();
     }, TIMEOUT_SPEED.fast);
 };
 
