@@ -657,3 +657,8 @@ document.querySelectorAll(".with_access_list .dropdown-item").forEach((selected_
 document.querySelectorAll(".add_email_block .dropdown-item").forEach((selected_status) => {
     selected_status.addEventListener("click", (event) => selectAddedEmailStatus(event, "#added_email_status"));
 });
+
+document.querySelector("#documents_editable_form").addEventListener("submit", (event) => {
+    event.preventDefault();
+    return false;
+});

@@ -7,7 +7,6 @@ var selected_document = "";
 /* Get params from URL of current Page */
 let url_obj = new URL((window.location.href).toLowerCase());
 let doc_count = url_obj.searchParams.get("size") || 3;
-
 let documents_array = [
     {
         id: 105,
@@ -326,7 +325,6 @@ const renderDocuments = (documents_list, active_index = false) => {
 renderDocuments(documentations_list_by_size);
 
 /* CALLBACK FUNCTIONS */
-
 const getDocumentValue = (event) => {
     event.preventDefault();
     let add_document_input_field = document.querySelector("#add_documentation_label");
