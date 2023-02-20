@@ -6,7 +6,7 @@ var selected_document = "";
 
 /* Get params from URL of current Page */
 let url_obj = new URL((window.location.href).toLowerCase());
-let doc_count = url_obj.searchParams.get("size") || 3;
+let doc_count = url_obj.searchParams.get("size") || ITEMS.fourth;
 let documents_array = [
     {
         id: 105,
@@ -281,6 +281,7 @@ const renderDocuments = (documents_list, active_index = false) => {
             (parseInt(index) === active_index) ? cloned_document.classList.add("active") : null;
 
             document.getElementById("document_list_container").appendChild(cloned_document);
+            popover_content.querySelectorAll(".public_checkbox_setting")[ITEMS.first].checked = document_item.is_private;
 
             new bootstrap.Popover(cloned_document.querySelector(".documents_menu"), {
                 animation: true,
@@ -299,6 +300,7 @@ const renderDocuments = (documents_list, active_index = false) => {
                     event.preventDefault();
                     event.stopPropagation();
                     starredDocument(event);
+
                     return false;
                 }
                 else if(event.target.classList.contains("documents_menu")){
@@ -306,6 +308,7 @@ const renderDocuments = (documents_list, active_index = false) => {
                     event.stopPropagation();
 
                     let document_id = parseInt(event.target.closest("li").getAttribute("id"));
+                    
                     selected_document = documentations_list_by_size.find(obj_id => obj_id.id === document_id);
 
                     return false;
@@ -335,27 +338,6 @@ const getDocumentValue = (event) => {
     
     if(form_input.value.length){
         window.location.href = "/web-frontend/views/admin/sections.html?size=0&title="+encodeURIComponent(form_input.value);
-        let timestamp = new Date().getUTCMilliseconds();
-
-        /* UX Changed
-        documentations_list_by_size.splice(doc_count, 0, {
-            id: timestamp,
-            title: form_input.value,
-            viewers: 0,
-            editors: 0,
-            is_private: false,
-            is_starred: false,
-            description:"",
-        });
-
-        form_input.value = "";
-        document.getElementById("documents_category_selection").innerHTML = "Show All";
-        doc_count++;
-
-        renderDocuments(documentations_list_by_size);
-        preventPageRedirect();
-        setPopUpPrivate();
-        */
     }
     else{
         add_document_input_field.classList.add("input_error");
@@ -369,6 +351,7 @@ const fixInputOnScroll = ()=> {
 
     }
 };
+
 fixInputOnScroll();
 
 const DuplicateDocument = (event)=> {
@@ -381,7 +364,7 @@ const DuplicateDocument = (event)=> {
 }
 
 const applySettings = (event)=> {
-    if(event.target.classList == "duplicate_document"){
+    if(event.target.classList[ITEMS.first] == "duplicate_document"){
         let duplicated_object = {
             id: new Date().getUTCMilliseconds(),
             title: "Copy of " + selected_document.title,
@@ -398,13 +381,14 @@ const applySettings = (event)=> {
 
         confirm_modal.querySelector("#confirm_button_yes").addEventListener("click", function(){
             let index = documentations_list_by_size.map((obj_index) => obj_index.id).indexOf(selected_document.id) + 1;
+
             documentations_list_by_size.splice(index, ITEMS.first, duplicated_object);
             renderDocuments(documentations_list_by_size, index);
-
             confirm_action_modal.hide();
             document.getElementById("documents_category_selection").innerHTML = "Show All";
         });
-    }else if(event.target.classList == "archive_document"){
+    }
+    else if(event.target.classList[ITEMS.first] === "archive_document"){
         confirm_modal.querySelector(".message_content").textContent = `archive ${selected_document.title} documentation`;
         detectConfirmationModal(event.target.getAttribute("data-action"));
         confirm_action_modal.show();
@@ -417,7 +401,8 @@ const applySettings = (event)=> {
             confirm_action_modal.hide();
             document.getElementById("documents_category_selection").innerHTML = "Show All";
         });
-    }else if(event.target.classList == "remove_document"){
+    }
+    else if(event.target.classList[ITEMS.first] === "remove_document"){
         confirm_modal.querySelector(".message_content").textContent = `remove ${selected_document.title} documentation`;
         detectConfirmationModal(event.target.getAttribute("data-action"));
         confirm_action_modal.show();
@@ -429,7 +414,7 @@ const applySettings = (event)=> {
             confirm_action_modal.hide();
             document.getElementById("documents_category_selection").innerHTML = "Show All";
         });
-    }else if(event.target.classList == "public_document"){
+    }else if(event.target.classList[ITEMS.first] === "public_document"){
         let is_private = event.target.closest("li").querySelector(".public_checkbox_setting").checked;
         let private_public_type = (selected_document.is_private) ? "public" : "private";
 
@@ -439,13 +424,14 @@ const applySettings = (event)=> {
         
         confirm_modal.querySelector("#confirm_button_yes").addEventListener("click", function(){
             let selected_document_index = documentations_list_by_size.map((obj_index) => obj_index.id).indexOf(selected_document.id);
-            (is_private) ? documentations_list_by_size[selected_document_index].is_private = true : documentations_list_by_size[selected_document_index].is_private = false;
+            
+            documentations_list_by_size[selected_document_index].is_private = !is_private;
             renderDocuments(documentations_list_by_size);
 
             confirm_action_modal.hide();
             document.getElementById("documents_category_selection").innerHTML = "Show All";
         });
-    }else if(event.target.classList == "favorite_document"){
+    }else if(event.target.classList[ITEMS.first] === "favorite_document"){
         let starred_id = selected_document.id;
         let selected_document_id = documentations_list_by_size.find(obj_id => obj_id.id === starred_id);
         let selected_document_index = documentations_list_by_size.map((obj_index) => obj_index.id).indexOf(starred_id);
@@ -488,7 +474,6 @@ const starredDocument = (event)=> {
 
 const FilterDocuments = (event)=> {
     if(event.target.getAttribute("id") != "filter_dropdown_menu"){
-
         document.getElementById("documents_category_selection").innerHTML = "Show " + event.target.innerHTML;
 
         if(event.target.getAttribute("data-selection") === "data-documents"){
